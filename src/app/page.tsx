@@ -1,7 +1,9 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:2995362055.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3484702415.
 'use client';
 
 import Image from 'next/image';
-import {Mail, Github, Linkedin, Menu, Instagram, Download, ChevronLeft, ChevronRight, FolderGit2} from 'lucide-react';
+import {Mail, Github, Linkedin, Menu, Instagram, ChevronLeft, ChevronRight, FolderGit2} from 'lucide-react';
 import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
 import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
 import {Badge} from "@/components/ui/badge";
@@ -15,10 +17,14 @@ import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTri
 import {TypingEffect} from "@/components/typing-effect";
 import * as THREE from 'three';
 import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
-import {OrbitControls} from 'three/examples/jsm/controls/OrbitControls';
+import Me1 from '../assets/Me1.jpg';
+import BookRecommender from '../assets/Semantic Book Recommender.png'
+import PortfolioWebsite from '../assets/portfolioWebsiteWhite.png'
+import MovieReviewSentimentAnalysis from '../assets/Movie Review Sentiment Analysis App.png'
 
-const profileImage = "https://picsum.photos/300/300";
-const projectImage = "https://picsum.photos/600/400";
+
+// const profileImage = "https://picsum.photos/300/300";
+// const projectImage = "https://picsum.photos/600/400";
 
 interface NavbarProps {
   links: { href: string; label: string }[];
@@ -29,7 +35,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
     <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="container max-w-7xl mx-auto py-4 flex items-center justify-between">
         <a href="#" className="font-bold text-2xl">
-          Jarfolio
+          Ahmed Ayman
         </a>
         <div className="hidden sm:flex items-center gap-6">
           {links.map((link) => (
@@ -72,41 +78,41 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
 // Dummy project data
 const projects = [
   {
-    title: "TDSB Homework Management Interface",
-    description: "An application created for Toronto District School Board, with a Flask back-end and a Vue front-end.",
-    tech: ["Python (Flask)", "Vue.js", "Bootstrap", "SQL"],
-    image: "https://picsum.photos/600/400",
-    demoLink: "#",
-    repoLink: "#",
+    title: "Semantic Book Recommender with LLMs",
+    description: "Develop a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
+    tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
+    image: BookRecommender,
+    demoLink: "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
+    repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
   },
   {
-    title: "Adam A.I.",
-    description: "A self-learning A.I. that learns to traverse through a complex maze using the genetic algorithm.",
+    title: "Portfolio-Website",
+    description: "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
     tech: ["Javascript", "HTML", "CSS"],
-    image: "https://picsum.photos/600/400",
-    demoLink: "#",
-    repoLink: "#",
+    image: PortfolioWebsite,
+    demoLink: "https://ahmedayman4.github.io/Personal-website/",
+    repoLink: "https://github.com/AhmedAyman4/Personal-website",
   },
   {
-    title: "Distributed Logging and Monitoring System",
-    description: "A system that establishes an ORM connection to a Prisma client in order to communicate logs from microservices.",
-    tech: ["Node.js (Express.js)", "React.js", "PostgreSQL"],
-    image: "https://picsum.photos/600/400",
-    demoLink: "#",
-    repoLink: "#",
+    title: "Movie Review Sentiment Analysis App",
+    description: "A movie sentiment analysis application that uses three models — TF-IDF with Logistic Regression, a custom TensorFlow neural network, and a pre-trained RoBERTa transformer — to predict review sentiment through an interactive Gradio web interface with confidence scores and model comparisons.",
+    tech: ["scikit-learn", "transformers" ,"tensorflow", "gradio"],
+    image: MovieReviewSentimentAnalysis,
+    demoLink: "https://huggingface.co/spaces/ahmed-ayman/Sentiment-Analysis",
+    repoLink: "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",
   },
-  {
-    title: "Yet Another Project",
-    description: "Another project with a different technology stack.",
-    tech: ["React", "Tailwind CSS", "Firebase"],
-    image: "https://picsum.photos/600/400",
-    demoLink: "#",
-    repoLink: "#",
-  },
+  // {
+  //   title: "Yet Another Project",
+  //   description: "Another project with a different technology stack.",
+  //   tech: ["React", "Tailwind CSS", "Firebase"],
+  //   image: "https://picsum.photos/600/400",
+  //   demoLink: "#",
+  //   repoLink: "#",
+  // },
 ];
 
 const FeatureProject: React.FC<{ project: any }> = ({ project }) => (
-  <div className="relative rounded-lg overflow-hidden max-w-6xl max-h-none mx-auto">
+  <div className="relative rounded-lg overflow-hidden max-w-8xl max-h-fit mx-auto">
     <Image
       src={project.image}
       alt={project.title}
@@ -125,10 +131,10 @@ const FeatureProject: React.FC<{ project: any }> = ({ project }) => (
       </div>
       <div className="mt-2">
         <Button variant="secondary" asChild size="sm" className="px-2 py-1 text-xs">
-          <a href={project.demoLink}>Live Demo</a>
+          <a href={project.demoLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
         </Button>
         <Button className="ml-2 px-2 py-1 text-xs" asChild size="sm">
-          <a href={project.repoLink}>Code Repo</a>
+          <a href={project.repoLink} target="_blank" rel="noopener noreferrer">Code Repo</a>
         </Button>
       </div>
     </div>
@@ -149,11 +155,11 @@ const SmallProjectCard: React.FC<{ project: any }> = ({ project }) => (
       </div>
       <div className="mt-4">
         <Button variant="secondary" asChild>
-          <a href={project.demoLink}>Live Demo</a>
+          <a href={project.demoLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
         </Button>
         <Button className="ml-2" asChild>
-          <a href={project.repoLink}>
-            <FolderGit2 className="h-4 w-4 mr-2" />
+          <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
+            <FolderGit2 className="h-4 w-4 mr-2"/>
             Code Repo
           </a>
         </Button>
@@ -195,29 +201,29 @@ export default function Home() {
               {/* Hero Section */}
               <section id="hero" className="text-center mb-16">
                   <Image
-                      src={profileImage}
+                      src={Me1}
                       alt="Profile"
                       width={150}
                       height={150}
                       className="rounded-full mx-auto mb-4 shadow-lg"
                   />
                   <h1 className="text-4xl font-semibold text-primary mb-2">
-                      <TypingEffect text="John Doe" />
+                      <TypingEffect text="Ahmed Ayman" />
                   </h1>
                   <p className="text-muted-foreground text-lg mb-6">
-                      Full-Stack Web Developer | React, Node.js, Next.js
+                  Data Scientist | ML Engineer | Python Developer 
                   </p>
                   <div className="flex justify-center space-x-4">
-                      <a href="#" className="hover:text-accent">
+                      <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
                           <Github className="h-6 w-6" />
                       </a>
-                      <a href="#" className="hover:text-accent">
+                      <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
                           <Linkedin className="h-6 w-6" />
                       </a>
-                      <a href="#" className="hover:text-accent">
+                      <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
                           <Mail className="h-6 w-6" />
                       </a>
-                      <a href="#" className="hover:text-accent">
+                      <a href="https://www.instagram.com/ahmedhofi_/" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
                           <Instagram className="h-6 w-6" />
                       </a>
                   </div>
@@ -232,7 +238,7 @@ export default function Home() {
             About Me
           </h2>
           <p className="text-muted-foreground text-lg text-center">
-            A brief introduction about myself and my passion for web development.
+          Aspiring Data Scientist & ML Engineer, passionate about AI and problem-solving.
           </p>
         </section>
 
@@ -281,8 +287,8 @@ export default function Home() {
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>
-                <span className="font-semibold">Company Name 1</span> - Job Title
-                (2020 - 2022)
+                <span className="font-semibold">Digital Egypt Pioneers Initiative - DEPI</span> - Data Scientist - Internship
+                (2024 - 2025)
               </AccordionTrigger>
               <AccordionContent>
                 Detailed description of responsibilities and achievements in this
@@ -291,8 +297,8 @@ export default function Home() {
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>
-                <span className="font-semibold">Company Name 2</span> - Job Title
-                (2018 - 2020)
+                <span className="font-semibold">CIB Egypt</span> - Intern
+                (2014 - 2024)
               </AccordionTrigger>
               <AccordionContent>
                 Detailed description of responsibilities and achievements in this
@@ -308,9 +314,17 @@ export default function Home() {
             Skills
           </h2>
           <div className="flex flex-wrap justify-center gap-4">
+            <Badge>Python</Badge>
+            <Badge>NumPy</Badge>
+            <Badge>Pandas</Badge>
+            <Badge>SQL</Badge>
+            <Badge>Scikit-learn</Badge>
+            <Badge>Tableau</Badge>
+            <Badge>Power BI</Badge>
             <Badge>React</Badge>
             <Badge>Node.js</Badge>
-            <Badge>Next.js</Badge>
+            <Badge>HTML</Badge>
+            <Badge>CSS</Badge>
             <Badge>JavaScript</Badge>
             <Badge>TypeScript</Badge>
             {/* Add more skills here */}
@@ -339,21 +353,22 @@ export default function Home() {
         </section>
       </main>
       <footer className="bg-background border-t py-6 text-center text-sm text-muted-foreground">
-        <div className="container mx-auto flex justify-center items-center space-x-4">
-          <a href="#" className="hover:text-accent">
+        {/* <div className="container mx-auto flex justify-center items-center space-x-4">
+          <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
             <Github className="h-5 w-5" />
           </a>
-          <a href="#" className="hover:text-accent">
+          <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
             <Linkedin className="h-5 w-5" />
           </a>
-          <a href="#" className="hover:text-accent">
+          <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
             <Mail className="h-5 w-5" />
           </a>
-          <a href="#" className="hover:text-accent">
+          <a href="#" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
             <Instagram className="h-5 w-5" />
           </a>
-        </div>
-        <p className="mt-2">Copyright © 2024 Ahmed Ayman - All rights reserved</p>
+        </div> */}
+        <p className="mt-2">Built and designed by Ahmed Ayman.
+        All rights reserved. ©</p>
       </footer>
     </div>
   );
