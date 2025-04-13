@@ -287,7 +287,7 @@ export default function Home() {
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>
-                <span className="font-semibold">Digital Egypt Pioneers Initiative - DEPI</span> - Data Scientist - Internship
+                <span className="font-semibold">Digital Egypt Pioneers - DEPI</span> - Data Scientist
                 (2024 - 2025)
               </AccordionTrigger>
               <AccordionContent>
