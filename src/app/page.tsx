@@ -267,7 +267,7 @@ export default function Home() {
           />
           {/* Title */}
           <h1
-            className={`flex items-center justify-center text-4xl font-light ${patrickHand.className}`}
+            className={`flex items-center justify-center text-6xl font-light ${patrickHand.className}`}
           >
             Hi, <span className="mx-2 text-[#4de9d2] font-medium">Ahmed</span>{" "}
             here.
@@ -275,7 +275,7 @@ export default function Home() {
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-2 text-2xl font-light text-gray-300">
+          <p className="mt-2 text-4xl font-light text-gray-300">
             I create stuff sometimes.
           </p>
 
