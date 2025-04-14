@@ -257,7 +257,7 @@ export default function Home() {
           />
           {/* Title */}
           <h1 className="flex items-center justify-center text-4xl font-light">
-            hi, <span className="mx-2 text-[#4de9d2] font-medium">ahmed</span>{" "}
+            Hi, <span className="mx-2 text-[#4de9d2] font-medium">Ahmed</span>{" "}
             here.
             <span className="animate-pulse text-[#4de9d2]">|</span>
           </h1>
@@ -269,10 +269,9 @@ export default function Home() {
 
           {/* Description */}
           <p className="mt-6 text-gray-400 max-w-lg mx-auto">
-            I'm an aspiring data scientist and an Information Systems student at
-            the Faculty of Computers & AI, University of Sadat City. I'm
-            passionate about using data to solve real-world problems and explore
-            the possibilities of AI.
+            Aspiring Data Scientist & IS student at Faculty of Computers & AI,
+            University of Sadat City. Passionate about solving real-world
+            problems with data and exploring AI.
           </p>
           <div className="mt-6 flex justify-center space-x-4">
             <div className="flex justify-center space-x-4">
