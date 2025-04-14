@@ -1,10 +1,6 @@
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:4041894761.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:995390416.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3300733606.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:2995362055.
-// Suggested code may be subject to a license. Learn more: ~LicenseLog:3484702415.
 "use client";
 
+import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
 import {
   Mail,
@@ -52,6 +48,8 @@ import BookRecommender from "../assets/Semantic Book Recommender.png";
 import PortfolioWebsite from "../assets/portfolioWebsiteWhite.png";
 import MovieReviewSentimentAnalysis from "../assets/Movie Review Sentiment Analysis App.png";
 
+const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
+
 // const profileImage = "https://picsum.photos/300/300";
 // const projectImage = "https://picsum.photos/600/400";
 
@@ -63,7 +61,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   return (
     <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="container max-w-7xl mx-auto py-4 flex items-center justify-between">
-        <a href="#" className="font-bold text-xl font-['Papyrus']">
+        <a href="#" className={`font-bold text-xl ${patrickHand.className}`}>
           Ahmed Ayman
         </a>
         <div className="hidden sm:flex items-center gap-6">
@@ -85,7 +83,9 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
           <SheetContent side="right" className="sm:hidden p-4">
             <SheetHeader>
               <SheetTitle>Menu</SheetTitle>
-              <SheetDescription>Navigate through the website.</SheetDescription>
+              <SheetDescription className={patrickHand.className}>
+                Navigate through the website.
+              </SheetDescription>
             </SheetHeader>
             <div className="grid gap-4 py-4">
               {links.map((link) => (
@@ -266,7 +266,9 @@ export default function Home() {
             className="rounded-full mx-auto mb-4 shadow-lg"
           />
           {/* Title */}
-          <h1 className="flex items-center justify-center text-4xl font-light">
+          <h1
+            className={`flex items-center justify-center text-4xl font-light ${patrickHand.className}`}
+          >
             Hi, <span className="mx-2 text-[#4de9d2] font-medium">Ahmed</span>{" "}
             here.
             <span className="animate-pulse text-[#4de9d2]">|</span>
