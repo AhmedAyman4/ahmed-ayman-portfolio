@@ -245,7 +245,7 @@ export default function Home() {
           { href: "#contact", label: "Contact" },
         ]}
       />
-      <main className="container mx-auto py-10 flex-grow">
+      <main className="container mx-auto py-10 flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
         {/* Hero Section */}
         <section id="hero" className="text-center mb-16">
           <Image
