@@ -234,6 +234,16 @@ export default function Home() {
     );
   };
 
+  useEffect(() => {
+    const interval = setInterval(() => {
+      goToNextProject();
+    }, 5000);
+
+    return () => {
+      clearInterval(interval);
+    };
+  }, []);
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar
@@ -369,10 +379,8 @@ export default function Home() {
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>
-                <span className="font-semibold">
-                  Digital Egypt Pioneers - DEPI
-                </span>{" "}
-                - Data Scientist (2024 - 2025)
+                <span className="font-semibold">DEPI</span> - Data Scientist
+                (2024 - 2025)
               </AccordionTrigger>
               <AccordionContent>
                 Detailed description of responsibilities and achievements in
@@ -381,8 +389,8 @@ export default function Home() {
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>
-                <span className="font-semibold">CIB Egypt</span> - Intern (2014
-                - 2024)
+                <span className="font-semibold">CIB</span> - Intern (2014 -
+                2024)
               </AccordionTrigger>
               <AccordionContent>
                 Detailed description of responsibilities and achievements in
