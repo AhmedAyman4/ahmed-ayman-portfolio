@@ -1,27 +1,56 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:4041894761.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:995390416.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3300733606.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:2995362055.
 // Suggested code may be subject to a license. Learn more: ~LicenseLog:3484702415.
-'use client';
+"use client";
 
-import Image from 'next/image';
-import {Mail, Github, Linkedin, Menu, Instagram, ChevronLeft, ChevronRight, FolderGit2} from 'lucide-react';
-import {Card, CardContent, CardDescription, CardHeader, CardTitle} from '@/components/ui/card';
-import {Accordion, AccordionContent, AccordionItem, AccordionTrigger} from "@/components/ui/accordion";
-import {Badge} from "@/components/ui/badge";
-import {Button} from "@/components/ui/button";
-import {Input} from "@/components/ui/input";
-import {Textarea} from "@/components/ui/textarea";
-import {useEffect, useState, useRef} from "react";
+import Image from "next/image";
+import {
+  Mail,
+  Github,
+  Linkedin,
+  Menu,
+  Instagram,
+  ChevronLeft,
+  ChevronRight,
+  FolderGit2,
+} from "lucide-react";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import {
+  Accordion,
+  AccordionContent,
+  AccordionItem,
+  AccordionTrigger,
+} from "@/components/ui/accordion";
+import { Badge } from "@/components/ui/badge";
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { useEffect, useState, useRef } from "react";
 import { cn } from "@/lib/utils";
 import { ModeToggle } from "@/components/mode-toggle";
-import {Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger} from "@/components/ui/sheet";
-import {TypingEffect} from "@/components/typing-effect";
-import * as THREE from 'three';
-import {GLTFLoader} from 'three/examples/jsm/loaders/GLTFLoader';
-import Me1 from '../assets/Me1.jpg';
-import BookRecommender from '../assets/Semantic Book Recommender.png'
-import PortfolioWebsite from '../assets/portfolioWebsiteWhite.png'
-import MovieReviewSentimentAnalysis from '../assets/Movie Review Sentiment Analysis App.png'
-
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import { TypingEffect } from "@/components/typing-effect";
+import * as THREE from "three";
+import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+import Me1 from "../assets/Me1.jpg";
+import BookRecommender from "../assets/Semantic Book Recommender.png";
+import PortfolioWebsite from "../assets/portfolioWebsiteWhite.png";
+import MovieReviewSentimentAnalysis from "../assets/Movie Review Sentiment Analysis App.png";
 
 // const profileImage = "https://picsum.photos/300/300";
 // const projectImage = "https://picsum.photos/600/400";
@@ -34,7 +63,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   return (
     <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="container max-w-7xl mx-auto py-4 flex items-center justify-between">
-        <a href="#" className="font-bold text-2xl">
+        <a href="#" className="font-bold text-xl font-['Papyrus']">
           Ahmed Ayman
         </a>
         <div className="hidden sm:flex items-center gap-6">
@@ -56,9 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
           <SheetContent side="right" className="sm:hidden p-4">
             <SheetHeader>
               <SheetTitle>Menu</SheetTitle>
-              <SheetDescription>
-                Navigate through the website.
-              </SheetDescription>
+              <SheetDescription>Navigate through the website.</SheetDescription>
             </SheetHeader>
             <div className="grid gap-4 py-4">
               {links.map((link) => (
@@ -79,15 +106,18 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
 const projects = [
   {
     title: "Semantic Book Recommender with LLMs",
-    description: "Develop a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
+    description:
+      "Develop a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
     tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
     image: BookRecommender,
-    demoLink: "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
+    demoLink:
+      "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
     repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
   },
   {
     title: "Portfolio-Website",
-    description: "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
+    description:
+      "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
     tech: ["Javascript", "HTML", "CSS"],
     image: PortfolioWebsite,
     demoLink: "https://ahmedayman4.github.io/Personal-website/",
@@ -95,11 +125,13 @@ const projects = [
   },
   {
     title: "Movie Review Sentiment Analysis App",
-    description: "A movie sentiment analysis application that uses three models — TF-IDF with Logistic Regression, a custom TensorFlow neural network, and a pre-trained RoBERTa transformer — to predict review sentiment through an interactive Gradio web interface with confidence scores and model comparisons.",
-    tech: ["scikit-learn", "transformers" ,"tensorflow", "gradio"],
+    description:
+      "A movie sentiment analysis application that uses three models — TF-IDF with Logistic Regression, a custom TensorFlow neural network, and a pre-trained RoBERTa transformer — to predict review sentiment through an interactive Gradio web interface with confidence scores and model comparisons.",
+    tech: ["scikit-learn", "transformers", "tensorflow", "gradio"],
     image: MovieReviewSentimentAnalysis,
     demoLink: "https://huggingface.co/spaces/ahmed-ayman/Sentiment-Analysis",
-    repoLink: "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",
+    repoLink:
+      "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",
   },
   // {
   //   title: "Yet Another Project",
@@ -126,15 +158,26 @@ const FeatureProject: React.FC<{ project: any }> = ({ project }) => (
       <p className="text-sm mt-1">{project.description}</p>
       <div className="flex mt-2 space-x-2">
         {project.tech.map((t: any) => (
-          <Badge key={t} className="text-xs">{t}</Badge>
+          <Badge key={t} className="text-xs">
+            {t}
+          </Badge>
         ))}
       </div>
       <div className="mt-2">
-        <Button variant="secondary" asChild size="sm" className="px-2 py-1 text-xs">
-          <a href={project.demoLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
+        <Button
+          variant="secondary"
+          asChild
+          size="sm"
+          className="px-2 py-1 text-xs"
+        >
+          <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
+            Live Demo
+          </a>
         </Button>
         <Button className="ml-2 px-2 py-1 text-xs" asChild size="sm">
-          <a href={project.repoLink} target="_blank" rel="noopener noreferrer">Code Repo</a>
+          <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
+            Code Repo
+          </a>
         </Button>
       </div>
     </div>
@@ -155,11 +198,13 @@ const SmallProjectCard: React.FC<{ project: any }> = ({ project }) => (
       </div>
       <div className="mt-4">
         <Button variant="secondary" asChild>
-          <a href={project.demoLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
+          <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
+            Live Demo
+          </a>
         </Button>
         <Button className="ml-2" asChild>
           <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
-            <FolderGit2 className="h-4 w-4 mr-2"/>
+            <FolderGit2 className="h-4 w-4 mr-2" />
             Code Repo
           </a>
         </Button>
@@ -178,69 +223,107 @@ export default function Home() {
   }, []);
 
   const goToPreviousProject = () => {
-    setCurrentProjectIndex((prevIndex) => (prevIndex > 0 ? prevIndex - 1 : projects.length - 1));
+    setCurrentProjectIndex((prevIndex) =>
+      prevIndex > 0 ? prevIndex - 1 : projects.length - 1
+    );
   };
 
   const goToNextProject = () => {
-    setCurrentProjectIndex((prevIndex) => (prevIndex < projects.length - 1 ? prevIndex + 1 : 0));
+    setCurrentProjectIndex((prevIndex) =>
+      prevIndex < projects.length - 1 ? prevIndex + 1 : 0
+    );
   };
-
 
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar
         links={[
-          { href: '#hero', label: 'Home' },
-          { href: '#about', label: 'Projects' },
-          { href: '#experience', label: 'Experience' },
-          { href: '#skills', label: 'Skills' },
-          { href: '#contact', label: 'Contact' },
+          { href: "#hero", label: "Home" },
+          { href: "#projects", label: "Projects" },
+          { href: "#experience", label: "Experience" },
+          { href: "#skills", label: "Skills" },
+          { href: "#contact", label: "Contact" },
         ]}
       />
       <main className="container mx-auto py-10 flex-grow">
-              {/* Hero Section */}
-              <section id="hero" className="text-center mb-16">
-                  <Image
-                      src={Me1}
-                      alt="Profile"
-                      width={150}
-                      height={150}
-                      className="rounded-full mx-auto mb-4 shadow-lg"
-                  />
-                  <h1 className="text-4xl font-semibold text-primary mb-2">
-                      <TypingEffect text="Ahmed Ayman" />
-                  </h1>
-                  <p className="text-muted-foreground text-lg mb-6">
-                  Data Scientist | ML Engineer | Python Developer 
-                  </p>
-                  <div className="flex justify-center space-x-4">
-                      <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
-                          <Github className="h-6 w-6" />
-                      </a>
-                      <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
-                          <Linkedin className="h-6 w-6" />
-                      </a>
-                      <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
-                          <Mail className="h-6 w-6" />
-                      </a>
-                      <a href="https://www.instagram.com/ahmedhofi_/" target="_blank" rel="noopener noreferrer" className="hover:text-accent">
-                          <Instagram className="h-6 w-6" />
-                      </a>
-                  </div>
-                  {/* <Button className="mt-4">
+        {/* Hero Section */}
+        <section id="hero" className="text-center mb-16">
+          <Image
+            src={Me1}
+            alt="Profile"
+            width={150}
+            height={150}
+            className="rounded-full mx-auto mb-4 shadow-lg"
+          />
+          {/* Title */}
+          <h1 className="flex items-center justify-center text-4xl font-light">
+            hi, <span className="mx-2 text-[#4de9d2] font-medium">ahmed</span>{" "}
+            here.
+            <span className="animate-pulse text-[#4de9d2]">|</span>
+          </h1>
+
+          {/* Subtitle */}
+          <p className="mt-2 text-2xl font-light text-gray-300">
+            I create stuff sometimes.
+          </p>
+
+          {/* Description */}
+          <p className="mt-6 text-gray-400 max-w-lg mx-auto">
+            I'm an aspiring data scientist and an Information Systems student at
+            the Faculty of Computers & AI, University of Sadat City. I'm
+            passionate about using data to solve real-world problems and explore
+            the possibilities of AI.
+          </p>
+          <div className="mt-6 flex justify-center space-x-4">
+            <div className="flex justify-center space-x-4">
+              <a
+                href="https://github.com/AhmedAyman4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                <Github className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ahmed-alhofy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                <Linkedin className="h-6 w-6" />
+              </a>
+              <a
+                href="mailto:ahmedalhofy42@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                <Mail className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.instagram.com/ahmedhofi_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                <Instagram className="h-6 w-6" />
+              </a>
+            </div>
+          </div>
+          {/* <Button className="mt-4">
                       Download CV
                       <Download className="h-4 w-4 ml-2" />
                   </Button> */}
-              </section>
+        </section>
         {/* About Section */}
-        <section id="about" className="mb-16">
+        {/* <section id="about" className="mb-16">
           <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
             About Me
           </h2>
           <p className="text-muted-foreground text-lg text-center">
           Aspiring Data Scientist & ML Engineer, passionate about AI and problem-solving.
           </p>
-        </section>
+        </section> */}
 
         {/* Project Showcase */}
         <section id="projects" className="mb-16">
@@ -287,22 +370,24 @@ export default function Home() {
           <Accordion type="single" collapsible>
             <AccordionItem value="item-1">
               <AccordionTrigger>
-                <span className="font-semibold">Digital Egypt Pioneers - DEPI</span> - Data Scientist
-                (2024 - 2025)
+                <span className="font-semibold">
+                  Digital Egypt Pioneers - DEPI
+                </span>{" "}
+                - Data Scientist (2024 - 2025)
               </AccordionTrigger>
               <AccordionContent>
-                Detailed description of responsibilities and achievements in this
-                role.
+                Detailed description of responsibilities and achievements in
+                this role.
               </AccordionContent>
             </AccordionItem>
             <AccordionItem value="item-2">
               <AccordionTrigger>
-                <span className="font-semibold">CIB Egypt</span> - Intern
-                (2014 - 2024)
+                <span className="font-semibold">CIB Egypt</span> - Intern (2014
+                - 2024)
               </AccordionTrigger>
               <AccordionContent>
-                Detailed description of responsibilities and achievements in this
-                role.
+                Detailed description of responsibilities and achievements in
+                this role.
               </AccordionContent>
             </AccordionItem>
           </Accordion>
@@ -367,11 +452,10 @@ export default function Home() {
             <Instagram className="h-5 w-5" />
           </a>
         </div> */}
-        <p className="mt-2">Built and designed by Ahmed Ayman.
-        All rights reserved. ©</p>
+        <p className="mt-2">
+          Built and designed by Ahmed Ayman. All rights reserved. ©
+        </p>
       </footer>
     </div>
   );
 }
-
-
