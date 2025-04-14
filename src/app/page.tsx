@@ -244,6 +244,24 @@ export default function Home() {
     };
   }, []);
 
+  // Pagination dots for the Featured Project Carousel
+  const PaginationDots: React.FC = () => (
+    <div className="flex space-x-2 justify-center mt-4">
+      {projects.map((_, index) => (
+        <button
+          key={index}
+          className={`w-6 h-1 rounded-sm transition-colors duration-300 ${
+            currentProjectIndex === index
+              ? "bg-primary"
+              : "bg-gray-300 hover:bg-gray-400"
+          }`}
+          onClick={() => setCurrentProjectIndex(index)}
+          aria-label={`Go to project ${index + 1}`}
+        />
+      ))}
+    </div>
+  );
+
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar
@@ -363,6 +381,7 @@ export default function Home() {
               <ChevronRight className="h-6 w-6" />
               <span className="sr-only">Next Project</span>
             </Button>
+            <PaginationDots />
           </div>
 
           {/* Smaller Project Cards */}
