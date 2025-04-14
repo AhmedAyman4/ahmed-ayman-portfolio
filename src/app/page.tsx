@@ -462,7 +462,9 @@ export default function Home() {
           </a>
         </div> */}
         <p className="mt-2">
-          Built and designed by Ahmed Ayman. All rights reserved. ©
+          Built and designed by Ahmed Ayman.
+          <br />
+          All rights reserved. ©
         </p>
       </footer>
     </div>
