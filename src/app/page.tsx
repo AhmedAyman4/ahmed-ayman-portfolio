@@ -152,7 +152,7 @@ const FeatureProject: React.FC<{ project: any }> = ({ project }) => (
       height={800}
       className="object-cover w-full"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
+    <div className="absolute inset-0 bg-gradient-to-t from-background dark:from-gray-800 to-transparent"></div>
     <div className="absolute bottom-4 left-4 text-foreground dark:text-white">
       <h3 className="text-lg font-semibold">{project.title}</h3>
       <p className="text-sm mt-1">{project.description}</p>
@@ -185,11 +185,16 @@ const FeatureProject: React.FC<{ project: any }> = ({ project }) => (
 );
 
 const SmallProjectCard: React.FC<{ project: any }> = ({ project }) => (
-  <Card className="transition-transform hover:-translate-y-2">
+  <Card className="transition-transform hover:-translate-y-2 dark:bg-gray-800">
     <CardHeader>
-      <CardTitle>{project.title}</CardTitle>
-      <CardDescription>{project.description}</CardDescription>
+      <CardTitle className="dark:text-white text-black">
+        {project.title}
+      </CardTitle>
+      <CardDescription className="dark:text-gray-300 text-black">
+        {project.description}
+      </CardDescription>
     </CardHeader>
+
     <CardContent>
       <div className="flex flex-wrap gap-2">
         {project.tech.map((t: any) => (
@@ -376,6 +381,20 @@ export default function Home() {
               <ChevronRight className="h-6 w-6" />
               <span className="sr-only">Next Project</span>
             </Button>
+          </div>
+          {/* Project Pagination */}
+          <div className="flex justify-center items-center mt-4">
+            {projects.map((_, index) => (
+              <button
+                key={index}
+                className={`h-2 w-2 rounded-full mx-1 ${
+                  currentProjectIndex === index
+                    ? "bg-primary"
+                    : "bg-gray-400 dark:bg-gray-600"
+                }`}
+                onClick={() => setCurrentProjectIndex(index)}
+              />
+            ))}
           </div>
 
           {/* Smaller Project Cards */}
