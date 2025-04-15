@@ -153,7 +153,7 @@ const FeatureProject: React.FC<{ project: any }> = ({ project }) => (
       className="object-cover w-full"
     />
     <div className="absolute inset-0 bg-gradient-to-t from-background to-transparent"></div>
-    <div className="absolute bottom-4 left-4 text-white">
+    <div className="absolute bottom-4 left-4 text-foreground dark:text-white">
       <h3 className="text-lg font-semibold">{project.title}</h3>
       <p className="text-sm mt-1">{project.description}</p>
       <div className="flex mt-2 space-x-2">
@@ -244,24 +244,6 @@ export default function Home() {
     };
   }, []);
 
-  // Pagination dots for the Featured Project Carousel
-  const PaginationDots: React.FC = () => (
-    <div className="flex space-x-2 justify-center mt-4">
-      {projects.map((_, index) => (
-        <button
-          key={index}
-          className={`w-6 h-1 rounded-sm transition-colors duration-300 ${
-            currentProjectIndex === index
-              ? "bg-primary"
-              : "bg-gray-300 hover:bg-gray-400"
-          }`}
-          onClick={() => setCurrentProjectIndex(index)}
-          aria-label={`Go to project ${index + 1}`}
-        />
-      ))}
-    </div>
-  );
-
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar
@@ -303,6 +285,19 @@ export default function Home() {
             University of Sadat City. Passionate about solving real-world
             problems with data and exploring AI.
           </p>
+          {/* Say Hi Button */}
+          <a
+            href="mailto:ahmedalhofy42@gmail.com"
+            className="mt-6 inline-flex items-center px-6 py-3 border-2 border-[#4de9d2] text-black font-medium rounded-full shadow-sm bg-[#b3f2eb] hover:bg-[#4de9d2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4de9d2]"
+          >
+            <Mail
+              className="mr-3 h-5 w-5 text-black"
+              aria-hidden="true"
+              strokeWidth={3}
+            />
+            Say hi!
+          </a>
+
           <div className="mt-6 flex justify-center space-x-4">
             <div className="flex justify-center space-x-4">
               <a
@@ -381,7 +376,6 @@ export default function Home() {
               <ChevronRight className="h-6 w-6" />
               <span className="sr-only">Next Project</span>
             </Button>
-            <PaginationDots />
           </div>
 
           {/* Smaller Project Cards */}
