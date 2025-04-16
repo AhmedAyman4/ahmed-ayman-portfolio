@@ -282,12 +282,12 @@ export default function Home() {
           </h1>
 
           {/* Subtitle */}
-          <p className="mt-2 text-4xl font-light text-gray-300">
+          <p className="mt-2 text-4xl font-light dark:text-gray-300 text-black">
             I create stuff sometimes.
           </p>
 
           {/* Description */}
-          <p className="mt-6 text-gray-400 max-w-lg mx-auto">
+          <p className="mt-6 dark:text-gray-400 text-black max-w-lg mx-auto">
             Aspiring Data Scientist & IS student at Faculty of Computers & AI,
             University of Sadat City. Passionate about solving real-world
             problems with data and exploring AI.
