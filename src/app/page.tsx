@@ -254,6 +254,24 @@ export default function Home() {
     };
   }, []);
 
+  const sectionsRef = useRef<HTMLElement[]>([]);
+  useEffect(() => {
+    sectionsRef.current = [];
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          entry.target.classList.add("in-view");
+        }
+      });
+    });
+    const sections = document.querySelectorAll(".fade-in-section");
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+    return () => {
+      observer.disconnect();
+    };
+  }, []);
   return (
     <div className="flex flex-col min-h-screen">
       <Navbar
@@ -267,7 +285,11 @@ export default function Home() {
       />
       <main className="container mx-auto py-10 flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
         {/* Hero Section */}
-        <section id="hero" className="text-center mb-16">
+        <section
+          id="hero"
+          className="text-center mb-16 fade-in-section"
+          ref={(el) => el && sectionsRef.current.push(el)}
+        >
           <Image
             src={Me1}
             alt="Profile"
@@ -297,7 +319,7 @@ export default function Home() {
                   style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
                 },
               ]}
-              typingSpeed={150}
+              typingSpeed={130}
             />
           </h1>
           {/* Subtitle */}
@@ -376,7 +398,11 @@ export default function Home() {
         </section> */}
 
         {/* Project Showcase */}
-        <section id="projects" className="mb-16">
+        <section
+          id="projects"
+          className="mb-16 fade-in-section"
+          ref={(el) => el && sectionsRef.current.push(el)}
+        >
           <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
             Featured Projects
           </h2>
@@ -427,7 +453,11 @@ export default function Home() {
         </section>
 
         {/* Experience Timeline */}
-        <section id="experience" className="mb-16">
+        <section
+          id="experience"
+          className="mb-16 fade-in-section"
+          ref={(el) => el && sectionsRef.current.push(el)}
+        >
           <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
             Experience
           </h2>
@@ -456,7 +486,11 @@ export default function Home() {
         </section>
 
         {/* Skills Section */}
-        <section id="skills" className="mb-16">
+        <section
+          id="skills"
+          className="mb-16 fade-in-section"
+          ref={(el) => el && sectionsRef.current.push(el)}
+        >
           <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
             Skills
           </h2>
@@ -479,7 +513,11 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact" className="mb-16">
+        <section
+          id="contact"
+          className="mb-16 fade-in-section"
+          ref={(el) => el && sectionsRef.current.push(el)}
+        >
           <div className="text-center">
             <h2 className="text-3xl font-semibold text-primary mb-4">
               Contact

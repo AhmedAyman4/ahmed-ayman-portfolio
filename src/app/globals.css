@@ -89,6 +89,17 @@
   }
 }
 
+.fade-in-section {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in-section.in-view {
+  opacity: 1;
+  transform: translateY(0);
+}
+
 .animate-shape {
   animation: moveShape 10s linear infinite;
   transform-origin: center;
