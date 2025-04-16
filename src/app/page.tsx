@@ -45,7 +45,7 @@ import {
 import { TypingEffect } from "@/components/typing-effect";
 // import * as THREE from "three";
 // import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
-import Me1 from "../assets/Me1.jpg";
+import Me1 from "../assets/me.png";
 import BookRecommender from "../assets/Semantic Book Recommender.png";
 import PortfolioWebsite from "../assets/portfolioWebsiteWhite.png";
 import MovieReviewSentimentAnalysis from "../assets/Movie Review Sentiment Analysis App.png";
