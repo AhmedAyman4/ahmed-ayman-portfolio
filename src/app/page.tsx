@@ -279,11 +279,27 @@ export default function Home() {
           <h1
             className={`flex items-center justify-center text-6xl font-light ${patrickHand.className}`}
           >
-            Hi, <span className="mx-2 text-[#4de9d2] font-medium">Ahmed</span>{" "}
-            here.
-            <span className="animate-pulse text-[#4de9d2]">|</span>
+            <span style={{ color: "white" }}>Hi,</span>
+            <TypingEffect
+              words={[
+                {
+                  text: "",
+                  color: "white",
+                },
+                {
+                  text: "Ahmed",
+                  color: "#4de9d2",
+                  style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
+                },
+                {
+                  text: "here.",
+                  color: "white",
+                  style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
+                },
+              ]}
+              typingSpeed={100}
+            />
           </h1>
-
           {/* Subtitle */}
           <p className="mt-2 text-4xl font-light dark:text-gray-300 text-black">
             I create stuff sometimes.
