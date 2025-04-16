@@ -477,20 +477,20 @@ export default function Home() {
             </p>
             <div className="flex justify-center items-center space-x-4">
               <a
-                href="https://www.instagram.com/ahmedhofi_/"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="hover:text-accent"
-              >
-                <Instagram className="h-6 w-6" />
-              </a>
-              <a
                 href="mailto:ahmedalhofy42@gmail.com"
                 target="_blank"
                 rel="noopener noreferrer"
                 className="hover:text-accent"
               >
                 <Mail className="h-6 w-6" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ahmed-alhofy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                <Linkedin className="h-6 w-6" />
               </a>
               <a
                 href="https://github.com/AhmedAyman4"
