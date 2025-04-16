@@ -1,3 +1,5 @@
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:3513207960.
+// Suggested code may be subject to a license. Learn more: ~LicenseLog:64235701.
 "use client";
 
 import { Patrick_Hand } from "next/font/google";
@@ -458,23 +460,47 @@ export default function Home() {
         </section>
 
         {/* Contact Section */}
-        <section id="contact">
-          <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
-            Contact Me
-          </h2>
-          <div className="max-w-md mx-auto">
-            <form className="space-y-4">
-              <div>
-                <Input type="text" placeholder="Your Name" />
-              </div>
-              <div>
-                <Input type="email" placeholder="Your Email" />
-              </div>
-              <div>
-                <Textarea placeholder="Your Message" />
-              </div>
-              <Button className="w-full">Send Message</Button>
-            </form>
+        <section id="contact" className="mb-16">
+          <div className="text-center">
+            <h2 className="text-3xl font-semibold text-primary mb-4">
+              Contact
+            </h2>
+            <p className="dark:text-gray-300 text-gray-600 mb-4">
+              I'm eager to join a data-driven team where I can apply my passion
+              for AI, machine learning, and problem-solving to create meaningful
+              impact.
+              <br /> Got a project in mind or looking to collaborate? Let’s
+              connect!
+            </p>
+            <p className="dark:text-white text-black mb-4">
+              ahmedalhofy42@gmail.com
+            </p>
+            <div className="flex justify-center items-center space-x-4">
+              <a
+                href="https://www.instagram.com/ahmedhofi_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                <Instagram className="h-6 w-6" />
+              </a>
+              <a
+                href="mailto:ahmedalhofy42@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                <Mail className="h-6 w-6" />
+              </a>
+              <a
+                href="https://github.com/AhmedAyman4"
+                target="_blank"
+                rel="noopener noreferrer"
+                className="hover:text-accent"
+              >
+                <Github className="h-6 w-6" />
+              </a>
+            </div>
           </div>
         </section>
       </main>
