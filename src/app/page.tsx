@@ -43,8 +43,8 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 import { TypingEffect } from "@/components/typing-effect";
-import * as THREE from "three";
-import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
+// import * as THREE from "three";
+// import { GLTFLoader } from "three/examples/jsm/loaders/GLTFLoader";
 import Me1 from "../assets/Me1.jpg";
 import BookRecommender from "../assets/Semantic Book Recommender.png";
 import PortfolioWebsite from "../assets/portfolioWebsiteWhite.png";
@@ -63,7 +63,10 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   return (
     <div className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b">
       <div className="container max-w-7xl mx-auto py-4 flex items-center justify-between">
-        <a href="#" className={`font-bold text-xl ${patrickHand.className}`}>
+        <a
+          href="#"
+          className={`font-bold text-xl ${patrickHand.className} ml-4 sm:ml-4`}
+        >
           Ahmed Ayman
         </a>
         <div className="hidden sm:flex items-center gap-6">
