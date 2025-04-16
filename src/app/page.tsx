@@ -297,7 +297,7 @@ export default function Home() {
                   style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
                 },
               ]}
-              typingSpeed={100}
+              typingSpeed={150}
             />
           </h1>
           {/* Subtitle */}
