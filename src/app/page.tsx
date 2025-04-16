@@ -301,7 +301,8 @@ export default function Home() {
           <h1
             className={`flex items-center justify-center text-6xl font-light ${patrickHand.className}`}
           >
-            <span style={{ color: "white" }}>Hi,</span>
+            {/* <span style={{ color: "white" }}>Hi,</span> */}
+            <span className="dark:text-white text-black">Hi,</span>
             <TypingEffect
               words={[
                 {
@@ -315,11 +316,11 @@ export default function Home() {
                 },
                 {
                   text: "here.",
-                  color: "white",
+                  color: "var(--color-black-color-if-white)",
                   style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
                 },
               ]}
-              typingSpeed={130}
+              typingSpeed={125}
             />
           </h1>
           {/* Subtitle */}
