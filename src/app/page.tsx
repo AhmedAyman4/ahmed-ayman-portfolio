@@ -156,8 +156,8 @@ const FeatureProject: React.FC<{ project: any }> = ({ project }) => (
     />
     <div className="absolute inset-0 bg-gradient-to-t from-background dark:from-gray-800 to-transparent"></div>
     <div className="absolute bottom-4 left-4 text-foreground dark:text-white">
-      <h3 className="text-lg font-semibold">{project.title}</h3>
-      <p className="text-sm mt-1">{project.description}</p>
+      <h3 className="text-lg font-semibold hidden sm:block">{project.title}</h3>
+      <p className="text-sm mt-1 hidden sm:block">{project.description}</p>
       <div className="flex mt-2 space-x-2">
         {project.tech.map((t: any) => (
           <Badge key={t} className="text-xs">
