@@ -190,7 +190,7 @@ const FeatureProject: React.FC<{ project: any }> = ({ project }) => (
 );
 
 const SmallProjectCard: React.FC<{ project: any }> = ({ project }) => (
-  <Card className="transition-transform hover:-translate-y-2 dark:bg-gray-800">
+  <Card className="transition-transform hover:-translate-y-2 dark:bg-gray-800 fade-in-section">
     <CardHeader>
       <CardTitle className="dark:text-white text-black">
         {project.title}
@@ -320,7 +320,7 @@ export default function Home() {
                   style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
                 },
               ]}
-              typingSpeed={125}
+              typingSpeed={130}
             />
           </h1>
           {/* Subtitle */}
