@@ -112,7 +112,7 @@ const projects = [
   {
     title: "Semantic Book Recommender with LLMs",
     description:
-      "Develop a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
+      "Developed a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
     tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
     image: BookRecommender,
     demoLink:
@@ -504,7 +504,7 @@ export default function Home() {
             <Badge>Tableau</Badge>
             <Badge>Power BI</Badge>
             <Badge>React</Badge>
-            <Badge>Node.js</Badge>
+            <Badge>Next.js</Badge>
             <Badge>HTML</Badge>
             <Badge>CSS</Badge>
             <Badge>JavaScript</Badge>
