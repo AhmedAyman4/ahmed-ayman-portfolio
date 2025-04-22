@@ -257,7 +257,7 @@ export default function Home() {
   useEffect(() => {
     const interval = setInterval(() => {
       goToNextProject();
-    }, 5000);
+    }, 10000);
 
     return () => {
       clearInterval(interval);
