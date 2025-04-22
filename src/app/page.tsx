@@ -48,6 +48,7 @@ import { TypingEffect } from "@/components/typing-effect";
 import Me1 from "../assets/me.png";
 import BookRecommender from "../assets/Semantic Book Recommender.png";
 import PortfolioWebsite from "../assets/portfolioWebsiteWhite.png";
+import MovieLibrary from "../assets/movieLibrary.png";
 import MovieReviewSentimentAnalysis from "../assets/Movie Review Sentiment Analysis App.png";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
@@ -127,6 +128,15 @@ const projects = [
     image: PortfolioWebsite,
     demoLink: "https://ahmedayman4.github.io/Personal-website/",
     repoLink: "https://github.com/AhmedAyman4/Personal-website",
+  },
+  {
+    title: "Movie Library",
+    description:
+      "A React-based movie library application that enables users to search for movies, view trending titles, and explore detailed information. Integrates The Movie Database (TMDb) API for movie data and Appwrite for backend services like tracking search trends.",
+    tech: ["React", "Vite", "TailwindCSS", "Appwrite", "TMDb API"],
+    image: MovieLibrary,
+    demoLink: "https://movie-library-blush.vercel.app/",
+    repoLink: "https://github.com/AhmedAyman4/movie-library",
   },
   {
     title: "Movie Review Sentiment Analysis App",
