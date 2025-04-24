@@ -36,6 +36,15 @@
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
   .dark {
+    main,
+    section {
+      @apply px-4 md:px-8 lg:px-24 xl:px-28;
+    }
+    main {
+      @apply px-4 md:px-8 lg:px-24 xl:px-28;
+    }
+  }
+  .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
     --card: 0 0% 3.9%;
@@ -72,6 +81,12 @@
   }
   body {
     @apply bg-background text-foreground;
+  }
+  section {
+    @apply px-4 md:px-8 lg:px-24 xl:px-28;
+  }
+  main {
+    @apply px-4 md:px-8 lg:px-24 xl:px-28;
   }
 }
 .animate-fade-in {
