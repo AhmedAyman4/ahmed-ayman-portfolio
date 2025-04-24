@@ -1,8 +1,10 @@
 import React, { useEffect, useRef } from "react";
+import { useTheme } from "next-themes";
 
 const FractalTree: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const requestIdRef = useRef<number>(0);
+  const { resolvedTheme } = useTheme();
 
   useEffect(() => {
     if (!canvasRef.current) return;
@@ -47,14 +49,16 @@ const FractalTree: React.FC = () => {
       const lineWidth = Math.max(3 - depth * 0.5, 0.5);
       ctx.lineWidth = lineWidth;
 
-      // Gradient color for better visibility in light mode
-      // Use darker colors that will be visible on white background
-      const colors = [
-        "#4de9d2", // Teal color matching your accent
-        "#1a3b40", // Darker teal
-        "#06684b", // Dark forest green
-        "#042c29", // Very dark green
-      ];
+      // Gradient color for better visibility in light mode and white in dark mode
+      const colors =
+        resolvedTheme === "dark"
+          ? ["white", "white", "white", "white"]
+          : [
+              "#4de9d2", // Teal color matching your accent
+              "#1a3b40", // Darker teal
+              "#06684b", // Dark forest green
+              "#042c29", // Very dark green
+            ];
 
       // Get color based on depth
       const colorIndex = Math.min(depth, colors.length - 1);
@@ -100,7 +104,7 @@ const FractalTree: React.FC = () => {
     return () => {
       cancelAnimationFrame(requestIdRef.current);
     };
-  }, []);
+  }, [resolvedTheme]);
 
   return (
     <div id="fractal-tree" className="relative">
