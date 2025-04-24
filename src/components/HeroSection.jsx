@@ -3,7 +3,7 @@
 
 import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
-import { Mail, Github, Linkedin, Instagram } from "lucide-react";
+import { Mail, Github, Linkedin, Instagram, Award } from "lucide-react";
 import { TypingEffect } from "@/components/typing-effect";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
@@ -51,8 +51,8 @@ export function HeroSection({ profileImage }) {
       {/* Description */}
       <p className="mt-6 dark:text-gray-400 text-black max-w-lg mx-auto">
         Aspiring Data Scientist & IS student at Faculty of Computers & AI,
-        University of Sadat City. Passionate about solving real-world
-        problems with data and exploring AI.
+        University of Sadat City. Passionate about solving real-world problems
+        with data and exploring AI.
       </p>
       {/* Say Hi Button */}
       <a
@@ -74,6 +74,7 @@ export function HeroSection({ profileImage }) {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-accent"
+            aria-label="GitHub"
           >
             <Github className="h-6 w-6" />
           </a>
@@ -82,6 +83,7 @@ export function HeroSection({ profileImage }) {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-accent"
+            aria-label="LinkedIn"
           >
             <Linkedin className="h-6 w-6" />
           </a>
@@ -90,6 +92,7 @@ export function HeroSection({ profileImage }) {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-accent"
+            aria-label="Email"
           >
             <Mail className="h-6 w-6" />
           </a>
@@ -98,8 +101,18 @@ export function HeroSection({ profileImage }) {
             target="_blank"
             rel="noopener noreferrer"
             className="hover:text-accent"
+            aria-label="Instagram"
           >
             <Instagram className="h-6 w-6" />
+          </a>
+          <a
+            href="https://www.credly.com/users/ahmedayman"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hover:text-accent"
+            aria-label="Credly"
+          >
+            <Award className="h-6 w-6" />
           </a>
         </div>
       </div>
