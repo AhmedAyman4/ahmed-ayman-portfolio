@@ -97,7 +97,7 @@ export function HeroSection({ profileImage }) {
             >
               <Linkedin className="h-6 w-6" />
             </a>
-            <a
+            {/* <a
               href="mailto:ahmedalhofy42@gmail.com"
               target="_blank"
               rel="noopener noreferrer"
@@ -105,7 +105,7 @@ export function HeroSection({ profileImage }) {
               aria-label="Email"
             >
               <Mail className="h-6 w-6" />
-            </a>
+            </a> */}
             <a
               href="https://www.instagram.com/ahmedhofi_/"
               target="_blank"
