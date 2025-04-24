@@ -39,7 +39,7 @@ export default function Home() {
     <div className="flex flex-col min-h-screen">
       <Navbar
         links={[
-          { href: "#hero", label: "Home" },
+          { href: "#", label: "Home" },
           { href: "#projects", label: "Projects" },
           { href: "#experience", label: "Experience" },
           { href: "#skills", label: "Skills" },
