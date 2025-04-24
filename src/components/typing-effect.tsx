@@ -1,16 +1,5 @@
 import React, { useState, useEffect, useRef } from "react";
 
-interface Word {
-  text: string;
-  color: string;
-  style?: React.CSSProperties; // Add optional style property
-}
-
-interface TypingEffectProps {
-  words: Word[];
-  typingSpeed: number;
-}
-
 export const TypingEffect: React.FC<TypingEffectProps> = ({
   words,
   typingSpeed,
@@ -18,8 +7,25 @@ export const TypingEffect: React.FC<TypingEffectProps> = ({
   const [typedText, setTypedText] = useState<string[]>([]);
   const [wordIndex, setWordIndex] = useState(0);
   const [charIndex, setCharIndex] = useState(0);
+  const [finished, setFinished] = useState(false); // Add state for tracking finished status
   const isTyping = useRef(false);
   const isFinished = useRef(false);
+
+  useEffect(() => {
+    if (typedText.length === words.length) {
+      let allWordsMatch = true;
+      for (let i = 0; i < words.length; i++) {
+        if (typedText[i] !== words[i].text) {
+          allWordsMatch = false;
+          break;
+        }
+      }
+      if (allWordsMatch) {
+        isFinished.current = true;
+        setFinished(true); // Also set the state variable
+      }
+    }
+  }, [typedText, words]);
 
   useEffect(() => {
     const currentWord = words[wordIndex];
@@ -45,6 +51,7 @@ export const TypingEffect: React.FC<TypingEffectProps> = ({
         setCharIndex(0);
       } else {
         isFinished.current = true;
+        setFinished(true); // Update the state to trigger re-render
       }
     }
   }, [charIndex, wordIndex, words, typingSpeed]);
@@ -52,19 +59,14 @@ export const TypingEffect: React.FC<TypingEffectProps> = ({
   return (
     <span className="inline-flex items-center">
       {typedText.map((text, index) => {
-        // Get both color and custom style from the current word
         const { color, style = {} } = words[index] || {};
         return (
-          <span
-            key={index}
-            style={{ color, ...style }} // Combine color and custom styles
-            className="inline"
-          >
+          <span key={index} style={{ color, ...style }} className="inline">
             {text}
           </span>
         );
       })}
-      {isFinished.current && (
+      {finished && ( // Use the state variable instead of ref for rendering
         <span className="animate-pulse text-[#4de9d2]">|</span>
       )}
     </span>
