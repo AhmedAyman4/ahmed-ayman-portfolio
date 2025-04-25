@@ -164,7 +164,7 @@ export const ProjectsComponent = () => {
 
   return (
     <section id="projects" className="mb-16 fade-in-section">
-      <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
+      <h2 className="text-4xl font-semibold text-primary mb-8 text-center">
         <span className="text-black dark:text-gray-300 mr-4">/</span>
         Featured Projects
       </h2>
