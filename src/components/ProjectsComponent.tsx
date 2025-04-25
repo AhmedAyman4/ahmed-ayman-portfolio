@@ -74,7 +74,7 @@ const FeatureProject = ({ project }) => (
     <div className="absolute bottom-4 left-4 text-foreground dark:text-white">
       <h3 className="text-lg font-semibold hidden sm:block">{project.title}</h3>
       <p className="text-sm mt-1 hidden sm:block">{project.description}</p>
-      <div className="flex mt-2 space-x-2">
+      <div className="hidden sm:flex mt-2 space-x-2">
         {project.tech.map((t) => (
           <Badge key={t} className="text-xs">
             {t}
@@ -165,6 +165,7 @@ export const ProjectsComponent = () => {
   return (
     <section id="projects" className="mb-16 fade-in-section">
       <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
+        <span className="text-black dark:text-gray-300 mr-4">/</span>
         Featured Projects
       </h2>
 
