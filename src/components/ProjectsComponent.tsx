@@ -62,7 +62,7 @@ const projects = [
 ];
 
 const FeatureProject = ({ project }) => (
-  <div className="relative rounded-lg overflow-hidden max-w-8xl max-h-fit mx-auto">
+  <div className="relative rounded-lg overflow-hidden max-w-8xl max-h-fit mx-auto ">
     <Image
       src={project.image}
       alt={project.title}
@@ -164,8 +164,8 @@ export const ProjectsComponent = () => {
 
   return (
     <section id="projects" className="mb-16 fade-in-section">
-      <h2 className="text-4xl font-semibold text-primary mb-8 text-center">
-        <span className="text-black dark:text-gray-300 mr-4">/</span>
+      <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
+        {/* <span className="text-black dark:text-gray-300 mr-4">/</span> */}
         Featured Projects
       </h2>
 
@@ -192,12 +192,12 @@ export const ProjectsComponent = () => {
         </Button>
       </div>
 
-      {/* Project Pagination */}
+      {/* Project Pagination - Changed from dots to dashes */}
       <div className="flex justify-center items-center mt-4">
         {projects.map((_, index) => (
           <button
             key={index}
-            className={`h-2 w-2 rounded-full mx-1 ${
+            className={`h-1 w-6 rounded-sm mx-1 ${
               currentProjectIndex === index
                 ? "bg-primary"
                 : "bg-gray-400 dark:bg-gray-600"
