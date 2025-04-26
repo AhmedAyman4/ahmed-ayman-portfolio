@@ -106,7 +106,7 @@ export function HeroSection({ profileImage }) {
             >
               <Mail className="h-6 w-6" />
             </a> */}
-            <a
+            {/* <a
               href="https://www.instagram.com/ahmedhofi_/"
               target="_blank"
               rel="noopener noreferrer"
@@ -114,7 +114,7 @@ export function HeroSection({ profileImage }) {
               aria-label="Instagram"
             >
               <Instagram className="h-6 w-6" />
-            </a>
+            </a> */}
             <a
               href="https://www.credly.com/users/ahmedayman"
               target="_blank"
