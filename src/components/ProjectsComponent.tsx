@@ -240,7 +240,7 @@ export const ProjectsComponent = () => {
       </div>
 
       {/* Spotlight Projects Carousel */}
-      <div className="relative mb-16">
+      <div className="relative mb-16 hidden md:block">
         <CarouselItem project={featuredProject} />
         <Button
           variant="ghost"
