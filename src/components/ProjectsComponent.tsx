@@ -66,7 +66,7 @@ const otherProjects = [
     {
         title: "Semantic Book Recommender ",
         description:
-            "Developed a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
+            "Developed a web-based application utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
         tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
         image: BookRecommender,
         demoLink:
