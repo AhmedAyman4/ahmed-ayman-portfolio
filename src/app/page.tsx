@@ -7,6 +7,7 @@ import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HeroSection } from "@/components/HeroSection";
+import Footer from "@/components/Footer";
 import Me1 from "../assets/me.png";
 
 export default function Home() {
@@ -81,13 +82,7 @@ export default function Home() {
           <ContactSection />
         </section>
       </main>
-      <footer className="bg-background border-t py-6 text-center text-sm text-muted-foreground">
-        <p className="mt-2">
-          Built and designed by Ahmed Ayman.
-          <br />
-          All rights reserved. ©
-        </p>
-      </footer>
+      <Footer />
     </div>
   );
 }
