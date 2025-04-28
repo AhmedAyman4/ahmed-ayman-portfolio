@@ -35,15 +35,22 @@
     --sidebar-border: 220 13% 91%;
     --sidebar-ring: 217.2 91.2% 59.8%;
   }
-  .dark {
+
+  /* Base paddings for different screen sizes */
+  main,
+  section {
+    @apply px-4 md:px-8 lg:px-24 xl:px-28;
+  }
+
+  /* iPad Pro specific padding */
+  @media only screen and (min-width: 834px) and (max-width: 1194px) {
     main,
     section {
-      @apply px-4 md:px-8 lg:px-24 xl:px-28;
-    }
-    main {
-      @apply px-4 md:px-8 lg:px-24 xl:px-28;
+      padding-left: 4px;
+      padding-right: 4px;
     }
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -82,13 +89,8 @@
   body {
     @apply bg-background text-foreground;
   }
-  section {
-    @apply px-4 md:px-8 lg:px-24 xl:px-28;
-  }
-  main {
-    @apply px-4 md:px-8 lg:px-24 xl:px-28;
-  }
 }
+
 .animate-fade-in {
   animation: fadeIn 0.8s ease-in-out forwards;
 }
