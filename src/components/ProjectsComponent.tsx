@@ -164,7 +164,7 @@ const CarouselItem = ({ project }) => (
 
 const ProjectCard = ({ project }) => (
   <div
-    className="aspect-square md:aspect-auto md:h-80 bg-white dark:bg-gray-800 rounded-lg shadow-md  transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl hover:bg-gray-100 dark:hover:bg-gray-700 p-4 md:p-6 flex flex-col fade-in-section border-t-4"
+    className="bg-white dark:bg-gray-800 rounded-lg shadow-md  transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl hover:bg-gray-100 dark:hover:bg-gray-700 p-4 md:p-6 flex flex-col fade-in-section border-t-4 h-full"
     style={{ borderColor: "hsl(var(--primary))" }}
   >
     <div className="flex justify-between items-start">
@@ -283,11 +283,11 @@ export const ProjectsComponent = () => {
 
       {/* Other Projects Section */}
       {/* <div className="section-header mb-8">
-        <h2 className="text-3xl font-semibold text-primary text-center">
-          <span className="text-black dark:text-gray-300 mr-2">/</span>
-          Other Projects
-        </h2>
-      </div> */}
+      <h2 className="text-3xl font-semibold text-primary text-center">
+        <span className="text-black dark:text-gray-300 mr-2">/</span>
+        Other Projects
+      </h2>
+    </div> */}
 
       <div className="project-container">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
