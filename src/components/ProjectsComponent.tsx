@@ -164,7 +164,7 @@ const CarouselItem = ({ project }) => (
 
 const ProjectCard = ({ project }) => (
   <div
-    className="bg-white dark:bg-gray-800 rounded-lg shadow-md  transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl hover:bg-gray-100 dark:hover:bg-gray-700 p-4 md:p-6 flex flex-col fade-in-section border-t-4 h-full"
+    className="bg-white dark:bg-gray-800 rounded-lg shadow-md transition-all duration-300 hover:translate-y-[-5px] hover:shadow-xl hover:bg-gray-100 dark:hover:bg-gray-700 p-4 md:p-6 flex flex-col fade-in-section border-t-4 h-96"
     style={{ borderColor: "hsl(var(--primary))" }}
   >
     <div className="flex justify-between items-start">
@@ -188,15 +188,14 @@ const ProjectCard = ({ project }) => (
         </a>
       </div>
     </div>
-
     <h3 className="text-xl font-semibold mt-3 text-black dark:text-white">
       {project.title}
     </h3>
-
-    <p className="text-base mt-2 text-gray-600 dark:text-gray-300 flex-grow">
-      {project.description}
-    </p>
-
+    <div className="description-container flex-grow overflow-hidden hover:overflow-y-auto thin-scrollbar">
+      <p className="text-base mt-2 text-gray-600 dark:text-gray-300">
+        {project.description}
+      </p>
+    </div>
     <div className="flex flex-wrap gap-2 mt-4">
       {project.tech.map((t) => (
         <span key={t} className="text-xs text-gray-600 dark:text-gray-400">
@@ -204,6 +203,21 @@ const ProjectCard = ({ project }) => (
         </span>
       ))}
     </div>
+    <style jsx>{`
+      .thin-scrollbar::-webkit-scrollbar {
+        width: 4px;
+      }
+      .thin-scrollbar::-webkit-scrollbar-track {
+        background: transparent;
+      }
+      .thin-scrollbar::-webkit-scrollbar-thumb {
+        background-color: rgba(156, 163, 175, 0.5);
+        border-radius: 20px;
+      }
+      .thin-scrollbar::-webkit-scrollbar-thumb:hover {
+        background-color: rgba(156, 163, 175, 0.7);
+      }
+    `}</style>
   </div>
 );
 
