@@ -52,9 +52,9 @@ export function HeroSection({ profileImage }) {
 
         {/* Description */}
         <p className="mt-6 dark:text-gray-400 text-black max-w-lg mx-auto">
-          Aspiring Data Scientist & IS student at Faculty of Computers & AI,
-          University of Sadat City. Passionate about solving real-world problems
-          with data and exploring AI.
+          Aspiring Data & Machine Learning Scientist and IS student at Faculty
+          of Computers & AI, University of Sadat City. Passionate about solving
+          real-world problems with data and exploring AI.
         </p>
 
         {/* FractalTree */}
