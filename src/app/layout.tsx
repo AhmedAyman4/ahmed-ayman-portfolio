@@ -24,7 +24,8 @@ export default function RootLayout({
       <body className={`${patrickHand.variable} antialiased`}>
         <ThemeProvider
           attribute="class"
-          defaultTheme="system"
+          // defaultTheme="system" for system theme
+          defaultTheme="dark"
           enableSystem
           disableTransitionOnChange
         >
