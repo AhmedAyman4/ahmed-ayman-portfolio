@@ -4,7 +4,7 @@ import { Badge } from "@/components/ui/badge";
 export function SkillsSection() {
   return (
     <div id="skills">
-      <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
+      <h2 className="text-3xl font-semibold text-primary mb-8 text-center dark:text-[hsl(215,100%,90%)]">
         Skills
       </h2>
       <div className="flex flex-wrap justify-center gap-4">

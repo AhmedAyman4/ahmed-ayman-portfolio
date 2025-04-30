@@ -250,7 +250,7 @@ export const ProjectsComponent = () => {
   return (
     <section id="projects" className="mb-16 fade-in-section">
       <div className="section-header mb-8">
-        <h2 className="text-3xl font-semibold text-primary text-center">
+        <h2 className="text-3xl font-semibold text-primary text-center dark:text-[hsl(215,100%,90%)]">
           {/* <span className="text-black dark:text-gray-300 mr-2">/</span> */}
           Featured Projects
           {/* <div className="w-24 h-1 mx-auto mt-2" style={{ backgroundColor: "hsl(var(--primary))" }}></div> */}

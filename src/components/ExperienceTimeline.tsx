@@ -11,28 +11,27 @@ import {
 export function ExperienceTimeline() {
   return (
     <div id="experience">
-      <h2 className="text-3xl font-semibold text-primary mb-8 text-center">
+      <h2 className="text-3xl font-semibold text-primary mb-8 text-center dark:text-[hsl(215,100%,90%)]">
         Experience
       </h2>
       <Accordion type="single" collapsible>
         <AccordionItem value="item-1">
           <AccordionTrigger>
-            <span className="font-semibold">DEPI</span> - Data Scientist
-            (2024 - 2025)
+            <span className="font-semibold">DEPI</span> - Data Scientist (2024 -
+            2025)
           </AccordionTrigger>
           <AccordionContent>
-            Detailed description of responsibilities and achievements in
-            this role.
+            Detailed description of responsibilities and achievements in this
+            role.
           </AccordionContent>
         </AccordionItem>
         <AccordionItem value="item-2">
           <AccordionTrigger>
-            <span className="font-semibold">CIB</span> - Intern (2014 -
-            2024)
+            <span className="font-semibold">CIB</span> - Intern (2014 - 2024)
           </AccordionTrigger>
           <AccordionContent>
-            Detailed description of responsibilities and achievements in
-            this role.
+            Detailed description of responsibilities and achievements in this
+            role.
           </AccordionContent>
         </AccordionItem>
       </Accordion>

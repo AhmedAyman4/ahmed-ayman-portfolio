@@ -8,7 +8,7 @@ import { SkillsSection } from "@/components/SkillsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HeroSection } from "@/components/HeroSection";
 import Footer from "@/components/Footer";
-import Me1 from "../assets/me.png";
+import Me1 from "../assets/A suit (1).jpg";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
