@@ -8,19 +8,19 @@ export function SkillsSection() {
         Skills
       </h2>
       <div className="flex flex-wrap justify-center gap-4">
-        <Badge>Python</Badge>
-        <Badge>NumPy</Badge>
-        <Badge>Pandas</Badge>
-        <Badge>SQL</Badge>
-        <Badge>Scikit-learn</Badge>
-        <Badge>Tableau</Badge>
-        <Badge>Power BI</Badge>
-        <Badge>React</Badge>
-        <Badge>Next.js</Badge>
-        <Badge>HTML</Badge>
-        <Badge>CSS</Badge>
-        <Badge>JavaScript</Badge>
-        <Badge>TypeScript</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">Python</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">NumPy</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">Pandas</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">SQL</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">Scikit-learn</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">Tableau</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">Power BI</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">React</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">Next.js</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">HTML</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">CSS</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">JavaScript</Badge>
+        <Badge className="dark:text-[hsl(215,100%,90%)]">TypeScript</Badge>
         {/* Add more skills here */}
       </div>
     </div>
