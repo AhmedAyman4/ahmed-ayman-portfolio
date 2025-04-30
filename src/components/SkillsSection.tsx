@@ -8,19 +8,19 @@ export function SkillsSection() {
         Skills
       </h2>
       <div className="flex flex-wrap justify-center gap-4">
-        <Badge className="dark:text-[hsl(215,100%,90%)]">Python</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">NumPy</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">Pandas</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">SQL</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">Scikit-learn</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">Tableau</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">Power BI</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">React</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">Next.js</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">HTML</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">CSS</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">JavaScript</Badge>
-        <Badge className="dark:text-[hsl(215,100%,90%)]">TypeScript</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">Python</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">NumPy</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">Pandas</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">SQL</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">Scikit-learn</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">Tableau</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">Power BI</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">React</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">Next.js</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">HTML</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">CSS</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">JavaScript</Badge>
+        <Badge className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]">TypeScript</Badge>
         {/* Add more skills here */}
       </div>
     </div>
