@@ -23,7 +23,8 @@ import { useEffect, useState } from "react";
 // Import project images (assuming they are in the same directory or accessible via relative paths)
 import BookRecommender from "../assets/Semantic Book Recommender.png"; // Changed to relative path
 import PortfolioWebsite from "../assets/portfolioWebsiteWhite.png"; // Changed to relative path
-import MovieLibrary from "../assets/movieLibrary.png"; // Changed to relative path
+import MovieLibrary from "../assets/movieLibrary.png";
+import HrAnalyticsImage from "../assets/HrAnalyticsImage.png";
 import MovieReviewSentimentAnalysis from "../assets/Movie Review Sentiment Analysis App.png"; // Changed to relative path
 
 // Projects data
@@ -37,6 +38,15 @@ const spotlightProjects = [
     demoLink:
       "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
     repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
+  },
+  {
+    title: "HR Analytics in Tableau",
+    description:
+      "Analyzed HR data of 1,470 employees in Tableau to visualize workforce trends and identify key attrition drivers, including a 16% attrition rate and demographic insights.",
+    tech: ["Tableau", "Data Visualization", "HR Analytics"],
+    image: HrAnalyticsImage,
+    demoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
+    repoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
   },
   {
     title: "Portfolio-Website",
@@ -78,6 +88,15 @@ const otherProjects = [
     demoLink:
       "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
     repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
+  },
+  {
+    title: "HR Analytics in Tableau",
+    description:
+      "Analyzed HR data of 1,470 employees in Tableau to visualize workforce trends and identify key attrition drivers, including a 16% attrition rate and demographic insights.",
+    tech: ["Tableau", "Data Visualization", "HR Analytics"],
+    image: HrAnalyticsImage,
+    demoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
+    repoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
   },
   {
     title: "Portfolio-Website",
