@@ -39,15 +39,15 @@ const spotlightProjects = [
       "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
     repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
   },
-  {
-    title: "HR Analytics in Tableau",
-    description:
-      "Analyzed HR data of 1,470 employees in Tableau to visualize workforce trends and identify key attrition drivers, including a 16% attrition rate and demographic insights.",
-    tech: ["Tableau", "Data Visualization", "HR Analytics"],
-    image: HrAnalyticsImage,
-    demoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
-    repoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
-  },
+  // {
+  //   title: "HR Analytics in Tableau",
+  //   description:
+  //     "Analyzed HR data of 1,470 employees in Tableau to visualize workforce trends and identify key attrition drivers, including a 16% attrition rate and demographic insights.",
+  //   tech: ["Tableau", "Data Visualization", "HR Analytics"],
+  //   image: HrAnalyticsImage,
+  //   demoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
+  //   repoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
+  // },
   {
     title: "Portfolio-Website",
     description:
