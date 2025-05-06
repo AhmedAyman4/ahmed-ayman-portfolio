@@ -269,10 +269,15 @@ export const ProjectsComponent = () => {
   return (
     <section id="projects" className="mb-16 fade-in-section">
       <div className="section-header mb-8">
-        <h2 className="text-3xl font-semibold text-primary dark:text-[hsl(215,100%,90%)] text-center">
-          {/* <span className="text-black dark:text-gray-300 mr-2">/</span> */}
-          Featured Projects
-          {/* <div className="w-24 h-1 mx-auto mt-2" style={{ backgroundColor: "hsl(var(--primary))" }}></div> */}
+        <h2 className="text-3xl font-semibold text-primary dark:text-[hsl(215,100%,90%)] flex items-center justify-center relative">
+          {/* Prefix */}
+          <span className="text-black dark:text-gray-300 mr-2">/</span>
+
+          {/* Title Text */}
+          <span className="relative inline-block">Featured Projects</span>
+
+          {/* Thin line next to the title */}
+          <div className="ml-4 h-[1px] w-16 bg-primary dark:bg-[hsl(215,100%,90%)] align-baseline"></div>
         </h2>
       </div>
 
