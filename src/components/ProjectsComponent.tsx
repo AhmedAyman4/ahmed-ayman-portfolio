@@ -277,7 +277,7 @@ export const ProjectsComponent = () => {
           <span className="relative inline-block">Featured Projects</span>
 
           {/* Thin line next to the title */}
-          <div className="ml-4 h-[1px] w-16 bg-primary dark:bg-[hsl(215,100%,90%)] align-baseline"></div>
+          {/* <div className="ml-4 h-[1px] w-16 bg-primary dark:bg-[hsl(215,100%,90%)] align-baseline"></div> */}
         </h2>
       </div>
 
