@@ -15,7 +15,7 @@ const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
 export function HeroSection({ profileImage }) {
   return (
-    <section id="hero" className="text-center mb-16 fade-in-section relative">
+    <section id="hero" className="text-center mb-24 fade-in-section relative">
       <div className="relative z-10">
         <Image
           src={profileImage}
