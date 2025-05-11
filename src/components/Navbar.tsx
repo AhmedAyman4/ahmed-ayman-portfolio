@@ -1,4 +1,3 @@
-// In a new file: components/Navbar.tsx
 "use client";
 
 import { Patrick_Hand } from "next/font/google";
@@ -36,6 +35,19 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               {link.label}
             </a>
           ))}
+          <Button
+            asChild
+            size="sm"
+            className="bg-[#4de9d2] hover:bg-[#4de9d2]/80 text-black"
+          >
+            <a
+              href="/Ahmed_Ayman_Alhofy.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Resume
+            </a>
+          </Button>
           <ModeToggle />
         </div>
         {/* Mobile menu button */}
@@ -59,6 +71,19 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   <a href={link.href}>{link.label}</a>
                 </Button>
               ))}
+              <Button
+                asChild
+                size="sm"
+                className="bg-[#4de9d2] hover:bg-[#4de9d2]/80 text-black"
+              >
+                <a
+                  href="/Ahmed_Ayman_Alhofy.pdf"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  Resume
+                </a>
+              </Button>
               <ModeToggle />
             </div>
           </SheetContent>
