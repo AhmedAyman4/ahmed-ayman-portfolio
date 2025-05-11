@@ -9,31 +9,50 @@ import {
 } from "@/components/ui/accordion";
 
 export function ExperienceTimeline() {
+  const experiences = [
+    {
+      id: "item-1",
+      company: "DEPI",
+      role: "Data Scientist",
+      period: "2024 - 2025",
+      description: [
+        "Analyze data using Python, SQL, and analytics tools to identify trends, opportunities, and business insights.",
+        "Build and deploy ML models with Python, Scikit-learn, and MLflow, leveraging AI and prompt engineering for integration.",
+      ],
+    },
+    {
+      id: "item-2",
+      company: "CIB",
+      role: "Intern",
+      period: "2024 - 2024",
+      description: [
+        "Gained data and financial literacy expertise, entrepreneurship, and teamwork to enhance problem-solving, decision-making, and business success.",
+      ],
+    },
+  ];
+
   return (
     <div id="experience">
       <h2 className="text-3xl font-semibold text-primary mb-8 text-center dark:text-[hsl(215,100%,90%)]">
         Experience
       </h2>
+
       <Accordion type="single" collapsible>
-        <AccordionItem value="item-1">
-          <AccordionTrigger>
-            <span className="font-semibold">DEPI</span> - Data Scientist (2024 -
-            2025)
-          </AccordionTrigger>
-          <AccordionContent>
-            Detailed description of responsibilities and achievements in this
-            role.
-          </AccordionContent>
-        </AccordionItem>
-        <AccordionItem value="item-2">
-          <AccordionTrigger>
-            <span className="font-semibold">CIB</span> - Intern (2014 - 2024)
-          </AccordionTrigger>
-          <AccordionContent>
-            Detailed description of responsibilities and achievements in this
-            role.
-          </AccordionContent>
-        </AccordionItem>
+        {experiences.map((exp) => (
+          <AccordionItem key={exp.id} value={exp.id}>
+            <AccordionTrigger>
+              <span className="font-semibold">{exp.company}</span> - {exp.role}{" "}
+              ({exp.period})
+            </AccordionTrigger>
+            <AccordionContent>
+              <ul className="list-disc pl-5 space-y-1">
+                {exp.description.map((item, index) => (
+                  <li key={index}>{item}</li>
+                ))}
+              </ul>
+            </AccordionContent>
+          </AccordionItem>
+        ))}
       </Accordion>
     </div>
   );
