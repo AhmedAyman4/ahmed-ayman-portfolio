@@ -7,6 +7,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { cn } from "@/lib/utils";
 
 export function ExperienceTimeline() {
   const experiences = [
@@ -40,7 +41,9 @@ export function ExperienceTimeline() {
       <Accordion type="single" collapsible>
         {experiences.map((exp) => (
           <AccordionItem key={exp.id} value={exp.id}>
-            <AccordionTrigger>
+            <AccordionTrigger className="hover:no-underline">
+              {" "}
+              {/* Added class here */}
               <span className="font-semibold">{exp.company}</span> - {exp.role}{" "}
               ({exp.period})
             </AccordionTrigger>
