@@ -1,15 +1,18 @@
 // components/ExperienceTimeline.tsx
 "use client";
 
+import { useEffect, useRef } from "react";
+import { gsap } from "gsap";
 import {
   Accordion,
   AccordionContent,
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
-import { cn } from "@/lib/utils";
 
 export function ExperienceTimeline() {
+  const containerRef = useRef<HTMLDivElement>(null);
+
   const experiences = [
     {
       id: "item-1",
@@ -32,18 +35,38 @@ export function ExperienceTimeline() {
     },
   ];
 
+  useEffect(() => {
+    if (!containerRef.current) return;
+
+    const items = containerRef.current.querySelectorAll(".timeline-item");
+
+    gsap.fromTo(
+      items,
+      { autoAlpha: 0, y: 50 },
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.6,
+        stagger: 0.2,
+        ease: "power2.out",
+      }
+    );
+  }, []);
+
   return (
-    <div id="experience">
+    <div id="experience" ref={containerRef}>
       <h2 className="text-3xl font-semibold text-primary mb-8 text-center dark:text-[hsl(215,100%,90%)]">
         Experience
       </h2>
 
       <Accordion type="single" collapsible>
         {experiences.map((exp) => (
-          <AccordionItem key={exp.id} value={exp.id}>
+          <AccordionItem
+            key={exp.id}
+            value={exp.id}
+            className="timeline-item opacity-0"
+          >
             <AccordionTrigger className="hover:no-underline">
-              {" "}
-              {/* Added class here */}
               <span className="font-semibold">{exp.company}</span> - {exp.role}{" "}
               ({exp.period})
             </AccordionTrigger>

@@ -1,6 +1,6 @@
-// ProjectsComponent.jsx
 "use client";
 
+import { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import {
   ChevronLeft,
@@ -9,124 +9,13 @@ import {
   ExternalLink,
   Github,
 } from "lucide-react";
+import { gsap, Power2 } from "gsap";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { useEffect, useState } from "react";
+import { spotlightProjects, otherProjects, type Project } from "./projectsData";
 
-// Projects data
-const spotlightProjects = [
-  {
-    title: "Semantic Book Recommender ",
-    description:
-      "Developed a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
-    tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
-    image: "/images/semanticBookRecommender.png",
-    demoLink:
-      "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
-    repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
-  },
-  {
-    title: "Campaign Conversion Predictor",
-    description:
-      "Built a machine learning model to predict customer conversion in digital marketing campaigns using demographic and engagement data. Deployed a Gradio web app for real-time predictions with a Random Forest model.",
-    tech: ["Python", "Scikit-learn", "Gradio", "EDA", "Machine Learning"],
-    image: "/images/DigitalMarketingConversionImage.png",
-    demoLink:
-      "https://huggingface.co/spaces/ahmed-ayman/Predict-Conversion-in-Digital-Marketing",
-    repoLink: "https://github.com/AhmedAyman4/customer-conversion-predictor",
-  },
-  {
-    title: "Portfolio-Website",
-    description:
-      "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
-    tech: ["Javascript", "HTML", "CSS"],
-    image: "/images/portfolioWebsiteWhite.png",
-    demoLink: "https://ahmedayman4.github.io/Personal-website/",
-    repoLink: "https://github.com/AhmedAyman4/Personal-website",
-  },
-  {
-    title: "Movie Library",
-    description:
-      "A React-based movie library application that enables users to search for movies, view trending titles, and explore detailed information.",
-    tech: ["React", "Vite", "TailwindCSS", "Appwrite", "TMDb API"],
-    image: "/images/movieLibrary.png",
-    demoLink: "https://movie-library-blush.vercel.app/",
-    repoLink: "https://github.com/AhmedAyman4/movie-library",
-  },
-  {
-    title: "Movie Review Sentiment Analysis ",
-    description:
-      "A movie sentiment analysis application using three models to predict review sentiment through an interactive Gradio web interface.",
-    tech: ["scikit-learn", "transformers", "tensorflow", "gradio"],
-    image: "/images/movieReviewSentimentAnalysis.png",
-    demoLink: "https://huggingface.co/spaces/ahmed-ayman/Sentiment-Analysis",
-    repoLink:
-      "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",
-  },
-];
-
-const otherProjects = [
-  {
-    title: "Semantic Book Recommender ",
-    description:
-      "Developed a web-based application utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
-    tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
-    image: "/images/semanticBookRecommender.png",
-    demoLink:
-      "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
-    repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
-  },
-  {
-    title: "Campaign Conversion Predictor",
-    description:
-      "Built a machine learning model to predict customer conversion in digital marketing campaigns using demographic and engagement data. Deployed a Gradio web app for real-time predictions with a Random Forest model.",
-    tech: ["Python", "Scikit-learn", "Gradio", "EDA", "Machine Learning"],
-    image: "/images/DigitalMarketingConversionImage.png",
-    demoLink:
-      "https://huggingface.co/spaces/ahmed-ayman/Predict-Conversion-in-Digital-Marketing",
-    repoLink: "https://github.com/AhmedAyman4/customer-conversion-predictor",
-  },
-  {
-    title: "HR Analytics in Tableau",
-    description:
-      "Analyzed HR data of 1,470 employees in Tableau to visualize workforce trends and identify key attrition drivers, including a 16% attrition rate and demographic insights.",
-    tech: ["Tableau", "Data Visualization", "HR Analytics"],
-    image: "/images/HrAnalyticsImage.png",
-    demoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
-    repoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
-  },
-  {
-    title: "Portfolio-Website",
-    description:
-      "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
-    tech: ["Javascript", "HTML", "CSS"],
-    image: "/images/portfolioWebsiteWhite.png",
-    demoLink: "https://ahmedayman4.github.io/Personal-website/",
-    repoLink: "https://github.com/AhmedAyman4/Personal-website",
-  },
-  {
-    title: "Movie Library",
-    description:
-      "A React-based movie library application that enables users to search for movies, view trending titles, and explore detailed information.",
-    tech: ["React", "Vite", "TailwindCSS", "Appwrite", "TMDb API"],
-    image: "/images/movieLibrary.png",
-    demoLink: "https://movie-library-blush.vercel.app/",
-    repoLink: "https://github.com/AhmedAyman4/movie-library",
-  },
-  {
-    title: "Movie Review Sentiment Analysis ",
-    description:
-      "A movie sentiment analysis application using three models to predict review sentiment through an interactive Gradio web interface.",
-    tech: ["scikit-learn", "transformers", "tensorflow", "gradio"],
-    image: "/images/movieReviewSentimentAnalysis.png",
-    demoLink: "https://huggingface.co/spaces/ahmed-ayman/Sentiment-Analysis",
-    repoLink:
-      "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",
-  },
-];
-
-const CarouselItem = ({ project }) => (
-  <div className="relative rounded-lg overflow-hidden max-w-8xl max-h-fit mx-auto">
+const CarouselItem = ({ project }: { project: Project }) => (
+  <div className="relative rounded-lg overflow-hidden max-w-8xl mx-auto">
     <Image
       src={project.image}
       alt={project.title}
@@ -134,10 +23,9 @@ const CarouselItem = ({ project }) => (
       height={800}
       className="object-cover w-full"
     />
-    <div className="absolute inset-0 bg-gradient-to-t from-background dark:from-gray-800 to-transparent"></div>
+    <div className="absolute inset-0 bg-gradient-to-t from-background dark:from-gray-800 to-transparent" />
     <div className="absolute bottom-0 left-0 right-0 text-foreground dark:text-white flex flex-col items-center text-center px-4 pb-8">
       <h3 className="text-xl font-semibold">{project.title}</h3>
-      {/* Hide description on mobile screens */}
       <p className="text-sm mt-2 hidden md:block max-w-2xl mx-auto">
         {project.description}
       </p>
@@ -158,7 +46,7 @@ const CarouselItem = ({ project }) => (
           variant="secondary"
           asChild
           size="sm"
-          className="px-2 py-1 text-xs hover:bg-secondary/80" // Added hover effect
+          className="px-2 py-1 text-xs hover:bg-secondary/80"
         >
           <a href={project.demoLink} target="_blank" rel="noopener noreferrer">
             Live Demo
@@ -167,7 +55,7 @@ const CarouselItem = ({ project }) => (
         <Button
           asChild
           size="sm"
-          className="ml-2 px-2 py-1 text-xs hover:bg-primary/80" // Added hover effect
+          className="ml-2 px-2 py-1 text-xs hover:bg-primary/80"
         >
           <a href={project.repoLink} target="_blank" rel="noopener noreferrer">
             Code Repo
@@ -178,30 +66,28 @@ const CarouselItem = ({ project }) => (
   </div>
 );
 
-const ProjectCard = ({ project }) => (
+const ProjectCard = ({ project }: { project: Project }) => (
   <div
-    className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md transition-all duration-75 ease-in-out hover:translate-y-[-5px] hover:shadow-xl hover:bg-gray-200 dark:hover:bg-gray-700 p-4 md:p-6 flex flex-col fade-in-section border-t-4 h-96"
+    className="bg-gray-100 dark:bg-gray-800 rounded-lg shadow-md transition-transform duration-75 ease-in-out hover:-translate-y-1 hover:shadow-xl hover:bg-gray-200 dark:hover:bg-gray-700 p-4 md:p-6 flex flex-col border-t-4 h-96"
     style={{ borderColor: "hsl(var(--primary))" }}
   >
     <div className="flex justify-between items-start">
       <FolderGit2 className="h-6 w-6 text-primary" />
       <div className="flex space-x-2">
-        <a
-          href={project.demoLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary bg-gray-200 dark:bg-gray-700 p-2 rounded-md transition-colors hover:bg-gray-300 dark:hover:bg-gray-600"
-        >
-          <ExternalLink className="h-5 w-5" />
-        </a>
-        <a
-          href={project.repoLink}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary bg-gray-200 dark:bg-gray-700 p-2 rounded-md transition-colors hover:bg-gray-300 dark:hover:bg-gray-600"
-        >
-          <Github className="h-5 w-5" />
-        </a>
+        {[
+          { icon: ExternalLink, link: project.demoLink },
+          { icon: Github, link: project.repoLink },
+        ].map(({ icon: Icon, link }, i) => (
+          <a
+            key={i}
+            href={link}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="text-gray-700 dark:text-gray-300 hover:text-primary dark:hover:text-primary bg-gray-200 dark:bg-gray-700 p-2 rounded-md transition-colors hover:bg-gray-300 dark:hover:bg-gray-600"
+          >
+            <Icon className="h-5 w-5" />
+          </a>
+        ))}
       </div>
     </div>
     <h3 className="text-xl font-semibold mt-3 text-black dark:text-white">
@@ -237,108 +123,99 @@ const ProjectCard = ({ project }) => (
   </div>
 );
 
-export const ProjectsComponent = () => {
-  const [currentProjectIndex, setCurrentProjectIndex] = useState(0);
-  const featuredProject = spotlightProjects[currentProjectIndex];
+const Carousel = ({ projects }: { projects: Project[] }) => {
+  const [index, setIndex] = useState(0);
+  const [direction, setDirection] = useState(0);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  const goToPreviousProject = () => {
-    setCurrentProjectIndex((prevIndex) =>
-      prevIndex > 0 ? prevIndex - 1 : spotlightProjects.length - 1
-    );
-  };
-
-  const goToNextProject = () => {
-    setCurrentProjectIndex((prevIndex) =>
-      prevIndex < spotlightProjects.length - 1 ? prevIndex + 1 : 0
-    );
-  };
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      goToNextProject();
-    }, 10000);
-
-    return () => {
-      clearInterval(interval);
-    };
+  const goTo = useCallback((newIndex: number, dir: number) => {
+    setDirection(dir);
+    setIndex(newIndex);
   }, []);
 
+  const next = useCallback(() => {
+    goTo((index + 1) % projects.length, 1);
+  }, [index, projects.length, goTo]);
+
+  const prev = useCallback(() => {
+    goTo((index - 1 + projects.length) % projects.length, -1);
+  }, [index, projects.length, goTo]);
+
+  useEffect(() => {
+    if (ref.current) {
+      const fromX = direction === 1 ? 100 : direction === -1 ? -100 : 0;
+      gsap.fromTo(
+        ref.current,
+        { opacity: 0, x: fromX },
+        { opacity: 1, x: 0, duration: 0.8, ease: Power2.easeOut }
+      );
+    }
+  }, [index, direction]);
+
+  useEffect(() => {
+    const interval = setInterval(() => next(), 10000);
+    return () => clearInterval(interval);
+  }, [next]);
+
   return (
-    <section id="projects" className="mb-16 fade-in-section">
-      <div className="section-header mb-8">
-        <h2 className="text-3xl font-semibold text-primary dark:text-[hsl(215,100%,90%)] flex items-center justify-center relative">
-          {/* Prefix */}
-          <span className="text-black dark:text-gray-300 mr-2">/</span>
-
-          {/* Title Text */}
-          <span className="relative inline-block">Featured Projects</span>
-
-          {/* Thin line next to the title */}
-          {/* <div className="ml-4 h-[1px] w-16 bg-primary dark:bg-[hsl(215,100%,90%)] align-baseline"></div> */}
-        </h2>
+    <div className="relative mb-16 hidden md:block">
+      <div ref={ref}>
+        <CarouselItem project={projects[index]} />
       </div>
-
-      {/* Spotlight Projects Carousel */}
-      <div className="relative mb-16 hidden md:block">
-        <CarouselItem project={featuredProject} />
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute left-2 top-1/2 transform -translate-y-1/2"
-          onClick={goToPreviousProject}
-        >
-          <ChevronLeft className="h-6 w-6" />
-          <span className="sr-only">Previous Project</span>
-        </Button>
-        <Button
-          variant="ghost"
-          size="icon"
-          className="absolute right-2 top-1/2 transform -translate-y-1/2"
-          onClick={goToNextProject}
-        >
-          <ChevronRight className="h-6 w-6" />
-          <span className="sr-only">Next Project</span>
-        </Button>
-
-        {/* Carousel Pagination */}
-        <div className="flex justify-center items-center mt-4">
-          {spotlightProjects.map((_, index) => (
-            <button
-              key={index}
-              className={`h-1 w-6 rounded-sm mx-1 ${
-                currentProjectIndex === index
-                  ? "bg-primary"
-                  : "bg-gray-400 dark:bg-gray-600"
-              }`}
-              onClick={() => setCurrentProjectIndex(index)}
-            />
-          ))}
-        </div>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute left-2 top-1/2 -translate-y-1/2"
+        onClick={prev}
+      >
+        <ChevronLeft className="h-6 w-6" />
+        <span className="sr-only">Previous</span>
+      </Button>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute right-2 top-1/2 -translate-y-1/2"
+        onClick={next}
+      >
+        <ChevronRight className="h-6 w-6" />
+        <span className="sr-only">Next</span>
+      </Button>
+      <div className="flex justify-center items-center mt-4">
+        {projects.map((_, i) => (
+          <button
+            key={i}
+            className={`h-1 w-6 rounded-sm mx-1 ${
+              i === index ? "bg-primary" : "bg-gray-400 dark:bg-gray-600"
+            }`}
+            onClick={() => goTo(i, i > index ? 1 : i < index ? -1 : 0)}
+          />
+        ))}
       </div>
-
-      {/* Other Projects Section */}
-      {/* <div className="section-header mb-8">
-      <h2 className="text-3xl font-semibold text-primary text-center">
-        <span className="text-black dark:text-gray-300 mr-2">/</span>
-        Other Projects
-      </h2>
-    </div> */}
-
-      <div className="project-container">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {otherProjects.map((project, index) => (
-            <div
-              key={index}
-              className="fade-in-section"
-              style={{ animationDelay: `${(index + 1) * 100}ms` }}
-            >
-              <ProjectCard project={project} />
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
+    </div>
   );
 };
+
+export const ProjectsComponent = () => (
+  <section id="projects" className="mb-16 fade-in-section">
+    <div className="section-header mb-8">
+      <h2 className="text-3xl font-semibold text-primary dark:text-[hsl(215,100%,90%)] flex items-center justify-center relative">
+        <span className="text-black dark:text-gray-300 mr-2">/</span>
+        <span className="relative inline-block">Featured Projects</span>
+      </h2>
+    </div>
+    <Carousel projects={spotlightProjects} />
+    <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {otherProjects.map((project, i) => (
+        <div
+          key={i}
+          className="fade-in-section"
+          style={{ animationDelay: `${(i + 1) * 100}ms` }}
+        >
+          <ProjectCard project={project} />
+        </div>
+      ))}
+    </div>
+  </section>
+);
 
 export default ProjectsComponent;
