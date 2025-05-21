@@ -10,6 +10,7 @@ import { TbCertificate } from "react-icons/tb";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { TypingEffect } from "@/components/typing-effect";
 import FractalTree from "@/components/FractalTree";
+import AvailableStatus from "./AvailableStatus";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
@@ -77,6 +78,8 @@ export function HeroSection({ profileImage }) {
           <MdEmail className="mr-3 h-5 w-5 text-black" aria-hidden="true" />
           Say hi!
         </a>
+
+        <AvailableStatus />
 
         <div className="mt-6 flex justify-center space-x-4">
           <div className="flex justify-center space-x-4">
