@@ -79,7 +79,7 @@ export function HeroSection({ profileImage }) {
           Say hi!
         </a>
 
-        <AvailableStatus />
+        {/* <AvailableStatus /> */}
 
         <div className="mt-6 flex justify-center space-x-4">
           <div className="flex justify-center space-x-4">
