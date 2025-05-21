@@ -32,7 +32,9 @@ const CarouselItem = ({ project }: { project: Project }) => (
       </p>
       <div className="flex mt-3 space-x-2 flex-wrap justify-center">
         {project.tech.slice(0, 3).map((t) => (
-          <Badge key={t} className="text-xs mb-2">{t}</Badge>
+          <Badge key={t} className="text-xs mb-2">
+            {t}
+          </Badge>
         ))}
         {project.tech.length > 3 && (
           <Badge variant="outline" className="text-xs mb-2">
@@ -49,7 +51,13 @@ const CarouselItem = ({ project }: { project: Project }) => (
             size="sm"
             className="px-2 py-1 text-xs hover:bg-secondary/80"
           >
-            <a href={project.demoLink} target="_blank" rel="noopener noreferrer">Live Demo</a>
+            <a
+              href={project.demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Live Demo
+            </a>
           </Button>
         )}
         {/* Conditionally render Button and its child only if project.repoLink exists */}
@@ -59,7 +67,13 @@ const CarouselItem = ({ project }: { project: Project }) => (
             size="sm"
             className="ml-2 px-2 py-1 text-xs hover:bg-primary/80"
           >
-            <a href={project.repoLink} target="_blank" rel="noopener noreferrer">Code Repo</a>
+            <a
+              href={project.repoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Code Repo
+            </a>
           </Button>
         )}
       </div>
@@ -75,7 +89,10 @@ const ProjectCard = ({ project }: { project: Project }) => (
     <div className="flex justify-between items-start">
       <FolderGit2 className="h-6 w-6 text-primary" />
       <div className="flex space-x-2">
-        {[{ icon: ExternalLink, link: project.demoLink }, { icon: Github, link: project.repoLink }].map(({ icon: Icon, link }, i) => (
+        {[
+          { icon: ExternalLink, link: project.demoLink },
+          { icon: Github, link: project.repoLink },
+        ].map(({ icon: Icon, link }, i) => (
           <a
             key={i}
             href={link}
@@ -88,13 +105,19 @@ const ProjectCard = ({ project }: { project: Project }) => (
         ))}
       </div>
     </div>
-    <h3 className="text-xl font-semibold mt-3 text-black dark:text-white">{project.title}</h3>
+    <h3 className="text-xl font-semibold mt-3 text-black dark:text-white">
+      {project.title}
+    </h3>
     <div className="description-container flex-grow overflow-hidden hover:overflow-y-auto thin-scrollbar">
-      <p className="text-base mt-2 text-gray-600 dark:text-gray-300">{project.description}</p>
+      <p className="text-base mt-2 text-gray-600 dark:text-gray-300">
+        {project.description}
+      </p>
     </div>
     <div className="flex flex-wrap gap-2 mt-4">
       {project.tech.map((t) => (
-        <span key={t} className="text-xs text-gray-600 dark:text-gray-400">{t}</span>
+        <span key={t} className="text-xs text-gray-600 dark:text-gray-400">
+          {t}
+        </span>
       ))}
     </div>
     <style jsx>{`
@@ -154,11 +177,21 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
       <div ref={ref}>
         <CarouselItem project={projects[index]} />
       </div>
-      <Button variant="ghost" size="icon" className="absolute left-2 top-1/2 -translate-y-1/2" onClick={prev}>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute left-2 top-1/2 -translate-y-1/2"
+        onClick={prev}
+      >
         <ChevronLeft className="h-6 w-6" />
         <span className="sr-only">Previous</span>
       </Button>
-      <Button variant="ghost" size="icon" className="absolute right-2 top-1/2 -translate-y-1/2" onClick={next}>
+      <Button
+        variant="ghost"
+        size="icon"
+        className="absolute right-2 top-1/2 -translate-y-1/2"
+        onClick={next}
+      >
         <ChevronRight className="h-6 w-6" />
         <span className="sr-only">Next</span>
       </Button>
@@ -205,7 +238,11 @@ export const ProjectsComponent = () => (
 
     <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {otherProjects.map((project, i) => (
-        <div key={i} className="fade-in-section" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
+        <div
+          key={i}
+          className="fade-in-section"
+          style={{ animationDelay: `${(i + 1) * 100}ms` }}
+        >
           <ProjectCard project={project} />
         </div>
       ))}
