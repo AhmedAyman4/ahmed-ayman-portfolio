@@ -6,5 +6,9 @@ import { ThemeProvider as NextThemesProvider } from "next-themes";
 interface ThemeProviderProps extends React.PropsWithChildren {}
 
 export function ThemeProvider({ children }: ThemeProviderProps) {
-  return <NextThemesProvider attribute="class" defaultTheme="system" enableSystem>{children}</NextThemesProvider>;
+  return (
+    <NextThemesProvider attribute="class" defaultTheme="dark" enableSystem>
+      {children}
+    </NextThemesProvider>
+  );
 }

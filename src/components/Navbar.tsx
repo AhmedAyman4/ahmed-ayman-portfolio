@@ -48,7 +48,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               Resume
             </a>
           </Button>
-          <ModeToggle />
+          {/* <ModeToggle /> */}
         </div>
         {/* Mobile menu button */}
         <Sheet>
@@ -84,7 +84,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   Resume
                 </a>
               </Button>
-              <ModeToggle />
+              {/* <ModeToggle /> */}
             </div>
           </SheetContent>
         </Sheet>
