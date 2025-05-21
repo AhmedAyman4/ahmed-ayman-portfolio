@@ -22,7 +22,7 @@ const CarouselItem = ({ project }: { project: Project }) => (
       width={1200}
       height={800}
       className="object-cover w-full"
-      priority // Added priority prop here
+      // Removed priority prop from here, as images are preloaded by the hidden grid
     />
     <div className="absolute inset-0 bg-gradient-to-t from-background dark:from-gray-800 to-transparent" />
     <div className="absolute bottom-0 left-0 right-0 text-foreground dark:text-white flex flex-col items-center text-center px-4 pb-8">
@@ -139,7 +139,7 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
       gsap.fromTo(
         ref.current,
         { opacity: 0, x: fromX },
-        { opacity: 1, x: 0, duration: 0.8, ease: Power2.easeOut }
+        { opacity: 1, x: 0, duration: 1.5, ease: Power2.easeOut }
       );
     }
   }, [index, direction]);
@@ -185,7 +185,24 @@ export const ProjectsComponent = () => (
         <span className="relative inline-block">Featured Projects</span>
       </h2>
     </div>
+
+    {/* Hidden preloader for spotlight images */}
+    <div className="hidden">
+      {spotlightProjects.map((project) => (
+        <Image
+          key={project.title}
+          src={project.image}
+          alt={project.title}
+          width={1200}
+          height={800}
+          priority // This ensures these images are preloaded with high priority
+        />
+      ))}
+    </div>
+
+    {/* Carousel displays after preload */}
     <Carousel projects={spotlightProjects} />
+
     <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
       {otherProjects.map((project, i) => (
         <div key={i} className="fade-in-section" style={{ animationDelay: `${(i + 1) * 100}ms` }}>
