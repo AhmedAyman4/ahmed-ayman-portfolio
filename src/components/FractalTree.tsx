@@ -5,7 +5,6 @@ const FractalTree: React.FC = () => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const requestIdRef = useRef<number>(0);
   const { resolvedTheme } = useTheme();
-
   useEffect(() => {
     if (!canvasRef.current) return;
 
@@ -16,15 +15,42 @@ const FractalTree: React.FC = () => {
     let angle = Math.PI / 4;
     let frameCount = 0;
 
-    const draw = () => {
-      frameCount++;
+    // Pre-calculate colors for better performance
+    const darkColors = [
+      "#00f5ff",
+      "#0080ff",
+      "#4169e1",
+      "#6a5acd",
+      "#8a2be2",
+      "#9932cc",
+      "#ba55d3",
+      "#da70d6",
+    ];
 
-      // Clear canvas
+    const lightColors = [
+      "#ff6b35",
+      "#f7931e",
+      "#ffd700",
+      "#32cd32",
+      "#00ced1",
+      "#1e90ff",
+      "#9370db",
+      "#ff69b4",
+    ];
+
+    const colors = resolvedTheme === "dark" ? darkColors : lightColors;
+
+    // Optimize canvas settings
+    ctx.lineCap = "round";
+    ctx.lineJoin = "round";
+
+    const draw = () => {
+      frameCount++; // Clear canvas completely for transparent background
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
-      // Vary the angle using sin
+      // Vary the angle using sin for smooth animation
       angle = mapRange(
-        Math.sin(frameCount * 0.01),
+        Math.sin(frameCount * 0.02),
         -1,
         1,
         Math.PI / 2,
@@ -45,22 +71,14 @@ const FractalTree: React.FC = () => {
       len: number,
       depth: number = 0
     ) => {
+      // Limit recursion depth for better performance
+      if (depth > 7 || len < 3) return;
+
       // Calculate line width based on branch depth
-      const lineWidth = Math.max(3 - depth * 0.5, 0.5);
+      const lineWidth = Math.max(3 - depth * 0.4, 0.5);
       ctx.lineWidth = lineWidth;
 
-      // Gradient color for better visibility in light mode and white in dark mode
-      const colors =
-        resolvedTheme === "dark"
-          ? ["white", "white", "white", "white"]
-          : [
-              "#4de9d2", // Teal color matching your accent
-              "#1a3b40", // Darker teal
-              "#06684b", // Dark forest green
-              "#042c29", // Very dark green
-            ];
-
-      // Get color based on depth
+      // Use simple color selection instead of gradients for performance
       const colorIndex = Math.min(depth, colors.length - 1);
       ctx.strokeStyle = colors[colorIndex];
 
@@ -71,19 +89,17 @@ const FractalTree: React.FC = () => {
 
       ctx.translate(0, -len);
 
-      if (len > 4) {
-        // Right branch
-        ctx.save();
-        ctx.rotate(angle);
-        branch(ctx, len * 0.67, depth + 1);
-        ctx.restore();
+      // Right branch
+      ctx.save();
+      ctx.rotate(angle);
+      branch(ctx, len * 0.67, depth + 1);
+      ctx.restore();
 
-        // Left branch
-        ctx.save();
-        ctx.rotate(-angle);
-        branch(ctx, len * 0.67, depth + 1);
-        ctx.restore();
-      }
+      // Left branch
+      ctx.save();
+      ctx.rotate(-angle);
+      branch(ctx, len * 0.67, depth + 1);
+      ctx.restore();
     };
 
     // Helper function to map values from one range to another
@@ -105,7 +121,6 @@ const FractalTree: React.FC = () => {
       cancelAnimationFrame(requestIdRef.current);
     };
   }, [resolvedTheme]);
-
   return (
     <div id="fractal-tree" className="relative">
       <canvas
