@@ -6,10 +6,27 @@ import { Badge } from "@/components/ui/badge"; // Reverted to original import
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
 
+// Skills data array
+const skills = [
+  "Python",
+  "NumPy",
+  "Pandas",
+  "SQL",
+  "Scikit-learn",
+  "Tableau",
+  "Power BI",
+  "React",
+  "Next.js",
+  "HTML",
+  "CSS",
+  "JavaScript",
+  "TypeScript",
+];
+
 export function SkillsSection() {
   const skillsRef = useRef(null); // Reference to the main skills div
   const titleRef = useRef(null); // Reference to the h2 title
-  const badgesRef = useRef([]); // Reference to store all badge elements
+  const badgesRef = useRef<(HTMLDivElement | null)[]>([]); // Reference to store all badge elements
 
   useEffect(() => {
     const skillsElement = skillsRef.current;
@@ -64,85 +81,17 @@ export function SkillsSection() {
         Skills
       </h2>
       <div className="flex flex-wrap justify-center gap-4">
-        <Badge
-          ref={(el) => (badgesRef.current[0] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          Python
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[1] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          NumPy
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[2] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          Pandas
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[3] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          SQL
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[4] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          Scikit-learn
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[5] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          Tableau
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[6] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          Power BI
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[7] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          React
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[8] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          Next.js
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[9] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          HTML
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[10] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          CSS
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[11] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          JavaScript
-        </Badge>
-        <Badge
-          ref={(el) => (badgesRef.current[12] = el)}
-          className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
-        >
-          TypeScript
-        </Badge>
-        {/* Add more skills here */}
+        {skills.map((skill, index) => (
+          <Badge
+            key={skill}
+            ref={(el) => {
+              badgesRef.current[index] = el;
+            }}
+            className="dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)]"
+          >
+            {skill}
+          </Badge>
+        ))}
       </div>
     </div>
   );
