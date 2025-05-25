@@ -18,7 +18,7 @@ export function ExperienceTimeline() {
       id: "item-1",
       company: "DEPI",
       role: "Data Scientist",
-      period: "2024 - 2025",
+      period: "Oct 2024 - May 2025",
       description: [
         "Analyze data using Python, SQL, and analytics tools to identify trends, opportunities, and business insights.",
         "Build and deploy ML models with Python, Scikit-learn, and MLflow, leveraging AI and prompt engineering for integration.",
@@ -26,9 +26,9 @@ export function ExperienceTimeline() {
     },
     {
       id: "item-2",
-      company: "CIB",
+      company: "CIB Egypt",
       role: "Intern",
-      period: "2024 - 2024",
+      period: "Jul 2024 - Jul 2024",
       description: [
         "Gained data and financial literacy expertise, entrepreneurship, and teamwork to enhance problem-solving, decision-making, and business success.",
       ],
