@@ -5,8 +5,8 @@ export interface Project {
   description: string;
   tech: string[];
   image: string;
-  demoLink: string;
-  repoLink: string;
+  demoLink?: string;
+  repoLink?: string;
 }
 
 export const spotlightProjects: Project[] = [
@@ -119,3 +119,26 @@ export const otherProjects: Project[] = [
       "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",
   },
 ];
+
+/*
+Example of how to add a project without demo or repo links:
+
+{
+  title: "Private Research Project",
+  description: "A confidential research project that cannot be shared publicly at this time.",
+  tech: ["Python", "TensorFlow", "Research"],
+  image: "/images/placeholder.png",
+  // Notice: no demoLink or repoLink properties
+  // The buttons will be automatically hidden in both CarouselItem and ProjectCard
+}
+
+You can also set them to empty strings or undefined:
+{
+  title: "Work in Progress",
+  description: "This project is still under development.",
+  tech: ["React", "TypeScript"],
+  image: "/images/wip.png",
+  demoLink: "", // Empty string - button will be hidden
+  repoLink: undefined, // Undefined - button will be hidden
+}
+*/

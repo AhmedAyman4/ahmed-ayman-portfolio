@@ -25,10 +25,10 @@ interface NavbarProps {
 
 const Navbar: React.FC<NavbarProps> = ({ links }) => {
   // Create refs for the elements to animate
-  const navbarRef = useRef(null);
-  const logoRef = useRef(null);
-  const desktopNavRef = useRef(null);
-  const mobileMenuButtonRef = useRef(null); // Ref for the mobile menu trigger button
+  const navbarRef = useRef<HTMLDivElement>(null);
+  const logoRef = useRef<HTMLAnchorElement>(null);
+  const desktopNavRef = useRef<HTMLDivElement>(null);
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null); // Ref for the mobile menu trigger button
 
   useEffect(() => {
     // Ensure all referenced elements are available before attempting animations
@@ -62,7 +62,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
       // as it applies to multiple elements with a stagger.
       // It will run concurrently with the end of the logo animation.
       gsap.fromTo(
-        desktopNavRef.current.children, // Target all direct children of the desktop nav container
+        Array.from(desktopNavRef.current.children), // Target all direct children of the desktop nav container
         { y: -20, opacity: 0 }, // Start state: slightly above, invisible
         { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" } // End state: original position, visible, with bounce
       );
@@ -82,79 +82,211 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
     // Apply ref to the main navbar div
     <div
       ref={navbarRef}
-      className="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b"
+      className="navbar-container sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b"
     >
-      <div className="container max-w-7xl mx-auto py-4 flex items-center justify-between">
+      <div className="container max-w-7xl mx-auto py-3 flex items-center justify-between relative">
         {/* Apply ref to the logo link */}
         <a
           ref={logoRef}
           href="#"
-          className={`font-bold text-xl ${patrickHand.className} ml-4 sm:ml-4`}
+          className={`font-bold text-xl ${patrickHand.className} ml-2 sm:ml-2 relative group`}
         >
-          Ahmed Ayman
+          <span className="relative z-10 bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent transition-all duration-500 group-hover:from-primary group-hover:via-purple-500 group-hover:to-blue-500">
+            Ahmed Ayman
+          </span>
+          {/* Logo glow effect */}
+          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
         </a>
         {/* Apply ref to the desktop navigation container */}
-        <div ref={desktopNavRef} className="hidden sm:flex items-center gap-6">
+        <div ref={desktopNavRef} className="hidden sm:flex items-center gap-4">
           {links.map((link) => (
-            <a key={link.href} href={link.href} className="hover:text-primary">
-              {link.label}
+            <a
+              key={link.href}
+              href={link.href}
+              className="relative group px-2 py-1 rounded-lg transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10"
+            >
+              <span className="relative z-10 text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">
+                {link.label}
+              </span>
+              {/* Animated underline */}
+              <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300" />
+              {/* Subtle glow on hover */}
+              <div className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           ))}
           <Button
             asChild
             size="sm"
-            className="bg-[#4de9d2] hover:bg-[#4de9d2]/80 text-black"
+            className="relative group bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-lg shadow-[#4de9d2]/25 hover:shadow-xl hover:shadow-[#4de9d2]/30 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105"
           >
             <a
               href="/Ahmed_Ayman_Alhofy.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              className="relative z-10 flex items-center gap-2"
             >
-              Resume
+              <span>Resume</span>
+              {/* Download icon effect */}
+              <div className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden">
+                <svg
+                  className="w-4 h-4"
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                  />
+                </svg>
+              </div>
             </a>
           </Button>
-          <ModeToggle />
+          <div className="relative group">
+            <ModeToggle />
+            {/* Glow effect for mode toggle */}
+            <div className="absolute inset-0 bg-primary/10 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+          </div>
         </div>
         {/* Mobile menu button */}
         <Sheet>
           {/* Apply ref to the mobile menu trigger button */}
           <SheetTrigger asChild className="sm:hidden">
-            <Button ref={mobileMenuButtonRef} variant="ghost" size="icon">
-              <Menu className="h-6 w-6" />
+            <Button
+              ref={mobileMenuButtonRef}
+              variant="ghost"
+              size="icon"
+              className="relative group bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
+            >
+              <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300" />
               <span className="sr-only">Open menu</span>
+              {/* Button glow effect */}
+              <div className="absolute inset-0 bg-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </Button>
           </SheetTrigger>
-          <SheetContent side="right" className="sm:hidden p-4">
-            <SheetHeader>
-              <SheetTitle>Menu</SheetTitle>
-              <SheetDescription className={patrickHand.className}>
+          <SheetContent
+            side="right"
+            className="sm:hidden p-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50"
+          >
+            <SheetHeader className="mb-6">
+              <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-xl font-bold">
+                Menu
+              </SheetTitle>
+              <SheetDescription
+                className={`${patrickHand.className} text-left text-gray-600 dark:text-gray-300`}
+              >
                 Navigate through the website.
               </SheetDescription>
             </SheetHeader>
-            <div className="grid gap-4 py-4">
-              {links.map((link) => (
-                <Button variant="ghost" asChild key={link.href}>
-                  <a href={link.href}>{link.label}</a>
+            <div className="grid gap-3 py-4">
+              {links.map((link, index) => (
+                <Button
+                  variant="ghost"
+                  asChild
+                  key={link.href}
+                  className="justify-start h-12 group bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary/20"
+                  style={{ animationDelay: `${index * 50}ms` }}
+                >
+                  <a href={link.href} className="relative w-full">
+                    <span className="relative z-10 text-gray-700 dark:text-gray-200 group-hover:text-primary transition-colors duration-300">
+                      {link.label}
+                    </span>
+                    {/* Animated indicator */}
+                    <div className="absolute left-0 top-1/2 w-0 h-6 bg-primary/20 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r" />
+                  </a>
                 </Button>
               ))}
               <Button
                 asChild
                 size="sm"
-                className="bg-[#4de9d2] hover:bg-[#4de9d2]/80 text-black"
+                className="h-12 mt-4 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-lg shadow-[#4de9d2]/25 hover:shadow-xl hover:shadow-[#4de9d2]/30 transition-all duration-300 hover:scale-105"
               >
                 <a
                   href="/Ahmed_Ayman_Alhofy.pdf"
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="flex items-center justify-center gap-2"
                 >
-                  Resume
+                  <span>Resume</span>
+                  <svg
+                    className="w-4 h-4"
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                    />
+                  </svg>
                 </a>
               </Button>
-              <ModeToggle />
+              <div className="mt-4 flex justify-center">
+                <div className="relative group">
+                  <ModeToggle />
+                  {/* Glow effect for mobile mode toggle */}
+                  <div className="absolute inset-0 bg-primary/10 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                </div>
+              </div>
             </div>
           </SheetContent>
         </Sheet>
       </div>
+
+      {/* Custom CSS for additional animations */}
+      <style jsx>{`
+        @keyframes navFloat {
+          0%,
+          100% {
+            transform: translateY(0px);
+          }
+          50% {
+            transform: translateY(-1px);
+          }
+        }
+
+        @keyframes shimmer {
+          0% {
+            background-position: -200% 0;
+          }
+          100% {
+            background-position: 200% 0;
+          }
+        }
+
+        .navbar-container:hover {
+          animation: navFloat 3s ease-in-out infinite;
+        }
+
+        .shimmer-effect {
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(255, 255, 255, 0.2),
+            transparent
+          );
+          background-size: 200% 100%;
+          animation: shimmer 2s infinite;
+        }
+
+        /* Staggered animation for mobile menu items */
+        .mobile-menu-item {
+          animation: slideInRight 0.3s ease-out forwards;
+          opacity: 0;
+          transform: translateX(20px);
+        }
+
+        @keyframes slideInRight {
+          to {
+            opacity: 1;
+            transform: translateX(0);
+          }
+        }
+      `}</style>
     </div>
   );
 };
