@@ -87,7 +87,6 @@ export const otherProjects: Project[] = [
       "Analyzed HR data of 1,470 employees in Tableau to visualize workforce trends and identify key attrition drivers, including a 16% attrition rate and demographic insights.",
     tech: ["Tableau", "Data Visualization", "HR Analytics"],
     image: "/images/HrAnalyticsImage.png",
-    demoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
     repoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
   },
   {
