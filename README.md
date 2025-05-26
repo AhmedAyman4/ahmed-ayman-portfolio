@@ -8,10 +8,9 @@
   [![TypeScript](https://img.shields.io/badge/TypeScript-5.0-blue?style=for-the-badge&logo=typescript)](https://www.typescriptlang.org/)
   [![Tailwind CSS](https://img.shields.io/badge/Tailwind_CSS-3.4.1-38B2AC?style=for-the-badge&logo=tailwind-css)](https://tailwindcss.com/)
   [![React](https://img.shields.io/badge/React-18.3.1-61DAFB?style=for-the-badge&logo=react)](https://reactjs.org/)
+    <br/>
   
-  <br/>
-  
-  [🌐 Live Demo](https://ahmedayman4.github.io/Pwebsite/) • [📧 Contact](mailto:ahmedalhofy42@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/ahmed-alhofy/)
+  [🌐 Live Demo](https://ahmedayman.vercel.app/) • [📧 Contact](mailto:ahmedalhofy42@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/ahmed-alhofy/)
 </div>
 
 ---
@@ -243,7 +242,7 @@ The website is deployed using **GitHub Pages** with automatic deployment:
 1. **Production Build:** `npm run build`
 2. **Static Export:** Next.js static export
 3. **GitHub Actions:** Automated deployment pipeline
-4. **Custom Domain:** Available at https://ahmedayman4.github.io/Pwebsite/
+4. **Custom Domain:** Available at https://ahmedayman.vercel.app/
 
 ## 👨‍💻 About Ahmed Ayman
 
