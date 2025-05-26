@@ -10,7 +10,6 @@ import { TbCertificate } from "react-icons/tb";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 import { TypingEffect } from "@/components/typing-effect";
 import FractalTree from "@/components/FractalTree";
-import AvailableStatus from "./AvailableStatus";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
