@@ -27,14 +27,14 @@ const FractalTree: React.FC = () => {
     ];
 
     const lightColors = [
-      "#ff6b35",
-      "#f7931e",
-      "#ffd700",
-      "#32cd32",
-      "#00ced1",
-      "#1e90ff",
-      "#9370db",
-      "#ff69b4",
+      "#000000",
+      "#2c2c2c",
+      "#4a4a4a",
+      "#006400",
+      "#8b4513",
+      "#4b0082",
+      "#800080",
+      "#8b0000",
     ];
 
     const colors = resolvedTheme === "dark" ? darkColors : lightColors;
