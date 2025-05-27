@@ -150,22 +150,19 @@ const ProjectCard = ({ project }: { project: Project }) => (
                 <Icon className="h-4 w-4 text-gray-600 dark:text-gray-400 group-hover/btn:text-primary transition-colors duration-300" />
               </a>
             ) : null
-          )}
+          )}{" "}
         </div>
       </div>
-
       {/* Title with gradient text effect */}
-      <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent group-hover:from-primary group-hover:via-purple-600 group-hover:to-blue-600 transition-all duration-500">
+      <h3 className="text-2xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent group-hover:from-primary group-hover:via-purple-600 group-hover:to-blue-600 transition-all duration-500">
         {project.title}
       </h3>
-
       {/* Description with improved scrollbar */}
       <div className="description-container flex-grow overflow-hidden hover:overflow-y-auto thin-scrollbar mt-3">
-        <p className="text-sm leading-relaxed text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
+        <p className="text-base leading-relaxed text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300">
           {project.description}
         </p>
-      </div>
-
+      </div>{" "}
       {/* Tech stack with modern badges */}
       <div className="flex flex-wrap gap-2 mt-4">
         {project.tech.map((tech, index) => (
