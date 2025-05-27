@@ -1,7 +1,7 @@
 "use client";
 
 import { Patrick_Hand } from "next/font/google";
-import { Menu } from "lucide-react";
+import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import {
@@ -12,6 +12,17 @@ import {
   SheetTitle,
   SheetTrigger,
 } from "@/components/ui/sheet";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+} from "@/components/ui/dropdown-menu";
+
+// Import social media icons
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { MdEmail } from "react-icons/md";
+import { AiFillSafetyCertificate } from "react-icons/ai";
 
 // Import GSAP and React hooks
 import { useRef, useEffect } from "react";
@@ -114,6 +125,86 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               <div className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
             </a>
           ))}
+
+          {/* Social Links Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button
+                variant="ghost"
+                className="relative group px-2 py-1 rounded-lg transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10"
+              >
+                <span className="relative z-10 text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300 flex items-center gap-1">
+                  Social
+                  <ChevronDown className="h-4 w-4" />
+                </span>
+                {/* Animated underline */}
+                <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300" />
+                {/* Subtle glow on hover */}
+                <div className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="center"
+              className="w-48 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border border-gray-200/50 dark:border-gray-700/50"
+            >
+              <DropdownMenuItem asChild>
+                <a
+                  href="https://github.com/AhmedAyman4"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                >
+                  <FaGithub className="h-4 w-4" />
+                  <span>GitHub</span>
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a
+                  href="https://www.linkedin.com/in/ahmed-alhofy/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                >
+                  <FaLinkedin className="h-4 w-4" />
+                  <span>LinkedIn</span>
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a
+                  href="mailto:ahmedalhofy42@gmail.com"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                >
+                  <MdEmail className="h-4 w-4" />
+                  <span>Email</span>
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a
+                  href="https://www.instagram.com/ahmedhofi_/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                >
+                  <FaInstagram className="h-4 w-4" />
+                  <span>Instagram</span>
+                </a>
+              </DropdownMenuItem>
+              <DropdownMenuItem asChild>
+                <a
+                  href="https://www.credly.com/users/ahmedayman"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                >
+                  <AiFillSafetyCertificate className="h-4 w-4" />
+                  <span>Credly</span>
+                </a>
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+
           <Button
             asChild
             size="sm"
@@ -225,6 +316,60 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   </svg>
                 </a>
               </Button>
+
+              {/* Social Media Links */}
+              <div className="mt-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
+                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 text-center">
+                  Connect with me
+                </p>
+                <div className="flex justify-center gap-4">
+                  <a
+                    href="https://github.com/AhmedAyman4"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
+                    aria-label="GitHub"
+                  >
+                    <FaGithub className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://www.linkedin.com/in/ahmed-alhofy/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
+                    aria-label="LinkedIn"
+                  >
+                    <FaLinkedin className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="mailto:ahmedalhofy42@gmail.com"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
+                    aria-label="Email"
+                  >
+                    <MdEmail className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://www.instagram.com/ahmedhofi_/"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
+                    aria-label="Instagram"
+                  >
+                    <FaInstagram className="h-5 w-5" />
+                  </a>
+                  <a
+                    href="https://www.credly.com/users/ahmedayman"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
+                    aria-label="Credly"
+                  >
+                    <AiFillSafetyCertificate className="h-5 w-5" />
+                  </a>
+                </div>
+              </div>
               <div className="mt-4 flex justify-center">
                 <div className="relative group">
                   <ModeToggle />
