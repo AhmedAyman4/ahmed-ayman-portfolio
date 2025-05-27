@@ -11,20 +11,19 @@ const FractalTree: React.FC = () => {
     const canvas = canvasRef.current;
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
-
     let angle = Math.PI / 4;
     let frameCount = 0;
 
     // Pre-calculate colors for better performance
     const darkColors = [
-      "#00f5ff",
-      "#0080ff",
-      "#4169e1",
-      "#6a5acd",
-      "#8a2be2",
-      "#9932cc",
-      "#ba55d3",
-      "#da70d6",
+      "#ffffff",
+      "#f0f8ff",
+      "#00ffff",
+      "#40e0d0",
+      "#7fffd4",
+      "#98fb98",
+      "#ffffe0",
+      "#fff8dc",
     ];
 
     const lightColors = [
