@@ -299,7 +299,7 @@ export const ProjectsComponent = () => (
   <section id="projects" className="mb-16 fade-in-section">
     <div className="section-header mb-8">
       <h2 className="text-3xl font-semibold text-primary dark:text-[hsl(215,100%,90%)] flex items-center justify-center relative">
-        <span className="text-black dark:text-gray-300 mr-2">/</span>
+        {/* <span className="text-black dark:text-gray-300 mr-2">/</span> */}
         <span className="relative inline-block">Featured Projects</span>
       </h2>
     </div>
