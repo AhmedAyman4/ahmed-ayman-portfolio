@@ -1,40 +1,58 @@
-# Ahmed Ayman Portfolio Website
+# 🚀 Ahmed Ayman Portfolio Website
 
-Modern, responsive, and interactive portfolio showcasing data science and machine learning projects.
+Modern, responsive portfolio showcasing data science and machine learning projects.
 
-[🌐 Live Demo](https://ahmedayman.vercel.app/) • [📧 Email](mailto:ahmedalhofy42@gmail.com) • [💼 LinkedIn](https://www.linkedin.com/in/ahmed-alhofy/)
+**🌐 [Live Demo](https://ahmedayman.vercel.app/)** | **📧 [Contact](mailto:ahmedalhofy42@gmail.com)** | **💼 [LinkedIn](https://www.linkedin.com/in/ahmed-alhofy/)**
+
+## 📁 Project Structure
+
+```
+Pwebsite/
+├── src/
+│   ├── app/
+│   │   ├── layout.tsx          # Root layout with theme provider
+│   │   ├── page.tsx            # Main page component
+│   │   └── globals.css         # Global styles
+│   ├── components/
+│   │   ├── HeroSection.jsx     # Landing section
+│   │   ├── ProjectsComponent.tsx # Projects showcase
+│   │   ├── SkillsSection.tsx   # Skills display
+│   │   ├── ContactSection.tsx  # Contact form
+│   │   ├── Navbar.tsx          # Navigation
+│   │   └── ui/                 # Reusable UI components
+│   └── assets/                 # Images and media
+├── public/
+│   ├── images/                 # Project screenshots
+│   └── Ahmed_Ayman_Alhofy.pdf  # Resume
+└── package.json                # Dependencies
+```
+
+## ⚡ Tech Stack
+
+- **Frontend:** Next.js 15, React 18, TypeScript
+- **Styling:** Tailwind CSS, Radix UI
+- **Animations:** GSAP, Framer Motion
+- **Theme:** Dark/Light mode support
+
+## ✨ Features
+
+- 📱 Responsive design
+- 🌙 Dark/light mode toggle
+- ⚡ Smooth animations
+- 📄 Resume integration
+- 🎯 Project carousel
+- 📧 Contact form
+
+## 🎯 Featured Projects
+
+- **Semantic Book Recommender** - LLM-powered recommendation system
+- **Campaign Conversion Predictor** - ML model for marketing analytics
+- **Movie Library** - React app with TMDb API integration
+- **Sentiment Analysis** - Multi-model text classification
 
 ---
 
-## Overview
-
-A personal portfolio of **Ahmed Ayman**, Data Scientist & ML Engineer, highlighting key projects, skills, and experience.
-
-## Key Features
-
-- **Responsive Design** with dark/light mode and smooth GSAP animations
-- **Resume Integration**: Preview & download directly from the navbar
-- **Projects Carousel**: Interactive showcase of featured work
-- **Skills Animation**: Scroll-triggered skill badges
-- **Contact Links**: Direct email and social connections
-
-## Technology Stack
-
-**Frontend:** Next.js • React • TypeScript • Tailwind CSS
-**UI & Animations:** Radix UI • Lucide React • GSAP • Framer Motion
-**Data Science:** Python • Pandas • Scikit-learn • LangChain • Gradio • Tableau
-
-## Featured Projects
-
-- **Semantic Book Recommender** (Python, LangChain, Chroma, Gradio) • [Demo](https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs) | [GitHub](https://github.com/AhmedAyman4/llm-semantic-book-recommender)
-- **Campaign Conversion Predictor** (Python, Scikit-learn, Gradio) • [Demo](https://huggingface.co/spaces/ahmed-ayman/Predict-Conversion-in-Digital-Marketing) | [GitHub](https://github.com/AhmedAyman4/customer-conversion-predictor)
-- **HR Analytics Dashboard** (Tableau) • [GitHub](https://github.com/AhmedAyman4/HR-Analytics-in-Tableau)
-- **Movie Library Application** (React, Vite, Tailwind, TMDb API) • [Demo](https://movie-library-blush.vercel.app/) | [GitHub](https://github.com/AhmedAyman4/movie-library)
-- **Movie Sentiment Analysis** (Scikit-learn, Transformers, TensorFlow, Gradio) • [Demo](https://huggingface.co/spaces/ahmed-ayman/Sentiment-Analysis) | [GitHub](https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App)
-
----
-
-## Quick Start
+## 🚀 Quick Start
 
 ```powershell
 # Clone and setup
@@ -44,6 +62,8 @@ npm install
 npm run dev
 ```
 
-## License
+Open [http://localhost:9002](http://localhost:9002) to view in browser.
 
-This project is licensed under the MIT License.
+## 📄 License
+
+MIT License
