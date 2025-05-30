@@ -3,7 +3,7 @@
 A modern, responsive portfolio website showcasing data science and machine learning projects with stunning animations and professional design.
 
 [![Live Demo](https://img.shields.io/badge/Live%20Demo-Visit%20Site-blue?style=for-the-badge&logo=vercel)](https://ahmedayman.vercel.app/)
-[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/AhmedAyman4/Pwebsite)
+[![GitHub](https://img.shields.io/badge/GitHub-Repository-black?style=for-the-badge&logo=github)](https://github.com/AhmedAyman4/AhmedAyman)
 [![LinkedIn](https://img.shields.io/badge/LinkedIn-Connect-0077B5?style=for-the-badge&logo=linkedin)](https://www.linkedin.com/in/ahmed-alhofy/)
 [![Email](https://img.shields.io/badge/Email-Contact-red?style=for-the-badge&logo=gmail)](mailto:ahmedalhofy42@gmail.com)
 
@@ -116,10 +116,10 @@ Pwebsite/
 
 ```powershell
 # Clone the repository
-git clone https://github.com/AhmedAyman4/Pwebsite.git
+git clone https://github.com/AhmedAyman4/AhmedAyman.git
 
 # Navigate to project directory
-cd Pwebsite
+cd AhmedAyman
 
 # Install dependencies
 npm install
