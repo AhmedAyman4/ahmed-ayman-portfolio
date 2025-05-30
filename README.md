@@ -13,11 +13,8 @@ A modern, responsive portfolio website showcasing data science and machine learn
 - [📁 Project Structure](#-project-structure)
 - [⚡ Tech Stack](#-tech-stack)
 - [✨ Features](#-features)
-- [🎯 Featured Projects](#-featured-projects)
 - [🚀 Quick Start](#-quick-start)
 - [🛠️ Development](#️-development)
-- [📱 Screenshots](#-screenshots)
-- [🤝 Contributing](#-contributing)
 - [📄 License](#-license)
 
 ## 🌟 Overview
@@ -169,22 +166,6 @@ NEXT_PUBLIC_CONTACT_EMAIL=your-email@example.com
 2. **Modify Styling**: Customize Tailwind config in `tailwind.config.js`
 3. **Add Projects**: Update project arrays in components
 4. **Change Theme**: Modify color schemes in CSS variables
-
-## 📱 Screenshots
-
-| Desktop View                                  | Mobile View                                 | Dark Mode                            |
-| --------------------------------------------- | ------------------------------------------- | ------------------------------------ |
-| ![Desktop](public/images/desktop-preview.png) | ![Mobile](public/images/mobile-preview.png) | ![Dark](public/images/dark-mode.png) |
-
-## 🤝 Contributing
-
-Contributions are welcome! Please feel free to submit a Pull Request.
-
-1. Fork the project
-2. Create your feature branch (`git checkout -b feature/AmazingFeature`)
-3. Commit your changes (`git commit -m 'Add some AmazingFeature'`)
-4. Push to the branch (`git push origin feature/AmazingFeature`)
-5. Open a Pull Request
 
 ## 📞 Contact
 
