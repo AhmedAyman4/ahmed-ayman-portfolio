@@ -1,74 +1,111 @@
-import React, { useState, useEffect, useRef } from "react";
+import React, { useState, useEffect, useMemo, useCallback } from "react";
 
+/**
+ * Configuration for individual words in the typing effect
+ */
+interface WordConfig {
+  text: string;
+  color?: string;
+  style?: React.CSSProperties;
+}
+
+/**
+ * Props for the TypingEffect component
+ */
+interface TypingEffectProps {
+  words: WordConfig[];
+  typingSpeed: number;
+}
+
+/**
+ * A typing effect component that animates text character by character
+ * across multiple words with customizable styling for each word.
+ */
 export const TypingEffect: React.FC<TypingEffectProps> = ({
   words,
   typingSpeed,
 }) => {
   const [typedText, setTypedText] = useState<string[]>([]);
-  const [wordIndex, setWordIndex] = useState(0);
-  const [charIndex, setCharIndex] = useState(0);
-  const [finished, setFinished] = useState(false); // Add state for tracking finished status
-  const isTyping = useRef(false);
-  const isFinished = useRef(false);
+  const [currentWordIndex, setCurrentWordIndex] = useState(0);
+  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [isComplete, setIsComplete] = useState(false);
+  const [isTyping, setIsTyping] = useState(true);
 
+  // Memoize the total expected text for efficient comparison
+  const expectedText = useMemo(() => words.map((word) => word.text), [words]);
+
+  // Check if typing is complete using efficient comparison
+  const checkIfComplete = useCallback(() => {
+    return (
+      typedText.length === words.length &&
+      typedText.every((text, index) => text === expectedText[index])
+    );
+  }, [typedText, words.length, expectedText]);
+  // Effect to handle completion detection
   useEffect(() => {
-    if (typedText.length === words.length) {
-      let allWordsMatch = true;
-      for (let i = 0; i < words.length; i++) {
-        if (typedText[i] !== words[i].text) {
-          allWordsMatch = false;
-          break;
-        }
-      }
-      if (allWordsMatch) {
-        isFinished.current = true;
-        setFinished(true); // Also set the state variable
-      }
+    if (checkIfComplete()) {
+      setIsComplete(true);
+      setIsTyping(false);
     }
-  }, [typedText, words]);
+  }, [checkIfComplete]);
 
+  // Main typing effect logic
   useEffect(() => {
-    const currentWord = words[wordIndex];
+    if (isComplete) return;
+
+    const currentWord = words[currentWordIndex];
     if (!currentWord) return;
 
-    if (charIndex < currentWord.text.length) {
-      const timeout = setTimeout(() => {
+    let timeoutId: NodeJS.Timeout;
+    if (currentCharIndex < currentWord.text.length) {
+      // Type the next character
+      setIsTyping(true);
+      timeoutId = setTimeout(() => {
         setTypedText((prevText) => {
           const newText = [...prevText];
-          newText[wordIndex] =
-            (newText[wordIndex] || "") + currentWord.text[charIndex];
-
+          const currentText = newText[currentWordIndex] || "";
+          newText[currentWordIndex] =
+            currentText + currentWord.text[currentCharIndex];
           return newText;
         });
-        setCharIndex((prevIndex) => prevIndex + 1);
-        isTyping.current = true;
+        setCurrentCharIndex((prev) => prev + 1);
       }, typingSpeed);
-      return () => clearTimeout(timeout);
     } else {
-      isTyping.current = false;
-      if (wordIndex < words.length - 1) {
-        setWordIndex((prevWordIndex) => prevWordIndex + 1);
-        setCharIndex(0);
-      } else {
-        isFinished.current = true;
-        setFinished(true); // Update the state to trigger re-render
+      // Move to next word
+      setIsTyping(false);
+      if (currentWordIndex < words.length - 1) {
+        setCurrentWordIndex((prev) => prev + 1);
+        setCurrentCharIndex(0);
       }
     }
-  }, [charIndex, wordIndex, words, typingSpeed]);
 
+    return () => {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+    };
+  }, [currentCharIndex, currentWordIndex, words, typingSpeed, isComplete]);
+  // Render the typed text with individual styling
+  const renderedText = useMemo(() => {
+    return typedText.map((text, index) => {
+      const { color, style = {} } = words[index] || {};
+      return (
+        <span key={index} style={{ color, ...style }} className="inline">
+          {text}
+        </span>
+      );
+    });
+  }, [typedText, words]);
   return (
     <span className="inline-flex items-center">
-      {typedText.map((text, index) => {
-        const { color, style = {} } = words[index] || {};
-        return (
-          <span key={index} style={{ color, ...style }} className="inline">
-            {text}
-          </span>
-        );
-      })}
-      {finished && ( // Use the state variable instead of ref for rendering
-        <span className="animate-pulse text-[#4de9d2]">|</span>
-      )}
+      {renderedText}
+      <span
+        className={`text-[#4de9d2] ml-0.5 ${
+          isTyping ? "animate-pulse" : "animate-pulse opacity-75"
+        }`}
+      >
+        |
+      </span>
     </span>
   );
 };

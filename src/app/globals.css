@@ -254,6 +254,272 @@ body {
   }
 }
 
+/* Cool Animated Background for Light Mode */
+.light-mode-bg {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  opacity: 1;
+  transition: opacity 0.3s ease;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 50%, #ffffff 100%);
+  overflow: hidden;
+}
+
+/* Hide light mode background in dark mode */
+.dark .light-mode-bg {
+  opacity: 0;
+}
+
+/* Floating particles for light mode */
+.light-particle {
+  position: absolute;
+  border-radius: 50%;
+  background: linear-gradient(
+    45deg,
+    rgba(67, 133, 244, 0.3),
+    rgba(138, 43, 226, 0.2)
+  );
+  animation: floatUp 8s linear infinite;
+  opacity: 0.7;
+}
+
+.light-particle:nth-child(1) {
+  width: 8px;
+  height: 8px;
+  left: 10%;
+  animation-delay: 0s;
+  animation-duration: 10s;
+}
+
+.light-particle:nth-child(2) {
+  width: 12px;
+  height: 12px;
+  left: 20%;
+  animation-delay: -2s;
+  animation-duration: 12s;
+}
+
+.light-particle:nth-child(3) {
+  width: 6px;
+  height: 6px;
+  left: 30%;
+  animation-delay: -4s;
+  animation-duration: 8s;
+}
+
+.light-particle:nth-child(4) {
+  width: 10px;
+  height: 10px;
+  left: 40%;
+  animation-delay: -6s;
+  animation-duration: 14s;
+}
+
+.light-particle:nth-child(5) {
+  width: 14px;
+  height: 14px;
+  left: 50%;
+  animation-delay: -8s;
+  animation-duration: 9s;
+}
+
+.light-particle:nth-child(6) {
+  width: 7px;
+  height: 7px;
+  left: 60%;
+  animation-delay: -3s;
+  animation-duration: 11s;
+}
+
+.light-particle:nth-child(7) {
+  width: 11px;
+  height: 11px;
+  left: 70%;
+  animation-delay: -5s;
+  animation-duration: 13s;
+}
+
+.light-particle:nth-child(8) {
+  width: 9px;
+  height: 9px;
+  left: 80%;
+  animation-delay: -7s;
+  animation-duration: 10s;
+}
+
+.light-particle:nth-child(9) {
+  width: 13px;
+  height: 13px;
+  left: 90%;
+  animation-delay: -1s;
+  animation-duration: 15s;
+}
+
+/* Geometric shapes floating around */
+.light-geometric {
+  position: absolute;
+  animation: geometricFloat 12s ease-in-out infinite;
+  opacity: 0.4;
+}
+
+.light-triangle {
+  width: 0;
+  height: 0;
+  border-left: 8px solid transparent;
+  border-right: 8px solid transparent;
+  border-bottom: 14px solid rgba(67, 133, 244, 0.3);
+  top: 20%;
+  left: 15%;
+  animation-delay: 0s;
+}
+
+.light-square {
+  width: 12px;
+  height: 12px;
+  background: rgba(138, 43, 226, 0.25);
+  top: 40%;
+  right: 20%;
+  animation-delay: -4s;
+  transform: rotate(45deg);
+}
+
+.light-circle {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: rgba(30, 144, 255, 0.3);
+  top: 60%;
+  left: 25%;
+  animation-delay: -8s;
+}
+
+.light-hexagon {
+  width: 14px;
+  height: 12px;
+  background: rgba(255, 99, 132, 0.25);
+  position: relative;
+  top: 30%;
+  right: 15%;
+  animation-delay: -6s;
+}
+
+.light-hexagon:before,
+.light-hexagon:after {
+  content: "";
+  position: absolute;
+  width: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+}
+
+.light-hexagon:before {
+  bottom: 100%;
+  border-bottom: 4px solid rgba(255, 99, 132, 0.25);
+}
+
+.light-hexagon:after {
+  top: 100%;
+  border-top: 4px solid rgba(255, 99, 132, 0.25);
+}
+
+/* Gradient waves in the background */
+.light-wave {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    45deg,
+    rgba(67, 133, 244, 0.05) 0%,
+    rgba(138, 43, 226, 0.05) 25%,
+    rgba(30, 144, 255, 0.05) 50%,
+    rgba(255, 99, 132, 0.05) 75%,
+    rgba(67, 133, 244, 0.05) 100%
+  );
+  background-size: 400% 400%;
+  animation: gradientWave 15s ease infinite;
+}
+
+/* Subtle light rays */
+.light-rays {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(
+      circle at 30% 20%,
+      rgba(255, 255, 255, 0.1) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 70% 80%,
+      rgba(67, 133, 244, 0.08) 0%,
+      transparent 50%
+    ),
+    radial-gradient(
+      circle at 20% 70%,
+      rgba(138, 43, 226, 0.06) 0%,
+      transparent 50%
+    );
+  animation: raysPulse 10s ease-in-out infinite;
+}
+
+/* Animations for light mode background */
+@keyframes floatUp {
+  0% {
+    transform: translateY(100vh) scale(0);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.7;
+  }
+  90% {
+    opacity: 0.7;
+  }
+  100% {
+    transform: translateY(-100px) scale(1);
+    opacity: 0;
+  }
+}
+
+@keyframes geometricFloat {
+  0%,
+  100% {
+    transform: translateY(0px) rotate(0deg);
+    opacity: 0.4;
+  }
+  50% {
+    transform: translateY(-20px) rotate(180deg);
+    opacity: 0.8;
+  }
+}
+
+@keyframes gradientWave {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+@keyframes raysPulse {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.05);
+  }
+}
+
 /* Rolls-Royce Starlight Headliner Inspired Starry Sky - Dark Mode Only */
 .starry-sky {
   position: fixed;
