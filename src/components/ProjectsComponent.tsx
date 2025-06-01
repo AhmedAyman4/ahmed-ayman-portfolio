@@ -251,9 +251,8 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
       );
     }
   }, [index, direction]);
-
   useEffect(() => {
-    const interval = setInterval(() => next(), 10000);
+    const interval = setInterval(() => next(), 20000);
     return () => clearInterval(interval);
   }, [next]);
 
