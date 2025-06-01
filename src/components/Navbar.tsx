@@ -88,221 +88,148 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
       );
     }
   }, []); // The empty dependency array ensures this effect runs only once after the initial render
-
   return (
     // Apply ref to the main navbar div
     <div
       ref={navbarRef}
-      className="navbar-container sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-b"
+      className="navbar-container sticky top-0 z-50 w-full py-2"
     >
-      <div className="container max-w-7xl mx-auto py-3 flex items-center justify-between relative">
-        {/* Apply ref to the logo link */}
-        <a
-          ref={logoRef}
-          href="#"
-          className={`font-bold text-xl ${patrickHand.className} ml-2 sm:ml-2 relative group`}
-        >
-          <span className="relative z-10 bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent transition-all duration-500 group-hover:from-primary group-hover:via-purple-500 group-hover:to-blue-500">
-            Ahmed Ayman
-          </span>
-          {/* Logo glow effect */}
-          <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-        </a>
-        {/* Apply ref to the desktop navigation container */}
-        <div ref={desktopNavRef} className="hidden sm:flex items-center gap-4">
-          {links.map((link) => (
+      <div className="container max-w-5xl mx-auto px-3">
+        {/* Pill-shaped navigation container */}
+        <div className="bg-background/70 backdrop-blur-xl border border-gray-200/30 dark:border-gray-700/40 rounded-full px-4 py-2 shadow-md shadow-black/5 dark:shadow-black/20 flex items-center justify-between relative overflow-hidden">
+          {" "}
+          {/* Gradient overlay for extra visual appeal */}
+          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/3 to-transparent opacity-40" />
+          {/* Left section - Logo */}
+          <div className="flex items-center">
+            {/* Apply ref to the logo link */}{" "}
             <a
-              key={link.href}
-              href={link.href}
-              className="relative group px-2 py-1 rounded-lg transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10"
+              ref={logoRef}
+              href="#"
+              className={`font-bold text-xl ${patrickHand.className} relative group`}
             >
-              <span className="relative z-10 text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300">
-                {link.label}
+              <span className="relative z-10 bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent transition-all duration-500 group-hover:from-primary group-hover:via-purple-500 group-hover:to-blue-500">
+                Ahmed Ayman
               </span>
-              {/* Animated underline */}
-              <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300" />
-              {/* Subtle glow on hover */}
-              <div className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+              {/* Logo glow effect */}
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </a>
-          ))}
-
-          {/* Social Links Dropdown */}
-          <DropdownMenu>
-            <DropdownMenuTrigger asChild>
-              <Button
-                variant="ghost"
-                className="relative group px-2 py-1 rounded-lg transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10"
-              >
-                <span className="relative z-10 text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300 flex items-center gap-1">
-                  Social
-                  <ChevronDown className="h-4 w-4" />
-                </span>
-                {/* Animated underline */}
-                <div className="absolute bottom-0 left-1/2 w-0 h-0.5 bg-gradient-to-r from-primary to-purple-500 group-hover:w-full group-hover:left-0 transition-all duration-300" />
-                {/* Subtle glow on hover */}
-                <div className="absolute inset-0 bg-primary/5 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-              </Button>
-            </DropdownMenuTrigger>
-            <DropdownMenuContent
-              align="center"
-              className="w-48 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border border-gray-200/50 dark:border-gray-700/50"
-            >
-              <DropdownMenuItem asChild>
+          </div>{" "}
+          {/* Center section - Desktop Navigation */}
+          <div ref={desktopNavRef} className="hidden md:flex items-center">
+            {/* Navigation pills container */}{" "}
+            <div className="flex items-center gap-0.5 bg-gray-100/40 dark:bg-gray-800/40 rounded-full px-1.5 py-1.5">
+              {" "}
+              {links.map((link) => (
                 <a
-                  href="https://github.com/AhmedAyman4"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+                  key={link.href}
+                  href={link.href}
+                  className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10"
                 >
-                  <FaGithub className="h-4 w-4" />
-                  <span>GitHub</span>
+                  {" "}
+                  <span className="relative z-10 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300">
+                    {link.label}
+                  </span>
+                  {/* Subtle glow effect */}
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/8 to-purple-500/8 dark:from-[#4de9d2]/15 dark:to-[#3dd1b5]/15 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a
-                  href="https://www.linkedin.com/in/ahmed-alhofy/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
+              ))}{" "}
+              {/* Social Links Dropdown in pill */}
+              <DropdownMenu>
+                {" "}
+                <DropdownMenuTrigger asChild>
+                  <Button
+                    variant="ghost"
+                    className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10 h-auto"
+                  >
+                    {" "}
+                    <span className="relative z-10 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 flex items-center gap-1">
+                      Social
+                      <ChevronDown className="h-3 w-3" />
+                    </span>
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/8 to-purple-500/8 dark:from-[#4de9d2]/15 dark:to-[#3dd1b5]/15 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </Button>
+                </DropdownMenuTrigger>
+                <DropdownMenuContent
+                  align="center"
+                  className="w-44 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-lg"
                 >
-                  <FaLinkedin className="h-4 w-4" />
-                  <span>LinkedIn</span>
-                </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a
-                  href="mailto:ahmedalhofy42@gmail.com"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                >
-                  <MdEmail className="h-4 w-4" />
-                  <span>Email</span>
-                </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a
-                  href="https://www.instagram.com/ahmedhofi_/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                >
-                  <FaInstagram className="h-4 w-4" />
-                  <span>Instagram</span>
-                </a>
-              </DropdownMenuItem>
-              <DropdownMenuItem asChild>
-                <a
-                  href="https://www.credly.com/users/ahmedayman"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300"
-                >
-                  <AiFillSafetyCertificate className="h-4 w-4" />
-                  <span>Credly</span>
-                </a>
-              </DropdownMenuItem>
-            </DropdownMenuContent>
-          </DropdownMenu>
-
-          <Button
-            asChild
-            size="sm"
-            className="relative group bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-lg shadow-[#4de9d2]/25 hover:shadow-xl hover:shadow-[#4de9d2]/30 transition-all duration-300 hover:-translate-y-0.5 hover:scale-105"
-          >
+                  <DropdownMenuItem asChild>
+                    <a
+                      href="https://github.com/AhmedAyman4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                    >
+                      <FaGithub className="h-4 w-4" />
+                      <span>GitHub</span>
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a
+                      href="https://www.linkedin.com/in/ahmed-alhofy/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                    >
+                      <FaLinkedin className="h-4 w-4" />
+                      <span>LinkedIn</span>
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a
+                      href="mailto:ahmedalhofy42@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                    >
+                      <MdEmail className="h-4 w-4" />
+                      <span>Email</span>
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a
+                      href="https://www.instagram.com/ahmedhofi_/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                    >
+                      <FaInstagram className="h-4 w-4" />
+                      <span>Instagram</span>
+                    </a>
+                  </DropdownMenuItem>
+                  <DropdownMenuItem asChild>
+                    <a
+                      href="https://www.credly.com/users/ahmedayman"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                    >
+                      <AiFillSafetyCertificate className="h-4 w-4" />
+                      <span>Credly</span>
+                    </a>
+                  </DropdownMenuItem>
+                </DropdownMenuContent>
+              </DropdownMenu>
+            </div>
+          </div>{" "}
+          {/* Right section - Actions */}
+          <div className="flex items-center gap-2">
+            {" "}
+            {/* Resume Button */}
             <a
               href="/Ahmed_Ayman_Alhofy.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="relative z-10 flex items-center gap-2"
+              className="hidden md:flex relative group px-3 py-1.5 rounded-full transition-all duration-300 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 hover:-translate-y-0.5 hover:scale-105"
             >
-              <span>Resume</span>
-              {/* Download icon effect */}
-              <div className="w-0 group-hover:w-4 transition-all duration-300 overflow-hidden">
-                <svg
-                  className="w-4 h-4"
-                  fill="none"
-                  stroke="currentColor"
-                  viewBox="0 0 24 24"
-                >
-                  <path
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                    strokeWidth={2}
-                    d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                  />
-                </svg>
-              </div>
-            </a>
-          </Button>
-          <div className="relative group">
-            <ModeToggle />
-            {/* Glow effect for mode toggle */}
-            <div className="absolute inset-0 bg-primary/10 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-          </div>
-        </div>
-        {/* Mobile menu button */}
-        <Sheet>
-          {/* Apply ref to the mobile menu trigger button */}
-          <SheetTrigger asChild className="sm:hidden">
-            <Button
-              ref={mobileMenuButtonRef}
-              variant="ghost"
-              size="icon"
-              className="relative group bg-gray-100/50 dark:bg-gray-800/50 backdrop-blur-sm border border-gray-200/50 dark:border-gray-700/50 hover:bg-primary/10 hover:border-primary/30 transition-all duration-300 hover:shadow-lg hover:shadow-primary/20"
-            >
-              <Menu className="h-6 w-6 text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300" />
-              <span className="sr-only">Open menu</span>
-              {/* Button glow effect */}
-              <div className="absolute inset-0 bg-primary/10 rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-            </Button>
-          </SheetTrigger>
-          <SheetContent
-            side="right"
-            className="sm:hidden p-6 bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50"
-          >
-            <SheetHeader className="mb-6">
-              <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-xl font-bold">
-                Menu
-              </SheetTitle>
-              <SheetDescription
-                className={`${patrickHand.className} text-left text-gray-600 dark:text-gray-300`}
-              >
-                Navigate through the website.
-              </SheetDescription>
-            </SheetHeader>
-            <div className="grid gap-3 py-4">
-              {links.map((link, index) => (
-                <Button
-                  variant="ghost"
-                  asChild
-                  key={link.href}
-                  className="justify-start h-12 group bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:shadow-md transition-all duration-300 border border-transparent hover:border-primary/20"
-                  style={{ animationDelay: `${index * 50}ms` }}
-                >
-                  <a href={link.href} className="relative w-full">
-                    <span className="relative z-10 text-gray-700 dark:text-gray-200 group-hover:text-primary transition-colors duration-300">
-                      {link.label}
-                    </span>
-                    {/* Animated indicator */}
-                    <div className="absolute left-0 top-1/2 w-0 h-6 bg-primary/20 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r" />
-                  </a>
-                </Button>
-              ))}
-              <Button
-                asChild
-                size="sm"
-                className="h-12 mt-4 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-lg shadow-[#4de9d2]/25 hover:shadow-xl hover:shadow-[#4de9d2]/30 transition-all duration-300 hover:scale-105"
-              >
-                <a
-                  href="/Ahmed_Ayman_Alhofy.pdf"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-2"
-                >
-                  <span>Resume</span>
+              <span className="relative z-10 text-sm font-medium flex items-center gap-1">
+                Resume
+                {/* Download icon effect */}
+                <div className="w-0 group-hover:w-3 transition-all duration-300 overflow-hidden flex items-center">
                   <svg
-                    className="w-4 h-4"
+                    className="w-3 h-3 flex-shrink-0"
                     fill="none"
                     stroke="currentColor"
                     viewBox="0 0 24 24"
@@ -314,75 +241,149 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                       d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
                     />
                   </svg>
-                </a>
-              </Button>
-
-              {/* Social Media Links */}
-              <div className="mt-6 pt-4 border-t border-gray-200/50 dark:border-gray-700/50">
-                <p className="text-sm text-gray-600 dark:text-gray-400 mb-3 text-center">
-                  Connect with me
-                </p>
-                <div className="flex justify-center gap-4">
-                  <a
-                    href="https://github.com/AhmedAyman4"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
-                    aria-label="GitHub"
-                  >
-                    <FaGithub className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="https://www.linkedin.com/in/ahmed-alhofy/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
-                    aria-label="LinkedIn"
-                  >
-                    <FaLinkedin className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="mailto:ahmedalhofy42@gmail.com"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
-                    aria-label="Email"
-                  >
-                    <MdEmail className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="https://www.instagram.com/ahmedhofi_/"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
-                    aria-label="Instagram"
-                  >
-                    <FaInstagram className="h-5 w-5" />
-                  </a>
-                  <a
-                    href="https://www.credly.com/users/ahmedayman"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="p-2 rounded-lg bg-gray-100/50 dark:bg-gray-800/50 hover:bg-primary/10 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-lg hover:shadow-primary/20"
-                    aria-label="Credly"
-                  >
-                    <AiFillSafetyCertificate className="h-5 w-5" />
-                  </a>
                 </div>
-              </div>
-              <div className="mt-4 flex justify-center">
-                <div className="relative group">
-                  <ModeToggle />
-                  {/* Glow effect for mobile mode toggle */}
-                  <div className="absolute inset-0 bg-primary/10 rounded-lg blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+              </span>
+            </a>{" "}
+            {/* Theme toggle - Desktop only */}
+            <div className="relative group hidden md:block">
+              <ModeToggle />
+              {/* Glow effect for mode toggle */}
+              <div className="absolute inset-0 bg-primary/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            </div>{" "}
+            {/* Mobile menu button - Mobile only */}
+            <Sheet>
+              <SheetTrigger asChild>
+                <Button
+                  ref={mobileMenuButtonRef}
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden relative group bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 hover:bg-primary/8 hover:border-primary/20 transition-all duration-300 hover:shadow-sm hover:shadow-primary/15 rounded-full w-8 h-8"
+                >
+                  <Menu className="h-4 w-4 text-gray-700 dark:text-gray-300 group-hover:text-primary transition-colors duration-300" />
+                  <span className="sr-only">Open menu</span>
+                  {/* Button glow effect */}
+                  <div className="absolute inset-0 bg-primary/8 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                </Button>
+              </SheetTrigger>{" "}
+              <SheetContent
+                side="right"
+                className="md:hidden p-5 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50 rounded-l-2xl"
+              >
+                <SheetHeader className="mb-5">
+                  <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-lg font-bold">
+                    Menu
+                  </SheetTitle>
+                  <SheetDescription
+                    className={`${patrickHand.className} text-left text-gray-600 dark:text-gray-300 text-sm`}
+                  >
+                    Navigate through the website.
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="grid gap-2.5 py-3">
+                  {" "}
+                  {links.map((link, index) => (
+                    <a
+                      key={link.href}
+                      href={link.href}
+                      className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3"
+                      style={{ animationDelay: `${index * 50}ms` }}
+                    >
+                      <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary transition-colors duration-300">
+                        {link.label}
+                      </span>
+                      {/* Animated indicator */}
+                      <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r" />
+                    </a>
+                  ))}{" "}
+                  <a
+                    href="/Ahmed_Ayman_Alhofy.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-10 mt-3 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5"
+                  >
+                    <span>Resume</span>
+                    <svg
+                      className="w-3.5 h-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </a>
+                  {/* Social Media Links */}
+                  <div className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50">
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2.5 text-center">
+                      Connect with me
+                    </p>
+                    <div className="flex justify-center gap-3">
+                      <a
+                        href="https://github.com/AhmedAyman4"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
+                        aria-label="GitHub"
+                      >
+                        <FaGithub className="h-4 w-4" />
+                      </a>
+                      <a
+                        href="https://www.linkedin.com/in/ahmed-alhofy/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
+                        aria-label="LinkedIn"
+                      >
+                        <FaLinkedin className="h-4 w-4" />
+                      </a>
+                      <a
+                        href="mailto:ahmedalhofy42@gmail.com"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
+                        aria-label="Email"
+                      >
+                        <MdEmail className="h-4 w-4" />
+                      </a>
+                      <a
+                        href="https://www.instagram.com/ahmedhofi_/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
+                        aria-label="Instagram"
+                      >
+                        <FaInstagram className="h-4 w-4" />
+                      </a>
+                      <a
+                        href="https://www.credly.com/users/ahmedayman"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
+                        aria-label="Credly"
+                      >
+                        <AiFillSafetyCertificate className="h-4 w-4" />
+                      </a>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex justify-center">
+                    {" "}
+                    <div className="relative group">
+                      <ModeToggle />
+                      {/* Glow effect for mobile mode toggle */}
+                      <div className="absolute inset-0 bg-primary/8 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    </div>
+                  </div>
                 </div>
-              </div>
-            </div>
-          </SheetContent>
-        </Sheet>
-      </div>
-
-      {/* Custom CSS for additional animations */}
+              </SheetContent>
+            </Sheet>
+          </div>
+        </div>
+      </div>{" "}
+      {/* Custom CSS for additional animations and pill styling */}
       <style jsx>{`
         @keyframes navFloat {
           0%,
@@ -403,26 +404,71 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
           }
         }
 
+        @keyframes pillGlow {
+          0%,
+          100% {
+            box-shadow: 0 0 15px rgba(77, 233, 210, 0.08);
+          }
+          50% {
+            box-shadow: 0 0 20px rgba(77, 233, 210, 0.12);
+          }
+        }
+
         .navbar-container:hover {
-          animation: navFloat 3s ease-in-out infinite;
+          animation: navFloat 4s ease-in-out infinite;
+        }
+
+        .navbar-container .bg-background\/70 {
+          backdrop-filter: blur(16px);
+          -webkit-backdrop-filter: blur(16px);
+        }
+
+        .navbar-container .bg-background\/70:hover {
+          animation: pillGlow 3s ease-in-out infinite;
         }
 
         .shimmer-effect {
           background: linear-gradient(
             90deg,
             transparent,
-            rgba(255, 255, 255, 0.2),
+            rgba(255, 255, 255, 0.15),
             transparent
           );
           background-size: 200% 100%;
           animation: shimmer 2s infinite;
         }
 
-        /* Staggered animation for mobile menu items */
+        /* Enhanced pill button effects */
+        .pill-nav-item {
+          position: relative;
+          overflow: hidden;
+        }
+
+        .pill-nav-item::before {
+          content: "";
+          position: absolute;
+          top: 0;
+          left: -100%;
+          width: 100%;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent,
+            rgba(77, 233, 210, 0.08),
+            transparent
+          );
+          transition: left 0.4s;
+        }
+
+        .pill-nav-item:hover::before {
+          left: 100%;
+        }
+
+        /* Refined mobile menu animations */
         .mobile-menu-item {
-          animation: slideInRight 0.3s ease-out forwards;
+          animation: slideInRight 0.25s ease-out forwards;
           opacity: 0;
-          transform: translateX(20px);
+          transform: translateX(15px);
         }
 
         @keyframes slideInRight {
@@ -430,6 +476,16 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
             opacity: 1;
             transform: translateX(0);
           }
+        } /* Responsive adjustments */
+        @media (max-width: 768px) {
+          .navbar-container .hidden.md\\:flex {
+            display: none !important;
+          }
+        }
+
+        /* Slick hover transitions */
+        .group:hover .transition-all {
+          transition-duration: 0.2s;
         }
       `}</style>
     </div>
