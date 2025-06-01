@@ -39,7 +39,30 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   const navbarRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const desktopNavRef = useRef<HTMLDivElement>(null);
-  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null); // Ref for the mobile menu trigger button
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null); // Ref for the mobile menu trigger button  // Function to handle smooth scrolling without changing URL
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string
+  ) => {
+    e.preventDefault();
+
+    if (href === "#") {
+      // Scroll to top for Home
+      window.scrollTo({
+        top: 0,
+        behavior: "smooth",
+      });
+    } else {
+      // Scroll to section for other links
+      const targetElement = document.querySelector(href);
+      if (targetElement) {
+        targetElement.scrollIntoView({
+          behavior: "smooth",
+          block: "start",
+        });
+      }
+    }
+  };
 
   useEffect(() => {
     // Ensure all referenced elements are available before attempting animations
@@ -102,10 +125,12 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
           <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/3 to-transparent opacity-40" />
           {/* Left section - Logo */}
           <div className="flex items-center">
+            {" "}
             {/* Apply ref to the logo link */}{" "}
             <a
               ref={logoRef}
               href="#"
+              onClick={(e) => handleNavClick(e, "#")}
               className={`font-bold text-xl ${patrickHand.className} relative group`}
             >
               <span className="relative z-10 bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent transition-all duration-500 group-hover:from-primary group-hover:via-purple-500 group-hover:to-blue-500">
@@ -124,6 +149,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                 <a
                   key={link.href}
                   href={link.href}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10"
                 >
                   {" "}
@@ -285,6 +311,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                     <a
                       key={link.href}
                       href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
                       className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3"
                       style={{ animationDelay: `${index * 50}ms` }}
                     >

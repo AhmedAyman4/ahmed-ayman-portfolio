@@ -21,7 +21,6 @@ export default function Home() {
   useEffect(() => {
     setIsMounted(true);
   }, []);
-
   useEffect(() => {
     sectionsRef.current = [];
     const observer = new IntersectionObserver((entries) => {
@@ -42,6 +41,7 @@ export default function Home() {
 
   return (
     <div className="flex flex-col min-h-screen">
+      {" "}
       <Navbar
         links={[
           { href: "#", label: "Home" },
@@ -62,9 +62,9 @@ export default function Home() {
           <HeroSection profileImage={Me1} />
         </div>
         {/* Separator between Hero and Projects */}
-        <SectionSeparator variant="geometric" />
-        {/* Projects Component */}
+        <SectionSeparator variant="geometric" /> {/* Projects Component */}
         <div
+          id="projects"
           ref={(el) => {
             if (el) sectionsRef.current.push(el);
           }}
@@ -72,9 +72,9 @@ export default function Home() {
           <ProjectsComponent />
         </div>
         {/* Animated Separator between Projects and Experience */}
-        <AnimatedSeparator />
-        {/* Experience Timeline */}
+        <AnimatedSeparator /> {/* Experience Timeline */}
         <section
+          id="experience"
           className="mb-16 fade-in-section"
           ref={(el) => {
             if (el) sectionsRef.current.push(el);
@@ -83,9 +83,9 @@ export default function Home() {
           <ExperienceTimeline />
         </section>
         {/* Separator between Experience and Skills */}
-        <SectionSeparator variant="wave" />
-        {/* Skills Section */}
+        <SectionSeparator variant="wave" /> {/* Skills Section */}
         <section
+          id="skills"
           className="mb-16 fade-in-section"
           ref={(el) => {
             if (el) sectionsRef.current.push(el);
@@ -94,9 +94,9 @@ export default function Home() {
           <SkillsSection />
         </section>
         {/* Separator between Skills and Contact */}
-        <SectionSeparator variant="dots" />
-        {/* Contact Section */}
+        <SectionSeparator variant="dots" /> {/* Contact Section */}
         <section
+          id="contact"
           className="mb-16 fade-in-section"
           ref={(el) => {
             if (el) sectionsRef.current.push(el);
