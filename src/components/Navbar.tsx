@@ -166,74 +166,170 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                 <DropdownMenuTrigger asChild>
                   <Button
                     variant="ghost"
-                    className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10 h-auto"
+                    className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10 h-auto overflow-hidden"
                   >
                     {" "}
                     <span className="relative z-10 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 flex items-center gap-1">
                       Social
-                      <ChevronDown className="h-3 w-3" />
+                      <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180 group-data-[state=open]:rotate-180" />
                     </span>
                     {/* Subtle glow effect */}
                     <div className="absolute inset-0 bg-gradient-to-r from-primary/8 to-purple-500/8 dark:from-[#4de9d2]/15 dark:to-[#3dd1b5]/15 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    {/* Shimmer effect on hover */}
+                    <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
                   </Button>
-                </DropdownMenuTrigger>
+                </DropdownMenuTrigger>{" "}
                 <DropdownMenuContent
                   align="center"
-                  className="w-44 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-lg"
+                  className="w-40 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-xl shadow-black/10 dark:shadow-black/20 p-1.5 animate-in slide-in-from-top-2 duration-200"
                 >
+                  <div className="text-xs text-gray-500 dark:text-gray-400 px-2.5 py-1.5 font-medium tracking-wide uppercase">
+                    Connect with me
+                  </div>{" "}
                   <DropdownMenuItem asChild>
                     <a
                       href="https://github.com/AhmedAyman4"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
                     >
-                      <FaGithub className="h-4 w-4" />
-                      <span>GitHub</span>
+                      {" "}
+                      <div className="relative z-10 flex items-center gap-2.5 w-full">
+                        <FaGithub className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
+                        <span className="font-medium">GitHub</span>
+                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                          <svg
+                            className="h-3 w-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
                     </a>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem>{" "}
                   <DropdownMenuItem asChild>
                     <a
                       href="https://www.linkedin.com/in/ahmed-alhofy/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
                     >
-                      <FaLinkedin className="h-4 w-4" />
-                      <span>LinkedIn</span>
+                      <div className="relative z-10 flex items-center gap-2.5 w-full">
+                        <FaLinkedin className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
+                        <span className="font-medium">LinkedIn</span>
+                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                          <svg
+                            className="h-3 w-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
                     </a>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem>{" "}
                   <DropdownMenuItem asChild>
                     <a
                       href="mailto:ahmedalhofy42@gmail.com"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
                     >
-                      <MdEmail className="h-4 w-4" />
-                      <span>Email</span>
+                      <div className="relative z-10 flex items-center gap-2.5 w-full">
+                        <MdEmail className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
+                        <span className="font-medium">Email</span>
+                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                          <svg
+                            className="h-3 w-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </div>
+                      </div>{" "}
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
                     </a>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem>{" "}
                   <DropdownMenuItem asChild>
                     <a
                       href="https://www.instagram.com/ahmedhofi_/"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
                     >
-                      <FaInstagram className="h-4 w-4" />
-                      <span>Instagram</span>
+                      <div className="relative z-10 flex items-center gap-2.5 w-full">
+                        <FaInstagram className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
+                        <span className="font-medium">Instagram</span>
+                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                          <svg
+                            className="h-3 w-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
                     </a>
-                  </DropdownMenuItem>
+                  </DropdownMenuItem>{" "}
                   <DropdownMenuItem asChild>
                     <a
                       href="https://www.credly.com/users/ahmedayman"
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="flex items-center gap-3 w-full px-3 py-2 hover:bg-primary/10 hover:text-primary transition-all duration-300 rounded-lg"
+                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
                     >
-                      <AiFillSafetyCertificate className="h-4 w-4" />
-                      <span>Credly</span>
+                      <div className="relative z-10 flex items-center gap-2.5 w-full">
+                        <AiFillSafetyCertificate className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
+                        <span className="font-medium">Credly</span>
+                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                          <svg
+                            className="h-3 w-3"
+                            fill="none"
+                            stroke="currentColor"
+                            viewBox="0 0 24 24"
+                          >
+                            <path
+                              strokeLinecap="round"
+                              strokeLinejoin="round"
+                              strokeWidth={2}
+                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+                            />
+                          </svg>
+                        </div>
+                      </div>
+                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
                     </a>
                   </DropdownMenuItem>
                 </DropdownMenuContent>
