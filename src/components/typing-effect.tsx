@@ -1,4 +1,10 @@
-import React, { useState, useEffect, useMemo, useCallback } from "react";
+import React, {
+  useState,
+  useEffect,
+  useMemo,
+  useCallback,
+  useRef,
+} from "react";
 
 /**
  * Configuration for individual words in the typing effect
@@ -25,77 +31,80 @@ export const TypingEffect: React.FC<TypingEffectProps> = ({
   words,
   typingSpeed,
 }) => {
-  const [typedText, setTypedText] = useState<string[]>([]);
-  const [currentWordIndex, setCurrentWordIndex] = useState(0);
-  const [currentCharIndex, setCurrentCharIndex] = useState(0);
+  const [displayText, setDisplayText] = useState<string>("");
   const [isComplete, setIsComplete] = useState(false);
   const [isTyping, setIsTyping] = useState(true);
 
-  // Memoize the total expected text for efficient comparison
-  const expectedText = useMemo(() => words.map((word) => word.text), [words]);
+  // Use refs to avoid unnecessary re-renders
+  const currentWordIndexRef = useRef(0);
+  const currentCharIndexRef = useRef(0);
+  const animationFrameRef = useRef<number>();
 
-  // Check if typing is complete using efficient comparison
-  const checkIfComplete = useCallback(() => {
-    return (
-      typedText.length === words.length &&
-      typedText.every((text, index) => text === expectedText[index])
-    );
-  }, [typedText, words.length, expectedText]);
-  // Effect to handle completion detection
-  useEffect(() => {
-    if (checkIfComplete()) {
-      setIsComplete(true);
-      setIsTyping(false);
-    }
-  }, [checkIfComplete]);
-
-  // Main typing effect logic
+  // Adjust typing speed based on device type for better performance
+  const adjustedTypingSpeed = useMemo(() => {
+    const isMobile =
+      /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(
+        navigator.userAgent
+      );
+    return isMobile ? typingSpeed : Math.max(typingSpeed * 0.7, 20); // Faster on desktop
+  }, [typingSpeed]); // Optimized typing effect using requestAnimationFrame for smoother animation
   useEffect(() => {
     if (isComplete) return;
 
-    const currentWord = words[currentWordIndex];
-    if (!currentWord) return;
+    let lastTime = 0;
+    const animate = (currentTime: number) => {
+      if (currentTime - lastTime >= adjustedTypingSpeed) {
+        const currentWordIndex = currentWordIndexRef.current;
+        const currentCharIndex = currentCharIndexRef.current;
+        const currentWord = words[currentWordIndex];
 
-    let timeoutId: NodeJS.Timeout;
-    if (currentCharIndex < currentWord.text.length) {
-      // Type the next character
-      setIsTyping(true);
-      timeoutId = setTimeout(() => {
-        setTypedText((prevText) => {
-          const newText = [...prevText];
-          const currentText = newText[currentWordIndex] || "";
-          newText[currentWordIndex] =
-            currentText + currentWord.text[currentCharIndex];
-          return newText;
-        });
-        setCurrentCharIndex((prev) => prev + 1);
-      }, typingSpeed);
-    } else {
-      // Move to next word
-      setIsTyping(false);
-      if (currentWordIndex < words.length - 1) {
-        setCurrentWordIndex((prev) => prev + 1);
-        setCurrentCharIndex(0);
+        if (currentWord && currentCharIndex < currentWord.text.length) {
+          setIsTyping(true);
+          setDisplayText((prev) => prev + currentWord.text[currentCharIndex]);
+          currentCharIndexRef.current++;
+        } else if (currentWordIndex < words.length - 1) {
+          // Add space between words and move to next word
+          setDisplayText((prev) => prev + " ");
+          currentWordIndexRef.current++;
+          currentCharIndexRef.current = 0;
+          setIsTyping(false);
+        } else {
+          setIsComplete(true);
+          setIsTyping(false);
+          return;
+        }
+        lastTime = currentTime;
       }
-    }
+
+      animationFrameRef.current = requestAnimationFrame(animate);
+    };
+
+    animationFrameRef.current = requestAnimationFrame(animate);
 
     return () => {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+      if (animationFrameRef.current) {
+        cancelAnimationFrame(animationFrameRef.current);
       }
     };
-  }, [currentCharIndex, currentWordIndex, words, typingSpeed, isComplete]);
-  // Render the typed text with individual styling
+  }, [words, adjustedTypingSpeed, isComplete]); // Render with better performance
   const renderedText = useMemo(() => {
-    return typedText.map((text, index) => {
-      const { color, style = {} } = words[index] || {};
+    let textIndex = 0;
+    return words.map((word, wordIndex) => {
+      const wordLength = word.text.length;
+      const wordText = displayText.slice(textIndex, textIndex + wordLength);
+      textIndex += wordLength + 1; // +1 for space
+
+      const { color, style = {} } = word;
       return (
-        <span key={index} style={{ color, ...style }} className="inline">
-          {text}
+        <span key={wordIndex} style={{ color, ...style }} className="inline">
+          {wordText}
+          {wordIndex < words.length - 1 && wordText.length === wordLength
+            ? " "
+            : ""}
         </span>
       );
     });
-  }, [typedText, words]);
+  }, [displayText, words]);
   return (
     <span className="inline-flex items-center">
       {renderedText}
