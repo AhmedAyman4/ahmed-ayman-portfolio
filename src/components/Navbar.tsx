@@ -329,7 +329,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
             </div>
           </div>{" "}
           {/* Right section - Actions */}
-          <div className="flex items-center gap-2">
+          <div className="flex items-center gap-3">
             {" "}
             {/* Resume Button */}
             <a
@@ -363,6 +363,12 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               <ModeToggle />
               {/* Glow effect for mode toggle */}
               <div className="absolute inset-0 bg-primary/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+            </div>{" "}
+            {/* Theme toggle - Mobile only */}
+            <div className="relative group md:hidden">
+              <ModeToggle />
+              {/* Glow effect for mobile mode toggle */}
+              <div className="absolute inset-0 bg-primary/8 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </div>{" "}
             {/* Mobile menu dropdown - Mobile only */}
             <DropdownMenu>
@@ -501,16 +507,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                         <AiFillSafetyCertificate className="h-4 w-4" />
                       </a>
                     </DropdownMenuItem>
-                  </div>
-                </div>
-
-                {/* Theme Toggle */}
-                <div className="flex justify-center">
-                  <div className="relative group">
-                    <ModeToggle />
-                    {/* Glow effect for mobile mode toggle */}
-                    <div className="absolute inset-0 bg-primary/8 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  </div>
+                  </div>{" "}
                 </div>
               </DropdownMenuContent>
             </DropdownMenu>
