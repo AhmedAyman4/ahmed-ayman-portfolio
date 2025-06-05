@@ -5,6 +5,14 @@ import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
+import {
   DropdownMenu,
   DropdownMenuContent,
   DropdownMenuItem,
@@ -364,9 +372,9 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               {/* Glow effect for mode toggle */}
               <div className="absolute inset-0 bg-primary/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </div>{" "}
-            {/* Mobile menu dropdown - Mobile only */}
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
+            {/* Mobile menu button - Mobile only */}
+            <Sheet>
+              <SheetTrigger asChild>
                 <Button
                   ref={mobileMenuButtonRef}
                   variant="ghost"
@@ -378,142 +386,123 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   {/* Button glow effect */}
                   <div className="absolute inset-0 bg-primary/8 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                 </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent
-                align="end"
-                className="w-72 md:hidden bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-xl shadow-black/10 dark:shadow-black/20 p-3 animate-in slide-in-from-top-2 duration-200 mt-2"
+              </SheetTrigger>{" "}
+              <SheetContent
+                side="right"
+                className="md:hidden p-5 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50 rounded-l-2xl"
               >
-                {/* Header */}
-                <div className="mb-3 pb-3 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <div className="text-sm font-bold bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent">
+                <SheetHeader className="mb-5">
+                  <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-lg font-bold">
                     Menu
-                  </div>
-                  <div
-                    className={`${patrickHand.className} text-xs text-gray-600 dark:text-gray-300`}
+                  </SheetTitle>
+                  <SheetDescription
+                    className={`${patrickHand.className} text-left text-gray-600 dark:text-gray-300 text-sm`}
                   >
-                    Navigate through the website
-                  </div>
-                </div>
-
-                {/* Navigation Links */}
-                <div className="space-y-1 mb-3">
+                    Navigate through the website.
+                  </SheetDescription>
+                </SheetHeader>
+                <div className="grid gap-2.5 py-3">
+                  {" "}
                   {links.map((link, index) => (
-                    <DropdownMenuItem key={link.href} asChild>
-                      <a
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
-                      >
-                        <div className="relative z-10 flex items-center gap-2.5 w-full">
-                          <span className="font-medium">{link.label}</span>
-                        </div>
-                        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
-                      </a>
-                    </DropdownMenuItem>
-                  ))}
-                </div>
-
-                {/* Resume Button */}
-                <div className="mb-3 pb-3 border-b border-gray-200/50 dark:border-gray-700/50">
-                  <DropdownMenuItem asChild>
                     <a
-                      href="/Ahmed_Ayman_Alhofy.pdf"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center justify-center gap-1.5 w-full h-9 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-lg text-sm"
+                      key={link.href}
+                      href={link.href}
+                      onClick={(e) => handleNavClick(e, link.href)}
+                      className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3"
+                      style={{ animationDelay: `${index * 50}ms` }}
                     >
-                      <span>Resume</span>
-                      <svg
-                        className="w-3.5 h-3.5"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                      >
-                        <path
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth={2}
-                          d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                        />
-                      </svg>
+                      <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary transition-colors duration-300">
+                        {link.label}
+                      </span>
+                      {/* Animated indicator */}
+                      <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r" />
                     </a>
-                  </DropdownMenuItem>
-                </div>
-
-                {/* Social Media Links */}
-                <div className="mb-3">
-                  <div className="text-xs text-gray-600 dark:text-gray-400 mb-2 text-center font-medium">
-                    Connect with me
-                  </div>
-                  <div className="grid grid-cols-5 gap-2">
-                    <DropdownMenuItem asChild>
+                  ))}{" "}
+                  <a
+                    href="/Ahmed_Ayman_Alhofy.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="h-10 mt-3 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5"
+                  >
+                    <span>Resume</span>
+                    <svg
+                      className="w-3.5 h-3.5"
+                      fill="none"
+                      stroke="currentColor"
+                      viewBox="0 0 24 24"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth={2}
+                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                      />
+                    </svg>
+                  </a>
+                  {/* Social Media Links */}
+                  <div className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50">
+                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2.5 text-center">
+                      Connect with me
+                    </p>
+                    <div className="flex justify-center gap-3">
                       <a
                         href="https://github.com/AhmedAyman4"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center p-2 rounded-lg bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
                         aria-label="GitHub"
                       >
                         <FaGithub className="h-4 w-4" />
                       </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
                       <a
                         href="https://www.linkedin.com/in/ahmed-alhofy/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center p-2 rounded-lg bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
                         aria-label="LinkedIn"
                       >
                         <FaLinkedin className="h-4 w-4" />
                       </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
                       <a
                         href="mailto:ahmedalhofy42@gmail.com"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center p-2 rounded-lg bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
                         aria-label="Email"
                       >
                         <MdEmail className="h-4 w-4" />
                       </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
                       <a
                         href="https://www.instagram.com/ahmedhofi_/"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center p-2 rounded-lg bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
                         aria-label="Instagram"
                       >
                         <FaInstagram className="h-4 w-4" />
                       </a>
-                    </DropdownMenuItem>
-                    <DropdownMenuItem asChild>
                       <a
                         href="https://www.credly.com/users/ahmedayman"
                         target="_blank"
                         rel="noopener noreferrer"
-                        className="flex items-center justify-center p-2 rounded-lg bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110"
+                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
                         aria-label="Credly"
                       >
                         <AiFillSafetyCertificate className="h-4 w-4" />
                       </a>
-                    </DropdownMenuItem>
+                    </div>
+                  </div>
+                  <div className="mt-3 flex justify-center">
+                    {" "}
+                    <div className="relative group">
+                      <ModeToggle />
+                      {/* Glow effect for mobile mode toggle */}
+                      <div className="absolute inset-0 bg-primary/8 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
+                    </div>
                   </div>
                 </div>
-
-                {/* Theme Toggle */}
-                <div className="flex justify-center">
-                  <div className="relative group">
-                    <ModeToggle />
-                    {/* Glow effect for mobile mode toggle */}
-                    <div className="absolute inset-0 bg-primary/8 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                  </div>
-                </div>
-              </DropdownMenuContent>
-            </DropdownMenu>
+              </SheetContent>
+            </Sheet>
           </div>
         </div>
       </div>{" "}
