@@ -54,72 +54,78 @@ export default function Home() {
     <>
       {/* Intro Screen */}
       {showIntro && <IntroScreen onComplete={handleIntroComplete} />}
-      
+
       {/* Main Website Content */}
-      <div className={`flex flex-col min-h-screen transition-all duration-1000 ${showIntro ? 'opacity-0' : 'opacity-100'}`}>
-      {" "}
-      <Navbar
-        links={[
-          { href: "#", label: "Home" },
-          { href: "#projects", label: "Projects" },
-          { href: "#experience", label: "Experience" },
-          { href: "#skills", label: "Skills" },
-          { href: "#contact", label: "Contact" },
-        ]}
-      />
-      <main className="container mx-auto py-10 flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
+      <div
+        className={`flex flex-col min-h-screen transition-all duration-1000 ${
+          showIntro ? "opacity-0" : "opacity-100"
+        }`}
+      >
         {" "}
-        {/* Hero Section */}        <div
-          ref={(el) => {
-            if (el) sectionsRef.current.push(el);
-          }}
-        >
-          <HeroSection profileImage={Me1} introComplete={introComplete} />
-        </div>
-        {/* Separator between Hero and Projects */}
-        <SectionSeparator variant="geometric" /> {/* Projects Component */}
-        <div
-          id="projects"
-          ref={(el) => {
-            if (el) sectionsRef.current.push(el);
-          }}
-        >
-          <ProjectsComponent />
-        </div>
-        {/* Animated Separator between Projects and Experience */}
-        <AnimatedSeparator /> {/* Experience Timeline */}
-        <section
-          id="experience"
-          className="mb-16 fade-in-section"
-          ref={(el) => {
-            if (el) sectionsRef.current.push(el);
-          }}
-        >
-          <ExperienceTimeline />
-        </section>
-        {/* Separator between Experience and Skills */}
-        <SectionSeparator variant="wave" /> {/* Skills Section */}
-        <section
-          id="skills"
-          className="mb-16 fade-in-section"
-          ref={(el) => {
-            if (el) sectionsRef.current.push(el);
-          }}
-        >
-          <SkillsSection />
-        </section>
-        {/* Separator between Skills and Contact */}
-        <SectionSeparator variant="dots" /> {/* Contact Section */}
-        <section
-          id="contact"
-          className="mb-16 fade-in-section"          ref={(el) => {
-            if (el) sectionsRef.current.push(el);
-          }}
-        >
-          <ContactSection />
-        </section>
-      </main>
-      <Footer />
+        <Navbar
+          links={[
+            { href: "#", label: "Home" },
+            { href: "#projects", label: "Projects" },
+            { href: "#experience", label: "Experience" },
+            { href: "#skills", label: "Skills" },
+            { href: "#contact", label: "Contact" },
+          ]}
+        />
+        <main className="container mx-auto py-10 flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
+          {" "}
+          {/* Hero Section */}{" "}
+          <div
+            ref={(el) => {
+              if (el) sectionsRef.current.push(el);
+            }}
+          >
+            <HeroSection profileImage={Me1} introComplete={introComplete} />
+          </div>
+          {/* Separator between Hero and Projects */}
+          <SectionSeparator variant="geometric" /> {/* Projects Component */}
+          <div
+            id="projects"
+            ref={(el) => {
+              if (el) sectionsRef.current.push(el);
+            }}
+          >
+            <ProjectsComponent />
+          </div>
+          {/* Animated Separator between Projects and Experience */}
+          <AnimatedSeparator /> {/* Experience Timeline */}
+          <section
+            id="experience"
+            className="mb-16 fade-in-section"
+            ref={(el) => {
+              if (el) sectionsRef.current.push(el);
+            }}
+          >
+            <ExperienceTimeline />
+          </section>
+          {/* Separator between Experience and Skills */}
+          <SectionSeparator variant="wave" /> {/* Skills Section */}
+          <section
+            id="skills"
+            className="mb-16 fade-in-section"
+            ref={(el) => {
+              if (el) sectionsRef.current.push(el);
+            }}
+          >
+            <SkillsSection />
+          </section>
+          {/* Separator between Skills and Contact */}
+          <SectionSeparator variant="dots" /> {/* Contact Section */}
+          <section
+            id="contact"
+            className="mb-16 fade-in-section"
+            ref={(el) => {
+              if (el) sectionsRef.current.push(el);
+            }}
+          >
+            <ContactSection />
+          </section>
+        </main>
+        <Footer />
       </div>
     </>
   );

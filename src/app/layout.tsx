@@ -28,7 +28,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${patrickHand.variable} ${dancingScript.variable} antialiased`}>
+      <body
+        className={`${patrickHand.variable} ${dancingScript.variable} antialiased`}
+      >
         {" "}
         <ThemeProvider>
           <ClientBackgroundWrapper />
