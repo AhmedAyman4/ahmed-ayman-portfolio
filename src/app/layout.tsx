@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Patrick_Hand } from "next/font/google";
+import { Patrick_Hand, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import ClientBackgroundWrapper from "@/components/ClientBackgroundWrapper";
@@ -8,6 +8,12 @@ const patrickHand = Patrick_Hand({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-patrick-hand",
+});
+
+const dancingScript = Dancing_Script({
+  weight: ["400", "500", "600", "700"],
+  subsets: ["latin"],
+  variable: "--font-dancing-script",
 });
 
 export const metadata: Metadata = {
@@ -22,7 +28,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <body className={`${patrickHand.variable} antialiased`}>
+      <body className={`${patrickHand.variable} ${dancingScript.variable} antialiased`}>
         {" "}
         <ThemeProvider>
           <ClientBackgroundWrapper />

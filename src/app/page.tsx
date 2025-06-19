@@ -12,11 +12,23 @@ import {
   AnimatedSeparator,
 } from "@/components/SectionSeparator";
 import Footer from "@/components/Footer";
+import { IntroScreen } from "@/components/IntroScreen";
 import Me1 from "../assets/A suit (1).jpg";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
+  const [showIntro, setShowIntro] = useState(true);
+  const [introComplete, setIntroComplete] = useState(false);
   const sectionsRef = useRef<HTMLElement[]>([]);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  const handleIntroComplete = () => {
+    setShowIntro(false);
+    setIntroComplete(true);
+  };
 
   useEffect(() => {
     setIsMounted(true);
@@ -38,9 +50,13 @@ export default function Home() {
       observer.disconnect();
     };
   }, []);
-
   return (
-    <div className="flex flex-col min-h-screen">
+    <>
+      {/* Intro Screen */}
+      {showIntro && <IntroScreen onComplete={handleIntroComplete} />}
+      
+      {/* Main Website Content */}
+      <div className={`flex flex-col min-h-screen transition-all duration-1000 ${showIntro ? 'opacity-0' : 'opacity-100'}`}>
       {" "}
       <Navbar
         links={[
@@ -53,13 +69,12 @@ export default function Home() {
       />
       <main className="container mx-auto py-10 flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
         {" "}
-        {/* Hero Section */}
-        <div
+        {/* Hero Section */}        <div
           ref={(el) => {
             if (el) sectionsRef.current.push(el);
           }}
         >
-          <HeroSection profileImage={Me1} />
+          <HeroSection profileImage={Me1} introComplete={introComplete} />
         </div>
         {/* Separator between Hero and Projects */}
         <SectionSeparator variant="geometric" /> {/* Projects Component */}
@@ -97,8 +112,7 @@ export default function Home() {
         <SectionSeparator variant="dots" /> {/* Contact Section */}
         <section
           id="contact"
-          className="mb-16 fade-in-section"
-          ref={(el) => {
+          className="mb-16 fade-in-section"          ref={(el) => {
             if (el) sectionsRef.current.push(el);
           }}
         >
@@ -106,6 +120,7 @@ export default function Home() {
         </section>
       </main>
       <Footer />
-    </div>
+      </div>
+    </>
   );
 }

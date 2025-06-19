@@ -3,6 +3,7 @@
 
 import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
+import { useState, useEffect } from "react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa"; // Font Awesome icons
 import { MdEmail, MdOutlineVerified } from "react-icons/md"; // Material Design icons
 import { PiCertificateDuotone } from "react-icons/pi";
@@ -13,7 +14,19 @@ import FractalTree from "@/components/FractalTree";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
-export function HeroSection({ profileImage }) {
+export function HeroSection({ profileImage, introComplete = false }) {
+  const [startTyping, setStartTyping] = useState(false);
+
+  useEffect(() => {
+    if (introComplete) {
+      // Start typing immediately when intro is complete
+      const timer = setTimeout(() => {
+        setStartTyping(true);
+      }, 300); // Small delay for smooth transition
+
+      return () => clearTimeout(timer);
+    }
+  }, [introComplete]);
   return (
     <section id="hero" className="text-center mb-24 fade-in-section relative">
       <div className="relative z-10">
@@ -40,25 +53,27 @@ export function HeroSection({ profileImage }) {
           className={`flex items-center justify-center text-6xl font-light ${patrickHand.className}`}
         >
           <span className="dark:text-white text-black">Hi,</span>
-          <TypingEffect
-            words={[
-              {
-                text: "",
-                color: "white",
-              },
-              {
-                text: "Ahmed",
-                color: "#4de9d2",
-                style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
-              },
-              {
-                text: "here.",
-                color: "var(--color-black-color-if-white)",
-                style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
-              },
-            ]}
-            typingSpeed={130}
-          />
+          {startTyping && (
+            <TypingEffect
+              words={[
+                {
+                  text: "",
+                  color: "white",
+                },
+                {
+                  text: "Ahmed",
+                  color: "#4de9d2",
+                  style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
+                },
+                {
+                  text: "here.",
+                  color: "var(--color-black-color-if-white)",
+                  style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
+                },
+              ]}
+              typingSpeed={130}
+            />
+          )}
         </h1>
         {/* Subtitle */}
         <p className="mt-2 text-4xl font-light dark:text-gray-300 text-black">
