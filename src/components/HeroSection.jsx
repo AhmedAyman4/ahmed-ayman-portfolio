@@ -62,8 +62,10 @@ export function HeroSection({ profileImage, introComplete = false }) {
                 },
                 {
                   text: "Ahmed",
-                  color: "#4de9d2",
-                  style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
+                  style: {
+                    marginLeft: "0.1em",
+                    color: "var(--ahmed-text-color)", // CSS variable for theme-aware color
+                  },
                 },
                 {
                   text: "here.",
