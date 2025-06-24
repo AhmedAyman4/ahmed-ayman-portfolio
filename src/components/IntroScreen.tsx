@@ -61,10 +61,10 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
       {/* Hello typing effect with handwritten styling */}
       <div className="relative z-10 text-center max-w-4xl mx-auto px-6">
         {/* Subtle backdrop for text */}
-        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-900/30 to-transparent blur-xl rounded-full"></div>
+        <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-900/30 to-transparent blur-xl rounded-full"></div>{" "}
         <div className="relative mb-8">
           {showTyping && (
-            <div className="text-6xl md:text-8xl lg:text-9xl xl:text-[12rem] font-light tracking-normal leading-none">
+            <div className="text-6xl md:text-8xl lg:text-8xl xl:text-9xl font-light tracking-normal leading-none">
               <div
                 className="text-white drop-shadow-2xl"
                 style={{
