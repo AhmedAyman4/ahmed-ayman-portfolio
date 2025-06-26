@@ -4,6 +4,7 @@ import { Patrick_Hand } from "next/font/google";
 import { Menu, ChevronDown } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import { MobileModeToggle } from "@/components/mobile-mode-toggle";
 import {
   Sheet,
   SheetContent,
@@ -492,13 +493,8 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                       </a>
                     </div>
                   </div>
-                  <div className="mt-3 flex justify-center">
-                    {" "}
-                    <div className="relative group">
-                      <ModeToggle />
-                      {/* Glow effect for mobile mode toggle */}
-                      <div className="absolute inset-0 bg-primary/8 rounded-full blur-sm opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
-                    </div>
+                  <div className="mt-3">
+                    <MobileModeToggle />
                   </div>
                 </div>
               </SheetContent>
