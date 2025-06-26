@@ -82,7 +82,9 @@ export default function Home() {
             <HeroSection profileImage={Me1} introComplete={introComplete} />
           </div>
           {/* Separator between Hero and Projects */}
-          <SectionSeparator variant="geometric" /> {/* Projects Component */}
+          {/* <SectionSeparator variant="geometric" />  */}
+          <SectionSeparator variant="dots" />
+          {/* Projects Component */}
           <div
             id="projects"
             ref={(el) => {
