@@ -9,7 +9,7 @@ import {
   ExternalLink,
   Github,
 } from "lucide-react";
-import { gsap, Power2 } from "gsap";
+import { gsap } from "gsap";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { spotlightProjects, otherProjects, type Project } from "./projectsData";
@@ -247,7 +247,7 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
       gsap.fromTo(
         ref.current,
         { opacity: 0, x: fromX },
-        { opacity: 1, x: 0, duration: 1.5, ease: Power2.easeOut }
+        { opacity: 1, x: 0, duration: 1.5, ease: "power2.out" }
       );
     }
   }, [index, direction]);
