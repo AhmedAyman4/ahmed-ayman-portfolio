@@ -93,7 +93,7 @@ export function ExperienceTimeline() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#4de9d2]/10 via-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none -z-10"></div>
 
               <AccordionTrigger
-                className="hover:no-underline p-3 md:p-4 md:ml-12 bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-t-2xl border border-white/20 dark:border-white/10 border-b-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20 group-hover:bg-white/5 dark:group-hover:bg-white/5 relative z-10 cursor-pointer"
+                className="hover:no-underline p-3 md:p-4 md:ml-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-t-2xl border border-gray-200/50 dark:border-white/10 border-b-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20 group-hover:bg-white/80 dark:group-hover:bg-white/5 relative z-10 cursor-pointer"
                 onClick={() =>
                   console.log(`Clicked accordion for ${exp.company}`)
                 }
@@ -122,9 +122,9 @@ export function ExperienceTimeline() {
                 </div>
               </AccordionTrigger>
 
-              <AccordionContent className="px-3 pb-3 md:px-4 md:pb-4 md:ml-12 bg-white/10 dark:bg-white/5 backdrop-blur-xl rounded-b-2xl border border-white/20 dark:border-white/10 border-t-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20">
+              <AccordionContent className="px-3 pb-3 md:px-4 md:pb-4 md:ml-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-b-2xl border border-gray-200/50 dark:border-white/10 border-t-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20">
                 {/* Enhanced description list */}
-                <div className="bg-white/5 dark:bg-white/5 rounded-xl p-2 md:p-3 border border-white/10 dark:border-white/10 mt-2 md:mt-3">
+                <div className="bg-white/50 dark:bg-white/5 rounded-xl p-2 md:p-3 border border-gray-200/30 dark:border-white/10 mt-2 md:mt-3">
                   <ul className="space-y-1.5 md:space-y-2">
                     {exp.description.map((item, itemIndex) => (
                       <li
