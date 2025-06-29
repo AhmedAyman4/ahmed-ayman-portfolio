@@ -390,9 +390,9 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               </SheetTrigger>{" "}
               <SheetContent
                 side="right"
-                className="md:hidden p-5 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50 rounded-l-2xl"
+                className="md:hidden p-5 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50 rounded-l-2xl animate-in slide-in-from-right duration-300 ease-out"
               >
-                <SheetHeader className="mb-5">
+                <SheetHeader className="mb-5 animate-in fade-in-50 slide-in-from-right-5 duration-500 delay-150">
                   <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-lg font-bold">
                     Menu
                   </SheetTitle>
@@ -409,25 +409,34 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                       key={link.href}
                       href={link.href}
                       onClick={(e) => handleNavClick(e, link.href)}
-                      className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3"
-                      style={{ animationDelay: `${index * 50}ms` }}
+                      className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 animate-in fade-in-50 slide-in-from-right-3 fill-mode-both"
+                      style={{
+                        animationDelay: `${300 + index * 100}ms`,
+                        animationDuration: "400ms",
+                      }}
                     >
                       <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary transition-colors duration-300">
                         {link.label}
                       </span>
                       {/* Animated indicator */}
                       <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r" />
+                      {/* Slide in effect */}
+                      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl translate-x-[-100%] group-hover:translate-x-0" />
                     </a>
                   ))}{" "}
                   <a
                     href="/Ahmed_Ayman_Alhofy.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-10 mt-3 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5"
+                    className="h-10 mt-3 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5 animate-in fade-in-50 slide-in-from-right-3 fill-mode-both"
+                    style={{
+                      animationDelay: `${300 + links.length * 100}ms`,
+                      animationDuration: "400ms",
+                    }}
                   >
                     <span>Resume</span>
                     <svg
-                      className="w-3.5 h-3.5"
+                      className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -441,59 +450,73 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                     </svg>
                   </a>
                   {/* Social Media Links */}
-                  <div className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50">
+                  <div
+                    className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50 animate-in fade-in-50 slide-in-from-bottom-3 fill-mode-both"
+                    style={{
+                      animationDelay: `${400 + links.length * 100}ms`,
+                      animationDuration: "500ms",
+                    }}
+                  >
                     <p className="text-xs text-gray-600 dark:text-gray-400 mb-2.5 text-center">
                       Connect with me
                     </p>
                     <div className="flex justify-center gap-3">
-                      <a
-                        href="https://github.com/AhmedAyman4"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
-                        aria-label="GitHub"
-                      >
-                        <FaGithub className="h-4 w-4" />
-                      </a>
-                      <a
-                        href="https://www.linkedin.com/in/ahmed-alhofy/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
-                        aria-label="LinkedIn"
-                      >
-                        <FaLinkedin className="h-4 w-4" />
-                      </a>
-                      <a
-                        href="mailto:ahmedalhofy42@gmail.com"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
-                        aria-label="Email"
-                      >
-                        <MdEmail className="h-4 w-4" />
-                      </a>
-                      <a
-                        href="https://www.instagram.com/ahmedhofi_/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
-                        aria-label="Instagram"
-                      >
-                        <FaInstagram className="h-4 w-4" />
-                      </a>
-                      <a
-                        href="https://www.credly.com/users/ahmedayman"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15"
-                        aria-label="Credly"
-                      >
-                        <AiFillSafetyCertificate className="h-4 w-4" />
-                      </a>
+                      {[
+                        {
+                          href: "https://github.com/AhmedAyman4",
+                          icon: FaGithub,
+                          label: "GitHub",
+                        },
+                        {
+                          href: "https://www.linkedin.com/in/ahmed-alhofy/",
+                          icon: FaLinkedin,
+                          label: "LinkedIn",
+                        },
+                        {
+                          href: "mailto:ahmedalhofy42@gmail.com",
+                          icon: MdEmail,
+                          label: "Email",
+                        },
+                        {
+                          href: "https://www.instagram.com/ahmedhofi_/",
+                          icon: FaInstagram,
+                          label: "Instagram",
+                        },
+                        {
+                          href: "https://www.credly.com/users/ahmedayman",
+                          icon: AiFillSafetyCertificate,
+                          label: "Credly",
+                        },
+                      ].map((social, index) => {
+                        const IconComponent = social.icon;
+                        return (
+                          <a
+                            key={social.href}
+                            href={social.href}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15 animate-in fade-in-0 zoom-in-50 fill-mode-both"
+                            aria-label={social.label}
+                            style={{
+                              animationDelay: `${
+                                500 + links.length * 100 + index * 75
+                              }ms`,
+                              animationDuration: "300ms",
+                            }}
+                          >
+                            <IconComponent className="h-4 w-4 transition-transform duration-300 hover:rotate-12" />
+                          </a>
+                        );
+                      })}
                     </div>
                   </div>
-                  <div className="mt-3">
+                  <div
+                    className="mt-3 animate-in fade-in-50 slide-in-from-bottom-3 fill-mode-both"
+                    style={{
+                      animationDelay: `${600 + links.length * 100}ms`,
+                      animationDuration: "400ms",
+                    }}
+                  >
                     <MobileModeToggle />
                   </div>
                 </div>
@@ -585,15 +608,63 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
 
         /* Refined mobile menu animations */
         .mobile-menu-item {
-          animation: slideInRight 0.25s ease-out forwards;
+          animation: slideInRight 0.4s ease-out forwards;
           opacity: 0;
-          transform: translateX(15px);
+          transform: translateX(20px);
         }
 
         @keyframes slideInRight {
           to {
             opacity: 1;
             transform: translateX(0);
+          }
+        }
+
+        /* Enhanced mobile menu entrance */
+        @keyframes slideInFromRight {
+          from {
+            transform: translateX(100%);
+            opacity: 0;
+          }
+          to {
+            transform: translateX(0);
+            opacity: 1;
+          }
+        }
+
+        @keyframes fadeInUp {
+          from {
+            opacity: 0;
+            transform: translateY(20px);
+          }
+          to {
+            opacity: 1;
+            transform: translateY(0);
+          }
+        }
+
+        @keyframes scaleIn {
+          from {
+            opacity: 0;
+            transform: scale(0.8);
+          }
+          to {
+            opacity: 1;
+            transform: scale(1);
+          }
+        }
+
+        /* Smooth backdrop animation */
+        .mobile-menu-backdrop {
+          animation: fadeIn 0.3s ease-out;
+        }
+
+        @keyframes fadeIn {
+          from {
+            opacity: 0;
+          }
+          to {
+            opacity: 1;
           }
         } /* Responsive adjustments */
         @media (max-width: 768px) {
