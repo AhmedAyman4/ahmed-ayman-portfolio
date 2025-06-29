@@ -26,7 +26,7 @@ import { MdEmail } from "react-icons/md";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 
 // Import GSAP and React hooks
-import { useRef, useEffect } from "react";
+import { useRef, useEffect, useState } from "react";
 import { gsap } from "gsap"; // Assuming GSAP is installed or available globally
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
@@ -40,12 +40,19 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   const navbarRef = useRef<HTMLDivElement>(null);
   const logoRef = useRef<HTMLAnchorElement>(null);
   const desktopNavRef = useRef<HTMLDivElement>(null);
-  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null); // Ref for the mobile menu trigger button  // Function to handle smooth scrolling without changing URL
+  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+
+  // Function to handle smooth scrolling without changing URL
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     e.preventDefault();
+    e.stopPropagation(); // Prevent event bubbling
+
+    // Close mobile menu when navigation item is clicked
+    setIsMobileMenuOpen(false);
 
     if (href === "#") {
       // Scroll to top for Home
@@ -63,6 +70,11 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
         });
       }
     }
+  };
+
+  // Handle mobile menu open/close
+  const handleMobileMenuToggle = (open: boolean) => {
+    setIsMobileMenuOpen(open);
   };
 
   useEffect(() => {
@@ -374,7 +386,10 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               <div className="absolute inset-0 bg-primary/10 rounded-full blur-md opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
             </div>{" "}
             {/* Mobile menu button - Mobile only */}
-            <Sheet>
+            <Sheet
+              open={isMobileMenuOpen}
+              onOpenChange={handleMobileMenuToggle}
+            >
               <SheetTrigger asChild>
                 <Button
                   ref={mobileMenuButtonRef}
@@ -391,6 +406,14 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               <SheetContent
                 side="right"
                 className="md:hidden p-5 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50 rounded-l-2xl animate-in slide-in-from-right duration-300 ease-out"
+                onPointerDownOutside={(e) => {
+                  // Close menu when clicking outside
+                  setIsMobileMenuOpen(false);
+                }}
+                onInteractOutside={(e) => {
+                  // Close menu when interacting outside
+                  setIsMobileMenuOpen(false);
+                }}
               >
                 <SheetHeader className="mb-5 animate-in fade-in-50 slide-in-from-right-5 duration-500 delay-150">
                   <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-lg font-bold">
@@ -402,41 +425,56 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                     Navigate through the website.
                   </SheetDescription>
                 </SheetHeader>
-                <div className="grid gap-2.5 py-3">
+                <div
+                  className="grid gap-2.5 py-3"
+                  onClick={(e) => {
+                    // Prevent clicks on the container from bubbling
+                    e.stopPropagation();
+                  }}
+                >
                   {" "}
                   {links.map((link, index) => (
-                    <a
+                    <div
                       key={link.href}
-                      href={link.href}
-                      onClick={(e) => handleNavClick(e, link.href)}
-                      className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 animate-in fade-in-50 slide-in-from-right-3 fill-mode-both"
+                      className="relative w-full animate-in fade-in-50 slide-in-from-right-3 fill-mode-both"
                       style={{
                         animationDelay: `${300 + index * 100}ms`,
                         animationDuration: "400ms",
                       }}
                     >
-                      <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary transition-colors duration-300">
-                        {link.label}
-                      </span>
-                      {/* Animated indicator */}
-                      <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r" />
-                      {/* Slide in effect */}
-                      <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl translate-x-[-100%] group-hover:translate-x-0" />
-                    </a>
+                      <a
+                        href={link.href}
+                        onClick={(e) => handleNavClick(e, link.href)}
+                        className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 cursor-pointer"
+                      >
+                        <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary transition-colors duration-300 pointer-events-none">
+                          {link.label}
+                        </span>
+                        {/* Animated indicator */}
+                        <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r pointer-events-none" />
+                        {/* Slide in effect */}
+                        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl translate-x-[-100%] group-hover:translate-x-0 pointer-events-none" />
+                      </a>
+                    </div>
                   ))}{" "}
                   <a
                     href="/Ahmed_Ayman_Alhofy.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="h-10 mt-3 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5 animate-in fade-in-50 slide-in-from-right-3 fill-mode-both"
+                    onClick={(e) => {
+                      e.stopPropagation();
+                      // Close mobile menu when resume is clicked
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className="h-10 mt-3 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5 animate-in fade-in-50 slide-in-from-right-3 fill-mode-both cursor-pointer"
                     style={{
                       animationDelay: `${300 + links.length * 100}ms`,
                       animationDuration: "400ms",
                     }}
                   >
-                    <span>Resume</span>
+                    <span className="pointer-events-none">Resume</span>
                     <svg
-                      className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5"
+                      className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none"
                       fill="none"
                       stroke="currentColor"
                       viewBox="0 0 24 24"
@@ -495,7 +533,12 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                             href={social.href}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15 animate-in fade-in-0 zoom-in-50 fill-mode-both"
+                            onClick={(e) => {
+                              e.stopPropagation();
+                              // Close mobile menu when social link is clicked
+                              setIsMobileMenuOpen(false);
+                            }}
+                            className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15 animate-in fade-in-0 zoom-in-50 fill-mode-both cursor-pointer"
                             aria-label={social.label}
                             style={{
                               animationDelay: `${
@@ -504,7 +547,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                               animationDuration: "300ms",
                             }}
                           >
-                            <IconComponent className="h-4 w-4 transition-transform duration-300 hover:rotate-12" />
+                            <IconComponent className="h-4 w-4 transition-transform duration-300 hover:rotate-12 pointer-events-none" />
                           </a>
                         );
                       })}
