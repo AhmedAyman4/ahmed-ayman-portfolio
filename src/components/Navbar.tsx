@@ -51,9 +51,6 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
     e.preventDefault();
     e.stopPropagation(); // Prevent event bubbling
 
-    // Close mobile menu when navigation item is clicked
-    setIsMobileMenuOpen(false);
-
     if (href === "#") {
       // Scroll to top for Home
       window.scrollTo({
@@ -447,7 +444,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                         onClick={(e) => handleNavClick(e, link.href)}
                         className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 cursor-pointer"
                       >
-                        <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary transition-colors duration-300 pointer-events-none">
+                        <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 pointer-events-none">
                           {link.label}
                         </span>
                         {/* Animated indicator */}
