@@ -12,10 +12,10 @@ import { Mail, Github, Linkedin } from "lucide-react";
 // Component definition
 export function ContactSection() {
   // Refs for animation targets
-  const headingRef = useRef(null);
-  const paragraphRef = useRef(null);
-  const emailRef = useRef(null);
-  const iconsRef = useRef(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const paragraphRef = useRef<HTMLParagraphElement>(null);
+  const emailRef = useRef<HTMLParagraphElement>(null);
+  const iconsRef = useRef<HTMLDivElement>(null);
 
   // Animation setup
   useEffect(() => {
@@ -25,9 +25,11 @@ export function ContactSection() {
 
     tl.from(headingRef.current, { opacity: 0, y: -20 })
       .from(paragraphRef.current, { opacity: 0, y: 20 }, "-=0.5")
-      .from(emailRef.current, { opacity: 0, scale: 0.8 }, "-=0.4")
-      .from(
-        iconsRef.current?.children,
+      .from(emailRef.current, { opacity: 0, scale: 0.8 }, "-=0.4");
+
+    if (iconsRef.current?.children) {
+      tl.from(
+        iconsRef.current.children,
         {
           opacity: 0,
           y: 10,
@@ -35,6 +37,7 @@ export function ContactSection() {
         },
         "-=0.3"
       );
+    }
   }, []);
 
   // Contact links data
