@@ -143,7 +143,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               onClick={(e) => handleNavClick(e, "#")}
               className={`font-bold text-xl ${patrickHand.className} relative group`}
             >
-              <span className="relative z-10 bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent transition-all duration-500 group-hover:from-primary group-hover:via-purple-500 group-hover:to-blue-500">
+              <span className="relative z-10 bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent">
                 Ahmed Ayman
               </span>
               {/* Logo glow effect */}
