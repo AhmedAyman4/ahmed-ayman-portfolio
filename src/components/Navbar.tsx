@@ -1,7 +1,13 @@
 "use client";
 
+// React and Next.js imports
+import { useRef, useEffect, useState } from "react";
 import { Patrick_Hand } from "next/font/google";
-import { Menu, ChevronDown } from "lucide-react";
+
+// External libraries
+import { gsap } from "gsap";
+
+// UI component imports
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { MobileModeToggle } from "@/components/mobile-mode-toggle";
@@ -20,21 +26,170 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 
-// Import social media icons
+// Icons
+import { Menu, ChevronDown } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 
-// Import GSAP and React hooks
-import { useRef, useEffect, useState } from "react";
-import { gsap } from "gsap"; // Assuming GSAP is installed or available globally
-
+// Constants
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
+// Social media links configuration
+const SOCIAL_LINKS = [
+  {
+    href: "https://github.com/AhmedAyman4",
+    icon: FaGithub,
+    label: "GitHub",
+  },
+  {
+    href: "https://www.linkedin.com/in/ahmed-alhofy/",
+    icon: FaLinkedin,
+    label: "LinkedIn",
+  },
+  {
+    href: "mailto:ahmedalhofy42@gmail.com",
+    icon: MdEmail,
+    label: "Email",
+  },
+  {
+    href: "https://www.instagram.com/ahmedhofi_/",
+    icon: FaInstagram,
+    label: "Instagram",
+  },
+  {
+    href: "https://www.credly.com/users/ahmedayman",
+    icon: AiFillSafetyCertificate,
+    label: "Credly",
+  },
+];
+
+// External link icon component
+const ExternalLinkIcon = () => (
+  <svg
+    className="h-3 w-3"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
+    />
+  </svg>
+);
+
+// Download icon component
+const DownloadIcon = () => (
+  <svg
+    className="w-3 h-3 flex-shrink-0"
+    fill="none"
+    stroke="currentColor"
+    viewBox="0 0 24 24"
+  >
+    <path
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeWidth={2}
+      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+    />
+  </svg>
+);
+
+// Interface
 interface NavbarProps {
   links: { href: string; label: string }[];
 }
 
+// Social Dropdown Menu Component
+const SocialDropdown = () => (
+  <DropdownMenu>
+    <DropdownMenuTrigger asChild>
+      <Button
+        variant="ghost"
+        className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10 h-auto overflow-hidden"
+      >
+        <span className="relative z-10 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 flex items-center gap-1">
+          Social
+          <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180 group-data-[state=open]:rotate-180" />
+        </span>
+        <div className="absolute inset-0 bg-gradient-to-r from-primary/8 to-purple-500/8 dark:from-[#4de9d2]/15 dark:to-[#3dd1b5]/15 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+        <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
+      </Button>
+    </DropdownMenuTrigger>
+    <DropdownMenuContent
+      align="center"
+      className="w-40 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-xl shadow-black/10 dark:shadow-black/20 p-1.5 animate-in slide-in-from-top-2 duration-200"
+    >
+      <div className="text-xs text-gray-500 dark:text-gray-400 px-2.5 py-1.5 font-medium tracking-wide uppercase">
+        Connect with me
+      </div>
+      {SOCIAL_LINKS.map((social) => (
+        <DropdownMenuItem key={social.href} asChild>
+          <a
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
+          >
+            <div className="relative z-10 flex items-center gap-2.5 w-full">
+              <social.icon className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
+              <span className="font-medium">{social.label}</span>
+              <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
+                <ExternalLinkIcon />
+              </div>
+            </div>
+            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
+          </a>
+        </DropdownMenuItem>
+      ))}
+    </DropdownMenuContent>
+  </DropdownMenu>
+);
+
+// Mobile Social Links Component
+const MobileSocialLinks = ({ onLinkClick }: { onLinkClick: () => void }) => (
+  <div
+    className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50 animate-in fade-in-50 slide-in-from-bottom-3 fill-mode-both"
+    style={{
+      animationDelay: `400ms`,
+      animationDuration: "500ms",
+    }}
+  >
+    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2.5 text-center">
+      Connect with me
+    </p>
+    <div className="flex justify-center gap-3">
+      {SOCIAL_LINKS.map((social, index) => {
+        const IconComponent = social.icon;
+        return (
+          <a
+            key={social.href}
+            href={social.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={(e) => {
+              e.stopPropagation();
+              onLinkClick();
+            }}
+            className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15 animate-in fade-in-0 zoom-in-50 fill-mode-both cursor-pointer"
+            aria-label={social.label}
+            style={{
+              animationDelay: `${500 + index * 75}ms`,
+              animationDuration: "300ms",
+            }}
+          >
+            <IconComponent className="h-4 w-4 transition-transform duration-300 hover:rotate-12 pointer-events-none" />
+          </a>
+        );
+      })}
+    </div>
+  </div>
+);
+
+// Main Navbar Component
 const Navbar: React.FC<NavbarProps> = ({ links }) => {
   // Create refs for the elements to animate
   const navbarRef = useRef<HTMLDivElement>(null);
@@ -43,84 +198,69 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-  // Function to handle smooth scrolling without changing URL
+  // Utility functions
   const handleNavClick = (
     e: React.MouseEvent<HTMLAnchorElement>,
     href: string
   ) => {
     e.preventDefault();
-    e.stopPropagation(); // Prevent event bubbling
+    e.stopPropagation();
 
     if (href === "#") {
-      // Scroll to top for Home
-      window.scrollTo({
-        top: 0,
-        behavior: "smooth",
-      });
+      window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      // Scroll to section for other links
       const targetElement = document.querySelector(href);
       if (targetElement) {
-        targetElement.scrollIntoView({
-          behavior: "smooth",
-          block: "start",
-        });
+        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
       }
     }
   };
 
-  // Handle mobile menu open/close
   const handleMobileMenuToggle = (open: boolean) => {
     setIsMobileMenuOpen(open);
   };
 
+  // GSAP Animation Effects
   useEffect(() => {
-    // Ensure all referenced elements are available before attempting animations
     if (
       navbarRef.current &&
       logoRef.current &&
       desktopNavRef.current &&
       mobileMenuButtonRef.current
     ) {
-      // Create a GSAP timeline for orchestrating animations
       const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Animation 1: Navbar slides down and fades in
+      // Navbar slides down and fades in
       tl.fromTo(
         navbarRef.current,
-        { y: -100, opacity: 0 }, // Start state: off-screen top, invisible
-        { y: 0, opacity: 1, duration: 0.8 } // End state: original position, visible
+        { y: -100, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8 }
       );
 
-      // Animation 2: Logo slides from left and fades in
-      // This animation starts slightly before the end of the navbar animation
+      // Logo slides from left and fades in
       tl.fromTo(
         logoRef.current,
-        { x: -50, opacity: 0 }, // Start state: off-screen left, invisible
-        { x: 0, opacity: 1, duration: 0.6 }, // End state: original position, visible
-        "-=0.5" // Start 0.5 seconds before the previous animation completes
+        { x: -50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6 },
+        "-=0.5"
       );
 
-      // Animation 3: Desktop navigation links and buttons (staggered fade in)
-      // This is a separate animation, not part of the main timeline,
-      // as it applies to multiple elements with a stagger.
-      // It will run concurrently with the end of the logo animation.
+      // Desktop navigation links (staggered fade in)
       gsap.fromTo(
-        Array.from(desktopNavRef.current.children), // Target all direct children of the desktop nav container
-        { y: -20, opacity: 0 }, // Start state: slightly above, invisible
-        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" } // End state: original position, visible, with bounce
+        Array.from(desktopNavRef.current.children),
+        { y: -20, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" }
       );
 
-      // Animation 4: Mobile menu button slides from right and fades in
-      // This animation also starts slightly before the end of the logo animation
+      // Mobile menu button slides from right and fades in
       tl.fromTo(
         mobileMenuButtonRef.current,
-        { x: 50, opacity: 0 }, // Start state: off-screen right, invisible
-        { x: 0, opacity: 1, duration: 0.6 }, // End state: original position, visible
-        "-=0.5" // Start 0.5 seconds before the previous animation completes
+        { x: 50, opacity: 0 },
+        { x: 0, opacity: 1, duration: 0.6 },
+        "-=0.5"
       );
     }
-  }, []); // The empty dependency array ensures this effect runs only once after the initial render
+  }, []);
   return (
     // Apply ref to the main navbar div
     <div
@@ -171,179 +311,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                 </a>
               ))}{" "}
               {/* Social Links Dropdown in pill */}
-              <DropdownMenu>
-                {" "}
-                <DropdownMenuTrigger asChild>
-                  <Button
-                    variant="ghost"
-                    className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10 h-auto overflow-hidden"
-                  >
-                    {" "}
-                    <span className="relative z-10 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 flex items-center gap-1">
-                      Social
-                      <ChevronDown className="h-3 w-3 transition-transform duration-300 group-hover:rotate-180 group-data-[state=open]:rotate-180" />
-                    </span>
-                    {/* Subtle glow effect */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-primary/8 to-purple-500/8 dark:from-[#4de9d2]/15 dark:to-[#3dd1b5]/15 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                    {/* Shimmer effect on hover */}
-                    <div className="absolute inset-0 -top-2 -bottom-2 bg-gradient-to-r from-transparent via-white/10 to-transparent skew-x-12 translate-x-[-200%] group-hover:translate-x-[200%] transition-transform duration-700" />
-                  </Button>
-                </DropdownMenuTrigger>{" "}
-                <DropdownMenuContent
-                  align="center"
-                  className="w-40 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-xl shadow-black/10 dark:shadow-black/20 p-1.5 animate-in slide-in-from-top-2 duration-200"
-                >
-                  <div className="text-xs text-gray-500 dark:text-gray-400 px-2.5 py-1.5 font-medium tracking-wide uppercase">
-                    Connect with me
-                  </div>{" "}
-                  <DropdownMenuItem asChild>
-                    <a
-                      href="https://github.com/AhmedAyman4"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
-                    >
-                      {" "}
-                      <div className="relative z-10 flex items-center gap-2.5 w-full">
-                        <FaGithub className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
-                        <span className="font-medium">GitHub</span>
-                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                          <svg
-                            className="h-3 w-3"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
-                    </a>
-                  </DropdownMenuItem>{" "}
-                  <DropdownMenuItem asChild>
-                    <a
-                      href="https://www.linkedin.com/in/ahmed-alhofy/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
-                    >
-                      <div className="relative z-10 flex items-center gap-2.5 w-full">
-                        <FaLinkedin className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
-                        <span className="font-medium">LinkedIn</span>
-                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                          <svg
-                            className="h-3 w-3"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
-                    </a>
-                  </DropdownMenuItem>{" "}
-                  <DropdownMenuItem asChild>
-                    <a
-                      href="mailto:ahmedalhofy42@gmail.com"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
-                    >
-                      <div className="relative z-10 flex items-center gap-2.5 w-full">
-                        <MdEmail className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
-                        <span className="font-medium">Email</span>
-                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                          <svg
-                            className="h-3 w-3"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </svg>
-                        </div>
-                      </div>{" "}
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
-                    </a>
-                  </DropdownMenuItem>{" "}
-                  <DropdownMenuItem asChild>
-                    <a
-                      href="https://www.instagram.com/ahmedhofi_/"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
-                    >
-                      <div className="relative z-10 flex items-center gap-2.5 w-full">
-                        <FaInstagram className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
-                        <span className="font-medium">Instagram</span>
-                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                          <svg
-                            className="h-3 w-3"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
-                    </a>
-                  </DropdownMenuItem>{" "}
-                  <DropdownMenuItem asChild>
-                    <a
-                      href="https://www.credly.com/users/ahmedayman"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all duration-300 rounded-lg group/item relative overflow-hidden"
-                    >
-                      <div className="relative z-10 flex items-center gap-2.5 w-full">
-                        <AiFillSafetyCertificate className="h-4 w-4 transition-transform duration-300 group-hover/item:scale-110 group-hover/item:rotate-12" />
-                        <span className="font-medium">Credly</span>
-                        <div className="ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity duration-300">
-                          <svg
-                            className="h-3 w-3"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-                            />
-                          </svg>
-                        </div>
-                      </div>
-                      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary/5 to-transparent translate-x-[-100%] group-hover/item:translate-x-[100%] transition-transform duration-500" />
-                    </a>
-                  </DropdownMenuItem>
-                </DropdownMenuContent>
-              </DropdownMenu>
+              <SocialDropdown />
             </div>
           </div>{" "}
           {/* Right section - Actions */}
@@ -360,19 +328,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                 Resume
                 {/* Download icon effect */}
                 <div className="w-0 group-hover:w-3 transition-all duration-300 overflow-hidden flex items-center">
-                  <svg
-                    className="w-3 h-3 flex-shrink-0"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                    />
-                  </svg>
+                  <DownloadIcon />
                 </div>
               </span>
             </a>{" "}
@@ -470,86 +426,12 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                     }}
                   >
                     <span className="pointer-events-none">Resume</span>
-                    <svg
-                      className="w-3.5 h-3.5 transition-transform duration-300 group-hover:translate-y-0.5 pointer-events-none"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
-                      <path
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                        strokeWidth={2}
-                        d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                      />
-                    </svg>
+                    <DownloadIcon />
                   </a>
                   {/* Social Media Links */}
-                  <div
-                    className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50 animate-in fade-in-50 slide-in-from-bottom-3 fill-mode-both"
-                    style={{
-                      animationDelay: `${400 + links.length * 100}ms`,
-                      animationDuration: "500ms",
-                    }}
-                  >
-                    <p className="text-xs text-gray-600 dark:text-gray-400 mb-2.5 text-center">
-                      Connect with me
-                    </p>
-                    <div className="flex justify-center gap-3">
-                      {[
-                        {
-                          href: "https://github.com/AhmedAyman4",
-                          icon: FaGithub,
-                          label: "GitHub",
-                        },
-                        {
-                          href: "https://www.linkedin.com/in/ahmed-alhofy/",
-                          icon: FaLinkedin,
-                          label: "LinkedIn",
-                        },
-                        {
-                          href: "mailto:ahmedalhofy42@gmail.com",
-                          icon: MdEmail,
-                          label: "Email",
-                        },
-                        {
-                          href: "https://www.instagram.com/ahmedhofi_/",
-                          icon: FaInstagram,
-                          label: "Instagram",
-                        },
-                        {
-                          href: "https://www.credly.com/users/ahmedayman",
-                          icon: AiFillSafetyCertificate,
-                          label: "Credly",
-                        },
-                      ].map((social, index) => {
-                        const IconComponent = social.icon;
-                        return (
-                          <a
-                            key={social.href}
-                            href={social.href}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            onClick={(e) => {
-                              e.stopPropagation();
-                              // Close mobile menu when social link is clicked
-                              setIsMobileMenuOpen(false);
-                            }}
-                            className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15 animate-in fade-in-0 zoom-in-50 fill-mode-both cursor-pointer"
-                            aria-label={social.label}
-                            style={{
-                              animationDelay: `${
-                                500 + links.length * 100 + index * 75
-                              }ms`,
-                              animationDuration: "300ms",
-                            }}
-                          >
-                            <IconComponent className="h-4 w-4 transition-transform duration-300 hover:rotate-12 pointer-events-none" />
-                          </a>
-                        );
-                      })}
-                    </div>
-                  </div>
+                  <MobileSocialLinks
+                    onLinkClick={() => setIsMobileMenuOpen(false)}
+                  />
                   <div
                     className="mt-3 animate-in fade-in-50 slide-in-from-bottom-3 fill-mode-both"
                     style={{
@@ -565,161 +447,162 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
           </div>
         </div>
       </div>{" "}
-      {/* Custom CSS for additional animations and pill styling */}
-      <style jsx>{`
-        @keyframes navFloat {
-          0%,
-          100% {
-            transform: translateY(0px);
-          }
-          50% {
-            transform: translateY(-1px);
-          }
-        }
-
-        @keyframes shimmer {
-          0% {
-            background-position: -200% 0;
-          }
-          100% {
-            background-position: 200% 0;
-          }
-        }
-
-        @keyframes pillGlow {
-          0%,
-          100% {
-            box-shadow: 0 0 15px rgba(77, 233, 210, 0.08);
-          }
-          50% {
-            box-shadow: 0 0 20px rgba(77, 233, 210, 0.12);
-          }
-        }
-
-        .navbar-container:hover {
-          animation: navFloat 4s ease-in-out infinite;
-        }
-
-        .navbar-container .bg-background\/70 {
-          backdrop-filter: blur(16px);
-          -webkit-backdrop-filter: blur(16px);
-        }
-
-        .navbar-container .bg-background\/70:hover {
-          animation: pillGlow 3s ease-in-out infinite;
-        }
-
-        .shimmer-effect {
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(255, 255, 255, 0.15),
-            transparent
-          );
-          background-size: 200% 100%;
-          animation: shimmer 2s infinite;
-        }
-
-        /* Enhanced pill button effects */
-        .pill-nav-item {
-          position: relative;
-          overflow: hidden;
-        }
-
-        .pill-nav-item::before {
-          content: "";
-          position: absolute;
-          top: 0;
-          left: -100%;
-          width: 100%;
-          height: 100%;
-          background: linear-gradient(
-            90deg,
-            transparent,
-            rgba(77, 233, 210, 0.08),
-            transparent
-          );
-          transition: left 0.4s;
-        }
-
-        .pill-nav-item:hover::before {
-          left: 100%;
-        }
-
-        /* Refined mobile menu animations */
-        .mobile-menu-item {
-          animation: slideInRight 0.4s ease-out forwards;
-          opacity: 0;
-          transform: translateX(20px);
-        }
-
-        @keyframes slideInRight {
-          to {
-            opacity: 1;
-            transform: translateX(0);
-          }
-        }
-
-        /* Enhanced mobile menu entrance */
-        @keyframes slideInFromRight {
-          from {
-            transform: translateX(100%);
-            opacity: 0;
-          }
-          to {
-            transform: translateX(0);
-            opacity: 1;
-          }
-        }
-
-        @keyframes fadeInUp {
-          from {
-            opacity: 0;
-            transform: translateY(20px);
-          }
-          to {
-            opacity: 1;
-            transform: translateY(0);
-          }
-        }
-
-        @keyframes scaleIn {
-          from {
-            opacity: 0;
-            transform: scale(0.8);
-          }
-          to {
-            opacity: 1;
-            transform: scale(1);
-          }
-        }
-
-        /* Smooth backdrop animation */
-        .mobile-menu-backdrop {
-          animation: fadeIn 0.3s ease-out;
-        }
-
-        @keyframes fadeIn {
-          from {
-            opacity: 0;
-          }
-          to {
-            opacity: 1;
-          }
-        } /* Responsive adjustments */
-        @media (max-width: 768px) {
-          .navbar-container .hidden.md\\:flex {
-            display: none !important;
-          }
-        }
-
-        /* Slick hover transitions */
-        .group:hover .transition-all {
-          transition-duration: 0.2s;
-        }
-      `}</style>
+      {/* Custom CSS Styles */}
+      <NavbarStyles />
     </div>
   );
 };
+
+// Navbar Styles Component
+const NavbarStyles = () => (
+  <style jsx>{`
+    @keyframes navFloat {
+      0%,
+      100% {
+        transform: translateY(0px);
+      }
+      50% {
+        transform: translateY(-1px);
+      }
+    }
+
+    @keyframes shimmer {
+      0% {
+        background-position: -200% 0;
+      }
+      100% {
+        background-position: 200% 0;
+      }
+    }
+
+    @keyframes pillGlow {
+      0%,
+      100% {
+        box-shadow: 0 0 15px rgba(77, 233, 210, 0.08);
+      }
+      50% {
+        box-shadow: 0 0 20px rgba(77, 233, 210, 0.12);
+      }
+    }
+
+    .navbar-container:hover {
+      animation: navFloat 4s ease-in-out infinite;
+    }
+
+    .navbar-container .bg-background\/70 {
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+    }
+
+    .navbar-container .bg-background\/70:hover {
+      animation: pillGlow 3s ease-in-out infinite;
+    }
+
+    .shimmer-effect {
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(255, 255, 255, 0.15),
+        transparent
+      );
+      background-size: 200% 100%;
+      animation: shimmer 2s infinite;
+    }
+
+    .pill-nav-item {
+      position: relative;
+      overflow: hidden;
+    }
+
+    .pill-nav-item::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: -100%;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(
+        90deg,
+        transparent,
+        rgba(77, 233, 210, 0.08),
+        transparent
+      );
+      transition: left 0.4s;
+    }
+
+    .pill-nav-item:hover::before {
+      left: 100%;
+    }
+
+    .mobile-menu-item {
+      animation: slideInRight 0.4s ease-out forwards;
+      opacity: 0;
+      transform: translateX(20px);
+    }
+
+    @keyframes slideInRight {
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    @keyframes slideInFromRight {
+      from {
+        transform: translateX(100%);
+        opacity: 0;
+      }
+      to {
+        transform: translateX(0);
+        opacity: 1;
+      }
+    }
+
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes scaleIn {
+      from {
+        opacity: 0;
+        transform: scale(0.8);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1);
+      }
+    }
+
+    .mobile-menu-backdrop {
+      animation: fadeIn 0.3s ease-out;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+      }
+      to {
+        opacity: 1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      .navbar-container .hidden.md\\:flex {
+        display: none !important;
+      }
+    }
+
+    .group:hover .transition-all {
+      transition-duration: 0.2s;
+    }
+  `}</style>
+);
 
 export default Navbar;

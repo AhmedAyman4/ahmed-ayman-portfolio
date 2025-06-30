@@ -1,22 +1,30 @@
 "use client";
 
+// React imports
 import { useEffect, useRef } from "react";
+
+// Third-party imports
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
+// Register GSAP plugins
 gsap.registerPlugin(ScrollTrigger);
 
+// Component interfaces
 interface SectionSeparatorProps {
   variant?: "gradient" | "dots" | "wave" | "geometric";
   className?: string;
 }
 
+// Main SectionSeparator component
 export function SectionSeparator({
   variant = "gradient",
   className = "",
 }: SectionSeparatorProps) {
+  // Refs
   const separatorRef = useRef<HTMLDivElement>(null);
 
+  // Animation setup
   useEffect(() => {
     const element = separatorRef.current;
     if (!element) return;
@@ -43,71 +51,80 @@ export function SectionSeparator({
     );
   }, []);
 
+  // Separator variant renderers
+  const renderGradientSeparator = () => (
+    <div className="relative w-full h-px overflow-hidden">
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></div>
+      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent to-transparent opacity-40 animate-pulse"></div>
+    </div>
+  );
+
+  const renderDotsSeparator = () => (
+    <div className="flex justify-center items-center space-x-2">
+      <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+      <div className="w-3 h-3 rounded-full bg-accent"></div>
+      <div className="w-4 h-4 rounded-full bg-gradient-to-r from-primary to-accent"></div>
+      <div className="w-3 h-3 rounded-full bg-accent"></div>
+      <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+    </div>
+  );
+
+  const renderWaveSeparator = () => (
+    <div className="relative w-full h-6 overflow-hidden">
+      <svg
+        viewBox="0 0 1200 120"
+        preserveAspectRatio="none"
+        className="absolute top-0 left-0 w-full h-full"
+      >
+        <path
+          d="M0,60 Q300,0 600,60 T1200,60 V120 H0 Z"
+          fill="currentColor"
+          className="text-primary/20"
+        />
+        <path
+          d="M0,80 Q300,20 600,80 T1200,80 V120 H0 Z"
+          fill="currentColor"
+          className="text-accent/30"
+        />
+      </svg>
+    </div>
+  );
+
+  const renderGeometricSeparator = () => (
+    <div className="flex justify-center items-center">
+      <div className="flex items-center space-x-4">
+        <div className="w-8 h-px bg-gradient-to-r from-transparent to-primary"></div>
+        <div className="w-3 h-3 border-2 border-primary rotate-45 bg-transparent"></div>
+        <div className="w-6 h-6 border-2 border-accent rounded-full bg-transparent flex items-center justify-center">
+          <div className="w-2 h-2 bg-accent rounded-full"></div>
+        </div>
+        <div className="w-3 h-3 border-2 border-primary rotate-45 bg-transparent"></div>
+        <div className="w-8 h-px bg-gradient-to-l from-transparent to-primary"></div>
+      </div>
+    </div>
+  );
+
+  const renderDefaultSeparator = () => (
+    <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+  );
+
+  // Main render method for separator variants
   const renderSeparator = () => {
     switch (variant) {
       case "gradient":
-        return (
-          <div className="relative w-full h-px overflow-hidden">
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-primary to-transparent opacity-60"></div>
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-accent to-transparent opacity-40 animate-pulse"></div>
-          </div>
-        );
-
+        return renderGradientSeparator();
       case "dots":
-        return (
-          <div className="flex justify-center items-center space-x-2">
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-            <div className="w-3 h-3 rounded-full bg-accent"></div>
-            <div className="w-4 h-4 rounded-full bg-gradient-to-r from-primary to-accent"></div>
-            <div className="w-3 h-3 rounded-full bg-accent"></div>
-            <div className="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
-          </div>
-        );
-
+        return renderDotsSeparator();
       case "wave":
-        return (
-          <div className="relative w-full h-6 overflow-hidden">
-            <svg
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-              className="absolute top-0 left-0 w-full h-full"
-            >
-              <path
-                d="M0,60 Q300,0 600,60 T1200,60 V120 H0 Z"
-                fill="currentColor"
-                className="text-primary/20"
-              />
-              <path
-                d="M0,80 Q300,20 600,80 T1200,80 V120 H0 Z"
-                fill="currentColor"
-                className="text-accent/30"
-              />
-            </svg>
-          </div>
-        );
-
+        return renderWaveSeparator();
       case "geometric":
-        return (
-          <div className="flex justify-center items-center">
-            <div className="flex items-center space-x-4">
-              <div className="w-8 h-px bg-gradient-to-r from-transparent to-primary"></div>
-              <div className="w-3 h-3 border-2 border-primary rotate-45 bg-transparent"></div>
-              <div className="w-6 h-6 border-2 border-accent rounded-full bg-transparent flex items-center justify-center">
-                <div className="w-2 h-2 bg-accent rounded-full"></div>
-              </div>
-              <div className="w-3 h-3 border-2 border-primary rotate-45 bg-transparent"></div>
-              <div className="w-8 h-px bg-gradient-to-l from-transparent to-primary"></div>
-            </div>
-          </div>
-        );
-
+        return renderGeometricSeparator();
       default:
-        return (
-          <div className="w-full h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
-        );
+        return renderDefaultSeparator();
     }
   };
 
+  // Render
   return (
     <div
       ref={separatorRef}
@@ -120,13 +137,15 @@ export function SectionSeparator({
 
 // Enhanced separator with floating particles
 export function AnimatedSeparator({ className = "" }: { className?: string }) {
+  // Refs
   const containerRef = useRef<HTMLDivElement>(null);
 
+  // Animation setup
   useEffect(() => {
     const container = containerRef.current;
     if (!container) return;
 
-    // Create floating particles
+    // Create floating particles animation
     const particles = container.querySelectorAll(".particle");
 
     particles.forEach((particle, index) => {
@@ -157,6 +176,7 @@ export function AnimatedSeparator({ className = "" }: { className?: string }) {
     );
   }, []);
 
+  // Render
   return (
     <div
       ref={containerRef}

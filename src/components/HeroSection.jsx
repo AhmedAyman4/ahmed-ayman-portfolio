@@ -1,22 +1,33 @@
 // HeroSection.jsx
 "use client";
 
+// React imports
+import { useState, useEffect } from "react";
+
+// Next.js imports
 import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
-import { useState, useEffect } from "react";
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa"; // Font Awesome icons
-import { MdEmail, MdOutlineVerified } from "react-icons/md"; // Material Design icons
+
+// Icon imports
+import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
+import { MdEmail, MdOutlineVerified } from "react-icons/md";
 import { PiCertificateDuotone } from "react-icons/pi";
 import { TbCertificate } from "react-icons/tb";
 import { AiFillSafetyCertificate } from "react-icons/ai";
+
+// Component imports
 import { TypingEffect } from "@/components/typing-effect";
 import FractalTree from "@/components/FractalTree";
 
+// Font configuration
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
+// Component definition
 export function HeroSection({ profileImage, introComplete = false }) {
+  // State management
   const [startTyping, setStartTyping] = useState(false);
 
+  // Effects
   useEffect(() => {
     if (introComplete) {
       // Start typing immediately when intro is complete
@@ -27,9 +38,12 @@ export function HeroSection({ profileImage, introComplete = false }) {
       return () => clearTimeout(timer);
     }
   }, [introComplete]);
+
+  // Render
   return (
     <section id="hero" className="text-center mb-24 fade-in-section relative">
       <div className="relative z-10">
+        {/* Profile Image Section */}
         <div className="profile-container relative mx-auto mb-4 w-[150px] h-[150px] group">
           {/* Static gradient border - exact fit around image */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4de9d2] via-blue-500 to-purple-600 p-[3px]">
@@ -48,7 +62,8 @@ export function HeroSection({ profileImage, introComplete = false }) {
           {/* Pulse effect overlay - appears only on hover */}
           <div className="absolute inset-[-6px] rounded-full border-2 border-[#4de9d2] opacity-0 group-hover:opacity-30 group-hover:animate-ping transition-opacity duration-300"></div>
         </div>
-        {/* Title */}
+
+        {/* Title Section */}
         <h1
           className={`flex items-center justify-center text-6xl font-light ${patrickHand.className}`}
         >
@@ -77,6 +92,7 @@ export function HeroSection({ profileImage, introComplete = false }) {
             />
           )}
         </h1>
+
         {/* Subtitle */}
         <p className="mt-2 text-4xl font-light dark:text-gray-300 text-black">
           I create stuff sometimes.
@@ -90,14 +106,14 @@ export function HeroSection({ profileImage, introComplete = false }) {
           AI.
         </p>
 
-        {/* FractalTree */}
+        {/* FractalTree Component */}
         <div className="mt-0 flex justify-center">
           <div className="w-32 h-32">
             <FractalTree />
           </div>
-          {/* FractalTree */}
         </div>
-        {/* Say Hi Button */}
+
+        {/* Contact Button */}
         <a
           href="mailto:ahmedalhofy42@gmail.com"
           className="mt-6 inline-flex items-center px-6 py-3 border-2 border-[#4de9d2] text-black font-medium rounded-full shadow-sm bg-[#b3f2eb] hover:bg-[#4de9d2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4de9d2]"
