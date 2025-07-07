@@ -149,20 +149,20 @@ const CarouselItem = ({
     {/* Navigation arrows inside the carousel item */}
     <Button
       variant="ghost"
-      size="icon"
-      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 hover:border-white/50 opacity-0 group-hover:opacity-100 transition-all duration-300"
+      size="sm"
+      className="absolute left-3 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 text-gray-800 dark:text-white hover:bg-white/90 dark:hover:bg-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8 p-0 rounded-full"
       onClick={onPrev}
     >
-      <ChevronLeft className="h-6 w-6" />
+      <ChevronLeft className="h-4 w-4" />
       <span className="sr-only">Previous</span>
     </Button>
     <Button
       variant="ghost"
-      size="icon"
-      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 hover:border-white/50 opacity-0 group-hover:opacity-100 transition-all duration-300"
+      size="sm"
+      className="absolute right-3 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 text-gray-800 dark:text-white hover:bg-white/90 dark:hover:bg-black/90 opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8 p-0 rounded-full"
       onClick={onNext}
     >
-      <ChevronRight className="h-6 w-6" />
+      <ChevronRight className="h-4 w-4" />
       <span className="sr-only">Next</span>
     </Button>
 
