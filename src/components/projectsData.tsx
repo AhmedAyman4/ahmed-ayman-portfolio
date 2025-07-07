@@ -39,15 +39,15 @@ export const spotlightProjects: Project[] = [
     demoLink: "https://ahmedayman4.github.io/Personal-website/",
     repoLink: "https://github.com/AhmedAyman4/Personal-website",
   },
-  {
-    title: "Movie Library",
-    description:
-      "A React-based movie library application that enables users to search for movies, view trending titles, and explore detailed information.",
-    tech: ["React", "Vite", "TailwindCSS", "Appwrite", "TMDb API"],
-    image: "/images/movieLibrary.png",
-    demoLink: "https://movie-library-blush.vercel.app/",
-    repoLink: "https://github.com/AhmedAyman4/movie-library",
-  },
+  // {
+  //   title: "Movie Library",
+  //   description:
+  //     "A React-based movie library application that enables users to search for movies, view trending titles, and explore detailed information.",
+  //   tech: ["React", "Vite", "TailwindCSS", "Appwrite", "TMDb API"],
+  //   image: "/images/movieLibrary.png",
+  //   demoLink: "https://movie-library-blush.vercel.app/",
+  //   repoLink: "https://github.com/AhmedAyman4/movie-library",
+  // },
   {
     title: "Movie Review Sentiment Analysis ",
     description:
