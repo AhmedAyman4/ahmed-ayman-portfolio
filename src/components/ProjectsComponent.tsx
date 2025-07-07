@@ -76,18 +76,18 @@ const TechBadges = ({
       : 0;
 
   return (
-    <div className={`flex flex-wrap gap-2 ${className}`}>
+    <div className={`flex flex-wrap gap-1.5 ${className}`}>
       {visibleTech.map((tech, index) => (
         <span
           key={tech}
-          className="relative px-3 py-1 text-xs font-medium bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-700 dark:text-gray-300 rounded-full border border-gray-200/50 dark:border-gray-600/50 transition-all duration-300 hover:from-primary/10 hover:to-purple-500/10 hover:border-primary/30 hover:text-primary hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5"
+          className="relative px-2 py-0.5 text-[10px] font-medium bg-gradient-to-r from-gray-100 to-gray-200 dark:from-gray-800 dark:to-gray-700 text-gray-700 dark:text-gray-300 rounded-full border border-gray-200/50 dark:border-gray-600/50 transition-all duration-300 hover:from-primary/10 hover:to-purple-500/10 hover:border-primary/30 hover:text-primary hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5"
           style={{ animationDelay: `${index * animationDelay}ms` }}
         >
           {tech}
         </span>
       ))}
       {remainingCount > 0 && (
-        <span className="relative px-3 py-1 text-xs font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/40">
+        <span className="relative px-2 py-0.5 text-[10px] font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/40">
           +{remainingCount}
         </span>
       )}
@@ -131,12 +131,40 @@ const ProjectIconLinks = ({ project }: { project: Project }) => {
 /**
  * Carousel item component for spotlight projects
  */
-const CarouselItem = ({ project }: { project: Project }) => (
-  <div className="group relative rounded-2xl overflow-hidden max-w-8xl mx-auto shadow-2xl transition-all duration-700 hover:shadow-3xl hover:shadow-primary/20 hover:scale-[1.01]">
+const CarouselItem = ({
+  project,
+  onPrev,
+  onNext,
+}: {
+  project: Project;
+  onPrev: () => void;
+  onNext: () => void;
+}) => (
+  <div className="group relative rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-2xl transition-all duration-700 hover:shadow-3xl hover:shadow-primary/20 hover:scale-[1.02]">
     {/* Animated gradient border */}
     <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-purple-500 to-blue-500 p-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-700">
       <div className="h-full w-full rounded-2xl bg-black" />
     </div>
+
+    {/* Navigation arrows inside the carousel item */}
+    <Button
+      variant="ghost"
+      size="icon"
+      className="absolute left-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 hover:border-white/50 opacity-0 group-hover:opacity-100 transition-all duration-300"
+      onClick={onPrev}
+    >
+      <ChevronLeft className="h-6 w-6" />
+      <span className="sr-only">Previous</span>
+    </Button>
+    <Button
+      variant="ghost"
+      size="icon"
+      className="absolute right-4 top-1/2 -translate-y-1/2 z-10 bg-white/20 backdrop-blur-sm border border-white/30 text-white hover:bg-white/30 hover:border-white/50 opacity-0 group-hover:opacity-100 transition-all duration-300"
+      onClick={onNext}
+    >
+      <ChevronRight className="h-6 w-6" />
+      <span className="sr-only">Next</span>
+    </Button>
 
     {/* Main image container */}
     <div className="relative overflow-hidden rounded-2xl">
@@ -145,7 +173,7 @@ const CarouselItem = ({ project }: { project: Project }) => (
         alt={project.title}
         width={1200}
         height={800}
-        className="object-cover w-full transition-transform duration-700 group-hover:scale-105"
+        className="object-cover w-full"
       />
 
       {/* Enhanced gradient overlay */}
@@ -180,43 +208,43 @@ const CarouselItem = ({ project }: { project: Project }) => (
  * Content overlay for carousel items
  */
 const CarouselItemContent = ({ project }: { project: Project }) => (
-  <div className="absolute bottom-0 left-0 right-0 text-white flex flex-col items-center text-center px-6 pb-10 pt-16">
+  <div className="absolute bottom-0 left-0 right-0 text-white flex flex-col items-center text-center px-4 pb-6 pt-12">
     {/* Title with gradient text effect */}
-    <h3 className="text-2xl font-bold mb-3 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent group-hover:from-primary group-hover:via-purple-300 group-hover:to-blue-300 transition-all duration-500 transform group-hover:scale-105">
+    <h3 className="text-xl font-bold mb-2 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent group-hover:from-primary group-hover:via-purple-300 group-hover:to-blue-300 transition-all duration-500 transform group-hover:scale-105">
       {project.title}
     </h3>
 
     {/* Description with backdrop blur */}
     <div className="relative">
       <div className="absolute inset-0 bg-white/10 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      <p className="relative text-sm leading-relaxed hidden md:block max-w-2xl mx-auto text-gray-200 group-hover:text-white transition-colors duration-300 px-4 py-2">
+      <p className="relative text-xs leading-relaxed hidden md:block max-w-xl mx-auto text-gray-200 group-hover:text-white transition-colors duration-300 px-3 py-1.5">
         {project.description}
       </p>
     </div>
 
     {/* Tech badges */}
-    <div className="flex mt-4 space-x-2 flex-wrap justify-center">
+    <div className="flex mt-3 space-x-1.5 flex-wrap justify-center">
       {project.tech.slice(0, 3).map((tech, index) => (
         <div
           key={tech}
-          className="relative px-3 py-1.5 text-xs font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30 transition-all duration-300 hover:bg-primary/30 hover:border-primary/50 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 mb-2"
+          className="relative px-2.5 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30 transition-all duration-300 hover:bg-primary/30 hover:border-primary/50 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 mb-1.5"
           style={{ animationDelay: `${index * 100}ms` }}
         >
           {tech}
         </div>
       ))}
       {project.tech.length > 3 && (
-        <div className="relative px-3 py-1.5 text-xs font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/40 mb-2">
+        <div className="relative px-2.5 py-1 text-xs font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 transition-all duration-300 hover:bg-white/20 hover:border-white/40 mb-1.5">
           +{project.tech.length - 3}
         </div>
       )}
     </div>
 
     {/* Action buttons */}
-    <div className="mt-5 flex space-x-3">
+    <div className="mt-3 flex space-x-2">
       <ProjectActionLink
         href={project.demoLink}
-        className="relative group/btn px-6 py-2.5 text-sm font-medium bg-white/20 backdrop-blur-sm text-white rounded-lg border border-white/30 transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 hover:scale-105"
+        className="relative group/btn px-4 py-2 text-xs font-medium bg-white/20 backdrop-blur-sm text-white rounded-lg border border-white/30 transition-all duration-300 hover:bg-primary/20 hover:border-primary/50 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5 hover:scale-105"
       >
         <span className="relative z-10">Live Demo</span>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/0 to-primary/20 rounded-lg opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
@@ -224,7 +252,7 @@ const CarouselItemContent = ({ project }: { project: Project }) => (
 
       <ProjectActionLink
         href={project.repoLink}
-        className="relative group/btn px-6 py-2.5 text-sm font-medium bg-primary/30 backdrop-blur-sm text-white rounded-lg border border-primary/50 transition-all duration-300 hover:bg-primary/50 hover:border-primary/70 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 hover:scale-105"
+        className="relative group/btn px-4 py-2 text-xs font-medium bg-primary/30 backdrop-blur-sm text-white rounded-lg border border-primary/50 transition-all duration-300 hover:bg-primary/50 hover:border-primary/70 hover:shadow-lg hover:shadow-primary/30 hover:-translate-y-0.5 hover:scale-105"
       >
         <span className="relative z-10">Code Repo</span>
         <div className="absolute inset-0 bg-gradient-to-r from-primary/20 to-purple-500/20 rounded-lg opacity-0 group-hover/btn:opacity-100 transition-opacity duration-300" />
@@ -383,10 +411,9 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
   return (
     <div className="relative mb-16 hidden md:block">
       <div ref={ref}>
-        <CarouselItem project={projects[index]} />
+        <CarouselItem project={projects[index]} onPrev={prev} onNext={next} />
       </div>
 
-      <CarouselNavigation onPrev={prev} onNext={next} />
       <CarouselIndicators
         projects={projects}
         currentIndex={index}
@@ -395,38 +422,6 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
     </div>
   );
 };
-
-/**
- * Navigation buttons for the carousel
- */
-const CarouselNavigation = ({
-  onPrev,
-  onNext,
-}: {
-  onPrev: () => void;
-  onNext: () => void;
-}) => (
-  <>
-    <Button
-      variant="ghost"
-      size="icon"
-      className="absolute left-2 top-1/2 -translate-y-1/2"
-      onClick={onPrev}
-    >
-      <ChevronLeft className="h-6 w-6" />
-      <span className="sr-only">Previous</span>
-    </Button>
-    <Button
-      variant="ghost"
-      size="icon"
-      className="absolute right-2 top-1/2 -translate-y-1/2"
-      onClick={onNext}
-    >
-      <ChevronRight className="h-6 w-6" />
-      <span className="sr-only">Next</span>
-    </Button>
-  </>
-);
 
 /**
  * Indicator dots for carousel navigation
@@ -508,16 +503,18 @@ const ProjectsHeader = () => (
  * Grid layout for other projects
  */
 const ProjectsGrid = ({ projects }: { projects: Project[] }) => (
-  <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    {projects.map((project, i) => (
-      <div
-        key={i}
-        className="fade-in-section"
-        style={{ animationDelay: `${(i + 1) * 100}ms` }}
-      >
-        <ProjectCard project={project} />
-      </div>
-    ))}
+  <div className="max-w-5xl mx-auto">
+    <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+      {projects.map((project, i) => (
+        <div
+          key={i}
+          className="fade-in-section"
+          style={{ animationDelay: `${(i + 1) * 100}ms` }}
+        >
+          <ProjectCard project={project} />
+        </div>
+      ))}
+    </div>
   </div>
 );
 

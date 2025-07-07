@@ -128,7 +128,7 @@ export function SectionSeparator({
   return (
     <div
       ref={separatorRef}
-      className={`my-12 md:my-16 lg:my-20 flex justify-center items-center ${className}`}
+      className={`my-12 md:my-16 lg:my-20 flex justify-center items-center max-w-5xl mx-auto ${className}`}
     >
       {renderSeparator()}
     </div>
@@ -180,7 +180,7 @@ export function AnimatedSeparator({ className = "" }: { className?: string }) {
   return (
     <div
       ref={containerRef}
-      className={`relative my-12 md:my-16 lg:my-20 h-8 flex justify-center items-center ${className}`}
+      className={`relative my-12 md:my-16 lg:my-20 h-8 flex justify-center items-center max-w-5xl mx-auto ${className}`}
     >
       {/* Main gradient line */}
       <div className="main-line w-full max-w-md h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
