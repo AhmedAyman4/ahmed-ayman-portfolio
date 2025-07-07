@@ -241,11 +241,9 @@ const CarouselItemContent = ({ project }: { project: Project }) => (
  * Individual project card for the grid layout
  */
 const ProjectCard = ({ project }: { project: Project }) => (
-  <div className="group relative h-96 overflow-hidden">
-    {/* Animated gradient border */}
-    <div className="absolute inset-0 rounded-xl bg-gradient-to-r from-primary via-purple-500 to-blue-500 p-[1px] opacity-0 group-hover:opacity-100 transition-opacity duration-500">
-      <div className="h-full w-full rounded-xl bg-white dark:bg-gray-900" />
-    </div>
+  <div className="group relative h-96 pb-4">
+    {/* Hover underline effect */}
+    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:w-20 transition-all duration-500 ease-out"></div>
 
     {/* Main card content */}
     <ProjectCardContent project={project} />
@@ -259,12 +257,12 @@ const ProjectCard = ({ project }: { project: Project }) => (
  * Main content of the project card
  */
 const ProjectCardContent = ({ project }: { project: Project }) => (
-  <div className="relative h-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 hover:scale-[1.02] p-6 flex flex-col group-hover:bg-white/80 dark:group-hover:bg-gray-900/80">
+  <div className="relative h-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 hover:scale-[1.02] p-6 flex flex-col group-hover:bg-white/80 dark:group-hover:bg-gray-900/80 overflow-hidden">
     {/* Header with icon and links */}
     <ProjectCardHeader project={project} />
 
     {/* Project title */}
-    <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent group-hover:from-primary group-hover:via-purple-600 group-hover:to-blue-600 transition-all duration-500">
+    <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent">
       {project.title}
     </h3>
 
