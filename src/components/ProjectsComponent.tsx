@@ -140,7 +140,7 @@ const CarouselItem = ({
   onPrev: () => void;
   onNext: () => void;
 }) => (
-  <div className="group relative rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-2xl transition-all duration-700 hover:shadow-3xl hover:shadow-primary/20 hover:scale-[1.02]">
+  <div className="group relative rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-2xl transition-all duration-700 hover:shadow-3xl hover:shadow-primary/20 hover:scale-[1.02] transform-gpu will-change-transform animate-slide-in">
     {/* Animated gradient border */}
     <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-purple-500 to-blue-500 p-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-700">
       <div className="h-full w-full rounded-2xl bg-black" />
@@ -195,6 +195,25 @@ const CarouselItem = ({
           transform: translateY(-3px) scale(1.005);
           box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
+      }
+
+      @keyframes slideIn {
+        0% {
+          opacity: 0;
+          transform: translateX(-100px) scale(0.95);
+        }
+        50% {
+          opacity: 0.7;
+          transform: translateX(-20px) scale(0.98);
+        }
+        100% {
+          opacity: 1;
+          transform: translateX(0px) scale(1);
+        }
+      }
+
+      .animate-slide-in {
+        animation: slideIn 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
       }
 
       .group:hover {
@@ -374,13 +393,55 @@ const ProjectCardStyles = () => (
 const Carousel = ({ projects }: { projects: Project[] }) => {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isTransitioning, setIsTransitioning] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
   // Navigation handlers
-  const goTo = useCallback((newIndex: number, dir: number) => {
-    setDirection(dir);
-    setIndex(newIndex);
-  }, []);
+  const goTo = useCallback(
+    (newIndex: number, dir: number) => {
+      if (isTransitioning) return;
+
+      setIsTransitioning(true);
+      setDirection(dir);
+
+      if (ref.current) {
+        // Apply exit animation
+        gsap.to(ref.current, {
+          opacity: 0,
+          x: dir === 1 ? -100 : dir === -1 ? 100 : 0,
+          scale: 0.95,
+          duration: 0.3,
+          ease: "power2.in",
+          onComplete: () => {
+            setIndex(newIndex);
+            // Apply enter animation
+            gsap.fromTo(
+              ref.current,
+              {
+                opacity: 0,
+                x: dir === 1 ? 100 : dir === -1 ? -100 : 0,
+                scale: 0.95,
+              },
+              {
+                opacity: 1,
+                x: 0,
+                scale: 1,
+                duration: 0.6,
+                ease: "power2.out",
+                onComplete: () => {
+                  setIsTransitioning(false);
+                },
+              }
+            );
+          },
+        });
+      } else {
+        setIndex(newIndex);
+        setIsTransitioning(false);
+      }
+    },
+    [isTransitioning]
+  );
 
   const next = useCallback(() => {
     goTo((index + 1) % projects.length, 1);
@@ -390,27 +451,28 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
     goTo((index - 1 + projects.length) % projects.length, -1);
   }, [index, projects.length, goTo]);
 
-  // Animation effect
+  // Initial animation effect
   useEffect(() => {
-    if (ref.current) {
-      const fromX = direction === 1 ? 100 : direction === -1 ? -100 : 0;
+    if (ref.current && !isTransitioning) {
       gsap.fromTo(
         ref.current,
-        { opacity: 0, x: fromX },
-        { opacity: 1, x: 0, duration: 1.5, ease: "power2.out" }
+        { opacity: 0, scale: 0.95 },
+        { opacity: 1, scale: 1, duration: 0.8, ease: "power2.out" }
       );
     }
-  }, [index, direction]);
+  }, []);
 
   // Auto-play functionality
   useEffect(() => {
+    if (isTransitioning) return;
+
     const interval = setInterval(() => next(), 20000);
     return () => clearInterval(interval);
-  }, [next]);
+  }, [next, isTransitioning]);
 
   return (
     <div className="relative mb-16 hidden md:block">
-      <div ref={ref}>
+      <div ref={ref} className="transition-transform duration-500 ease-out">
         <CarouselItem project={projects[index]} onPrev={prev} onNext={next} />
       </div>
 
