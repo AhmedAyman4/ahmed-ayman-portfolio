@@ -76,7 +76,7 @@ export function SkillsSection() {
     <div id="skills" ref={skillsRef}>
       <h2
         ref={titleRef}
-        className="text-3xl font-semibold text-primary mb-8 text-center dark:text-[hsl(215,100%,90%)]"
+        className="text-3xl font-semibold text-primary mb-6 text-center dark:text-[hsl(215,100%,90%)]"
       >
         Skills
       </h2>

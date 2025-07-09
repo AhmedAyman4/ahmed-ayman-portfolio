@@ -71,7 +71,7 @@ export default function Home() {
             { href: "#contact", label: "Contact" },
           ]}
         />
-        <main className="container mx-auto py-10 flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
+        <main className="container mx-auto py-6 flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
           {" "}
           {/* Hero Section */}{" "}
           <div
@@ -97,7 +97,7 @@ export default function Home() {
           <AnimatedSeparator /> {/* Experience Timeline */}
           <section
             id="experience"
-            className="mb-16 fade-in-section"
+            className="mb-8 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
@@ -108,7 +108,7 @@ export default function Home() {
           <SectionSeparator variant="wave" /> {/* Skills Section */}
           <section
             id="skills"
-            className="mb-16 fade-in-section"
+            className="mb-8 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
@@ -119,7 +119,7 @@ export default function Home() {
           <SectionSeparator variant="dots" /> {/* Contact Section */}
           <section
             id="contact"
-            className="mb-16 fade-in-section"
+            className="mb-8 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}

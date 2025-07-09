@@ -69,7 +69,7 @@ export function ExperienceTimeline() {
       </div>
 
       {/* Title */}
-      <div className="text-center mb-16">
+      <div className="text-center mb-10">
         <h2 className="text-3xl font-semibold text-primary mb-4 dark:text-[hsl(215,100%,90%)]">
           Experience
         </h2>
