@@ -100,10 +100,10 @@ export function HeroSection({ profileImage, introComplete = false }) {
 
         {/* Description */}
         <p className="mt-6 dark:text-gray-400 text-black max-w-lg mx-auto">
-          Aspiring Data & Machine Learning Scientist and Information Systems
-          student at the Faculty of Computers & AI, University of Sadat City.
-          Passionate about solving real-world problems with data and exploring
-          AI.
+          I'm an aspiring Data & ML Scientist, currently studying IS at the
+          Faculty of Computers & AI, USC. Passionate about using data to solve
+          everyday challenges and applying AI to create practical, impactful
+          solutions.
         </p>
 
         {/* FractalTree Component */}
