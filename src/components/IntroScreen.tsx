@@ -14,7 +14,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
     // Start typing animation after a brief delay
     const timer = setTimeout(() => {
       setShowTyping(true);
-    }, 300);
+    }, 200);
 
     return () => clearTimeout(timer);
   }, []);
@@ -26,8 +26,8 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
         // Complete intro after fade animation
         setTimeout(() => {
           onComplete();
-        }, 800);
-      }, 3500); // Reduced from 5500ms to 3500ms
+        }, 600);
+      }, 2800); // Moderate reduction from original 3500ms
 
       return () => clearTimeout(timer);
     }
@@ -45,7 +45,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
   ];
   return (
     <div
-      className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-all duration-1000 ${
+      className={`fixed inset-0 z-50 flex items-center justify-center bg-black transition-all duration-800 ${
         fadeOut ? "opacity-0 scale-110" : "opacity-100 scale-100"
       }`}
     >
@@ -72,7 +72,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
                 }}
               >
                 {" "}
-                <TypingEffect words={helloWords} typingSpeed={180} />
+                <TypingEffect words={helloWords} typingSpeed={150} />
               </div>
               {/* Soft glow effect */}
               <div className="absolute inset-0 text-white blur-sm opacity-30 -z-10"></div>
@@ -81,7 +81,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
         </div>{" "}
         {/* Enhanced subtitle with Apple-like simplicity */}
         <div
-          className={`text-lg md:text-xl lg:text-2xl text-gray-400 font-light tracking-wide transition-all duration-1000 delay-2000 ${
+          className={`text-lg md:text-xl lg:text-2xl text-gray-400 font-light tracking-wide transition-all duration-800 delay-1500 ${
             showTyping ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
@@ -89,7 +89,7 @@ export const IntroScreen: React.FC<IntroScreenProps> = ({ onComplete }) => {
         </div>{" "}
         {/* Simple Apple-like loading animation */}
         <div
-          className={`mt-12 flex justify-center space-x-2 transition-all duration-1000 delay-2500 ${
+          className={`mt-12 flex justify-center space-x-2 transition-all duration-800 delay-1800 ${
             showTyping ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
           }`}
         >
