@@ -285,7 +285,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
  * Main content of the project card
  */
 const ProjectCardContent = ({ project }: { project: Project }) => (
-  <div className="relative h-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-500 ease-out hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 hover:scale-[1.02] p-6 flex flex-col group-hover:bg-white/80 dark:group-hover:bg-gray-900/80 overflow-hidden select-none">
+  <div className="relative h-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-100 ease-out hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 hover:scale-[1.02] p-6 flex flex-col group-hover:bg-white/80 dark:group-hover:bg-gray-900/80 overflow-hidden select-none">
     {/* Header with icon and links */}
     <ProjectCardHeader project={project} />
 
