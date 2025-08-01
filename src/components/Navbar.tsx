@@ -27,7 +27,15 @@ import {
 } from "@/components/ui/dropdown-menu";
 
 // Icons
-import { Menu, ChevronDown } from "lucide-react";
+import {
+  Menu,
+  ChevronDown,
+  Home,
+  FolderOpen,
+  Briefcase,
+  Code,
+  Mail,
+} from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
 import { AiFillSafetyCertificate } from "react-icons/ai";
@@ -102,6 +110,24 @@ const DownloadIcon = () => (
 interface NavbarProps {
   links: { href: string; label: string }[];
 }
+
+// Function to get the appropriate icon for each navigation label
+const getNavIcon = (label: string) => {
+  switch (label.toLowerCase()) {
+    case "home":
+      return Home;
+    case "projects":
+      return FolderOpen;
+    case "experience":
+      return Briefcase;
+    case "skills":
+      return Code;
+    case "contact":
+      return Mail;
+    default:
+      return null;
+  }
+};
 
 // Social Dropdown Menu Component
 const SocialDropdown = () => (
@@ -295,21 +321,27 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
             {/* Navigation pills container */}{" "}
             <div className="flex items-center gap-0.5 bg-gray-100/40 dark:bg-gray-800/40 rounded-full px-1.5 py-1.5">
               {" "}
-              {links.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
-                  onClick={(e) => handleNavClick(e, link.href)}
-                  className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10"
-                >
-                  {" "}
-                  <span className="relative z-10 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300">
-                    {link.label}
-                  </span>
-                  {/* Subtle glow effect */}
-                  <div className="absolute inset-0 bg-gradient-to-r from-primary/8 to-purple-500/8 dark:from-[#4de9d2]/15 dark:to-[#3dd1b5]/15 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                </a>
-              ))}{" "}
+              {links.map((link) => {
+                const IconComponent = getNavIcon(link.label);
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => handleNavClick(e, link.href)}
+                    className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10"
+                  >
+                    {" "}
+                    <span className="relative z-10 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 flex items-center gap-1.5">
+                      {IconComponent && (
+                        <IconComponent className="h-3 w-3 transition-transform duration-300 group-hover:scale-110" />
+                      )}
+                      {link.label}
+                    </span>
+                    {/* Subtle glow effect */}
+                    <div className="absolute inset-0 bg-gradient-to-r from-primary/8 to-purple-500/8 dark:from-[#4de9d2]/15 dark:to-[#3dd1b5]/15 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                  </a>
+                );
+              })}{" "}
               {/* Social Links Dropdown in pill */}
               <SocialDropdown />
             </div>
@@ -386,30 +418,36 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   }}
                 >
                   {" "}
-                  {links.map((link, index) => (
-                    <div
-                      key={link.href}
-                      className="relative w-full animate-in fade-in-50 slide-in-from-right-3 fill-mode-both"
-                      style={{
-                        animationDelay: `${300 + index * 100}ms`,
-                        animationDuration: "400ms",
-                      }}
-                    >
-                      <a
-                        href={link.href}
-                        onClick={(e) => handleNavClick(e, link.href)}
-                        className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 cursor-pointer"
+                  {links.map((link, index) => {
+                    const IconComponent = getNavIcon(link.label);
+                    return (
+                      <div
+                        key={link.href}
+                        className="relative w-full animate-in fade-in-50 slide-in-from-right-3 fill-mode-both"
+                        style={{
+                          animationDelay: `${300 + index * 100}ms`,
+                          animationDuration: "400ms",
+                        }}
                       >
-                        <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 pointer-events-none">
-                          {link.label}
-                        </span>
-                        {/* Animated indicator */}
-                        <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r pointer-events-none" />
-                        {/* Slide in effect */}
-                        <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl translate-x-[-100%] group-hover:translate-x-0 pointer-events-none" />
-                      </a>
-                    </div>
-                  ))}{" "}
+                        <a
+                          href={link.href}
+                          onClick={(e) => handleNavClick(e, link.href)}
+                          className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 cursor-pointer"
+                        >
+                          <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 pointer-events-none flex items-center gap-2">
+                            {IconComponent && (
+                              <IconComponent className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />
+                            )}
+                            {link.label}
+                          </span>
+                          {/* Animated indicator */}
+                          <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r pointer-events-none" />
+                          {/* Slide in effect */}
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl translate-x-[-100%] group-hover:translate-x-0 pointer-events-none" />
+                        </a>
+                      </div>
+                    );
+                  })}{" "}
                   <a
                     href="/Ahmed_Ayman_Alhofy.pdf"
                     target="_blank"
