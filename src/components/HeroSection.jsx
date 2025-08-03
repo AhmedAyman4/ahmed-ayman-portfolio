@@ -99,7 +99,7 @@ export function HeroSection({ profileImage, introComplete = false }) {
         </p>
 
         {/* Description */}
-        <p className="mt-6 dark:text-gray-400 text-black max-w-lg mx-auto">
+        <p className="mt-2 dark:text-gray-400 text-black max-w-lg mx-auto">
           I'm an aspiring Data & ML Scientist, currently studying IS at the
           Faculty of Computers & AI, USC. Passionate about using data to solve
           everyday challenges and applying AI to create practical, impactful
