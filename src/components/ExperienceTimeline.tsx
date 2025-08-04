@@ -9,6 +9,7 @@ import {
   AccordionItem,
   AccordionTrigger,
 } from "@/components/ui/accordion";
+import { SectionHeader } from "@/components/SectionHeader";
 
 export function ExperienceTimeline() {
   const containerRef = useRef<HTMLDivElement>(null);
@@ -69,11 +70,11 @@ export function ExperienceTimeline() {
       </div>
 
       {/* Title */}
-      <div className="text-center mb-10">
-        <h2 className="text-3xl font-semibold text-primary mb-4 dark:text-[hsl(215,100%,90%)]">
-          Experience
-        </h2>
-      </div>
+      <SectionHeader
+        label="Professional Journey"
+        title="Experience"
+        subtitle="My professional experience and roles in data science and analytics"
+      />
 
       {/* Timeline container with glassmorphism */}
       <div className="relative max-w-4xl mx-auto">

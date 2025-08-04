@@ -235,9 +235,17 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
     if (href === "#") {
       window.scrollTo({ top: 0, behavior: "smooth" });
     } else {
-      const targetElement = document.querySelector(href);
+      const targetElement = document.querySelector(href) as HTMLElement;
       if (targetElement) {
-        targetElement.scrollIntoView({ behavior: "smooth", block: "start" });
+        // Get navbar height for offset calculation
+        const navbarHeight = navbarRef.current?.offsetHeight || 80;
+        const elementPosition = targetElement.offsetTop;
+        const offsetPosition = elementPosition - navbarHeight - 20; // Extra 20px padding
+
+        window.scrollTo({
+          top: offsetPosition,
+          behavior: "smooth",
+        });
       }
     }
   };

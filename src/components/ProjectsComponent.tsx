@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
+import { SectionHeader } from "@/components/SectionHeader";
 import { spotlightProjects, otherProjects, type Project } from "./projectsData";
 
 // ============================================================================
@@ -491,11 +492,11 @@ export const ProjectsComponent = () => (
  * Section header with title
  */
 const ProjectsHeader = () => (
-  <div className="section-header mb-8">
-    <h2 className="text-3xl font-semibold text-primary dark:text-[hsl(215,100%,90%)] flex items-center justify-center relative">
-      <span className="relative inline-block">Featured Projects</span>
-    </h2>
-  </div>
+  <SectionHeader
+    label="Portfolio"
+    title="Featured Projects"
+    subtitle="A showcase of my recent work in data science, machine learning, and web development"
+  />
 );
 
 /**

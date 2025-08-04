@@ -9,10 +9,12 @@ import { gsap } from "gsap";
 // Icon imports
 import { Mail, Github, Linkedin } from "lucide-react";
 
+// Component imports
+import { SectionHeader } from "@/components/SectionHeader";
+
 // Component definition
 export function ContactSection() {
   // Refs for animation targets
-  const headingRef = useRef<HTMLHeadingElement>(null);
   const paragraphRef = useRef<HTMLParagraphElement>(null);
   const emailRef = useRef<HTMLParagraphElement>(null);
   const iconsRef = useRef<HTMLDivElement>(null);
@@ -23,9 +25,11 @@ export function ContactSection() {
       defaults: { ease: "power3.out", duration: 0.8 },
     });
 
-    tl.from(headingRef.current, { opacity: 0, y: -20 })
-      .from(paragraphRef.current, { opacity: 0, y: 20 }, "-=0.5")
-      .from(emailRef.current, { opacity: 0, scale: 0.8 }, "-=0.4");
+    tl.from(paragraphRef.current, { opacity: 0, y: 20 }, "-=0.5").from(
+      emailRef.current,
+      { opacity: 0, scale: 0.8 },
+      "-=0.4"
+    );
 
     if (iconsRef.current?.children) {
       tl.from(
@@ -63,12 +67,7 @@ export function ContactSection() {
   return (
     <div id="contact" className="text-center">
       {/* Section Heading */}
-      <h2
-        ref={headingRef}
-        className="text-3xl font-semibold text-primary mb-4 dark:text-[hsl(215,100%,90%)]"
-      >
-        Contact
-      </h2>
+      <SectionHeader label="Get In Touch" title="Contact" />
 
       {/* Description */}
       <p ref={paragraphRef} className="dark:text-gray-300 text-gray-600 mb-4">

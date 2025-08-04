@@ -83,7 +83,7 @@ export default function Home() {
           </div>
           {/* Separator between Hero and Projects */}
           {/* <SectionSeparator variant="geometric" />  */}
-          <SectionSeparator variant="dots" />
+          {/* <SectionSeparator variant="dots" /> */}
           {/* Projects Component */}
           <div
             id="projects"

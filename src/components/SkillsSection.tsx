@@ -2,6 +2,7 @@ import React, { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { Badge } from "@/components/ui/badge"; // Reverted to original import
+import { SectionHeader } from "@/components/SectionHeader";
 
 // Register ScrollTrigger plugin
 gsap.registerPlugin(ScrollTrigger);
@@ -25,32 +26,13 @@ const skills = [
 
 export function SkillsSection() {
   const skillsRef = useRef(null); // Reference to the main skills div
-  const titleRef = useRef(null); // Reference to the h2 title
   const badgesRef = useRef<(HTMLDivElement | null)[]>([]); // Reference to store all badge elements
 
   useEffect(() => {
     const skillsElement = skillsRef.current;
-    const titleElement = titleRef.current;
     const badgeElements = badgesRef.current;
 
-    if (skillsElement && titleElement && badgeElements.length > 0) {
-      // Animation for the title
-      gsap.fromTo(
-        titleElement,
-        { opacity: 0, y: 50 }, // Start state: invisible, moved down
-        {
-          opacity: 1,
-          y: 0, // End state: visible, original position
-          duration: 0.8,
-          ease: "power3.out",
-          scrollTrigger: {
-            trigger: skillsElement, // Trigger when the skills section enters the viewport
-            start: "top 80%", // Start animation when top of skills section is 80% from top of viewport
-            toggleActions: "play none none none", // Play once when entering
-          },
-        }
-      );
-
+    if (skillsElement && badgeElements.length > 0) {
       // Animation for the badges with a stagger effect
       gsap.fromTo(
         badgeElements,
@@ -74,12 +56,11 @@ export function SkillsSection() {
   return (
     // Reverted to original div structure and classes
     <div id="skills" ref={skillsRef}>
-      <h2
-        ref={titleRef}
-        className="text-3xl font-semibold text-primary mb-6 text-center dark:text-[hsl(215,100%,90%)]"
-      >
-        Skills
-      </h2>
+      <SectionHeader
+        label="Technical Expertise"
+        title="Skills"
+        subtitle="Technologies and tools I use to bring ideas to life"
+      />
       <div className="flex flex-wrap justify-center gap-4">
         {skills.map((skill, index) => (
           <Badge
