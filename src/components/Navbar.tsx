@@ -340,9 +340,10 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   >
                     {" "}
                     <span className="relative z-10 text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 flex items-center gap-1.5">
-                      {IconComponent && (
+                      {/* Desktop icons commented out - only show on mobile */}
+                      {/* {IconComponent && (
                         <IconComponent className="h-3 w-3 transition-transform duration-300 group-hover:scale-110" />
-                      )}
+                      )} */}
                       {link.label}
                     </span>
                     {/* Subtle glow effect */}
@@ -443,8 +444,9 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                           className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 cursor-pointer"
                         >
                           <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 pointer-events-none flex items-center gap-2">
+                            {/* Icons only visible on mobile/phone view */}
                             {IconComponent && (
-                              <IconComponent className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110" />
+                              <IconComponent className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110 md:hidden" />
                             )}
                             {link.label}
                           </span>
