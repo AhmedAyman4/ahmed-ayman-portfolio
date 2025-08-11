@@ -15,96 +15,45 @@ export default function BackgroundEffects() {
 
   return (
     <>
-      {/* Starry Sky Background */}
+      {/* Simplified Starry Sky Background - Dark Mode */}
       <div className="starry-sky">
         <div className="nebula"></div>
+        {/* Reduced constellation stars */}
         <div className="constellation">
           <div
             className="constellation-star"
-            style={{ top: "15%", left: "20%", animationDelay: "0s" }}
+            style={{ top: "20%", left: "30%", animationDelay: "0s" }}
           ></div>
           <div
             className="constellation-star"
-            style={{ top: "25%", left: "40%", animationDelay: "1s" }}
+            style={{ top: "40%", left: "70%", animationDelay: "1.5s" }}
           ></div>
           <div
             className="constellation-star"
-            style={{ top: "35%", left: "60%", animationDelay: "2s" }}
+            style={{ top: "70%", left: "20%", animationDelay: "3s" }}
           ></div>
           <div
             className="constellation-star"
-            style={{ top: "45%", left: "80%", animationDelay: "0.5s" }}
-          ></div>
-          <div
-            className="constellation-star"
-            style={{ top: "65%", left: "15%", animationDelay: "1.5s" }}
-          ></div>
-          <div
-            className="constellation-star"
-            style={{ top: "75%", left: "35%", animationDelay: "2.5s" }}
-          ></div>
-          <div
-            className="constellation-star"
-            style={{ top: "85%", left: "75%", animationDelay: "3s" }}
-          ></div>
-
-          <div
-            className="constellation-line"
-            style={{
-              top: "20%",
-              left: "20%",
-              width: "120px",
-              transform: "rotate(25deg)",
-              animationDelay: "0s",
-            }}
-          ></div>
-          <div
-            className="constellation-line"
-            style={{
-              top: "40%",
-              left: "60%",
-              width: "80px",
-              transform: "rotate(-15deg)",
-              animationDelay: "1s",
-            }}
-          ></div>
-          <div
-            className="constellation-line"
-            style={{
-              top: "70%",
-              left: "15%",
-              width: "100px",
-              transform: "rotate(45deg)",
-              animationDelay: "2s",
-            }}
+            style={{ top: "60%", left: "80%", animationDelay: "4.5s" }}
           ></div>
         </div>
-        <div className="shooting-star"></div>
-        <div className="shooting-star"></div>
+        {/* Single shooting star */}
         <div className="shooting-star"></div>
       </div>
 
-      {/* Cool Animated Background for Light Mode */}
+      {/* Simplified Light Mode Background */}
       <div className="light-mode-bg">
         <div className="light-wave"></div>
-        <div className="light-rays"></div>
 
-        {/* Floating particles */}
-        <div className="light-particle"></div>
-        <div className="light-particle"></div>
-        <div className="light-particle"></div>
-        <div className="light-particle"></div>
-        <div className="light-particle"></div>
+        {/* Reduced floating particles */}
         <div className="light-particle"></div>
         <div className="light-particle"></div>
         <div className="light-particle"></div>
         <div className="light-particle"></div>
 
-        {/* Geometric shapes */}
-        <div className="light-geometric light-triangle"></div>
-        <div className="light-geometric light-square"></div>
+        {/* Simplified geometric shapes */}
         <div className="light-geometric light-circle"></div>
-        <div className="light-geometric light-hexagon"></div>
+        <div className="light-geometric light-square"></div>
       </div>
     </>
   );

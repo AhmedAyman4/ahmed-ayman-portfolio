@@ -275,173 +275,93 @@ body {
   opacity: 0;
 }
 
-/* Floating particles for light mode */
+/* Floating particles for light mode - simplified */
 .light-particle {
   position: absolute;
   border-radius: 50%;
   background: linear-gradient(
     45deg,
-    rgba(67, 133, 244, 0.3),
-    rgba(138, 43, 226, 0.2)
+    rgba(67, 133, 244, 0.2),
+    rgba(138, 43, 226, 0.1)
   );
-  animation: floatUp 8s linear infinite;
-  opacity: 0.7;
+  animation: floatUp 15s ease-in-out infinite;
+  opacity: 0.5;
 }
 
 .light-particle:nth-child(1) {
-  width: 8px;
-  height: 8px;
-  left: 10%;
+  width: 6px;
+  height: 6px;
+  left: 20%;
   animation-delay: 0s;
-  animation-duration: 10s;
+  animation-duration: 20s;
 }
 
 .light-particle:nth-child(2) {
-  width: 12px;
-  height: 12px;
-  left: 20%;
-  animation-delay: -2s;
-  animation-duration: 12s;
+  width: 8px;
+  height: 8px;
+  left: 50%;
+  animation-delay: -5s;
+  animation-duration: 18s;
 }
 
 .light-particle:nth-child(3) {
-  width: 6px;
-  height: 6px;
-  left: 30%;
-  animation-delay: -4s;
-  animation-duration: 8s;
+  width: 5px;
+  height: 5px;
+  left: 70%;
+  animation-delay: -10s;
+  animation-duration: 22s;
 }
 
 .light-particle:nth-child(4) {
-  width: 10px;
-  height: 10px;
-  left: 40%;
-  animation-delay: -6s;
-  animation-duration: 14s;
-}
-
-.light-particle:nth-child(5) {
-  width: 14px;
-  height: 14px;
-  left: 50%;
-  animation-delay: -8s;
-  animation-duration: 9s;
-}
-
-.light-particle:nth-child(6) {
   width: 7px;
   height: 7px;
-  left: 60%;
-  animation-delay: -3s;
-  animation-duration: 11s;
-}
-
-.light-particle:nth-child(7) {
-  width: 11px;
-  height: 11px;
-  left: 70%;
-  animation-delay: -5s;
-  animation-duration: 13s;
-}
-
-.light-particle:nth-child(8) {
-  width: 9px;
-  height: 9px;
   left: 80%;
-  animation-delay: -7s;
-  animation-duration: 10s;
+  animation-delay: -15s;
+  animation-duration: 19s;
 }
 
-.light-particle:nth-child(9) {
-  width: 13px;
-  height: 13px;
-  left: 90%;
-  animation-delay: -1s;
-  animation-duration: 15s;
-}
-
-/* Geometric shapes floating around */
+/* Geometric shapes floating around - simplified */
 .light-geometric {
   position: absolute;
-  animation: geometricFloat 12s ease-in-out infinite;
-  opacity: 0.4;
-}
-
-.light-triangle {
-  width: 0;
-  height: 0;
-  border-left: 8px solid transparent;
-  border-right: 8px solid transparent;
-  border-bottom: 14px solid rgba(67, 133, 244, 0.3);
-  top: 20%;
-  left: 15%;
-  animation-delay: 0s;
+  animation: geometricFloat 20s ease-in-out infinite;
+  opacity: 0.3;
 }
 
 .light-square {
-  width: 12px;
-  height: 12px;
-  background: rgba(138, 43, 226, 0.25);
-  top: 40%;
-  right: 20%;
-  animation-delay: -4s;
+  width: 10px;
+  height: 10px;
+  background: rgba(138, 43, 226, 0.2);
+  top: 30%;
+  right: 25%;
+  animation-delay: -8s;
   transform: rotate(45deg);
 }
 
 .light-circle {
-  width: 16px;
-  height: 16px;
-  border-radius: 50%;
-  background: rgba(30, 144, 255, 0.3);
-  top: 60%;
-  left: 25%;
-  animation-delay: -8s;
-}
-
-.light-hexagon {
-  width: 14px;
+  width: 12px;
   height: 12px;
-  background: rgba(255, 99, 132, 0.25);
-  position: relative;
-  top: 30%;
-  right: 15%;
-  animation-delay: -6s;
+  border-radius: 50%;
+  background: rgba(30, 144, 255, 0.25);
+  top: 70%;
+  left: 30%;
+  animation-delay: -12s;
 }
 
-.light-hexagon:before,
-.light-hexagon:after {
-  content: "";
-  position: absolute;
-  width: 0;
-  border-left: 7px solid transparent;
-  border-right: 7px solid transparent;
-}
-
-.light-hexagon:before {
-  bottom: 100%;
-  border-bottom: 4px solid rgba(255, 99, 132, 0.25);
-}
-
-.light-hexagon:after {
-  top: 100%;
-  border-top: 4px solid rgba(255, 99, 132, 0.25);
-}
-
-/* Gradient waves in the background */
+/* Gradient waves in the background - smoother */
 .light-wave {
   position: absolute;
   width: 100%;
   height: 100%;
   background: linear-gradient(
     45deg,
-    rgba(67, 133, 244, 0.05) 0%,
-    rgba(138, 43, 226, 0.05) 25%,
-    rgba(30, 144, 255, 0.05) 50%,
-    rgba(255, 99, 132, 0.05) 75%,
-    rgba(67, 133, 244, 0.05) 100%
+    rgba(67, 133, 244, 0.03) 0%,
+    rgba(138, 43, 226, 0.03) 25%,
+    rgba(30, 144, 255, 0.03) 50%,
+    rgba(255, 99, 132, 0.03) 75%,
+    rgba(67, 133, 244, 0.03) 100%
   );
   background-size: 400% 400%;
-  animation: gradientWave 15s ease infinite;
+  animation: gradientWave 25s ease-in-out infinite;
 }
 
 /* Subtle light rays */
@@ -467,20 +387,20 @@ body {
   animation: raysPulse 10s ease-in-out infinite;
 }
 
-/* Animations for light mode background */
+/* Animations for light mode background - smoother */
 @keyframes floatUp {
   0% {
-    transform: translateY(100vh) scale(0);
+    transform: translateY(100vh) scale(0.8);
     opacity: 0;
   }
-  10% {
-    opacity: 0.7;
+  15% {
+    opacity: 0.5;
   }
-  90% {
-    opacity: 0.7;
+  85% {
+    opacity: 0.5;
   }
   100% {
-    transform: translateY(-100px) scale(1);
+    transform: translateY(-50px) scale(1);
     opacity: 0;
   }
 }
@@ -489,11 +409,11 @@ body {
   0%,
   100% {
     transform: translateY(0px) rotate(0deg);
-    opacity: 0.4;
+    opacity: 0.3;
   }
   50% {
-    transform: translateY(-20px) rotate(180deg);
-    opacity: 0.8;
+    transform: translateY(-15px) rotate(90deg);
+    opacity: 0.6;
   }
 }
 
@@ -512,12 +432,12 @@ body {
 @keyframes raysPulse {
   0%,
   100% {
-    opacity: 0.6;
+    opacity: 0.4;
     transform: scale(1);
   }
   50% {
-    opacity: 1;
-    transform: scale(1.05);
+    opacity: 0.7;
+    transform: scale(1.02);
   }
 }
 
@@ -641,16 +561,18 @@ body {
   animation: starTwinkle 6s linear infinite reverse;
 }
 
-/* Shooting stars */
+/* Shooting stars - single, smoother animation */
 .shooting-star {
   position: absolute;
   width: 2px;
   height: 2px;
   background: linear-gradient(45deg, rgba(255, 255, 255, 0.8), transparent);
   border-radius: 50%;
-  animation: shootingStar 3s linear infinite;
+  animation: shootingStar 8s ease-in-out infinite;
   opacity: 0; /* Hidden in light mode */
   transition: opacity 0.3s ease;
+  top: 30%;
+  left: 10%;
 }
 
 /* Only show shooting stars in dark mode */
@@ -663,31 +585,10 @@ body {
   position: absolute;
   top: 0;
   left: 0;
-  width: 50px;
+  width: 40px;
   height: 1px;
-  background: linear-gradient(to right, rgba(255, 255, 255, 0.8), transparent);
-  transform: translateX(-50px) translateY(1px);
-}
-
-.shooting-star:nth-child(1) {
-  top: 20%;
-  left: 10%;
-  animation-delay: 0s;
-  animation-duration: 4s;
-}
-
-.shooting-star:nth-child(2) {
-  top: 40%;
-  left: 80%;
-  animation-delay: 2s;
-  animation-duration: 5s;
-}
-
-.shooting-star:nth-child(3) {
-  top: 70%;
-  left: 30%;
-  animation-delay: 4s;
-  animation-duration: 3s;
+  background: linear-gradient(to right, rgba(255, 255, 255, 0.6), transparent);
+  transform: translateX(-40px) translateY(1px);
 }
 
 /* Constellation effect */
@@ -725,38 +626,38 @@ body {
   animation: constellationPulse 4s ease-in-out infinite;
 }
 
-/* Nebula effect for depth */
+/* Nebula effect for depth - more subtle */
 .nebula {
   position: absolute;
   width: 100%;
   height: 100%;
   background: transparent; /* No background in light mode */
-  animation: nebulaFlow 20s ease-in-out infinite;
+  animation: nebulaFlow 30s ease-in-out infinite;
   opacity: 0; /* Hidden in light mode */
   transition: opacity 0.3s ease;
 }
 
-/* Only show nebula in dark mode */
+/* Only show nebula in dark mode - more subtle */
 .dark .nebula {
   opacity: 1;
   background: radial-gradient(
-      circle at 20% 30%,
-      rgba(138, 43, 226, 0.1) 0%,
+      circle at 25% 30%,
+      rgba(138, 43, 226, 0.08) 0%,
       transparent 50%
     ),
     radial-gradient(
-      circle at 80% 70%,
-      rgba(30, 144, 255, 0.08) 0%,
+      circle at 75% 70%,
+      rgba(30, 144, 255, 0.06) 0%,
       transparent 50%
     ),
     radial-gradient(
       circle at 50% 50%,
-      rgba(75, 0, 130, 0.05) 0%,
+      rgba(75, 0, 130, 0.04) 0%,
       transparent 50%
     );
 }
 
-/* Animations */
+/* Animations - smoother and more subtle */
 @keyframes starTwinkle {
   0%,
   100% {
@@ -764,27 +665,27 @@ body {
     transform: scale(1);
   }
   50% {
-    opacity: 0.3;
-    transform: scale(0.8);
+    opacity: 0.4;
+    transform: scale(0.9);
   }
 }
 
 @keyframes shootingStar {
   0% {
     opacity: 0;
-    transform: translateX(-100px) translateY(-100px) scale(0);
+    transform: translateX(-80px) translateY(-80px) scale(0.8);
   }
-  10% {
+  15% {
     opacity: 1;
-    transform: translateX(-50px) translateY(-50px) scale(1);
+    transform: translateX(-40px) translateY(-40px) scale(1);
   }
-  90% {
+  85% {
     opacity: 1;
-    transform: translateX(100px) translateY(100px) scale(1);
+    transform: translateX(80px) translateY(80px) scale(1);
   }
   100% {
     opacity: 0;
-    transform: translateX(150px) translateY(150px) scale(0);
+    transform: translateX(120px) translateY(120px) scale(0.8);
   }
 }
 
@@ -793,24 +694,12 @@ body {
   100% {
     opacity: 0.8;
     transform: scale(1);
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.6);
-  }
-  50% {
-    opacity: 0.3;
-    transform: scale(0.7);
-    box-shadow: 0 0 3px rgba(255, 255, 255, 0.3);
-  }
-}
-
-@keyframes constellationPulse {
-  0%,
-  100% {
-    opacity: 0.2;
-    transform: scaleY(1);
+    box-shadow: 0 0 4px rgba(255, 255, 255, 0.5);
   }
   50% {
     opacity: 0.4;
-    transform: scaleY(1.2);
+    transform: scale(0.8);
+    box-shadow: 0 0 2px rgba(255, 255, 255, 0.3);
   }
 }
 
@@ -818,15 +707,11 @@ body {
   0%,
   100% {
     transform: rotate(0deg) scale(1);
-    opacity: 0.6;
+    opacity: 0.5;
   }
-  33% {
-    transform: rotate(120deg) scale(1.1);
-    opacity: 0.8;
-  }
-  66% {
-    transform: rotate(240deg) scale(0.9);
-    opacity: 0.4;
+  50% {
+    transform: rotate(180deg) scale(1.05);
+    opacity: 0.7;
   }
 }
 
