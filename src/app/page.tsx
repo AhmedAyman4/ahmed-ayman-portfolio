@@ -17,8 +17,8 @@ import Me1 from "../assets/a1.jpg";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
-  const [showIntro, setShowIntro] = useState(true); // Disabled intro screen , change it back to true if you want to show it
-  const [introComplete, setIntroComplete] = useState(false); // Set to true since intro is skipped , false if you want to show it
+  const [showIntro, setShowIntro] = useState(false); // Disabled intro screen , change it back to true if you want to show it
+  const [introComplete, setIntroComplete] = useState(true); // Set to true since intro is skipped , false if you want to show it
   const sectionsRef = useRef<HTMLElement[]>([]);
 
   useEffect(() => {
