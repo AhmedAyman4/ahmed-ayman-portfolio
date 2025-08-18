@@ -77,35 +77,6 @@ export function ExperienceTimeline() {
     return new Date(parseInt(year), monthMap[month] || 0);
   };
 
-  // Function to get employment type styling and label
-  const getEmploymentTypeStyle = (
-    type: "fulltime" | "parttime" | "internship"
-  ) => {
-    switch (type) {
-      case "fulltime":
-        return {
-          label: "Full-time",
-          bgColor: "bg-gradient-to-r from-[#4de9d2]/20 to-[#3dd1b5]/20",
-          borderColor: "border-[#4de9d2]/40",
-          textColor: "text-[#2ba894] dark:text-[#4de9d2]",
-        };
-      case "parttime":
-        return {
-          label: "Part-time",
-          bgColor: "bg-gradient-to-r from-purple-500/20 to-[#8b5cf6]/20",
-          borderColor: "border-purple-500/40",
-          textColor: "text-purple-700 dark:text-purple-300",
-        };
-      case "internship":
-        return {
-          label: "Internship",
-          bgColor: "bg-gradient-to-r from-[#4de9d2]/15 to-purple-500/15",
-          borderColor: "border-[#4de9d2]/30",
-          textColor: "text-[#2ba894] dark:text-[#a78bfa]",
-        };
-    }
-  };
-
   // Sort experiences by start date (most recent first)
   const sortedExperiences = [...experiences].sort((a, b) => {
     const dateA = parseStartDate(a.period);
@@ -189,19 +160,14 @@ export function ExperienceTimeline() {
                       >
                         {exp.company}
                       </a>
-                      {/* Role badge */}
+                      {/* Role and type badge */}
                       <span className="px-1.5 py-0.5 md:px-2 md:py-0.5 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs font-normal rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
-                        {exp.role}
-                      </span>
-                      {/* Employment type tag */}
-                      <span
-                        className={`px-1.5 py-0.5 md:px-2 md:py-0.5 ${
-                          getEmploymentTypeStyle(exp.type).bgColor
-                        } text-xs font-normal rounded-full border ${
-                          getEmploymentTypeStyle(exp.type).borderColor
-                        } ${getEmploymentTypeStyle(exp.type).textColor}`}
-                      >
-                        {getEmploymentTypeStyle(exp.type).label}
+                        {exp.role} -{" "}
+                        {exp.type === "fulltime"
+                          ? "Full-time"
+                          : exp.type === "parttime"
+                          ? "Part-time"
+                          : "Internship"}
                       </span>
                     </div>
                   </div>
