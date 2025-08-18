@@ -20,6 +20,8 @@ export function ExperienceTimeline() {
       company: "DEPI",
       role: "Data Scientist",
       period: "Oct 2024 - May 2025",
+      type: "internship" as const,
+      link: "https://depi.gov.eg/content/home",
       description: [
         "Analyze data using Python, SQL, and analytics tools to identify trends, opportunities, and business insights.",
         "Build and deploy ML models with Python, Scikit-learn, and MLflow, leveraging AI and prompt engineering for integration.",
@@ -30,11 +32,86 @@ export function ExperienceTimeline() {
       company: "CIB Egypt",
       role: "Intern",
       period: "Jul 2024 - Jul 2024",
+      type: "internship" as const,
+      link: "https://www.cibeg.com/",
       description: [
         "Gained data and financial literacy expertise, entrepreneurship, and teamwork to enhance problem-solving, decision-making, and business success.",
       ],
     },
+    {
+      id: "item-3",
+      company: "Konecta",
+      role: "AI/ML Engineer",
+      period: "Jul 2025 - Present",
+      type: "internship" as const,
+      link: "https://konecta.com/",
+      description: [
+        "Cleaned and preprocessed datasets, handling missing values, normalization, and validation.",
+        "Built web scrapers with BeautifulSoup and Playwright to extract dynamic e-commerce and real estate data, exporting results to CSV.",
+        "Developed supervised ML pipelines with model training, tuning, and evaluation.",
+        "Performed customer segmentation using clustering techniques (K-Means, Hierarchical, DBSCAN, Meanshift) with evaluation metrics and visualization.",
+      ],
+    },
   ];
+
+  // Function to parse date from period string and return a comparable date
+  const parseStartDate = (period: string): Date => {
+    const startPart = period.split(" - ")[0].trim();
+    const [month, year] = startPart.split(" ");
+
+    const monthMap: { [key: string]: number } = {
+      Jan: 0,
+      Feb: 1,
+      Mar: 2,
+      Apr: 3,
+      May: 4,
+      Jun: 5,
+      Jul: 6,
+      Aug: 7,
+      Sep: 8,
+      Oct: 9,
+      Nov: 10,
+      Dec: 11,
+    };
+
+    return new Date(parseInt(year), monthMap[month] || 0);
+  };
+
+  // Function to get employment type styling and label
+  const getEmploymentTypeStyle = (
+    type: "fulltime" | "parttime" | "internship"
+  ) => {
+    switch (type) {
+      case "fulltime":
+        return {
+          label: "Full-time",
+          bgColor: "bg-gradient-to-r from-[#4de9d2]/20 to-[#3dd1b5]/20",
+          borderColor: "border-[#4de9d2]/40",
+          textColor: "text-[#2ba894] dark:text-[#4de9d2]",
+        };
+      case "parttime":
+        return {
+          label: "Part-time",
+          bgColor: "bg-gradient-to-r from-purple-500/20 to-[#8b5cf6]/20",
+          borderColor: "border-purple-500/40",
+          textColor: "text-purple-700 dark:text-purple-300",
+        };
+      case "internship":
+        return {
+          label: "Internship",
+          bgColor: "bg-gradient-to-r from-[#4de9d2]/15 to-purple-500/15",
+          borderColor: "border-[#4de9d2]/30",
+          textColor: "text-[#2ba894] dark:text-[#a78bfa]",
+        };
+    }
+  };
+
+  // Sort experiences by start date (most recent first)
+  const sortedExperiences = [...experiences].sort((a, b) => {
+    const dateA = parseStartDate(a.period);
+    const dateB = parseStartDate(b.period);
+    return dateB.getTime() - dateA.getTime(); // Descending order (most recent first)
+  });
 
   useEffect(() => {
     if (!containerRef.current) return;
@@ -79,7 +156,7 @@ export function ExperienceTimeline() {
       {/* Timeline container with glassmorphism */}
       <div className="relative max-w-4xl mx-auto">
         <Accordion type="single" collapsible className="space-y-6">
-          {experiences.map((exp, index) => (
+          {sortedExperiences.map((exp, index) => (
             <AccordionItem
               key={exp.id}
               value={exp.id}
@@ -94,7 +171,7 @@ export function ExperienceTimeline() {
               <div className="absolute inset-0 bg-gradient-to-r from-[#4de9d2]/10 via-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none -z-10"></div>
 
               <AccordionTrigger
-                className="hover:no-underline p-3 md:p-4 md:ml-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-t-2xl border border-gray-200/50 dark:border-white/10 border-b-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20 group-hover:bg-white/80 dark:group-hover:bg-white/5 relative z-10 cursor-pointer"
+                className="hover:no-underline p-2 md:p-3 md:ml-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-t-2xl border border-gray-200/50 dark:border-white/10 border-b-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20 group-hover:bg-white/80 dark:group-hover:bg-white/5 relative z-10 cursor-pointer"
                 onClick={() =>
                   console.log(`Clicked accordion for ${exp.company}`)
                 }
@@ -103,12 +180,28 @@ export function ExperienceTimeline() {
                   {/* Company and role */}
                   <div className="flex flex-col space-y-0.5 md:space-y-1">
                     <div className="flex items-center space-x-2 md:space-x-3">
-                      <span className="text-lg md:text-xl font-bold bg-gradient-to-r from-[#4de9d2] to-purple-500 bg-clip-text text-transparent">
+                      <a
+                        href={exp.link}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-lg md:text-xl font-bold bg-gradient-to-r from-[#4de9d2] to-purple-500 bg-clip-text text-transparent hover:from-[#3dd1b5] hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
+                        onClick={(e) => e.stopPropagation()}
+                      >
                         {exp.company}
-                      </span>
+                      </a>
                       {/* Role badge */}
-                      <span className="px-2 py-0.5 md:px-3 md:py-1 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs md:text-sm font-medium rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
+                      <span className="px-1.5 py-0.5 md:px-2 md:py-0.5 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs font-normal rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
                         {exp.role}
+                      </span>
+                      {/* Employment type tag */}
+                      <span
+                        className={`px-1.5 py-0.5 md:px-2 md:py-0.5 ${
+                          getEmploymentTypeStyle(exp.type).bgColor
+                        } text-xs font-normal rounded-full border ${
+                          getEmploymentTypeStyle(exp.type).borderColor
+                        } ${getEmploymentTypeStyle(exp.type).textColor}`}
+                      >
+                        {getEmploymentTypeStyle(exp.type).label}
                       </span>
                     </div>
                   </div>
@@ -116,17 +209,17 @@ export function ExperienceTimeline() {
                   {/* Period with enhanced styling */}
                   <div className="flex items-center space-x-1.5 md:space-x-2">
                     <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#4de9d2] rounded-full animate-pulse"></div>
-                    <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400 bg-gray-100/50 dark:bg-gray-800/50 px-2 py-0.5 md:px-3 md:py-1 rounded-full">
+                    <span className="text-xs font-normal text-gray-600 dark:text-gray-400 bg-gray-100/50 dark:bg-gray-800/50 px-1.5 py-0.5 md:px-2 md:py-0.5 rounded-full">
                       {exp.period}
                     </span>
                   </div>
                 </div>
               </AccordionTrigger>
 
-              <AccordionContent className="px-3 pb-3 md:px-4 md:pb-4 md:ml-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-b-2xl border border-gray-200/50 dark:border-white/10 border-t-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20">
+              <AccordionContent className="px-2 pb-2 md:px-3 md:pb-3 md:ml-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-b-2xl border border-gray-200/50 dark:border-white/10 border-t-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20">
                 {/* Enhanced description list */}
-                <div className="bg-white/50 dark:bg-white/5 rounded-xl p-2 md:p-3 border border-gray-200/30 dark:border-white/10 mt-2 md:mt-3">
-                  <ul className="space-y-1.5 md:space-y-2">
+                <div className="bg-white/50 dark:bg-white/5 rounded-xl p-1.5 md:p-2 border border-gray-200/30 dark:border-white/10 mt-1.5 md:mt-2">
+                  <ul className="space-y-1 md:space-y-1.5">
                     {exp.description.map((item, itemIndex) => (
                       <li
                         key={itemIndex}
