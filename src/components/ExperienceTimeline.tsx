@@ -20,7 +20,7 @@ export function ExperienceTimeline() {
       company: "DEPI",
       role: "Data Scientist",
       period: "Oct 2024 - May 2025",
-      type: "internship" as const,
+      type: "internship" as "fulltime" | "parttime" | "internship",
       link: "https://depi.gov.eg/content/home",
       description: [
         "Analyze data using Python, SQL, and analytics tools to identify trends, opportunities, and business insights.",
@@ -32,7 +32,7 @@ export function ExperienceTimeline() {
       company: "CIB Egypt",
       role: "Intern",
       period: "Jul 2024 - Jul 2024",
-      type: "internship" as const,
+      type: "internship" as "fulltime" | "parttime" | "internship",
       link: "https://www.cibeg.com/",
       description: [
         "Gained data and financial literacy expertise, entrepreneurship, and teamwork to enhance problem-solving, decision-making, and business success.",
@@ -43,7 +43,7 @@ export function ExperienceTimeline() {
       company: "Konecta",
       role: "AI/ML Engineer",
       period: "Jul 2025 - Present",
-      type: "internship" as const,
+      type: "internship" as "fulltime" | "parttime" | "internship",
       link: "https://konecta.com/",
       description: [
         "Cleaned and preprocessed datasets, handling missing values, normalization, and validation.",
