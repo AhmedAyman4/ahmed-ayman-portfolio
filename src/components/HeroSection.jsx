@@ -11,13 +11,11 @@ import Image from "next/image";
 // Icon imports
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { MdEmail, MdOutlineVerified } from "react-icons/md";
-import { PiCertificateDuotone } from "react-icons/pi";
-import { TbCertificate } from "react-icons/tb";
-import { AiFillSafetyCertificate } from "react-icons/ai";
 
 // Component imports
 import { TypingEffect } from "@/components/typing-effect";
 import FractalTree from "@/components/FractalTree";
+import FadeInSection from "@/components/FadeInSection";
 
 // Font configuration
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
@@ -41,8 +39,8 @@ export function HeroSection({ profileImage, introComplete = false }) {
 
   // Render
   return (
-    <section id="hero" className="text-center mb-12 fade-in-section relative">
-      <div className="relative z-10">
+    <section id="hero" className="text-center mb-12 relative">
+      <FadeInSection className="relative z-10">
         {/* Profile Image Section */}
         <div className="profile-container relative mx-auto mb-4 w-[150px] h-[150px] group">
           {/* Static gradient border - exact fit around image */}
@@ -121,7 +119,7 @@ export function HeroSection({ profileImage, introComplete = false }) {
           <MdEmail className="mr-3 h-5 w-5 text-black" aria-hidden="true" />
           Say hi!
         </a>
-      </div>
+      </FadeInSection>
     </section>
   );
 }

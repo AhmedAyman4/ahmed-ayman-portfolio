@@ -9,8 +9,8 @@ import {
   ExternalLink,
   Github,
 } from "lucide-react";
-import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
+import FadeInSection from "@/components/FadeInSection";
 import { Card } from "@/components/ui/card";
 import { SectionHeader } from "@/components/SectionHeader";
 import { spotlightProjects, otherProjects, type Project } from "./projectsData";
@@ -322,14 +322,15 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
     goTo((index - 1 + projects.length) % projects.length, -1);
   }, [index, projects.length, goTo]);
 
-  // Simple fade animation effect
+  // Simple fade animation effect using CSS transition
   useEffect(() => {
     if (ref.current) {
-      gsap.fromTo(
-        ref.current,
-        { opacity: 0 },
-        { opacity: 1, duration: 0.5, ease: "power2.out" }
-      );
+      ref.current.style.opacity = "0";
+      requestAnimationFrame(() => {
+        if (ref.current) {
+          ref.current.style.opacity = "1";
+        }
+      });
     }
   }, [index]);
 
@@ -411,12 +412,14 @@ const ImagePreloader = ({ projects }: { projects: Project[] }) => (
  * Main projects section component
  */
 export const ProjectsComponent = () => (
-  <section id="projects" className="mb-16 fade-in-section">
-    <ProjectsHeader />
-    <ImagePreloader projects={spotlightProjects} />
-    <Carousel projects={spotlightProjects} />
-    <ProjectsGrid projects={otherProjects} />
-  </section>
+  <FadeInSection>
+    <section id="projects" className="mb-16">
+      <ProjectsHeader />
+      <ImagePreloader projects={spotlightProjects} />
+      <Carousel projects={spotlightProjects} />
+      <ProjectsGrid projects={otherProjects} />
+    </section>
+  </FadeInSection>
 );
 
 /**
@@ -437,15 +440,11 @@ const ProjectsGrid = ({ projects }: { projects: Project[] }) => (
   <div className="max-w-5xl mx-auto">
     <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
       {projects.map((project, i) => (
-        <div
-          key={i}
-          className="fade-in-section h-full"
-          style={{ animationDelay: `${(i + 1) * 100}ms` }}
-        >
+        <FadeInSection key={i} delay={`${(i + 1) * 100}ms`} className="h-full">
           <div className="h-full">
             <ProjectCard project={project} />
           </div>
-        </div>
+        </FadeInSection>
       ))}
     </div>
   </div>

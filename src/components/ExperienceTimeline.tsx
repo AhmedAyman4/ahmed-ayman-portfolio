@@ -1,18 +1,13 @@
 // components/ExperienceTimeline.tsx
 "use client";
 
-import { useEffect, useRef } from "react";
-import { gsap } from "gsap";
-import {
-  Accordion,
-  AccordionContent,
-  AccordionItem,
-  AccordionTrigger,
-} from "@/components/ui/accordion";
+import { useState, useEffect } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
+import FadeInSection from "@/components/FadeInSection";
 
 export function ExperienceTimeline() {
-  const containerRef = useRef<HTMLDivElement>(null);
+  const [selectedCompanyIndex, setSelectedCompanyIndex] = useState(0);
+  const [animationKey, setAnimationKey] = useState(0);
 
   const experiences = [
     {
@@ -84,128 +79,131 @@ export function ExperienceTimeline() {
     return dateB.getTime() - dateA.getTime(); // Descending order (most recent first)
   });
 
+  // Update animation key when company changes to trigger re-animation
   useEffect(() => {
-    if (!containerRef.current) return;
-
-    const items = containerRef.current.querySelectorAll(".timeline-item");
-
-    // Set initial state for animation
-    gsap.set(items, { opacity: 0, y: 50 });
-
-    gsap.to(items, {
-      opacity: 1,
-      y: 0,
-      duration: 0.6,
-      stagger: 0.2,
-      ease: "power2.out",
-    });
-  }, []);
+    setAnimationKey((prev) => prev + 1);
+  }, [selectedCompanyIndex]);
 
   return (
-    <div
-      id="experience"
-      ref={containerRef}
-      className="relative overflow-hidden"
-    >
-      {/* Background decorative elements */}
+    <div id="experience" className="relative overflow-hidden">
+      {/* Background decorative elements - made smaller */}
       <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {/* Floating gradient orbs */}
-        <div className="absolute top-20 left-10 w-24 h-24 bg-gradient-to-r from-[#4de9d2]/10 to-purple-500/10 rounded-full blur-xl animate-float-slow"></div>
-        <div className="absolute bottom-20 right-10 w-32 h-32 bg-gradient-to-r from-blue-500/5 to-[#4de9d2]/5 rounded-full blur-2xl animate-float-slower"></div>
-
-        {/* Vertical timeline line */}
-        <div className="absolute left-8 top-32 bottom-0 w-px bg-gradient-to-b from-[#4de9d2]/50 via-purple-500/30 to-transparent hidden md:block"></div>
+        {/* Floating gradient orbs - reduced size */}
+        <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-[#4de9d2]/10 to-purple-500/10 rounded-full blur-xl animate-float-slow"></div>
+        <div className="absolute bottom-20 right-10 w-20 h-20 bg-gradient-to-r from-blue-500/5 to-[#4de9d2]/5 rounded-full blur-2xl animate-float-slower"></div>
       </div>
 
       {/* Title */}
-      <SectionHeader
-        label="Professional Journey"
-        title="Experience"
-        subtitle="My professional experience and roles in data science and analytics"
-      />
+      <FadeInSection delay="0.1s">
+        <SectionHeader
+          label="Professional Journey"
+          title="Experience"
+          subtitle="My professional experience and roles in data science and analytics"
+        />
+      </FadeInSection>
 
-      {/* Timeline container with glassmorphism */}
-      <div className="relative max-w-4xl mx-auto">
-        <Accordion type="single" collapsible className="space-y-6">
-          {sortedExperiences.map((exp, index) => (
-            <AccordionItem
-              key={exp.id}
-              value={exp.id}
-              className="timeline-item relative group"
-            >
-              {/* Timeline dot for desktop */}
-              <div className="absolute left-4 top-6 w-4 h-4 bg-gradient-to-r from-[#4de9d2] to-purple-500 rounded-full border-4 border-white dark:border-gray-900 shadow-lg shadow-[#4de9d2]/25 hidden md:block group-hover:scale-125 transition-transform duration-300 z-20">
-                <div className="absolute inset-0 bg-gradient-to-r from-[#4de9d2] to-purple-500 rounded-full animate-ping opacity-30"></div>
+      {/* Two-column layout - reduced spacing */}
+      <div className="relative max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          {/* Left Column - Company List - reduced padding */}
+          <FadeInSection delay="0.2s" className="left-column lg:col-span-1">
+            <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 p-2">
+              <div className="space-y-1">
+                {sortedExperiences.map((exp, index) => (
+                  <button
+                    key={exp.id}
+                    onClick={() => setSelectedCompanyIndex(index)}
+                    className={`w-full text-left p-2 rounded-md transition-all duration-300 ${
+                      selectedCompanyIndex === index
+                        ? "bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 border border-[#4de9d2]/30 text-gray-900 dark:text-gray-100"
+                        : "bg-gray-50/50 dark:bg-gray-800/20 border border-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-gray-700/20"
+                    }`}
+                  >
+                    <div className="flex items-center justify-between">
+                      <span className="font-medium text-sm">{exp.company}</span>
+                      {selectedCompanyIndex === index && (
+                        <div className="w-1.5 h-1.5 bg-[#4de9d2] rounded-full animate-pulse"></div>
+                      )}
+                    </div>
+                  </button>
+                ))}
               </div>
+            </div>
+          </FadeInSection>
 
-              {/* Gradient border effect */}
-              <div className="absolute inset-0 bg-gradient-to-r from-[#4de9d2]/10 via-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500 rounded-2xl pointer-events-none -z-10"></div>
+          {/* Right Column - Job Details - reduced padding */}
+          <FadeInSection delay="0.3s" className="right-column lg:col-span-2">
+            <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 p-3">
+              {(() => {
+                const selectedExp = sortedExperiences[selectedCompanyIndex];
+                return (
+                  <div>
+                    {/* Job Title and Company - on same line */}
+                    <div className="mb-2">
+                      <div className="flex items-center flex-wrap gap-2 mb-1">
+                        <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+                          {selectedExp.role} @{" "}
+                          <a
+                            href={selectedExp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="bg-gradient-to-r from-[#4de9d2] to-purple-500 bg-clip-text text-transparent hover:from-[#3dd1b5] hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
+                          >
+                            {selectedExp.company}
+                          </a>
+                        </h3>
+                        <span className="px-1.5 py-0.5 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs font-medium rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
+                          {selectedExp.type === "fulltime"
+                            ? "Full-time"
+                            : selectedExp.type === "parttime"
+                            ? "Part-time"
+                            : "Internship"}
+                        </span>
+                      </div>
+                    </div>
 
-              <AccordionTrigger
-                className="hover:no-underline p-2 md:p-3 md:ml-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-t-2xl border border-gray-200/50 dark:border-white/10 border-b-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20 group-hover:bg-white/80 dark:group-hover:bg-white/5 relative z-10 cursor-pointer"
-                onClick={() =>
-                  console.log(`Clicked accordion for ${exp.company}`)
-                }
-              >
-                <div className="flex flex-col md:flex-row md:items-center md:justify-between w-full text-left space-y-1 md:space-y-0">
-                  {/* Company and role */}
-                  <div className="flex flex-col space-y-0.5 md:space-y-1">
-                    <div className="flex items-center space-x-2 md:space-x-3">
-                      <a
-                        href={exp.link}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-lg md:text-xl font-bold bg-gradient-to-r from-[#4de9d2] to-purple-500 bg-clip-text text-transparent hover:from-[#3dd1b5] hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
-                        onClick={(e) => e.stopPropagation()}
-                      >
-                        {exp.company}
-                      </a>
-                      {/* Role and type badge */}
-                      <span className="px-1.5 py-0.5 md:px-2 md:py-0.5 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs font-normal rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
-                        {exp.role} -{" "}
-                        {exp.type === "fulltime"
-                          ? "Full-time"
-                          : exp.type === "parttime"
-                          ? "Part-time"
-                          : "Internship"}
+                    {/* Date Range - smaller spacing */}
+                    <div className="mb-3 flex items-center space-x-2">
+                      <div className="w-1 h-1 bg-[#4de9d2] rounded-full animate-pulse"></div>
+                      <span className="text-gray-600 dark:text-gray-400 font-medium text-sm">
+                        {selectedExp.period}
                       </span>
                     </div>
-                  </div>
 
-                  {/* Period with enhanced styling */}
-                  <div className="flex items-center space-x-1.5 md:space-x-2">
-                    <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-[#4de9d2] rounded-full animate-pulse"></div>
-                    <span className="text-xs font-normal text-gray-600 dark:text-gray-400 bg-gray-100/50 dark:bg-gray-800/50 px-1.5 py-0.5 md:px-2 md:py-0.5 rounded-full">
-                      {exp.period}
-                    </span>
-                  </div>
-                </div>
-              </AccordionTrigger>
-
-              <AccordionContent className="px-2 pb-2 md:px-3 md:pb-3 md:ml-12 bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-b-2xl border border-gray-200/50 dark:border-white/10 border-t-0 group-hover:border-[#4de9d2]/30 transition-all duration-500 shadow-xl shadow-black/5 dark:shadow-black/20">
-                {/* Enhanced description list */}
-                <div className="bg-white/50 dark:bg-white/5 rounded-xl p-1.5 md:p-2 border border-gray-200/30 dark:border-white/10 mt-1.5 md:mt-2">
-                  <ul className="space-y-1 md:space-y-1.5">
-                    {exp.description.map((item, itemIndex) => (
-                      <li
-                        key={itemIndex}
-                        className="flex items-start space-x-2 md:space-x-3 group/item"
+                    {/* Responsibilities - reduced padding */}
+                    <div className="bg-white/50 dark:bg-white/5 rounded-lg p-2 border border-gray-200/30 dark:border-white/10">
+                      <FadeInSection
+                        key={`header-${animationKey}`}
+                        delay="0.1s"
                       >
-                        {/* Custom bullet point */}
-                        <div className="flex-shrink-0 mt-1 md:mt-1.5">
-                          <div className="w-1.5 h-1.5 md:w-2 md:h-2 bg-gradient-to-r from-[#4de9d2] to-purple-500 rounded-full group-hover/item:scale-125 transition-transform duration-300"></div>
-                        </div>
-                        <span className="text-sm md:text-base text-gray-700 dark:text-gray-300 leading-relaxed group-hover/item:text-gray-900 dark:group-hover/item:text-gray-100 transition-colors duration-300">
-                          {item}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              </AccordionContent>
-            </AccordionItem>
-          ))}
-        </Accordion>
+                        <h4 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                          Key Responsibilities & Achievements
+                        </h4>
+                      </FadeInSection>
+                      <ul className="space-y-1.5">
+                        {selectedExp.description.map((item, itemIndex) => (
+                          <FadeInSection
+                            key={`item-${animationKey}-${itemIndex}`}
+                            delay={`${0.2 + itemIndex * 0.1}s`}
+                          >
+                            <li className="flex items-start space-x-2 group/item">
+                              <div className="flex-shrink-0 mt-1">
+                                <div className="w-1 h-1 bg-gradient-to-r from-[#4de9d2] to-purple-500 rounded-full group-hover/item:scale-125 transition-transform duration-300"></div>
+                              </div>
+                              <span className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm group-hover/item:text-gray-900 dark:group-hover/item:text-gray-100 transition-colors duration-300">
+                                {item}
+                              </span>
+                            </li>
+                          </FadeInSection>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                );
+              })()}
+            </div>
+          </FadeInSection>
+        </div>
       </div>
 
       {/* Custom animations and styles */}
@@ -239,25 +237,6 @@ export function ExperienceTimeline() {
 
         .animate-float-slower {
           animation: float-slower 12s ease-in-out infinite;
-        }
-
-        /* Custom scrollbar for content */
-        .timeline-item ::-webkit-scrollbar {
-          width: 4px;
-        }
-
-        .timeline-item ::-webkit-scrollbar-track {
-          background: rgba(255, 255, 255, 0.1);
-          border-radius: 2px;
-        }
-
-        .timeline-item ::-webkit-scrollbar-thumb {
-          background: linear-gradient(45deg, #4de9d2, #3dd1b5);
-          border-radius: 2px;
-        }
-
-        .timeline-item ::-webkit-scrollbar-thumb:hover {
-          background: linear-gradient(45deg, #3dd1b5, #4de9d2);
         }
       `}</style>
     </div>
