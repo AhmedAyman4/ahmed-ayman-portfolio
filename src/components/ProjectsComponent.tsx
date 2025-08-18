@@ -11,6 +11,7 @@ import {
 } from "lucide-react";
 import { gsap } from "gsap";
 import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { SectionHeader } from "@/components/SectionHeader";
 import { spotlightProjects, otherProjects, type Project } from "./projectsData";
 
@@ -115,9 +116,9 @@ const ProjectIconLinks = ({ project }: { project: Project }) => {
             target="_blank"
             rel="noopener noreferrer"
             title={label}
-            className="relative group/btn bg-gray-100/80 dark:bg-gray-800/80 backdrop-blur-sm p-2.5 rounded-lg border border-gray-200/50 dark:border-gray-700/50 transition-all duration-300 hover:bg-primary/10 hover:border-primary/30 hover:shadow-lg hover:shadow-primary/20 hover:-translate-y-0.5"
+            className="p-2 rounded-md transition-colors duration-200 hover:bg-gray-100 dark:hover:bg-gray-800"
           >
-            <Icon className="h-4 w-4 text-gray-600 dark:text-gray-400 group-hover/btn:text-primary transition-colors duration-300" />
+            <Icon className="h-4 w-4 text-gray-600 dark:text-gray-300" />
           </a>
         ) : null
       )}
@@ -267,102 +268,32 @@ const CarouselItemContent = ({ project }: { project: Project }) => (
 // ============================================================================
 
 /**
- * Individual project card for the grid layout
+ * Individual project card for the grid layout (simple, responsive)
  */
 const ProjectCard = ({ project }: { project: Project }) => (
-  <div className="group relative h-96 pb-4 select-none touch-manipulation">
-    {/* Hover underline effect */}
-    <div className="absolute bottom-0 left-1/2 transform -translate-x-1/2 w-0 h-1 bg-gradient-to-r from-primary via-purple-500 to-blue-500 rounded-full opacity-0 group-hover:opacity-100 group-hover:w-20 transition-all duration-500 ease-out"></div>
+  <Card className="group relative overflow-hidden h-full select-text dark:bg-gray-900/70 dark:border-gray-700/50 dark:backdrop-blur-sm transition-all duration-200 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-primary/40 dark:hover:border-primary/50 hover:shadow-primary/20 hover:bg-white/80 dark:hover:bg-gray-900/80">
+    {/* gradient overlay that rotates slightly on hover */}
+    <div className="pointer-events-none absolute inset-0 rounded-lg bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5 opacity-0 transition-all duration-300 transform-gpu group-hover:opacity-100 group-hover:rotate-[2deg] group-hover:scale-[1.01]" />
 
-    {/* Main card content */}
-    <ProjectCardContent project={project} />
+    <div className="relative z-10 p-4 sm:p-6 flex h-full flex-col">
+      <div className="flex items-start justify-between mb-3">
+        <FolderGit2 className="h-6 w-6 text-primary" />
+        <ProjectIconLinks project={project} />
+      </div>
 
-    {/* Enhanced scrollbar and animation styles */}
-    <ProjectCardStyles />
-  </div>
-);
+      <h3 className="text-lg sm:text-xl font-semibold text-foreground">
+        {project.title}
+      </h3>
 
-/**
- * Main content of the project card
- */
-const ProjectCardContent = ({ project }: { project: Project }) => (
-  <div className="relative h-full bg-white/70 dark:bg-gray-900/70 backdrop-blur-sm rounded-xl border border-gray-200/50 dark:border-gray-700/50 shadow-lg transition-all duration-100 ease-out hover:shadow-2xl hover:shadow-primary/20 hover:-translate-y-2 hover:scale-[1.02] p-6 flex flex-col group-hover:bg-white/80 dark:group-hover:bg-gray-900/80 overflow-hidden select-none">
-    {/* Header with icon and links */}
-    <ProjectCardHeader project={project} />
-
-    {/* Project title */}
-    <h3 className="text-xl font-bold bg-gradient-to-r from-gray-900 via-gray-800 to-gray-900 dark:from-white dark:via-gray-100 dark:to-white bg-clip-text text-transparent select-text">
-      {project.title}
-    </h3>
-
-    {/* Description with scrollbar */}
-    <div className="description-container flex-grow overflow-hidden hover:overflow-y-auto thin-scrollbar mt-3">
-      <p className="text-base leading-relaxed text-gray-600 dark:text-gray-300 group-hover:text-gray-700 dark:group-hover:text-gray-200 transition-colors duration-300 select-text">
+      <p className="mt-2 text-sm sm:text-base leading-relaxed text-muted-foreground">
         {project.description}
       </p>
+
+      <div className="mt-4 sm:mt-5">
+        <TechBadges technologies={project.tech} />
+      </div>
     </div>
-
-    {/* Technology badges */}
-    <TechBadges technologies={project.tech} className="mt-4" />
-  </div>
-);
-
-/**
- * Header section of project card with icon and action links
- */
-const ProjectCardHeader = ({ project }: { project: Project }) => (
-  <div className="flex justify-between items-start mb-4">
-    <div className="relative">
-      <div className="absolute inset-0 bg-primary/20 rounded-lg blur-md group-hover:blur-lg transition-all duration-300" />
-      <FolderGit2 className="relative h-8 w-8 text-primary group-hover:text-primary group-hover:scale-110 transition-transform duration-300" />
-    </div>
-    <ProjectIconLinks project={project} />
-  </div>
-);
-
-/**
- * Styles for project card animations and scrollbars
- */
-const ProjectCardStyles = () => (
-  <style jsx>{`
-    .thin-scrollbar::-webkit-scrollbar {
-      width: 6px;
-    }
-    .thin-scrollbar::-webkit-scrollbar-track {
-      background: transparent;
-    }
-    .thin-scrollbar::-webkit-scrollbar-thumb {
-      background: linear-gradient(
-        135deg,
-        hsl(var(--primary)) 0%,
-        rgba(168, 85, 247, 0.8) 100%
-      );
-      border-radius: 10px;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-    .thin-scrollbar::-webkit-scrollbar-thumb:hover {
-      background: linear-gradient(
-        135deg,
-        hsl(var(--primary)) 0%,
-        rgba(168, 85, 247, 1) 100%
-      );
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
-    }
-
-    @keyframes float {
-      0%,
-      100% {
-        transform: translateY(0px);
-      }
-      50% {
-        transform: translateY(-2px);
-      }
-    }
-
-    .group:hover {
-      animation: float 2s ease-in-out infinite;
-    }
-  `}</style>
+  </Card>
 );
 
 // ============================================================================
@@ -504,14 +435,16 @@ const ProjectsHeader = () => (
  */
 const ProjectsGrid = ({ projects }: { projects: Project[] }) => (
   <div className="max-w-5xl mx-auto">
-    <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+    <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
       {projects.map((project, i) => (
         <div
           key={i}
-          className="fade-in-section"
+          className="fade-in-section h-full"
           style={{ animationDelay: `${(i + 1) * 100}ms` }}
         >
-          <ProjectCard project={project} />
+          <div className="h-full">
+            <ProjectCard project={project} />
+          </div>
         </div>
       ))}
     </div>
