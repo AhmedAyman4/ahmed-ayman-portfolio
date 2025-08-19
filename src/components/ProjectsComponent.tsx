@@ -8,10 +8,10 @@ import {
   FolderGit2,
   ExternalLink,
   Github,
+  FolderUp,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FadeInSection from "@/components/FadeInSection";
-import { Card } from "@/components/ui/card";
 import { SectionHeader } from "@/components/SectionHeader";
 import { spotlightProjects, otherProjects, type Project } from "./projectsData";
 
@@ -268,32 +268,69 @@ const CarouselItemContent = ({ project }: { project: Project }) => (
 // ============================================================================
 
 /**
- * Individual project card for the grid layout (simple, responsive)
+ * Individual project card for the grid layout (responsive with dark navy styling)
  */
 const ProjectCard = ({ project }: { project: Project }) => (
-  <Card className="group relative overflow-hidden h-full select-text dark:bg-gray-900/70 dark:border-gray-700/50 dark:backdrop-blur-sm transition-all duration-200 shadow-sm hover:shadow-lg hover:-translate-y-1 hover:border-primary/40 dark:hover:border-primary/50 hover:shadow-primary/20 hover:bg-white/80 dark:hover:bg-gray-900/80">
-    {/* gradient overlay that rotates slightly on hover */}
-    <div className="pointer-events-none absolute inset-0 rounded-lg bg-gradient-to-br from-primary/5 via-transparent to-purple-500/5 opacity-0 transition-all duration-300 transform-gpu group-hover:opacity-100 group-hover:rotate-[2deg] group-hover:scale-[1.01]" />
+  <div className="group relative overflow-hidden h-full rounded-2xl bg-white dark:bg-gray-900/70 p-6 transition-all duration-300 hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 hover:bg-gray-50 dark:hover:bg-gray-800/80 shadow-lg border border-transparent hover:border-primary/20 dark:hover:border-primary/30">
+    <div className="flex h-full flex-col">
+      {/* Top section with icons */}
+      <div className="flex items-start justify-between mb-4">
+        <FolderGit2
+          className="h-5 w-5 text-blue-600 transition-all duration-200 group-hover:brightness-110 group-hover:text-primary group-hover:scale-110"
+          style={{
+            color: "var(--ahmed-text-color)",
+          }}
+        />
 
-    <div className="relative z-10 p-4 sm:p-6 flex h-full flex-col">
-      <div className="flex items-start justify-between mb-3">
-        <FolderGit2 className="h-6 w-6 text-primary" />
-        <ProjectIconLinks project={project} />
+        {/* Project links */}
+        <div className="flex space-x-3">
+          {project.repoLink && project.repoLink.trim() !== "" && (
+            <a
+              href={project.repoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-200 hover:brightness-110 hover:scale-110 hover:text-primary dark:hover:text-primary"
+            >
+              <Github className="h-5 w-5 text-gray-700 dark:text-white" />
+            </a>
+          )}
+          {project.demoLink && project.demoLink.trim() !== "" && (
+            <a
+              href={project.demoLink}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="transition-all duration-200 hover:brightness-110 hover:scale-110 hover:text-primary dark:hover:text-primary"
+            >
+              <FolderUp className="h-5 w-5 text-gray-700 dark:text-white" />
+            </a>
+          )}
+        </div>
       </div>
 
-      <h3 className="text-lg sm:text-xl font-semibold text-foreground">
+      {/* Project title */}
+      <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
         {project.title}
       </h3>
 
-      <p className="mt-2 text-sm sm:text-base leading-relaxed text-muted-foreground">
+      {/* Project description */}
+      <p className="text-gray-400 text-sm leading-relaxed mb-4 flex-1 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200">
         {project.description}
       </p>
 
-      <div className="mt-4 sm:mt-5">
-        <TechBadges technologies={project.tech} />
+      {/* Tech stack */}
+      <div className="flex flex-wrap gap-2">
+        {project.tech.map((tech, index) => (
+          <span
+            key={tech}
+            className="text-xs text-gray-500 font-medium group-hover:text-gray-700 dark:group-hover:text-gray-400 transition-colors duration-200"
+          >
+            {tech}
+            {index < project.tech.length - 1 && <span className="ml-2">•</span>}
+          </span>
+        ))}
       </div>
     </div>
-  </Card>
+  </div>
 );
 
 // ============================================================================
@@ -434,11 +471,11 @@ const ProjectsHeader = () => (
 );
 
 /**
- * Grid layout for other projects
+ * Grid layout for other projects (responsive: 1 col mobile, 3 cols desktop)
  */
 const ProjectsGrid = ({ projects }: { projects: Project[] }) => (
-  <div className="max-w-5xl mx-auto">
-    <div className="project-container grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
+  <div className="max-w-6xl mx-auto px-4">
+    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch">
       {projects.map((project, i) => (
         <FadeInSection key={i} delay={`${(i + 1) * 100}ms`} className="h-full">
           <div className="h-full">
