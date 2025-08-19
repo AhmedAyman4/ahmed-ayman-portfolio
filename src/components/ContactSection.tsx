@@ -67,7 +67,7 @@ export function ContactSection() {
   return (
     <div id="contact" className="text-center">
       {/* Section Heading */}
-      <SectionHeader label="Get In Touch" title="Contact" />
+      <SectionHeader label="Get In Touch" title="Contact" className="mb-4" />
 
       {/* Description */}
       <p ref={paragraphRef} className="dark:text-gray-300 text-gray-600 mb-4">

@@ -1,11 +1,11 @@
 "use client";
 
 // React and Next.js imports
-import { useRef, useEffect, useState } from "react";
+import { useRef, useState } from "react";
 import { Patrick_Hand } from "next/font/google";
 
-// External libraries
-import { gsap } from "gsap";
+// Components
+import FadeInSection from "@/components/FadeInSection";
 
 // UI component imports
 import { Button } from "@/components/ui/button";
@@ -177,12 +177,9 @@ const SocialDropdown = () => (
 
 // Mobile Social Links Component
 const MobileSocialLinks = ({ onLinkClick }: { onLinkClick: () => void }) => (
-  <div
-    className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50 animate-in fade-in-50 slide-in-from-bottom-3 fill-mode-both"
-    style={{
-      animationDelay: `400ms`,
-      animationDuration: "500ms",
-    }}
+  <FadeInSection
+    delay={`${(SOCIAL_LINKS.length + 1) * 100}ms`}
+    className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50"
   >
     <p className="text-xs text-gray-600 dark:text-gray-400 mb-2.5 text-center">
       Connect with me
@@ -200,28 +197,23 @@ const MobileSocialLinks = ({ onLinkClick }: { onLinkClick: () => void }) => (
               e.stopPropagation();
               onLinkClick();
             }}
-            className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15 animate-in fade-in-0 zoom-in-50 fill-mode-both cursor-pointer"
+            className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary dark:hover:text-[#4de9d2] transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15 cursor-pointer"
             aria-label={social.label}
             style={{
-              animationDelay: `${500 + index * 75}ms`,
-              animationDuration: "300ms",
+              animationDelay: `${index * 100}ms`,
             }}
           >
-            <IconComponent className="h-4 w-4 transition-transform duration-300 hover:rotate-12 pointer-events-none" />
+            <IconComponent className="h-4 w-4 transition-transform duration-300 hover:rotate-12" />
           </a>
         );
       })}
     </div>
-  </div>
+  </FadeInSection>
 );
 
 // Main Navbar Component
 const Navbar: React.FC<NavbarProps> = ({ links }) => {
-  // Create refs for the elements to animate
   const navbarRef = useRef<HTMLDivElement>(null);
-  const logoRef = useRef<HTMLAnchorElement>(null);
-  const desktopNavRef = useRef<HTMLDivElement>(null);
-  const mobileMenuButtonRef = useRef<HTMLButtonElement>(null);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Utility functions
@@ -253,48 +245,6 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   const handleMobileMenuToggle = (open: boolean) => {
     setIsMobileMenuOpen(open);
   };
-
-  // GSAP Animation Effects
-  useEffect(() => {
-    if (
-      navbarRef.current &&
-      logoRef.current &&
-      desktopNavRef.current &&
-      mobileMenuButtonRef.current
-    ) {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-
-      // Navbar slides down and fades in
-      tl.fromTo(
-        navbarRef.current,
-        { y: -100, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8 }
-      );
-
-      // Logo slides from left and fades in
-      tl.fromTo(
-        logoRef.current,
-        { x: -50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.6 },
-        "-=0.5"
-      );
-
-      // Desktop navigation links (staggered fade in)
-      gsap.fromTo(
-        Array.from(desktopNavRef.current.children),
-        { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: "back.out(1.7)" }
-      );
-
-      // Mobile menu button slides from right and fades in
-      tl.fromTo(
-        mobileMenuButtonRef.current,
-        { x: 50, opacity: 0 },
-        { x: 0, opacity: 1, duration: 0.6 },
-        "-=0.5"
-      );
-    }
-  }, []);
   return (
     // Apply ref to the main navbar div
     <div
@@ -312,7 +262,6 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
             {" "}
             {/* Apply ref to the logo link */}{" "}
             <a
-              ref={logoRef}
               href="#"
               onClick={(e) => handleNavClick(e, "#")}
               className={`font-bold text-xl ${patrickHand.className} relative group`}
@@ -325,7 +274,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
             </a>
           </div>{" "}
           {/* Center section - Desktop Navigation */}
-          <div ref={desktopNavRef} className="hidden md:flex items-center">
+          <div className="hidden md:flex items-center">
             {/* Navigation pills container */}{" "}
             <div className="flex items-center gap-0.5 bg-gray-100/40 dark:bg-gray-800/40 rounded-full px-1.5 py-1.5">
               {" "}
@@ -386,7 +335,6 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
             >
               <SheetTrigger asChild>
                 <Button
-                  ref={mobileMenuButtonRef}
                   variant="ghost"
                   size="icon"
                   className="md:hidden relative group bg-gray-100/40 dark:bg-gray-800/40 backdrop-blur-sm border border-gray-200/30 dark:border-gray-700/30 hover:bg-primary/8 hover:border-primary/20 transition-all duration-300 hover:shadow-sm hover:shadow-primary/15 rounded-full w-8 h-8"
@@ -399,7 +347,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
               </SheetTrigger>{" "}
               <SheetContent
                 side="right"
-                className="md:hidden p-5 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50 rounded-l-2xl animate-in slide-in-from-right duration-300 ease-out"
+                className="md:hidden p-5 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50 rounded-l-2xl"
                 onPointerDownOutside={(e) => {
                   // Close menu when clicking outside
                   setIsMobileMenuOpen(false);
@@ -409,16 +357,18 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   setIsMobileMenuOpen(false);
                 }}
               >
-                <SheetHeader className="mb-5 animate-in fade-in-50 slide-in-from-right-5 duration-500 delay-150">
-                  <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-lg font-bold">
-                    Menu
-                  </SheetTitle>
-                  <SheetDescription
-                    className={`${patrickHand.className} text-left text-gray-600 dark:text-gray-300 text-sm`}
-                  >
-                    Navigate through the website.
-                  </SheetDescription>
-                </SheetHeader>
+                <FadeInSection delay="0ms">
+                  <SheetHeader className="mb-5">
+                    <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-lg font-bold">
+                      Menu
+                    </SheetTitle>
+                    <SheetDescription
+                      className={`${patrickHand.className} text-left text-gray-600 dark:text-gray-300 text-sm`}
+                    >
+                      Navigate through the website.
+                    </SheetDescription>
+                  </SheetHeader>
+                </FadeInSection>
                 <div
                   className="grid gap-2.5 py-3"
                   onClick={(e) => {
@@ -430,65 +380,60 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   {links.map((link, index) => {
                     const IconComponent = getNavIcon(link.label);
                     return (
-                      <div
+                      <FadeInSection
                         key={link.href}
-                        className="relative w-full animate-in fade-in-50 slide-in-from-right-3 fill-mode-both"
-                        style={{
-                          animationDelay: `${300 + index * 100}ms`,
-                          animationDuration: "400ms",
-                        }}
+                        delay={`${index * 100}ms`}
+                        className="relative w-full"
                       >
                         <a
                           href={link.href}
                           onClick={(e) => handleNavClick(e, link.href)}
-                          className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 cursor-pointer"
+                          className="relative w-full justify-start h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all duration-300 border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3 cursor-pointer hover:shadow-primary/10"
                         >
-                          <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 pointer-events-none flex items-center gap-2">
+                          <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 flex items-center gap-2">
                             {/* Icons only visible on mobile/phone view */}
                             {IconComponent && (
-                              <IconComponent className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110 md:hidden" />
+                              <IconComponent className="h-3.5 w-3.5 transition-transform duration-300 group-hover:scale-110 group-hover:text-primary dark:group-hover:text-[#4de9d2] md:hidden" />
                             )}
                             {link.label}
                           </span>
                           {/* Animated indicator */}
-                          <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r pointer-events-none" />
+                          <div className="absolute left-0 top-1/2 w-0 h-5 bg-primary/15 group-hover:w-1 transition-all duration-300 -translate-y-1/2 rounded-r" />
                           {/* Slide in effect */}
-                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl translate-x-[-100%] group-hover:translate-x-0 pointer-events-none" />
+                          <div className="absolute inset-0 bg-gradient-to-r from-primary/5 via-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-xl" />
                         </a>
-                      </div>
+                      </FadeInSection>
                     );
                   })}{" "}
-                  <a
-                    href="/Ahmed_Ayman_Alhofy.pdf"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      // Close mobile menu when resume is clicked
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className="h-10 mt-3 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5 animate-in fade-in-50 slide-in-from-right-3 fill-mode-both cursor-pointer"
-                    style={{
-                      animationDelay: `${300 + links.length * 100}ms`,
-                      animationDuration: "400ms",
-                    }}
+                  <FadeInSection
+                    delay={`${links.length * 100}ms`}
+                    className="mt-3"
                   >
-                    <span className="pointer-events-none">Resume</span>
-                    <DownloadIcon />
-                  </a>
+                    <a
+                      href="/Ahmed_Ayman_Alhofy.pdf"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        // Close mobile menu when resume is clicked
+                        setIsMobileMenuOpen(false);
+                      }}
+                      className="h-10 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md shadow-[#4de9d2]/20 hover:shadow-lg hover:shadow-[#4de9d2]/25 transition-all duration-300 hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5 cursor-pointer"
+                    >
+                      <span>Resume</span>
+                      <DownloadIcon />
+                    </a>
+                  </FadeInSection>
                   {/* Social Media Links */}
                   <MobileSocialLinks
                     onLinkClick={() => setIsMobileMenuOpen(false)}
                   />
-                  <div
-                    className="mt-3 animate-in fade-in-50 slide-in-from-bottom-3 fill-mode-both"
-                    style={{
-                      animationDelay: `${600 + links.length * 100}ms`,
-                      animationDuration: "400ms",
-                    }}
+                  <FadeInSection
+                    delay={`${(links.length + 2) * 100}ms`}
+                    className="mt-3"
                   >
                     <MobileModeToggle />
-                  </div>
+                  </FadeInSection>
                 </div>
               </SheetContent>
             </Sheet>
