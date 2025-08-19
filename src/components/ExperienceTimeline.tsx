@@ -4,10 +4,12 @@
 import { useState, useEffect } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
+import { useIsMobile } from "@/hooks/use-mobile";
 
 export function ExperienceTimeline() {
   const [selectedCompanyIndex, setSelectedCompanyIndex] = useState(0);
   const [animationKey, setAnimationKey] = useState(0);
+  const isMobile = useIsMobile();
 
   const experiences = [
     {
@@ -102,108 +104,217 @@ export function ExperienceTimeline() {
         />
       </FadeInSection>
 
-      {/* Two-column layout - reduced spacing */}
+      {/* Two-column layout for desktop, stacked layout for mobile */}
       <div className="relative max-w-5xl mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {/* Left Column - Company List - reduced padding */}
-          <FadeInSection delay="0.2s" className="left-column lg:col-span-1">
-            <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 p-2">
-              <div className="space-y-1">
-                {sortedExperiences.map((exp, index) => (
-                  <button
-                    key={exp.id}
-                    onClick={() => setSelectedCompanyIndex(index)}
-                    className={`w-full text-left p-2 rounded-md transition-all duration-300 ${
-                      selectedCompanyIndex === index
-                        ? "bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 border border-[#4de9d2]/30 text-gray-900 dark:text-gray-100"
-                        : "bg-gray-50/50 dark:bg-gray-800/20 border border-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-gray-700/20"
-                    }`}
-                  >
-                    <div className="flex items-center justify-between">
-                      <span className="font-medium text-sm">{exp.company}</span>
-                      {selectedCompanyIndex === index && (
-                        <div className="w-1.5 h-1.5 bg-[#4de9d2] rounded-full animate-pulse"></div>
-                      )}
-                    </div>
-                  </button>
-                ))}
+        {isMobile ? (
+          /* Mobile Layout - Horizontal Navigation + Details Below */
+          <div className="space-y-6">
+            {/* Mobile Horizontal Navigation */}
+            <FadeInSection delay="0.2s">
+              <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 p-2">
+                <div
+                  className="flex space-x-2 overflow-x-auto scrollbar-hide pb-1"
+                  style={{ scrollBehavior: "smooth" }}
+                >
+                  {sortedExperiences.map((exp, index) => (
+                    <button
+                      key={exp.id}
+                      onClick={() => setSelectedCompanyIndex(index)}
+                      className={`flex-shrink-0 px-4 py-2.5 rounded-md transition-all duration-300 min-w-fit ${
+                        selectedCompanyIndex === index
+                          ? "bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 border border-[#4de9d2]/30 text-gray-900 dark:text-gray-100"
+                          : "bg-gray-50/50 dark:bg-gray-800/20 border border-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-gray-700/20"
+                      }`}
+                    >
+                      <div className="text-center">
+                        <div className="text-xs font-bold mb-0.5 text-[#4de9d2]">
+                          {String(index).padStart(2, "0")}.
+                        </div>
+                      </div>
+                    </button>
+                  ))}
+                </div>
               </div>
-            </div>
-          </FadeInSection>
+            </FadeInSection>
 
-          {/* Right Column - Job Details - reduced padding */}
-          <FadeInSection delay="0.3s" className="right-column lg:col-span-2">
-            <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 p-3">
-              {(() => {
-                const selectedExp = sortedExperiences[selectedCompanyIndex];
-                return (
-                  <div>
-                    {/* Job Title and Company - on same line */}
-                    <div className="mb-2">
-                      <div className="flex items-center flex-wrap gap-2 mb-1">
-                        <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">
-                          {selectedExp.role} @{" "}
-                          <a
-                            href={selectedExp.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="bg-gradient-to-r from-[#4de9d2] to-purple-500 bg-clip-text text-transparent hover:from-[#3dd1b5] hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
-                          >
-                            {selectedExp.company}
-                          </a>
-                        </h3>
-                        <span className="px-1.5 py-0.5 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs font-medium rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
-                          {selectedExp.type === "fulltime"
-                            ? "Full-time"
-                            : selectedExp.type === "parttime"
-                            ? "Part-time"
-                            : "Internship"}
+            {/* Mobile Job Details */}
+            <FadeInSection delay="0.3s">
+              <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 p-4">
+                {(() => {
+                  const selectedExp = sortedExperiences[selectedCompanyIndex];
+                  return (
+                    <div>
+                      {/* Job Title and Company */}
+                      <div className="mb-3">
+                        <div className="flex items-center flex-wrap gap-2 mb-2">
+                          <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+                            {selectedExp.role} @{" "}
+                            <a
+                              href={selectedExp.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="bg-gradient-to-r from-[#4de9d2] to-purple-500 bg-clip-text text-transparent hover:from-[#3dd1b5] hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
+                            >
+                              {selectedExp.company}
+                            </a>
+                          </h3>
+                          <span className="px-2 py-1 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs font-medium rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
+                            {selectedExp.type === "fulltime"
+                              ? "Full-time"
+                              : selectedExp.type === "parttime"
+                              ? "Part-time"
+                              : "Internship"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Date Range */}
+                      <div className="mb-4 flex items-center space-x-2">
+                        <div className="w-1 h-1 bg-[#4de9d2] rounded-full animate-pulse"></div>
+                        <span className="text-gray-600 dark:text-gray-400 font-medium text-sm">
+                          {selectedExp.period}
                         </span>
                       </div>
-                    </div>
 
-                    {/* Date Range - smaller spacing */}
-                    <div className="mb-3 flex items-center space-x-2">
-                      <div className="w-1 h-1 bg-[#4de9d2] rounded-full animate-pulse"></div>
-                      <span className="text-gray-600 dark:text-gray-400 font-medium text-sm">
-                        {selectedExp.period}
-                      </span>
+                      {/* Responsibilities */}
+                      <div className="bg-white/50 dark:bg-white/5 rounded-lg p-3 border border-gray-200/30 dark:border-white/10">
+                        <FadeInSection
+                          key={`header-${animationKey}`}
+                          delay="0.1s"
+                        >
+                          <h4 className="text-sm font-semibold mb-3 text-gray-900 dark:text-gray-100">
+                            Key Responsibilities & Achievements
+                          </h4>
+                        </FadeInSection>
+                        <ul className="space-y-2">
+                          {selectedExp.description.map((item, itemIndex) => (
+                            <FadeInSection
+                              key={`item-${animationKey}-${itemIndex}`}
+                              delay={`${0.2 + itemIndex * 0.1}s`}
+                            >
+                              <li className="flex items-start space-x-2 group/item">
+                                <div className="flex-shrink-0 mt-1">
+                                  <div className="w-1 h-1 bg-gradient-to-r from-[#4de9d2] to-purple-500 rounded-full group-hover/item:scale-125 transition-transform duration-300"></div>
+                                </div>
+                                <span className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm group-hover/item:text-gray-900 dark:group-hover/item:text-gray-100 transition-colors duration-300">
+                                  {item}
+                                </span>
+                              </li>
+                            </FadeInSection>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
+                  );
+                })()}
+              </div>
+            </FadeInSection>
+          </div>
+        ) : (
+          /* Desktop Layout - Two Column */
+          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            {/* Left Column - Company List - reduced padding */}
+            <FadeInSection delay="0.2s" className="left-column lg:col-span-1">
+              <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 p-2">
+                <div className="space-y-1">
+                  {sortedExperiences.map((exp, index) => (
+                    <button
+                      key={exp.id}
+                      onClick={() => setSelectedCompanyIndex(index)}
+                      className={`w-full text-left p-2 rounded-md transition-all duration-300 ${
+                        selectedCompanyIndex === index
+                          ? "bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 border border-[#4de9d2]/30 text-gray-900 dark:text-gray-100"
+                          : "bg-gray-50/50 dark:bg-gray-800/20 border border-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-gray-700/20"
+                      }`}
+                    >
+                      <div className="flex items-center justify-between">
+                        <span className="font-medium text-sm">
+                          {exp.company}
+                        </span>
+                        {selectedCompanyIndex === index && (
+                          <div className="w-1.5 h-1.5 bg-[#4de9d2] rounded-full animate-pulse"></div>
+                        )}
+                      </div>
+                    </button>
+                  ))}
+                </div>
+              </div>
+            </FadeInSection>
 
-                    {/* Responsibilities - reduced padding */}
-                    <div className="bg-white/50 dark:bg-white/5 rounded-lg p-2 border border-gray-200/30 dark:border-white/10">
-                      <FadeInSection
-                        key={`header-${animationKey}`}
-                        delay="0.1s"
-                      >
-                        <h4 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">
-                          Key Responsibilities & Achievements
-                        </h4>
-                      </FadeInSection>
-                      <ul className="space-y-1.5">
-                        {selectedExp.description.map((item, itemIndex) => (
-                          <FadeInSection
-                            key={`item-${animationKey}-${itemIndex}`}
-                            delay={`${0.2 + itemIndex * 0.1}s`}
-                          >
-                            <li className="flex items-start space-x-2 group/item">
-                              <div className="flex-shrink-0 mt-1">
-                                <div className="w-1 h-1 bg-gradient-to-r from-[#4de9d2] to-purple-500 rounded-full group-hover/item:scale-125 transition-transform duration-300"></div>
-                              </div>
-                              <span className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm group-hover/item:text-gray-900 dark:group-hover/item:text-gray-100 transition-colors duration-300">
-                                {item}
-                              </span>
-                            </li>
-                          </FadeInSection>
-                        ))}
-                      </ul>
+            {/* Right Column - Job Details - reduced padding */}
+            <FadeInSection delay="0.3s" className="right-column lg:col-span-2">
+              <div className="bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20 p-3">
+                {(() => {
+                  const selectedExp = sortedExperiences[selectedCompanyIndex];
+                  return (
+                    <div>
+                      {/* Job Title and Company - on same line */}
+                      <div className="mb-2">
+                        <div className="flex items-center flex-wrap gap-2 mb-1">
+                          <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+                            {selectedExp.role} @{" "}
+                            <a
+                              href={selectedExp.link}
+                              target="_blank"
+                              rel="noopener noreferrer"
+                              className="bg-gradient-to-r from-[#4de9d2] to-purple-500 bg-clip-text text-transparent hover:from-[#3dd1b5] hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
+                            >
+                              {selectedExp.company}
+                            </a>
+                          </h3>
+                          <span className="px-1.5 py-0.5 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs font-medium rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
+                            {selectedExp.type === "fulltime"
+                              ? "Full-time"
+                              : selectedExp.type === "parttime"
+                              ? "Part-time"
+                              : "Internship"}
+                          </span>
+                        </div>
+                      </div>
+
+                      {/* Date Range - smaller spacing */}
+                      <div className="mb-3 flex items-center space-x-2">
+                        <div className="w-1 h-1 bg-[#4de9d2] rounded-full animate-pulse"></div>
+                        <span className="text-gray-600 dark:text-gray-400 font-medium text-sm">
+                          {selectedExp.period}
+                        </span>
+                      </div>
+
+                      {/* Responsibilities - reduced padding */}
+                      <div className="bg-white/50 dark:bg-white/5 rounded-lg p-2 border border-gray-200/30 dark:border-white/10">
+                        <FadeInSection
+                          key={`header-${animationKey}`}
+                          delay="0.1s"
+                        >
+                          <h4 className="text-sm font-semibold mb-2 text-gray-900 dark:text-gray-100">
+                            Key Responsibilities & Achievements
+                          </h4>
+                        </FadeInSection>
+                        <ul className="space-y-1.5">
+                          {selectedExp.description.map((item, itemIndex) => (
+                            <FadeInSection
+                              key={`item-${animationKey}-${itemIndex}`}
+                              delay={`${0.2 + itemIndex * 0.1}s`}
+                            >
+                              <li className="flex items-start space-x-2 group/item">
+                                <div className="flex-shrink-0 mt-1">
+                                  <div className="w-1 h-1 bg-gradient-to-r from-[#4de9d2] to-purple-500 rounded-full group-hover/item:scale-125 transition-transform duration-300"></div>
+                                </div>
+                                <span className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm group-hover/item:text-gray-900 dark:group-hover/item:text-gray-100 transition-colors duration-300">
+                                  {item}
+                                </span>
+                              </li>
+                            </FadeInSection>
+                          ))}
+                        </ul>
+                      </div>
                     </div>
-                  </div>
-                );
-              })()}
-            </div>
-          </FadeInSection>
-        </div>
+                  );
+                })()}
+              </div>
+            </FadeInSection>
+          </div>
+        )}
       </div>
 
       {/* Custom animations and styles */}
@@ -237,6 +348,15 @@ export function ExperienceTimeline() {
 
         .animate-float-slower {
           animation: float-slower 12s ease-in-out infinite;
+        }
+
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
+
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
         }
       `}</style>
     </div>
