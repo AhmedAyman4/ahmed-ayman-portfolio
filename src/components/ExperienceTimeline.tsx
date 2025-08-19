@@ -123,11 +123,17 @@ export function ExperienceTimeline() {
                       className={`flex-shrink-0 px-4 py-2.5 rounded-md transition-all duration-300 min-w-fit ${
                         selectedCompanyIndex === index
                           ? "bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 border border-[#4de9d2]/30 text-gray-900 dark:text-gray-100"
-                          : "bg-gray-50/50 dark:bg-gray-800/20 border border-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-gray-700/20"
+                          : "bg-gray-50/80 dark:bg-gray-800/20 border border-gray-200/50 dark:border-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100/80 dark:hover:bg-gray-700/20 hover:border-gray-300/50 dark:hover:border-transparent"
                       }`}
                     >
                       <div className="text-center">
-                        <div className="text-xs font-bold mb-0.5 text-[#4de9d2]">
+                        <div
+                          className={`text-xs font-bold mb-0.5 ${
+                            selectedCompanyIndex === index
+                              ? "text-[#2dd4bf] dark:text-[#4de9d2]"
+                              : "text-[#059669] dark:text-[#4de9d2]"
+                          }`}
+                        >
                           {String(index).padStart(2, "0")}.
                         </div>
                       </div>
