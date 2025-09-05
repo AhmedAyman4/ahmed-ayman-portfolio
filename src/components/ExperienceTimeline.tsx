@@ -43,10 +43,9 @@ export function ExperienceTimeline() {
       type: "internship" as "fulltime" | "parttime" | "internship",
       link: "https://konecta.com/",
       description: [
-        "Cleaned and preprocessed datasets, handling missing values, normalization, and validation.",
-        "Built web scrapers with BeautifulSoup and Playwright to extract dynamic e-commerce and real estate data, exporting results to CSV.",
-        "Developed supervised ML pipelines with model training, tuning, and evaluation.",
-        "Performed customer segmentation using clustering techniques (K-Means, Hierarchical, DBSCAN, Meanshift) with evaluation metrics and visualization.",
+        "Conducted data collection and preprocessing using Python libraries and web scraping tools to prepare structured datasets for analysis.",
+        "Developed and optimized machine learning models for classification, clustering, and image recognition tasks, including model tuning and evaluation.",
+        "Implemented conversational AI solutions by building RAG-based chatbots with document indexing, embeddings, and multi-turn query handling.",
       ],
     },
   ];
