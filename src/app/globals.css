@@ -286,7 +286,7 @@ body {
 
 /* Dark mode overlay - adjusted */
 .dark .background-image::before {
-  background-color: rgba(0, 0, 0, 0.6);
+  background-color: rgba(0, 0, 0, 0.7);
 }
 
 /* Remove all old background classes */
