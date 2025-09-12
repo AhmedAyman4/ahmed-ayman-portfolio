@@ -65,8 +65,8 @@ export default function Home() {
         <Navbar
           links={[
             { href: "#", label: "Home" },
-            { href: "#projects", label: "Projects" },
             { href: "#experience", label: "Experience" },
+            { href: "#projects", label: "Projects" },
             { href: "#skills", label: "Skills" },
             { href: "#contact", label: "Contact" },
           ]}
@@ -81,20 +81,10 @@ export default function Home() {
           >
             <HeroSection profileImage={Me1} introComplete={introComplete} />
           </div>
-          {/* Separator between Hero and Projects */}
+          {/* Separator between Hero and Experience */}
           {/* <SectionSeparator variant="geometric" />  */}
           {/* <SectionSeparator variant="dots" /> */}
-          {/* Projects Component */}
-          <div
-            id="projects"
-            ref={(el) => {
-              if (el) sectionsRef.current.push(el);
-            }}
-          >
-            <ProjectsComponent />
-          </div>
-          {/* Animated Separator between Projects and Experience */}
-          <AnimatedSeparator /> {/* Experience Timeline */}
+          {/* Experience Timeline */}
           <section
             id="experience"
             className="mb-8 fade-in-section"
@@ -104,8 +94,18 @@ export default function Home() {
           >
             <ExperienceTimeline />
           </section>
-          {/* Separator between Experience and Skills */}
-          <SectionSeparator variant="wave" /> {/* Skills Section */}
+          {/* Animated Separator between Experience and Projects */}
+          <AnimatedSeparator /> {/* Projects Component */}
+          <div
+            id="projects"
+            ref={(el) => {
+              if (el) sectionsRef.current.push(el);
+            }}
+          >
+            <ProjectsComponent />
+          </div>
+          {/* Separator between Projects and Skills */}
+          <AnimatedSeparator /> {/* Skills Section */}
           <section
             id="skills"
             className="mb-8 fade-in-section"
