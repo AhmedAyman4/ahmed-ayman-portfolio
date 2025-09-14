@@ -13,7 +13,7 @@ import {
 } from "@/components/SectionSeparator";
 import Footer from "@/components/Footer";
 import { IntroScreen } from "@/components/IntroScreen";
-import Me1 from "../assets/Ahmed_Ayman_Alhofy_expand_1.jpg";
+import Me1 from "../assets/Ahmed_Ayman_Alhofy_expand.jpg";
 
 export default function Home() {
   const [isMounted, setIsMounted] = useState(false);
