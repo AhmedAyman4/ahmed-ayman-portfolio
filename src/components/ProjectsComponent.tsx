@@ -219,7 +219,9 @@ const ProjectCard = ({ project }: { project: Project }) => (
 const Carousel = ({ projects }: { projects: Project[] }) => {
   const [index, setIndex] = useState(0);
   const [direction, setDirection] = useState(0);
+  const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
+  const carouselRef = useRef<HTMLDivElement | null>(null);
 
   const goTo = useCallback((newIndex: number, dir: number) => {
     setDirection(dir);
@@ -246,14 +248,40 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
     }
   }, [index]);
 
-  // Auto-play functionality
+  // Intersection Observer to detect when carousel is visible
   useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      {
+        threshold: 0.3, // Trigger when 30% of the carousel is visible
+        rootMargin: "0px 0px -100px 0px", // Add some margin to trigger earlier
+      }
+    );
+
+    if (carouselRef.current) {
+      observer.observe(carouselRef.current);
+    }
+
+    return () => {
+      if (carouselRef.current) {
+        observer.unobserve(carouselRef.current);
+      }
+      observer.disconnect();
+    };
+  }, []);
+
+  // Auto-play functionality - only when visible
+  useEffect(() => {
+    if (!isVisible) return;
+
     const interval = setInterval(() => next(), 20000);
     return () => clearInterval(interval);
-  }, [next]);
+  }, [next, isVisible]);
 
   return (
-    <div className="relative mb-16 hidden md:block">
+    <div ref={carouselRef} className="relative mb-16 hidden md:block">
       <div ref={ref} className="transition-opacity duration-500 ease-out">
         <CarouselItem project={projects[index]} onPrev={prev} onNext={next} />
       </div>
