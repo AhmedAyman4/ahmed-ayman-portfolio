@@ -9,8 +9,7 @@ import { Patrick_Hand } from "next/font/google";
 import Image from "next/image";
 
 // Icon imports
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import { MdEmail, MdOutlineVerified } from "react-icons/md";
+import { MdEmail } from "react-icons/md";
 
 // Component imports
 import { TypingEffect } from "@/components/typing-effect";
@@ -69,10 +68,7 @@ export function HeroSection({ profileImage, introComplete = false }) {
           {startTyping && (
             <TypingEffect
               words={[
-                {
-                  text: "",
-                  color: "white",
-                },
+                { text: "", color: "white" },
                 {
                   text: "Ahmed",
                   style: {
@@ -116,7 +112,7 @@ export function HeroSection({ profileImage, introComplete = false }) {
           href="mailto:ahmedalhofy42@gmail.com"
           className="mt-6 inline-flex items-center px-6 py-3 border-2 border-[#4de9d2] text-black font-medium rounded-full shadow-sm bg-[#b3f2eb] hover:bg-[#4de9d2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4de9d2]"
         >
-          <MdEmail className="mr-3 h-5 w-5 text-black" aria-hidden="true" />
+          <MdEmail className="mr-3 h-5 w-5 text-black" />
           Say hi!
         </a>
       </FadeInSection>
