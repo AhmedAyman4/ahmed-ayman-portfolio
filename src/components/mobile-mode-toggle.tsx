@@ -19,7 +19,7 @@ export function MobileModeToggle() {
   const isDark = theme === "dark";
 
   return (
-    <div className="flex items-center justify-between p-3 bg-gray-100/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30">
+    <div className="flex items-center justify-between p-3 bg-gray-100/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 hover:bg-gray-100/60 dark:hover:bg-gray-800/60 transition-all duration-300">
       <span className="text-sm font-medium text-gray-700 dark:text-gray-300">
         Theme
       </span>
@@ -31,7 +31,7 @@ export function MobileModeToggle() {
           ${
             isDark
               ? "bg-[#4de9d2]/80 focus:ring-[#4de9d2]/50"
-              : "bg-gray-300 focus:ring-primary/50"
+              : "bg-gray-200/60 dark:bg-gray-600/60 focus:ring-primary/50"
           }
         `}
         role="switch"
@@ -40,7 +40,7 @@ export function MobileModeToggle() {
       >
         <span
           className={`
-            h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform duration-300 ease-in-out flex items-center justify-center
+            h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform duration-300 ease-in-out flex items-center justify-center border border-gray-200/20
             ${isDark ? "translate-x-6" : "translate-x-1"}
           `}
         >
