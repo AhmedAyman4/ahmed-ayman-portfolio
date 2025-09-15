@@ -86,23 +86,9 @@
 @layer base {
   * {
     @apply border-border;
-    transition: border-color 0.3s ease, background-color 0.3s ease,
-      color 0.3s ease;
   }
   body {
     @apply bg-background text-foreground;
-    transition: background-color 0.3s ease, color 0.3s ease;
-  }
-
-  /* Smooth theme transitions for all elements */
-  *,
-  *::before,
-  *::after {
-    transition-property: color, background-color, border-color,
-      text-decoration-color, fill, stroke, opacity, box-shadow, transform,
-      filter, backdrop-filter;
-    transition-timing-function: cubic-bezier(0.4, 0, 0.2, 1);
-    transition-duration: 300ms;
   }
 }
 

@@ -192,7 +192,7 @@ const SocialDropdown = () => (
 // Mobile Social Links Component
 const MobileSocialLinks = ({ onLinkClick }: { onLinkClick: () => void }) => (
   <FadeInSection
-    delay={`${(SOCIAL_LINKS.length + 1) * 50}ms`}
+    delay={`${(SOCIAL_LINKS.length + 1) * 100}ms`}
     className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50"
   >
     <p className="text-xs text-gray-600 dark:text-gray-400 mb-2.5 text-center">
@@ -211,7 +211,7 @@ const MobileSocialLinks = ({ onLinkClick }: { onLinkClick: () => void }) => (
           }}
           className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary dark:hover:text-[#4de9d2] transition-all duration-300 hover:scale-110 hover:shadow-sm hover:shadow-primary/15 cursor-pointer"
           aria-label={social.label}
-          style={{ animationDelay: `${index * 50}ms` }}
+          style={{ animationDelay: `${index * 100}ms` }}
         >
           <social.icon className="h-4 w-4 transition-transform duration-300 hover:rotate-12" />
         </a>
@@ -252,25 +252,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
   };
 
   const handleMobileMenuToggle = (open: boolean) => {
-    // Use requestAnimationFrame to ensure smooth transitions
-    requestAnimationFrame(() => {
-      setIsMobileMenuOpen(open);
-    });
-  };
-
-  const handleMobileNavClick = (
-    e: React.MouseEvent<HTMLAnchorElement>,
-    href: string
-  ) => {
-    e.preventDefault();
-    e.stopPropagation();
-
-    // Close menu first with a small delay for better UX
-    setIsMobileMenuOpen(false);
-
-    setTimeout(() => {
-      handleNavClick(e, href);
-    }, 150);
+    setIsMobileMenuOpen(open);
   };
   return (
     // Apply ref to the main navbar div
@@ -360,7 +342,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
 
               <SheetContent
                 side="right"
-                className="md:hidden p-5 bg-background/98 backdrop-blur-md supports-[backdrop-filter]:bg-background/95 border-l border-gray-200/40 dark:border-gray-700/40 rounded-l-2xl shadow-2xl transition-all duration-300"
+                className="md:hidden p-5 bg-background/95 backdrop-blur-xl supports-[backdrop-filter]:bg-background/60 border-l border-gray-200/50 dark:border-gray-700/50 rounded-l-2xl"
                 onPointerDownOutside={() => setIsMobileMenuOpen(false)}
                 onInteractOutside={() => setIsMobileMenuOpen(false)}
               >
@@ -388,12 +370,12 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                     return (
                       <FadeInSection
                         key={link.href}
-                        delay={`${index * 50}ms`}
+                        delay={`${index * 100}ms`}
                         className="relative w-full"
                       >
                         <a
                           href={link.href}
-                          onClick={(e) => handleMobileNavClick(e, link.href)}
+                          onClick={(e) => handleNavClick(e, link.href)}
                           className={STYLES.mobileItem}
                         >
                           <span className="relative z-10 text-sm text-gray-700 dark:text-gray-200 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 flex items-center gap-2">
@@ -410,7 +392,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   })}
 
                   <FadeInSection
-                    delay={`${links.length * 50}ms`}
+                    delay={`${links.length * 100}ms`}
                     className="mt-3"
                   >
                     <a
@@ -433,7 +415,7 @@ const Navbar: React.FC<NavbarProps> = ({ links }) => {
                   />
 
                   <FadeInSection
-                    delay={`${(links.length + 2) * 50}ms`}
+                    delay={`${(links.length + 2) * 100}ms`}
                     className="mt-3"
                   >
                     <MobileModeToggle />
@@ -492,43 +474,6 @@ const NavbarStyles = () => (
       animation: slideInRight 0.4s ease-out forwards;
       opacity: 0;
       transform: translateX(20px);
-    }
-
-    /* Prevent mobile menu flicker */
-    [data-radix-popper-content-wrapper] {
-      z-index: 50 !important;
-      will-change: transform;
-    }
-
-    /* Smooth sheet transitions */
-    [data-state="open"][data-side="right"] {
-      animation: slideInFromRight 200ms ease-out;
-    }
-
-    [data-state="closed"][data-side="right"] {
-      animation: slideOutToRight 150ms ease-in;
-    }
-
-    @keyframes slideInFromRight {
-      from {
-        transform: translateX(100%);
-        opacity: 0;
-      }
-      to {
-        transform: translateX(0);
-        opacity: 1;
-      }
-    }
-
-    @keyframes slideOutToRight {
-      from {
-        transform: translateX(0);
-        opacity: 1;
-      }
-      to {
-        transform: translateX(100%);
-        opacity: 0;
-      }
     }
 
     @media (max-width: 768px) {
