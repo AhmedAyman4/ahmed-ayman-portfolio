@@ -202,7 +202,7 @@ const SocialIcon = ({
     className="group relative w-8 h-8 rounded-full bg-white dark:bg-gray-800 shadow-lg shadow-gray-200/50 dark:shadow-gray-900/50 hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center justify-center border border-gray-100 dark:border-gray-700 hover:border-primary/30 dark:hover:border-primary/50"
     aria-label={label}
   >
-    <div className="text-gray-600 dark:text-gray-400 group-hover:text-primary transition-colors duration-300">
+    <div className="text-gray-600 dark:text-gray-400 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300">
       {icon}
     </div>
     {/* Hover glow effect */}
