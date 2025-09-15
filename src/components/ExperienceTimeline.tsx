@@ -240,26 +240,28 @@ export function ExperienceTimeline() {
       </FadeInSection>
 
       {/* Layout */}
-      <div className="relative max-w-5xl mx-auto">
-        {isMobile ? (
-          <div className="space-y-6">
-            <FadeInSection delay="0.2s">
-              <CompanySelector isHorizontal />
-            </FadeInSection>
-            <FadeInSection delay="0.3s">
-              <ExperienceDetails />
-            </FadeInSection>
-          </div>
-        ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
-            <FadeInSection delay="0.2s" className="lg:col-span-1">
-              <CompanySelector />
-            </FadeInSection>
-            <FadeInSection delay="0.3s" className="lg:col-span-4">
-              <ExperienceDetails />
-            </FadeInSection>
-          </div>
-        )}
+      <div className="max-w-5xl mx-auto px-2 relative z-10">
+        <div className="max-w-4xl mx-auto">
+          {isMobile ? (
+            <div className="space-y-6">
+              <FadeInSection delay="0.2s">
+                <CompanySelector isHorizontal />
+              </FadeInSection>
+              <FadeInSection delay="0.3s">
+                <ExperienceDetails />
+              </FadeInSection>
+            </div>
+          ) : (
+            <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
+              <FadeInSection delay="0.2s" className="lg:col-span-1">
+                <CompanySelector />
+              </FadeInSection>
+              <FadeInSection delay="0.3s" className="lg:col-span-4">
+                <ExperienceDetails />
+              </FadeInSection>
+            </div>
+          )}
+        </div>
       </div>
 
       {/* Custom animations */}
