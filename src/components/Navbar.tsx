@@ -35,6 +35,7 @@ import {
   Briefcase,
   Code,
   Mail,
+  User,
 } from "lucide-react";
 import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
 import { MdEmail } from "react-icons/md";
@@ -131,6 +132,8 @@ const getNavIcon = (label: string) => {
   switch (label.toLowerCase()) {
     case "home":
       return Home;
+    case "about":
+      return User;
     case "projects":
       return FolderOpen;
     case "experience":
