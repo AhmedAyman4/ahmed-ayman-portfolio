@@ -117,51 +117,49 @@ export function ExperienceTimeline() {
   }: {
     isHorizontal?: boolean;
   }) => (
-    <div className={`${cardClasses} p-2`}>
-      <div
-        className={`${
-          isHorizontal
-            ? "flex space-x-2 overflow-x-auto scrollbar-hide pb-1"
-            : "space-y-1"
-        }`}
-      >
-        {sortedExperiences.map((exp, index) => (
-          <button
-            key={exp.id}
-            onClick={() => setSelectedCompanyIndex(index)}
-            className={`${
-              isHorizontal
-                ? "flex-shrink-0 px-4 py-2.5 min-w-fit"
-                : "w-full text-left p-2"
-            } rounded-md transition-all duration-300 ${
-              selectedCompanyIndex === index
-                ? selectedButtonClasses
-                : unselectedButtonClasses
-            }`}
-          >
-            {isHorizontal ? (
-              <div className="text-center">
-                <div
-                  className={`text-xs font-bold mb-0.5 ${
-                    selectedCompanyIndex === index
-                      ? "text-[#2dd4bf] dark:text-[#4de9d2]"
-                      : "text-[#059669] dark:text-[#4de9d2]"
-                  }`}
-                >
-                  {String(index).padStart(2, "0")}.
-                </div>
+    <div
+      className={`${
+        isHorizontal
+          ? "flex space-x-2 overflow-x-auto scrollbar-hide pb-1"
+          : "space-y-1"
+      }`}
+    >
+      {sortedExperiences.map((exp, index) => (
+        <button
+          key={exp.id}
+          onClick={() => setSelectedCompanyIndex(index)}
+          className={`${
+            isHorizontal
+              ? "flex-shrink-0 px-4 py-2.5 min-w-fit"
+              : "w-full text-left p-2"
+          } rounded-md transition-all duration-300 ${
+            selectedCompanyIndex === index
+              ? selectedButtonClasses
+              : unselectedButtonClasses
+          }`}
+        >
+          {isHorizontal ? (
+            <div className="text-center">
+              <div
+                className={`text-xs font-bold mb-0.5 ${
+                  selectedCompanyIndex === index
+                    ? "text-black dark:text-[#4de9d2]"
+                    : "text-black dark:text-[#4de9d2]"
+                }`}
+              >
+                {String(index).padStart(2, "0")}.
               </div>
-            ) : (
-              <div className="flex items-center justify-between">
-                <span className="font-medium text-sm">{exp.company}</span>
-                {selectedCompanyIndex === index && (
-                  <div className="w-1.5 h-1.5 bg-[#4de9d2] rounded-full animate-pulse"></div>
-                )}
-              </div>
-            )}
-          </button>
-        ))}
-      </div>
+            </div>
+          ) : (
+            <div className="flex items-center justify-between">
+              <span className="font-medium text-sm">{exp.company}</span>
+              {selectedCompanyIndex === index && (
+                <div className="w-1.5 h-1.5 bg-[#4de9d2] rounded-full animate-pulse"></div>
+              )}
+            </div>
+          )}
+        </button>
+      ))}
     </div>
   );
 
@@ -253,11 +251,11 @@ export function ExperienceTimeline() {
             </FadeInSection>
           </div>
         ) : (
-          <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+          <div className="grid grid-cols-1 lg:grid-cols-5 gap-4">
             <FadeInSection delay="0.2s" className="lg:col-span-1">
               <CompanySelector />
             </FadeInSection>
-            <FadeInSection delay="0.3s" className="lg:col-span-2">
+            <FadeInSection delay="0.3s" className="lg:col-span-4">
               <ExperienceDetails />
             </FadeInSection>
           </div>

@@ -85,7 +85,7 @@ const AboutMe = () => {
                       Ahmed Ayman Alhofy
                     </h4>
                     <p className="text-gray-600 dark:text-gray-400 font-medium">
-                      Data Scientist & AI Engineer Developer
+                      Data Scientist & AI Engineer
                     </p>
                   </div>
                 </FadeInSection>
