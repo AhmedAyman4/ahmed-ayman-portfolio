@@ -15,10 +15,17 @@ export function MobileModeToggle() {
   if (!mounted) {
     // Return a skeleton that matches the component dimensions to prevent layout shift
     return (
-      <div className="flex items-center justify-between p-3 bg-gray-100/40 rounded-xl border border-gray-200/30">
-        <span className="text-sm font-medium text-gray-400">Theme</span>
-        <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-300 animate-pulse">
-          <span className="inline-block h-4 w-4 transform rounded-full bg-white shadow-sm translate-x-1" />
+      <div className="flex items-center justify-between p-3 bg-gray-100/40 dark:bg-gray-800/40 rounded-xl border border-gray-200/30 dark:border-gray-700/30 backdrop-blur-sm">
+        <div className="flex flex-col">
+          <span className="text-sm font-medium text-gray-400 dark:text-gray-500">
+            Theme
+          </span>
+          <span className="text-xs text-gray-400 dark:text-gray-500">
+            Loading...
+          </span>
+        </div>
+        <div className="relative inline-flex h-6 w-11 items-center rounded-full bg-gray-300 dark:bg-gray-600">
+          <span className="inline-block h-4 w-4 transform rounded-full bg-white dark:bg-gray-200 shadow-sm translate-x-1 transition-all duration-300" />
         </div>
       </div>
     );
