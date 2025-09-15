@@ -42,12 +42,12 @@ const AboutMe = () => {
           subtitle="Data Scientist & AI Engineer passionate about creating innovative solutions"
         />
 
-        <div className="max-w-5xl mx-auto px-2 relative z-10">
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-2 relative z-10">
           {/* Main content grid */}
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-start justify-center max-w-4xl mx-auto">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start justify-center max-w-4xl mx-auto">
             {/* Left side - Profile section */}
             <FadeInSection delay="0.2s">
-              <div className="flex flex-col items-center lg:items-start space-y-6 pr-4 lg:pr-24">
+              <div className="flex flex-col items-center space-y-6 px-4 sm:px-0 lg:items-start lg:pr-24">
                 {/* Profile photo */}
                 <div className="relative">
                   <div className="w-72 h-72 rounded-2xl overflow-hidden shadow-2xl shadow-gray-400/20 dark:shadow-gray-900/40 transition-transform duration-300 hover:scale-105">
@@ -66,7 +66,7 @@ const AboutMe = () => {
 
                 {/* Social icons positioned below the image */}
                 <FadeInSection delay="0.6s">
-                  <div className="flex space-x-2 justify-center lg:justify-start">
+                  <div className="flex space-x-2 justify-center">
                     {SOCIAL_LINKS.map((link, index) => (
                       <SocialIcon
                         key={index}
@@ -80,7 +80,7 @@ const AboutMe = () => {
 
                 {/* Name and title */}
                 <FadeInSection delay="0.4s">
-                  <div className="text-center lg:text-left">
+                  <div className="text-center">
                     <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
                       Ahmed Ayman Alhofy
                     </h4>
@@ -94,7 +94,7 @@ const AboutMe = () => {
 
             {/* Right side - Content */}
             <FadeInSection delay="0.3s">
-              <div className="space-y-4 pl-2 lg:pl-3">
+              <div className="space-y-4 px-4 sm:px-0 text-center lg:text-left lg:pl-3">
                 <div className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed">
                   {/* First paragraph */}
                   <FadeInSection delay="0.5s">
@@ -166,7 +166,7 @@ const AboutMe = () => {
 
                 {/* Signature */}
                 <FadeInSection delay="1.1s">
-                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700">
+                  <div className="pt-4 border-t border-gray-200 dark:border-gray-700 flex justify-center lg:justify-start">
                     <Image
                       src="/images/signature.png"
                       alt="Ahmed Ayman Signature"

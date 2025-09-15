@@ -40,7 +40,7 @@ export function MobileModeToggle() {
       >
         <span
           className={`
-            inline-block h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform duration-300 ease-in-out flex items-center justify-center
+            h-4 w-4 transform rounded-full bg-white shadow-sm transition-transform duration-300 ease-in-out flex items-center justify-center
             ${isDark ? "translate-x-6" : "translate-x-1"}
           `}
         >
