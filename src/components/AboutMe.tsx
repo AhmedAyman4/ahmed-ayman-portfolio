@@ -49,7 +49,7 @@ const AboutMe = () => {
             <FadeInSection delay="0.2s">
               <div className="flex flex-col items-center space-y-6 px-4 sm:px-0 lg:items-start lg:pr-24">
                 {/* Profile photo */}
-                <div className="relative">
+                <div className="relative hidden sm:block">
                   <div className="w-72 h-72 rounded-2xl overflow-hidden shadow-2xl shadow-gray-400/20 dark:shadow-gray-900/40 transition-transform duration-300 hover:scale-105">
                     <Image
                       src="/images/Sea.png"
