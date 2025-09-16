@@ -94,7 +94,7 @@ export default function Home() {
             <AboutMe />
           </section>
           {/* Separator between About and Experience */}
-          <AnimatedSeparator />
+          {/* <AnimatedSeparator /> */}
           {/* Separator between Hero and Experience */}
           {/* <SectionSeparator variant="geometric" />  */}
           {/* <SectionSeparator variant="dots" /> */}
@@ -109,7 +109,7 @@ export default function Home() {
             <ExperienceTimeline />
           </section>
           {/* Animated Separator between Experience and Projects */}
-          <AnimatedSeparator /> {/* Projects Component */}
+          {/* <AnimatedSeparator /> */} {/* Projects Component */}
           <div
             id="projects"
             ref={(el) => {
@@ -119,7 +119,7 @@ export default function Home() {
             <ProjectsComponent />
           </div>
           {/* Separator between Projects and Skills */}
-          <AnimatedSeparator /> {/* Skills Section */}
+          {/* <AnimatedSeparator /> */} {/* Skills Section */}
           <section
             id="skills"
             className="mb-8 fade-in-section"
@@ -130,7 +130,7 @@ export default function Home() {
             <SkillsSection />
           </section>
           {/* Separator between Skills and Contact */}
-          <SectionSeparator variant="dots" /> {/* Contact Section */}
+          {/* <SectionSeparator variant="dots" /> */} {/* Contact Section */}
           <section
             id="contact"
             className="mb-8 fade-in-section"
