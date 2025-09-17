@@ -62,7 +62,7 @@ export default function AboutPage() {
                   <div className="relative hidden sm:block group">
                     <div className="w-72 h-72 rounded-2xl overflow-hidden shadow-2xl shadow-gray-400/20 dark:shadow-gray-900/40 transition-transform duration-300 group-hover:scale-105">
                       <Image
-                        src="/images/Sea.png"
+                        src="/images/IMG_1.jpg"
                         alt="Ahmed Ayman Alhofy"
                         width={288}
                         height={288}
