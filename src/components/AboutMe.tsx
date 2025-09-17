@@ -60,11 +60,20 @@ const AboutMe = () => (
                       href={href}
                       target="_blank"
                       rel="noopener noreferrer"
-                      className="group w-8 h-8 rounded-full bg-white dark:bg-gray-800 shadow-lg shadow-gray-200/50 dark:shadow-gray-900/50 hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center justify-center border border-gray-100 dark:border-gray-700 hover:border-primary/30 dark:hover:border-primary/50"
+                      onClick={(e) => {
+                        console.log(`Clicked ${label} link:`, href);
+                        // Ensure the link opens properly
+                        if (href.startsWith("mailto:")) {
+                          e.preventDefault();
+                          window.location.href = href;
+                        }
+                      }}
+                      className="group relative w-8 h-8 rounded-full bg-white dark:bg-gray-800 shadow-lg shadow-gray-200/50 dark:shadow-gray-900/50 hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center justify-center border border-gray-100 dark:border-gray-700 hover:border-primary/30 dark:hover:border-primary/50 cursor-pointer z-10"
                       aria-label={label}
+                      style={{ pointerEvents: "auto" }}
                     >
-                      <Icon className="w-3 h-3 text-gray-600 dark:text-gray-400 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300" />
-                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                      <Icon className="w-3 h-3 text-gray-600 dark:text-gray-400 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300 pointer-events-none" />
+                      <div className="absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none" />
                     </a>
                   ))}
                 </div>
