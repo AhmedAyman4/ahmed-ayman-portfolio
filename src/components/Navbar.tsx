@@ -70,6 +70,12 @@ const handleNavClick = (
   href: string,
   navbarRef: React.RefObject<HTMLDivElement>
 ) => {
+  // If it's a route link (starts with /), let the default navigation happen
+  if (href.startsWith("/")) {
+    return; // Don't prevent default, let Next.js handle the navigation
+  }
+
+  // For anchor links, prevent default and scroll
   e.preventDefault();
   if (href === "#") {
     window.scrollTo({ top: 0, behavior: "smooth" });

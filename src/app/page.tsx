@@ -7,7 +7,6 @@ import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HeroSection } from "@/components/HeroSection";
-import AboutMe from "@/components/AboutMe";
 import {
   SectionSeparator,
   AnimatedSeparator,
@@ -66,7 +65,7 @@ export default function Home() {
         <Navbar
           links={[
             { href: "#", label: "Home" },
-            { href: "#about", label: "About" },
+            { href: "/about", label: "About" },
             { href: "#experience", label: "Experience" },
             { href: "#projects", label: "Projects" },
             { href: "#skills", label: "Skills" },
@@ -83,21 +82,6 @@ export default function Home() {
           >
             <HeroSection profileImage={Me1} introComplete={introComplete} />
           </div>
-          {/* About Me Section */}
-          <section
-            id="about"
-            className="mb-8 fade-in-section"
-            ref={(el) => {
-              if (el) sectionsRef.current.push(el);
-            }}
-          >
-            <AboutMe />
-          </section>
-          {/* Separator between About and Experience */}
-          {/* <AnimatedSeparator /> */}
-          {/* Separator between Hero and Experience */}
-          {/* <SectionSeparator variant="geometric" />  */}
-          {/* <SectionSeparator variant="dots" /> */}
           {/* Experience Timeline */}
           <section
             id="experience"
