@@ -4,16 +4,7 @@ import { useRef, useState } from "react";
 import { Patrick_Hand } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
-import { MobileModeToggle } from "@/components/mobile-mode-toggle";
 import "@/styles/components/Navbar.css";
-import {
-  Sheet,
-  SheetContent,
-  SheetDescription,
-  SheetHeader,
-  SheetTitle,
-  SheetTrigger,
-} from "@/components/ui/sheet";
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -21,7 +12,6 @@ import {
   DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import {
-  Menu,
   ChevronDown,
   Home,
   FolderOpen,
@@ -103,9 +93,7 @@ const NavLink = ({
   onClick?: () => void;
 }) => {
   const Icon = NAV_ICONS[link.label.toLowerCase() as keyof typeof NAV_ICONS];
-  const baseClasses = isMobile
-    ? "nav-link-mobile group"
-    : "nav-link-desktop group";
+  const baseClasses = "nav-link-desktop group";
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     handleNavClick(e, link.href, navbarRef);
@@ -119,9 +107,9 @@ const NavLink = ({
       onClick={handleClick}
       className={baseClasses}
     >
-      <span className={isMobile ? "nav-link-text" : "nav-link-text-desktop"}>
-        {isMobile && Icon && <Icon className="nav-link-icon" />}
-        {link.label}
+      <span className="nav-link-text-desktop">
+        <span className="hidden sm:inline">{link.label}</span>
+        {Icon && <Icon className="nav-link-icon sm:hidden" />}
       </span>
     </a>
   );
@@ -155,7 +143,8 @@ const SocialDropdown = () => (
     <DropdownMenuTrigger asChild>
       <Button variant="ghost" className="social-dropdown-trigger group">
         <span className="nav-link-text-desktop">
-          Social <ChevronDown className="chevron-down" />
+          <span className="hidden sm:inline">Social</span>
+          <ChevronDown className="chevron-down" />
         </span>
       </Button>
     </DropdownMenuTrigger>
@@ -234,59 +223,8 @@ const ResumeButton = ({
   );
 };
 
-const MobileMenu = ({
-  links,
-  navbarRef,
-  closeMenu,
-}: {
-  links: { href: string; label: string }[];
-  navbarRef: React.RefObject<HTMLDivElement>;
-  closeMenu: () => void;
-}) => (
-  <SheetContent side="right" className="mobile-menu-content">
-    <SheetHeader className="mobile-menu-header">
-      <SheetTitle className="mobile-menu-title">Menu</SheetTitle>
-      <SheetDescription
-        className={`${patrickHand.className} mobile-menu-description`}
-      >
-        Navigate through the website.
-      </SheetDescription>
-    </SheetHeader>
-    <div className="mobile-menu-nav">
-      {links.map((link) => (
-        <NavLink
-          key={link.href}
-          link={link}
-          isMobile
-          navbarRef={navbarRef}
-          onClick={closeMenu}
-        />
-      ))}
-      <ResumeButton isMobile onClick={closeMenu} />
-      <div className="mobile-menu-social-section">
-        <p className="mobile-menu-social-text">Connect with me</p>
-        <div className="mobile-menu-social-icons">
-          {SOCIAL_LINKS.map((social) => (
-            <SocialIcon
-              key={social.href}
-              href={social.href}
-              Icon={social.icon}
-              label={social.label}
-              onClick={closeMenu}
-            />
-          ))}
-        </div>
-      </div>
-      <div className="mobile-menu-theme-section">
-        <MobileModeToggle />
-      </div>
-    </div>
-  </SheetContent>
-);
-
 const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
   const navbarRef = useRef<HTMLDivElement>(null);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
     <div ref={navbarRef} className="navbar-container">
@@ -295,7 +233,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
           <a
             href="#"
             onClick={(e) => handleNavClick(e, "#", navbarRef)}
-            className={`navbar-brand group ${patrickHand.className}`}
+            className={`navbar-brand group ${patrickHand.className} hidden sm:block`}
           >
             <span className="navbar-brand-text">Ahmed Ayman</span>
           </a>
@@ -314,23 +252,6 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             <div className="navbar-theme-toggle">
               <ModeToggle />
             </div>
-
-            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-              <SheetTrigger asChild>
-                <Button
-                  variant="ghost"
-                  size="icon"
-                  className="mobile-menu-trigger"
-                >
-                  <Menu className="mobile-menu-icon" />
-                </Button>
-              </SheetTrigger>
-              <MobileMenu
-                links={links}
-                navbarRef={navbarRef}
-                closeMenu={() => setIsMobileMenuOpen(false)}
-              />
-            </Sheet>
           </div>
         </div>
       </div>
