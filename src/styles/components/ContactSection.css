@@ -1,0 +1,112 @@
+/* ContactSection component styles */
+
+/* Main contact container */
+.contact-section {
+  text-align: center;
+}
+
+/* Contact description text */
+.contact-description {
+  color: rgb(75, 85, 99);
+  margin-bottom: 1rem;
+}
+
+.dark .contact-description {
+  color: rgb(209, 213, 219);
+}
+
+/* Email display */
+.contact-email {
+  color: rgb(0, 0, 0);
+  margin-bottom: 1rem;
+}
+
+.dark .contact-email {
+  color: rgb(255, 255, 255);
+}
+
+/* Contact icons container */
+.contact-icons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+}
+
+/* Contact icon link */
+.contact-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 3rem;
+  height: 3rem;
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(229, 231, 235, 0.3);
+  color: rgb(75, 85, 99);
+  transition: all 0.3s ease;
+  backdrop-filter: blur(8px);
+}
+
+.contact-icon-link:hover {
+  background: rgba(77, 233, 210, 0.1);
+  border-color: rgba(77, 233, 210, 0.3);
+  color: #4de9d2;
+  transform: translateY(-2px) scale(1.05);
+  box-shadow: 0 8px 25px rgba(77, 233, 210, 0.15);
+}
+
+.dark .contact-icon-link {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  color: rgb(156, 163, 175);
+}
+
+.dark .contact-icon-link:hover {
+  background: rgba(77, 233, 210, 0.1);
+  border-color: rgba(77, 233, 210, 0.3);
+  color: #4de9d2;
+}
+
+/* Contact icon */
+.contact-icon {
+  width: 1.25rem;
+  height: 1.25rem;
+  transition: transform 0.3s ease;
+}
+
+.contact-icon-link:hover .contact-icon {
+  transform: scale(1.1);
+}
+
+/* Animation classes for GSAP */
+.contact-paragraph-animate {
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+.contact-email-animate {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.contact-icons-animate {
+  opacity: 0;
+  transform: translateY(10px);
+}
+
+/* Responsive adjustments */
+@media (max-width: 640px) {
+  .contact-icons {
+    gap: 0.75rem;
+  }
+
+  .contact-icon-link {
+    width: 2.5rem;
+    height: 2.5rem;
+  }
+
+  .contact-icon {
+    width: 1rem;
+    height: 1rem;
+  }
+}

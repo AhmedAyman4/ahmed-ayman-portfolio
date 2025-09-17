@@ -1,0 +1,80 @@
+/* Typography */
+.typing-word-ahmed {
+  margin-left: 0.1em;
+  color: var(--ahmed-text-color);
+}
+.typing-word-here {
+  margin-left: 0.1em;
+  color: var(--color-black-color-if-white);
+}
+
+/* Profile */
+.profile-container {
+  animation: float 3s ease-in-out infinite;
+}
+.profile-border {
+  animation: borderGlow 2s ease-in-out infinite alternate;
+}
+.profile-container .profile-image {
+  transition: all 0.5s ease;
+}
+.profile-container:hover .profile-image {
+  transform: scale(1.05) rotate(6deg);
+}
+
+.profile-pulse-overlay {
+  position: absolute;
+  inset: -6px;
+  border: 2px solid #4de9d2;
+  border-radius: 50%;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+.profile-container:hover .profile-pulse-overlay {
+  opacity: 0.3;
+  animation: ping 1s infinite;
+}
+
+/* Contact Button */
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border: 2px solid #4de9d2;
+  border-radius: 50px;
+  background: #b3f2eb;
+  color: black;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+.contact-button:hover {
+  background: #4de9d2;
+}
+.contact-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4de9d2;
+}
+.contact-button-icon {
+  margin-right: 12px;
+  width: 20px;
+  height: 20px;
+}
+
+/* Animations */
+@keyframes float {
+  50% {
+    transform: translateY(-2px);
+  }
+}
+@keyframes borderGlow {
+  50% {
+    box-shadow: 0 0 40px rgba(77, 233, 210, 0.8),
+      0 0 60px rgba(77, 233, 210, 0.3);
+  }
+}
+@keyframes ping {
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
+}

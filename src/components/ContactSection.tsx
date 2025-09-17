@@ -12,6 +12,9 @@ import { Mail, Github, Linkedin } from "lucide-react";
 // Component imports
 import { SectionHeader } from "@/components/SectionHeader";
 
+// Styles
+import "@/styles/components/ContactSection.css";
+
 // Component definition
 export function ContactSection() {
   // Refs for animation targets

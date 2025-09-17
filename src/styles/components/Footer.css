@@ -1,0 +1,105 @@
+/* Footer component styles */
+
+/* Main footer container */
+.footer-container {
+  background: rgba(255, 255, 255, 0.8);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border-top: 1px solid rgba(229, 231, 235, 0.5);
+  padding: 1.5rem;
+  text-align: center;
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  position: relative;
+  overflow: hidden;
+}
+
+.dark .footer-container {
+  background: rgba(0, 0, 0, 0.7);
+  border-top-color: rgba(55, 65, 81, 0.4);
+  box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.2);
+}
+
+/* Gradient overlay */
+.footer-gradient-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(99, 102, 241, 0.08),
+    transparent
+  );
+  opacity: 0.6;
+}
+
+.dark .footer-gradient-overlay {
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(99, 102, 241, 0.05),
+    transparent
+  );
+  opacity: 0.4;
+}
+
+/* Footer content */
+.footer-content {
+  position: relative;
+  z-index: 10;
+}
+
+.footer-main-text {
+  font-size: 0.875rem;
+  color: rgb(75, 85, 99);
+  margin-top: 0.5rem;
+}
+
+.dark .footer-main-text {
+  color: rgb(209, 213, 219);
+}
+
+/* Designer name gradient */
+.footer-designer-name {
+  background: linear-gradient(
+    to right,
+    rgb(17, 24, 39),
+    rgb(99, 102, 241),
+    rgb(147, 51, 234)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  font-weight: 600;
+}
+
+.dark .footer-designer-name {
+  background: linear-gradient(
+    to right,
+    rgb(255, 255, 255),
+    rgb(129, 140, 248),
+    rgb(196, 181, 253)
+  );
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+}
+
+/* Copyright text */
+.footer-copyright {
+  font-size: 0.75rem;
+  color: rgb(107, 114, 128);
+  margin-top: 0.25rem;
+  display: inline-block;
+}
+
+.dark .footer-copyright {
+  color: rgb(156, 163, 175);
+}
+
+/* Enhanced blur effect for better glass morphism */
+@supports (backdrop-filter: blur(16px)) {
+  .footer-container {
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
+  }
+}

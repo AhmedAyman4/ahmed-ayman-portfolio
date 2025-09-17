@@ -1,0 +1,151 @@
+/* SectionSeparator component styles */
+
+/* Section separator animations */
+.separator-gradient {
+  background: linear-gradient(
+    90deg,
+    transparent,
+    hsl(var(--primary)),
+    transparent
+  );
+  animation: gradientFlow 3s ease-in-out infinite;
+}
+
+.separator-particle {
+  animation: floatParticle 2s ease-in-out infinite;
+}
+
+.separator-wave {
+  animation: waveMotion 4s ease-in-out infinite;
+}
+
+.separator-geometric {
+  animation: geometricPulse 2s ease-in-out infinite;
+}
+
+/* Enhanced section separator glow effect */
+.separator-glow {
+  box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  animation: glowPulse 3s ease-in-out infinite;
+}
+
+/* Animated separator particles */
+.animated-separator-particle {
+  position: absolute;
+  border-radius: 50%;
+  opacity: 0.6;
+}
+
+.animated-separator-particle:nth-child(1) {
+  width: 4px;
+  height: 4px;
+  background: hsl(var(--primary));
+  transform: translateX(-80px);
+  opacity: 0.6;
+}
+
+.animated-separator-particle:nth-child(2) {
+  width: 6px;
+  height: 6px;
+  background: hsl(var(--accent));
+  transform: translateX(-40px);
+  opacity: 0.8;
+}
+
+.animated-separator-particle:nth-child(3) {
+  width: 8px;
+  height: 8px;
+  background: linear-gradient(
+    to right,
+    hsl(var(--primary)),
+    hsl(var(--accent))
+  );
+  opacity: 0.9;
+}
+
+.animated-separator-particle:nth-child(4) {
+  width: 6px;
+  height: 6px;
+  background: hsl(var(--accent));
+  transform: translateX(40px);
+  opacity: 0.8;
+}
+
+.animated-separator-particle:nth-child(5) {
+  width: 4px;
+  height: 4px;
+  background: hsl(var(--primary));
+  transform: translateX(80px);
+  opacity: 0.6;
+}
+
+/* Main line styles */
+.animated-separator-line {
+  width: 100%;
+  max-width: 24rem;
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    hsl(var(--primary)),
+    transparent
+  );
+}
+
+/* Keyframes */
+@keyframes gradientFlow {
+  0%,
+  100% {
+    opacity: 0.6;
+    transform: scaleX(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scaleX(1);
+  }
+}
+
+@keyframes floatParticle {
+  0%,
+  100% {
+    transform: translateY(0px) scale(1);
+    opacity: 0.7;
+  }
+  50% {
+    transform: translateY(-10px) scale(1.1);
+    opacity: 1;
+  }
+}
+
+@keyframes waveMotion {
+  0%,
+  100% {
+    transform: translateX(0px);
+  }
+  50% {
+    transform: translateX(10px);
+  }
+}
+
+@keyframes geometricPulse {
+  0%,
+  100% {
+    transform: scale(1) rotate(0deg);
+    opacity: 0.8;
+  }
+  50% {
+    transform: scale(1.05) rotate(2deg);
+    opacity: 1;
+  }
+}
+
+@keyframes glowPulse {
+  0%,
+  100% {
+    box-shadow: 0 0 20px hsl(var(--primary) / 0.3);
+  }
+  50% {
+    box-shadow: 0 0 30px hsl(var(--primary) / 0.6),
+      0 0 40px hsl(var(--accent) / 0.3);
+  }
+}

@@ -16,6 +16,9 @@ import { TypingEffect } from "@/components/typing-effect";
 import FractalTree from "@/components/FractalTree";
 import FadeInSection from "@/components/FadeInSection";
 
+// Styles
+import "@/styles/components/HeroSection.css";
+
 // Font configuration
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
@@ -51,13 +54,13 @@ export function HeroSection({ profileImage, introComplete = false }) {
                 alt="Profile"
                 width={144}
                 height={144}
-                className="rounded-full shadow-lg transition-all duration-500 hover:scale-105 hover:rotate-6 cursor-pointer"
+                className="profile-image rounded-full shadow-lg"
               />
             </div>
           </div>
 
           {/* Pulse effect overlay - appears only on hover */}
-          <div className="absolute inset-[-6px] rounded-full border-2 border-[#4de9d2] opacity-0 group-hover:opacity-30 group-hover:animate-ping transition-opacity duration-300"></div>
+          <div className="profile-pulse-overlay"></div>
         </div>
 
         {/* Title Section */}
@@ -71,15 +74,11 @@ export function HeroSection({ profileImage, introComplete = false }) {
                 { text: "", color: "white" },
                 {
                   text: "Ahmed",
-                  style: {
-                    marginLeft: "0.1em",
-                    color: "var(--ahmed-text-color)", // CSS variable for theme-aware color
-                  },
+                  className: "typing-word-ahmed",
                 },
                 {
                   text: "here.",
-                  color: "var(--color-black-color-if-white)",
-                  style: { marginLeft: "0.1em" }, // Custom style for tighter spacing
+                  className: "typing-word-here",
                 },
               ]}
               typingSpeed={130}
@@ -110,9 +109,9 @@ export function HeroSection({ profileImage, introComplete = false }) {
         {/* Contact Button */}
         <a
           href="mailto:ahmedalhofy42@gmail.com"
-          className="mt-6 inline-flex items-center px-6 py-3 border-2 border-[#4de9d2] text-black font-medium rounded-full shadow-sm bg-[#b3f2eb] hover:bg-[#4de9d2] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-[#4de9d2]"
+          className="contact-button mt-6"
         >
-          <MdEmail className="mr-3 h-5 w-5 text-black" />
+          <MdEmail className="contact-button-icon" />
           Say hi!
         </a>
       </FadeInSection>

@@ -1,0 +1,241 @@
+/* ExperienceTimeline component styles */
+
+/* Background decorative elements */
+.experience-bg-decoration {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+  pointer-events: none;
+}
+
+.experience-decoration-orb-1 {
+  position: absolute;
+  top: 5rem;
+  left: 2.5rem;
+  width: 4rem;
+  height: 4rem;
+  background: linear-gradient(
+    to right,
+    rgba(77, 233, 210, 0.1),
+    rgba(168, 85, 247, 0.1)
+  );
+  border-radius: 50%;
+  filter: blur(12px);
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.experience-decoration-orb-2 {
+  position: absolute;
+  bottom: 5rem;
+  right: 2.5rem;
+  width: 5rem;
+  height: 5rem;
+  background: linear-gradient(
+    to right,
+    rgba(59, 130, 246, 0.05),
+    rgba(77, 233, 210, 0.05)
+  );
+  border-radius: 50%;
+  filter: blur(24px);
+  animation: float-slower 12s ease-in-out infinite;
+}
+
+/* Card styles */
+.experience-card {
+  background: rgba(255, 255, 255, 0.7);
+  backdrop-filter: blur(24px);
+  border-radius: 0.5rem;
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.05),
+    0 4px 6px -2px rgba(0, 0, 0, 0.05);
+}
+
+.dark .experience-card {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.2),
+    0 4px 6px -2px rgba(0, 0, 0, 0.2);
+}
+
+/* Button styles */
+.experience-button-selected {
+  background: linear-gradient(
+    to right,
+    rgba(77, 233, 210, 0.2),
+    rgba(168, 85, 247, 0.2)
+  );
+  border: 1px solid rgba(77, 233, 210, 0.3);
+  color: rgb(17, 24, 39);
+}
+
+.dark .experience-button-selected {
+  color: rgb(243, 244, 246);
+}
+
+.experience-button-unselected {
+  background: rgba(249, 250, 251, 0.5);
+  border: 1px solid transparent;
+  color: rgb(55, 65, 81);
+  transition: all 0.3s ease;
+}
+
+.experience-button-unselected:hover {
+  background: rgba(243, 244, 246, 0.5);
+}
+
+.dark .experience-button-unselected {
+  background: rgba(31, 41, 55, 0.2);
+  color: rgb(209, 213, 219);
+}
+
+.dark .experience-button-unselected:hover {
+  background: rgba(55, 65, 81, 0.2);
+}
+
+/* Company link styles */
+.experience-company-link {
+  background: linear-gradient(to right, #4de9d2, #a855f7);
+  background-clip: text;
+  -webkit-background-clip: text;
+  color: transparent;
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.experience-company-link:hover {
+  background: linear-gradient(to right, #3dd1b5, #8b5cf6);
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+/* Type label styles */
+.experience-type-label {
+  padding: 0.25rem 0.5rem;
+  background: linear-gradient(
+    to right,
+    rgba(77, 233, 210, 0.2),
+    rgba(168, 85, 247, 0.2)
+  );
+  font-size: 0.75rem;
+  font-weight: 500;
+  border-radius: 9999px;
+  border: 1px solid rgba(77, 233, 210, 0.3);
+  color: rgb(55, 65, 81);
+}
+
+.dark .experience-type-label {
+  color: rgb(209, 213, 219);
+}
+
+/* Period indicator */
+.experience-period-dot {
+  width: 0.25rem;
+  height: 0.25rem;
+  background-color: #4de9d2;
+  border-radius: 50%;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Description container */
+.experience-description-container {
+  background: rgba(255, 255, 255, 0.5);
+  border-radius: 0.5rem;
+  padding: 0.75rem;
+  border: 1px solid rgba(229, 231, 235, 0.3);
+}
+
+.dark .experience-description-container {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Description list item */
+.experience-description-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.5rem;
+}
+
+.experience-description-dot {
+  flex-shrink: 0;
+  margin-top: 0.25rem;
+  width: 0.25rem;
+  height: 0.25rem;
+  background: linear-gradient(to right, #4de9d2, #a855f7);
+  border-radius: 50%;
+  transition: transform 0.3s ease;
+}
+
+.experience-description-item:hover .experience-description-dot {
+  transform: scale(1.25);
+}
+
+.experience-description-text {
+  color: rgb(55, 65, 81);
+  line-height: 1.6;
+  font-size: 0.875rem;
+  transition: color 0.3s ease;
+}
+
+.experience-description-item:hover .experience-description-text {
+  color: rgb(17, 24, 39);
+}
+
+.dark .experience-description-text {
+  color: rgb(209, 213, 219);
+}
+
+.dark .experience-description-item:hover .experience-description-text {
+  color: rgb(243, 244, 246);
+}
+
+/* Selected company indicator */
+.experience-selected-indicator {
+  width: 0.375rem;
+  height: 0.375rem;
+  background-color: #4de9d2;
+  border-radius: 50%;
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+/* Scrollbar hide utility */
+.scrollbar-hide {
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animations */
+@keyframes float-slow {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px) rotate(0deg);
+  }
+  33% {
+    transform: translateY(-10px) translateX(5px) rotate(1deg);
+  }
+  66% {
+    transform: translateY(-5px) translateX(-5px) rotate(-1deg);
+  }
+}
+
+@keyframes float-slower {
+  0%,
+  100% {
+    transform: translateY(0px) translateX(0px);
+  }
+  50% {
+    transform: translateY(-15px) translateX(10px);
+  }
+}
+
+.animate-float-slow {
+  animation: float-slow 8s ease-in-out infinite;
+}
+
+.animate-float-slower {
+  animation: float-slower 12s ease-in-out infinite;
+}

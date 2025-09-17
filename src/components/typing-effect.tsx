@@ -13,6 +13,7 @@ interface WordConfig {
   text: string;
   color?: string;
   style?: React.CSSProperties;
+  className?: string;
 }
 
 /**
@@ -94,9 +95,13 @@ export const TypingEffect: React.FC<TypingEffectProps> = ({
       const wordText = displayText.slice(textIndex, textIndex + wordLength);
       textIndex += wordLength + 1; // +1 for space
 
-      const { color, style = {} } = word;
+      const { color, style = {}, className = "" } = word;
       return (
-        <span key={wordIndex} style={{ color, ...style }} className="inline">
+        <span
+          key={wordIndex}
+          style={{ color, ...style }}
+          className={`inline ${className}`}
+        >
           {wordText}
           {wordIndex < words.length - 1 && wordText.length === wordLength
             ? " "

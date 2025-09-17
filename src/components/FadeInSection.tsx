@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useRef, useEffect, ReactNode } from "react";
+import "@/styles/components/FadeInSection.css";
 
 interface FadeInSectionProps {
   children: ReactNode;
@@ -42,7 +43,7 @@ const FadeInSection: React.FC<FadeInSectionProps> = ({
       className={`fade-in-section ${
         isVisible ? "is-visible" : ""
       } ${className}`}
-      style={{ transitionDelay: delay }}
+      style={{ "--delay": delay } as React.CSSProperties}
       ref={domRef}
     >
       {children}

@@ -5,6 +5,7 @@ import { useState, useEffect } from "react";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
 import { useIsMobile } from "@/hooks/use-mobile";
+import "@/styles/components/ExperienceTimeline.css";
 
 type ExperienceType = "fulltime" | "parttime" | "internship";
 
@@ -103,14 +104,11 @@ export function ExperienceTimeline() {
     return labels[type];
   };
 
-  const cardClasses =
-    "bg-white/70 dark:bg-white/5 backdrop-blur-xl rounded-lg border border-gray-200/50 dark:border-white/10 shadow-lg shadow-black/5 dark:shadow-black/20";
+  const cardClasses = "experience-card";
 
-  const selectedButtonClasses =
-    "bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 border border-[#4de9d2]/30 text-gray-900 dark:text-gray-100";
+  const selectedButtonClasses = "experience-button-selected";
 
-  const unselectedButtonClasses =
-    "bg-gray-50/50 dark:bg-gray-800/20 border border-transparent text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-gray-700/20";
+  const unselectedButtonClasses = "experience-button-unselected";
 
   const CompanySelector = ({
     isHorizontal = false,
@@ -225,9 +223,9 @@ export function ExperienceTimeline() {
   return (
     <div id="experience" className="relative overflow-hidden">
       {/* Background decorative elements */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        <div className="absolute top-20 left-10 w-16 h-16 bg-gradient-to-r from-[#4de9d2]/10 to-purple-500/10 rounded-full blur-xl animate-float-slow"></div>
-        <div className="absolute bottom-20 right-10 w-20 h-20 bg-gradient-to-r from-blue-500/5 to-[#4de9d2]/5 rounded-full blur-2xl animate-float-slower"></div>
+      <div className="experience-bg-decoration">
+        <div className="experience-decoration-orb-1"></div>
+        <div className="experience-decoration-orb-2"></div>
       </div>
 
       {/* Title */}
@@ -263,47 +261,6 @@ export function ExperienceTimeline() {
           )}
         </div>
       </div>
-
-      {/* Custom animations */}
-      <style jsx>{`
-        @keyframes float-slow {
-          0%,
-          100% {
-            transform: translateY(0px) translateX(0px) rotate(0deg);
-          }
-          33% {
-            transform: translateY(-10px) translateX(5px) rotate(1deg);
-          }
-          66% {
-            transform: translateY(-5px) translateX(-5px) rotate(-1deg);
-          }
-        }
-
-        @keyframes float-slower {
-          0%,
-          100% {
-            transform: translateY(0px) translateX(0px);
-          }
-          50% {
-            transform: translateY(-15px) translateX(10px);
-          }
-        }
-
-        .animate-float-slow {
-          animation: float-slow 8s ease-in-out infinite;
-        }
-        .animate-float-slower {
-          animation: float-slower 12s ease-in-out infinite;
-        }
-
-        .scrollbar-hide {
-          -ms-overflow-style: none;
-          scrollbar-width: none;
-        }
-        .scrollbar-hide::-webkit-scrollbar {
-          display: none;
-        }
-      `}</style>
     </div>
   );
 }

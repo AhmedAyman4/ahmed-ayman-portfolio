@@ -1,0 +1,14 @@
+/* AboutMe component styles */
+
+/* Social link hover effects */
+.social-link {
+  pointer-events: auto;
+}
+
+.social-link-icon {
+  pointer-events: none;
+}
+
+.social-link-overlay {
+  pointer-events: none;
+}

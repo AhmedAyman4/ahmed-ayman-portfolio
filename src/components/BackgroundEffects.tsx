@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import "@/styles/components/BackgroundEffects.css";
 
 export default function BackgroundEffects() {
   const [mounted, setMounted] = useState(false);

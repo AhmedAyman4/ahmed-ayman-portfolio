@@ -1,0 +1,185 @@
+/* ProjectsComponent styles */
+
+/* Carousel */
+.carousel-container {
+  @apply relative mb-16 hidden md:block;
+}
+
+.carousel-item {
+  @apply relative rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-2xl transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-[1.02];
+}
+
+.carousel-border {
+  @apply absolute inset-0 rounded-2xl bg-gradient-to-r from-primary via-purple-500 to-blue-500 p-[2px] opacity-0 group-hover:opacity-100 transition-opacity duration-700;
+}
+
+.carousel-border-inner {
+  @apply h-full w-full rounded-2xl bg-black;
+}
+
+.carousel-nav-button {
+  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 text-gray-800 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8 p-0 rounded-full hover:bg-white/90 dark:hover:bg-black/90;
+}
+
+.carousel-nav-left {
+  @apply left-3;
+}
+.carousel-nav-right {
+  @apply right-3;
+}
+
+.carousel-image-container {
+  @apply relative overflow-hidden rounded-2xl;
+}
+
+.carousel-image {
+  @apply object-cover w-full;
+}
+
+.carousel-overlay {
+  @apply absolute inset-0 bg-gradient-to-t from-black/80 via-black/40 to-transparent group-hover:from-black/90 group-hover:via-black/50 transition-all duration-500;
+}
+
+.carousel-content {
+  @apply absolute bottom-0 left-0 right-0 text-white flex flex-col items-center text-center px-4 pb-6 pt-12;
+}
+
+.carousel-title {
+  @apply text-xl font-bold mb-2 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent group-hover:from-primary group-hover:via-purple-300 group-hover:to-blue-300 group-hover:scale-[1.05] transition-all duration-500 transform;
+}
+
+.carousel-description-wrapper {
+  @apply relative;
+}
+
+.carousel-description-bg {
+  @apply absolute inset-0 bg-white/10 dark:bg-gray-900/20 backdrop-blur-sm rounded-lg opacity-0 group-hover:opacity-100 transition-opacity duration-500;
+}
+
+.carousel-description {
+  @apply relative text-xs leading-relaxed hidden md:block max-w-xl mx-auto text-gray-200 group-hover:text-white transition-colors duration-300 px-3 py-1.5;
+}
+
+.carousel-tech-container {
+  @apply flex mt-3 space-x-1.5 flex-wrap justify-center;
+}
+
+.carousel-tech-badge {
+  @apply relative px-2.5 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30 hover:bg-primary/30 hover:border-primary/50 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-300 mb-1.5;
+}
+
+.carousel-tech-more {
+  @apply relative px-2.5 py-1 text-xs font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 mb-1.5;
+}
+
+.carousel-links {
+  @apply mt-3 flex space-x-2;
+}
+
+.carousel-link {
+  @apply relative px-4 py-2 text-xs font-medium backdrop-blur-sm text-white rounded-lg border hover:shadow-lg hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-300;
+}
+
+.carousel-demo-link {
+  @apply bg-white/20 border-white/30 hover:bg-primary/20 hover:border-primary/50 hover:shadow-primary/20;
+}
+
+.carousel-repo-link {
+  @apply bg-primary/30 border-primary/50 hover:bg-primary/50 hover:border-primary/70 hover:shadow-primary/30;
+}
+
+.carousel-link-bg {
+  @apply absolute inset-0 rounded-lg opacity-0 transition-opacity duration-300;
+}
+
+.carousel-demo-link:hover .carousel-link-bg {
+  @apply opacity-100 bg-gradient-to-r from-primary/0 to-primary/20;
+}
+
+.carousel-repo-link:hover .carousel-link-bg {
+  @apply opacity-100 bg-gradient-to-r from-primary/20 to-purple-500/20;
+}
+
+.carousel-link-text {
+  @apply relative z-10;
+}
+
+.carousel-indicators {
+  @apply flex justify-center items-center mt-4;
+}
+
+.carousel-indicator {
+  @apply h-1 w-6 rounded-sm mx-1 transition-colors duration-300;
+}
+
+.carousel-indicator.active {
+  @apply bg-primary;
+}
+.carousel-indicator.inactive {
+  @apply bg-gray-400 dark:bg-gray-600;
+}
+
+/* Animation delays */
+.tech-badge-0 {
+  animation-delay: 0ms;
+}
+.tech-badge-1 {
+  animation-delay: 100ms;
+}
+.tech-badge-2 {
+  animation-delay: 200ms;
+}
+
+/* Project Cards */
+.project-card {
+  @apply relative overflow-hidden h-full rounded-2xl bg-white dark:bg-gray-900/70 p-6 shadow-lg border border-transparent hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 hover:bg-gray-50 dark:hover:bg-gray-800/80 hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300;
+}
+
+.project-card-header {
+  @apply flex items-start justify-between mb-4;
+}
+
+.project-folder-icon {
+  @apply h-5 w-5 text-blue-600 dark:text-[#4de9d2] group-hover:brightness-[1.1] group-hover:text-primary dark:group-hover:text-[#4de9d2] group-hover:scale-[1.1] transition-all duration-200;
+}
+
+.project-card-links {
+  @apply flex space-x-3;
+}
+
+.project-card-link {
+  @apply hover:brightness-[1.1] hover:scale-[1.1] hover:text-primary dark:hover:text-primary transition-all duration-200;
+}
+
+.project-card-link-icon {
+  @apply h-5 w-5 text-gray-700 dark:text-white;
+}
+
+.project-card-content {
+  @apply flex h-full flex-col;
+}
+
+.project-card-title {
+  @apply text-xl font-bold text-gray-900 dark:text-white mb-3;
+}
+
+.project-card-description {
+  @apply text-gray-400 text-sm leading-relaxed mb-4 flex-1 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200;
+}
+
+.project-card-tech {
+  @apply flex flex-wrap gap-2;
+}
+
+.project-card-tech-item {
+  @apply text-xs text-gray-500 font-medium group-hover:text-gray-700 dark:group-hover:text-gray-400 transition-colors duration-200;
+}
+
+/* Layout */
+.projects-grid {
+  @apply max-w-6xl mx-auto px-4;
+}
+
+.projects-grid-container {
+  @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch;
+}

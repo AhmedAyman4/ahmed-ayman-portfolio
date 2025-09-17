@@ -5,6 +5,7 @@ import { Patrick_Hand } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import { MobileModeToggle } from "@/components/mobile-mode-toggle";
+import "@/styles/components/Navbar.css";
 import {
   Sheet,
   SheetContent,
@@ -97,8 +98,8 @@ const NavLink = ({
 }) => {
   const Icon = NAV_ICONS[link.label.toLowerCase() as keyof typeof NAV_ICONS];
   const baseClasses = isMobile
-    ? "relative w-full h-10 group bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:shadow-sm transition-all border border-transparent hover:border-primary/15 rounded-xl flex items-center px-3"
-    : "relative group px-3 py-1.5 rounded-full transition-all hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10";
+    ? "nav-link-mobile group"
+    : "nav-link-desktop group";
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     handleNavClick(e, link.href, navbarRef);
@@ -112,8 +113,8 @@ const NavLink = ({
       onClick={handleClick}
       className={baseClasses}
     >
-      <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors flex items-center gap-2">
-        {isMobile && Icon && <Icon className="h-3.5 w-3.5" />}
+      <span className={isMobile ? "nav-link-text" : "nav-link-text-desktop"}>
+        {isMobile && Icon && <Icon className="nav-link-icon" />}
         {link.label}
       </span>
     </a>
@@ -136,45 +137,36 @@ const SocialIcon = ({
     target="_blank"
     rel="noopener noreferrer"
     onClick={onClick}
-    className="p-2.5 rounded-full bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 hover:text-primary dark:hover:text-[#4de9d2] transition-all hover:scale-110 hover:shadow-sm"
+    className="social-icon"
     aria-label={label}
   >
-    <Icon className="h-4 w-4" />
+    <Icon />
   </a>
 );
 
 const SocialDropdown = () => (
   <DropdownMenu>
     <DropdownMenuTrigger asChild>
-      <Button
-        variant="ghost"
-        className="relative group px-3 py-1.5 rounded-full transition-all duration-300 hover:bg-gray-100/50 dark:hover:bg-gray-800/50 hover:shadow-md hover:shadow-primary/10 h-auto"
-      >
-        <span className="text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors flex items-center gap-1">
-          Social{" "}
-          <ChevronDown className="h-3 w-3 transition-transform group-hover:rotate-180" />
+      <Button variant="ghost" className="social-dropdown-trigger group">
+        <span className="nav-link-text-desktop">
+          Social <ChevronDown className="chevron-down" />
         </span>
       </Button>
     </DropdownMenuTrigger>
-    <DropdownMenuContent
-      align="center"
-      className="w-40 bg-background/95 backdrop-blur-xl border border-gray-200/50 dark:border-gray-700/50 rounded-xl shadow-xl p-1.5"
-    >
-      <div className="text-xs text-gray-500 dark:text-gray-400 px-2.5 py-1.5 font-medium tracking-wide uppercase">
-        Connect with me
-      </div>
+    <DropdownMenuContent align="center" className="social-dropdown-content">
+      <div className="social-dropdown-header">Connect with me</div>
       {SOCIAL_LINKS.map((social) => (
         <DropdownMenuItem key={social.href} asChild>
           <a
             href={social.href}
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center gap-2.5 w-full px-2.5 py-2 hover:bg-primary/5 hover:text-primary transition-all rounded-lg group/item"
+            className="social-dropdown-item"
           >
-            <social.icon className="h-4 w-4 transition-transform group-hover/item:scale-110" />
-            <span className="font-medium">{social.label}</span>
+            <social.icon className="social-dropdown-icon" />
+            <span className="social-dropdown-label">{social.label}</span>
             <svg
-              className="h-3 w-3 ml-auto opacity-0 group-hover/item:opacity-100 transition-opacity"
+              className="social-dropdown-arrow"
               fill="none"
               stroke="currentColor"
               viewBox="0 0 24 24"
@@ -200,10 +192,13 @@ const ResumeButton = ({
   isMobile?: boolean;
   onClick?: () => void;
 }) => {
-  const mobileClasses =
-    "mt-3 h-10 bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] text-black font-medium shadow-md hover:shadow-lg transition-all hover:scale-105 rounded-xl text-sm flex items-center justify-center gap-1.5";
-  const desktopClasses =
-    "hidden md:flex px-3 py-1.5 rounded-full transition-all bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:scale-105";
+  const buttonClass = isMobile
+    ? "resume-button-mobile"
+    : "resume-button-desktop group";
+  const textClass = isMobile
+    ? "resume-button-text"
+    : "resume-button-text-desktop";
+  const iconClass = isMobile ? "resume-icon-mobile" : "resume-icon-desktop";
 
   return (
     <a
@@ -211,20 +206,12 @@ const ResumeButton = ({
       target="_blank"
       rel="noopener noreferrer"
       onClick={onClick}
-      className={isMobile ? mobileClasses : desktopClasses}
+      className={buttonClass}
     >
-      <span
-        className={`text-sm font-medium flex items-center gap-1 ${
-          isMobile ? "" : "group"
-        }`}
-      >
+      <span className={textClass}>
         Resume
         <svg
-          className={
-            isMobile
-              ? "w-3 h-3"
-              : "w-0 group-hover:w-3 transition-all overflow-hidden h-3"
-          }
+          className={iconClass}
           fill="none"
           stroke="currentColor"
           viewBox="0 0 24 24"
@@ -250,21 +237,16 @@ const MobileMenu = ({
   navbarRef: React.RefObject<HTMLDivElement>;
   closeMenu: () => void;
 }) => (
-  <SheetContent
-    side="right"
-    className="md:hidden p-5 bg-background/80 backdrop-blur-xl border-l border-gray-200/50 dark:border-gray-700/50"
-  >
-    <SheetHeader className="mb-5">
-      <SheetTitle className="text-left bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent text-lg font-bold">
-        Menu
-      </SheetTitle>
+  <SheetContent side="right" className="mobile-menu-content">
+    <SheetHeader className="mobile-menu-header">
+      <SheetTitle className="mobile-menu-title">Menu</SheetTitle>
       <SheetDescription
-        className={`${patrickHand.className} text-left text-gray-600 dark:text-gray-300 text-sm`}
+        className={`${patrickHand.className} mobile-menu-description`}
       >
         Navigate through the website.
       </SheetDescription>
     </SheetHeader>
-    <div className="grid gap-2.5 py-3">
+    <div className="mobile-menu-nav">
       {links.map((link) => (
         <NavLink
           key={link.href}
@@ -275,11 +257,9 @@ const MobileMenu = ({
         />
       ))}
       <ResumeButton isMobile onClick={closeMenu} />
-      <div className="mt-5 pt-3 border-t border-gray-200/50 dark:border-gray-700/50">
-        <p className="text-xs text-gray-600 dark:text-gray-400 mb-2.5 text-center">
-          Connect with me
-        </p>
-        <div className="flex justify-center gap-3">
+      <div className="mobile-menu-social-section">
+        <p className="mobile-menu-social-text">Connect with me</p>
+        <div className="mobile-menu-social-icons">
           {SOCIAL_LINKS.map((social) => (
             <SocialIcon
               key={social.href}
@@ -291,7 +271,7 @@ const MobileMenu = ({
           ))}
         </div>
       </div>
-      <div className="mt-3">
+      <div className="mobile-menu-theme-section">
         <MobileModeToggle />
       </div>
     </div>
@@ -303,21 +283,19 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   return (
-    <div ref={navbarRef} className="sticky top-0 z-50 w-full py-2">
-      <div className="container max-w-5xl mx-auto px-3">
-        <div className="bg-background/70 backdrop-blur-xl border border-gray-200/30 dark:border-gray-700/40 rounded-full px-4 py-2 shadow-md flex items-center justify-between">
+    <div ref={navbarRef} className="navbar-container">
+      <div className="navbar-wrapper">
+        <div className="navbar-content">
           <a
             href="#"
             onClick={(e) => handleNavClick(e, "#", navbarRef)}
-            className={`font-bold text-xl ${patrickHand.className} group`}
+            className={`navbar-brand group ${patrickHand.className}`}
           >
-            <span className="bg-gradient-to-r from-gray-900 via-primary to-purple-600 dark:from-white dark:via-primary dark:to-purple-300 bg-clip-text text-transparent">
-              Ahmed Ayman
-            </span>
+            <span className="navbar-brand-text">Ahmed Ayman</span>
           </a>
 
-          <div className="hidden md:flex items-center">
-            <div className="flex items-center gap-0.5 bg-gray-100/40 dark:bg-gray-800/40 rounded-full px-1.5 py-1.5">
+          <div className="navbar-desktop-nav">
+            <div className="navbar-nav-container">
               {links.map((link) => (
                 <NavLink key={link.href} link={link} navbarRef={navbarRef} />
               ))}
@@ -325,9 +303,9 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-2">
+          <div className="navbar-actions">
             <ResumeButton />
-            <div className="hidden md:block">
+            <div className="navbar-theme-toggle">
               <ModeToggle />
             </div>
 
@@ -336,9 +314,9 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                 <Button
                   variant="ghost"
                   size="icon"
-                  className="md:hidden bg-gray-100/40 dark:bg-gray-800/40 hover:bg-primary/8 transition-all rounded-full w-8 h-8"
+                  className="mobile-menu-trigger"
                 >
-                  <Menu className="h-4 w-4" />
+                  <Menu className="mobile-menu-icon" />
                 </Button>
               </SheetTrigger>
               <MobileMenu

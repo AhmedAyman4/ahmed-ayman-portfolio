@@ -1,0 +1,206 @@
+/* IntroScreen component styles */
+
+/* Main intro screen container */
+.intro-screen {
+  position: fixed;
+  inset: 0;
+  z-index: 50;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: black;
+  transition: all 0.8s ease;
+}
+
+.intro-screen.fade-out {
+  opacity: 0;
+  transform: scale(1.1);
+}
+
+/* Background gradients */
+.intro-background {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom right, black, rgb(3, 7, 18), black);
+}
+
+/* Background animation container */
+.intro-background-animation {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+/* Elegant orb animations */
+.intro-orb-primary {
+  position: absolute;
+  top: 25%;
+  right: 25%;
+  width: 24rem;
+  height: 24rem;
+  background: linear-gradient(
+    to bottom right,
+    rgba(255, 255, 255, 0.05),
+    rgba(209, 213, 219, 0.05)
+  );
+  border-radius: 50%;
+  filter: blur(48px);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+.intro-orb-secondary {
+  position: absolute;
+  bottom: 25%;
+  left: 25%;
+  width: 20rem;
+  height: 20rem;
+  background: linear-gradient(
+    to bottom right,
+    rgba(156, 163, 175, 0.05),
+    rgba(255, 255, 255, 0.05)
+  );
+  border-radius: 50%;
+  filter: blur(48px);
+  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  animation-delay: 1s;
+}
+
+/* Text backdrop */
+.intro-text-backdrop {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    to right,
+    transparent,
+    rgba(31, 41, 55, 0.3),
+    transparent
+  );
+  filter: blur(12px);
+  border-radius: 9999px;
+}
+
+/* Hello typing effect container */
+.intro-hello-container {
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.intro-hello-text {
+  font-size: clamp(3.75rem, 8vw, 9rem);
+  font-weight: 300;
+  line-height: 1;
+  letter-spacing: normal;
+  color: white;
+  filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.2));
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+}
+
+.intro-hello-text-inner {
+  color: white;
+  filter: drop-shadow(0 0 60px rgba(255, 255, 255, 0.2));
+}
+
+.intro-hello-word {
+  font-family: var(--font-dancing-script), "Dancing Script", cursive;
+  text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.intro-hello-glow {
+  position: absolute;
+  inset: 0;
+  color: white;
+  filter: blur(2px);
+  opacity: 0.3;
+  z-index: -10;
+}
+
+/* Subtitle */
+.intro-subtitle {
+  font-size: clamp(1.125rem, 2vw, 2rem);
+  color: rgba(156, 163, 175, 1);
+  font-weight: 300;
+  letter-spacing: 0.05em;
+  transition: all 0.8s ease;
+  transition-delay: 1.5s;
+}
+
+.intro-subtitle.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-subtitle.hide {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+.intro-subtitle-name {
+  color: rgba(209, 213, 219, 1);
+}
+
+/* Loading animation */
+.intro-loading {
+  margin-top: 3rem;
+  display: flex;
+  justify-content: center;
+  gap: 0.5rem;
+  transition: all 0.8s ease;
+  transition-delay: 1.8s;
+}
+
+.intro-loading.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.intro-loading.hide {
+  opacity: 0;
+  transform: translateY(1rem);
+}
+
+.intro-loading-dot {
+  width: 8px;
+  height: 8px;
+  background-color: rgba(75, 85, 99, 1);
+  border-radius: 50%;
+  animation: loadingPulse 1.4s ease-in-out infinite both;
+}
+
+.intro-loading-dot:nth-child(1) {
+  animation-delay: -0.32s;
+}
+
+.intro-loading-dot:nth-child(2) {
+  animation-delay: -0.16s;
+}
+
+.intro-loading-dot:nth-child(3) {
+  animation-delay: 0s;
+}
+
+/* Keyframes */
+@keyframes loadingPulse {
+  0%,
+  80%,
+  100% {
+    transform: scale(0);
+  }
+  40% {
+    transform: scale(1);
+  }
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  .intro-orb-primary {
+    width: 16rem;
+    height: 16rem;
+  }
+
+  .intro-orb-secondary {
+    width: 12rem;
+    height: 12rem;
+  }
+}

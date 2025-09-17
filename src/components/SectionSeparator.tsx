@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { gsap } from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import "@/styles/components/SectionSeparator.css";
 
 gsap.registerPlugin(ScrollTrigger);
 
@@ -110,7 +111,9 @@ export function AnimatedSeparator({ className = "" }: { className?: string }) {
     const container = containerRef.current;
     if (!container) return;
 
-    const particles = container.querySelectorAll(".particle");
+    const particles = container.querySelectorAll(
+      ".animated-separator-particle"
+    );
 
     particles.forEach((particle, index) => {
       gsap.to(particle, {
@@ -124,7 +127,7 @@ export function AnimatedSeparator({ className = "" }: { className?: string }) {
     });
 
     gsap.fromTo(
-      container.querySelector(".main-line"),
+      container.querySelector(".animated-separator-line"),
       { scaleX: 0 },
       {
         scaleX: 1,
@@ -144,14 +147,14 @@ export function AnimatedSeparator({ className = "" }: { className?: string }) {
       ref={containerRef}
       className={`relative my-6 md:my-8 lg:my-10 h-8 flex justify-center items-center max-w-5xl mx-auto ${className}`}
     >
-      <div className="main-line w-full max-w-md h-px bg-gradient-to-r from-transparent via-primary to-transparent"></div>
+      <div className="animated-separator-line"></div>
 
       <div className="absolute inset-0 flex justify-center items-center">
-        <div className="particle absolute w-1 h-1 bg-primary rounded-full -translate-x-20 opacity-60"></div>
-        <div className="particle absolute w-1.5 h-1.5 bg-accent rounded-full -translate-x-10 opacity-80"></div>
-        <div className="particle absolute w-2 h-2 bg-gradient-to-r from-primary to-accent rounded-full opacity-90"></div>
-        <div className="particle absolute w-1.5 h-1.5 bg-accent rounded-full translate-x-10 opacity-80"></div>
-        <div className="particle absolute w-1 h-1 bg-primary rounded-full translate-x-20 opacity-60"></div>
+        <div className="animated-separator-particle"></div>
+        <div className="animated-separator-particle"></div>
+        <div className="animated-separator-particle"></div>
+        <div className="animated-separator-particle"></div>
+        <div className="animated-separator-particle"></div>
       </div>
     </div>
   );
