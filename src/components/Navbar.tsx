@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { Patrick_Hand } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 import "@/styles/components/Navbar.css";
 import { Home, FolderOpen, Briefcase, Code, Mail, User } from "lucide-react";
 
@@ -64,17 +65,28 @@ const NavLink = ({
   };
 
   return (
-    <a
-      key={link.href}
-      href={link.href}
-      onClick={handleClick}
-      className={baseClasses}
-    >
-      <span className="nav-link-text-desktop">
-        <span className="hidden sm:inline">{link.label}</span>
-        {Icon && <Icon className="nav-link-icon sm:hidden" />}
-      </span>
-    </a>
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <a
+          key={link.href}
+          href={link.href}
+          onClick={handleClick}
+          className={baseClasses}
+        >
+          <span className="nav-link-text-desktop">
+            <span className="hidden sm:inline">{link.label}</span>
+            {Icon && <Icon className="nav-link-icon sm:hidden" />}
+          </span>
+        </a>
+      </TooltipTrigger>
+      <TooltipContent 
+        side="bottom" 
+        className="sm:hidden"
+        sideOffset={5}
+      >
+        <p className="text-xs font-medium">{link.label}</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
@@ -125,34 +137,36 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
   const navbarRef = useRef<HTMLDivElement>(null);
 
   return (
-    <div ref={navbarRef} className="navbar-container">
-      <div className="navbar-wrapper">
-        <div className="navbar-content">
-          <a
-            href="#"
-            onClick={(e) => handleNavClick(e, "#", navbarRef)}
-            className={`navbar-brand group ${patrickHand.className} hidden sm:block`}
-          >
-            <span className="navbar-brand-text">Ahmed Ayman</span>
-          </a>
+    <TooltipProvider>
+      <div ref={navbarRef} className="navbar-container">
+        <div className="navbar-wrapper">
+          <div className="navbar-content">
+            <a
+              href="#"
+              onClick={(e) => handleNavClick(e, "#", navbarRef)}
+              className={`navbar-brand group ${patrickHand.className} hidden sm:block`}
+            >
+              <span className="navbar-brand-text">Ahmed Ayman</span>
+            </a>
 
-          <div className="navbar-desktop-nav">
-            <div className="navbar-nav-container">
-              {links.map((link) => (
-                <NavLink key={link.href} link={link} navbarRef={navbarRef} />
-              ))}
+            <div className="navbar-desktop-nav">
+              <div className="navbar-nav-container">
+                {links.map((link) => (
+                  <NavLink key={link.href} link={link} navbarRef={navbarRef} />
+                ))}
+              </div>
             </div>
-          </div>
 
-          <div className="navbar-actions">
-            <ResumeButton />
-            <div className="navbar-theme-toggle">
-              <ModeToggle />
+            <div className="navbar-actions">
+              <ResumeButton />
+              <div className="navbar-theme-toggle">
+                <ModeToggle />
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </div>
+    </TooltipProvider>
   );
 };
 
