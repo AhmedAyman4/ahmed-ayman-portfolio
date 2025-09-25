@@ -269,7 +269,7 @@ export function KBarProviderWrapper({ children }: KBarProviderWrapperProps) {
     <KBarProvider actions={actions}>
       <KBarPortal>
         <KBarPositioner className="fixed inset-0 z-50 bg-black/70 dark:bg-black/70 backdrop-blur-sm">
-          <KBarAnimator className="w-full max-w-lg max-h-[28rem] mx-auto mt-20 overflow-hidden">
+          <KBarAnimator className="w-full max-w-lg max-h-[28rem] mx-auto mt-1 md:mt-20 overflow-hidden">
             <div className="bg-white/95 dark:bg-black/90 backdrop-blur-md border border-gray-200/20 dark:border-white/10 rounded-2xl shadow-2xl overflow-hidden flex flex-col max-h-full will-change-transform">
               <KBarSearch
                 className="px-6 py-4 text-base bg-transparent border-none outline-none w-full placeholder-gray-500 dark:placeholder-gray-400 text-gray-900 dark:text-white flex-shrink-0"
