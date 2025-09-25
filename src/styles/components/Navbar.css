@@ -16,7 +16,7 @@
 /* Mobile navbar layout */
 @media (max-width: 640px) {
   .navbar-content {
-    @apply justify-center;
+    @apply justify-between;
   }
 }
 
@@ -41,7 +41,7 @@
 /* Responsive navigation container */
 @media (max-width: 640px) {
   .navbar-nav-container {
-    @apply gap-1 px-1 py-1 justify-center;
+    @apply gap-1 px-1 py-1 justify-start;
   }
 }
 
@@ -173,7 +173,7 @@
 /* Mobile actions positioning */
 @media (max-width: 640px) {
   .navbar-actions {
-    @apply absolute right-4;
+    @apply flex items-center gap-2;
   }
 }
 
