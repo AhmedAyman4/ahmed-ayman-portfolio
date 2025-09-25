@@ -55,7 +55,7 @@ export default function AboutPage() {
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
               {/* Profile Section */}
               <FadeInSection delay="0.1s">
-                <div className="flex flex-col items-center space-y-6 lg:items-start">
+                <div className="flex flex-col items-center space-y-6">
                   {/* Profile Photo */}
                   <div className="relative group">
                     <div className="w-48 h-48 sm:w-72 sm:h-72 rounded-2xl overflow-hidden shadow-2xl shadow-gray-400/20 dark:shadow-gray-900/40 transition-transform duration-300 group-hover:scale-105">
@@ -71,9 +71,21 @@ export default function AboutPage() {
                     <div className="absolute inset-0 rounded-2xl bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
                   </div>
 
+                  {/* Name and Title */}
+                  <FadeInSection delay="0.2s">
+                    <div className="text-center">
+                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
+                        Ahmed Ayman Alhofy
+                      </h4>
+                      <p className="text-gray-600 dark:text-gray-400 font-medium">
+                        Data Scientist & AI Engineer
+                      </p>
+                    </div>
+                  </FadeInSection>
+
                   {/* Social Links */}
                   <FadeInSection delay="0.3s">
-                    <div className="flex space-x-2">
+                    <div className="flex space-x-6 justify-center">
                       {SOCIAL_LINKS.map(({ href, icon: Icon, label }) => (
                         <a
                           key={label}
@@ -88,25 +100,12 @@ export default function AboutPage() {
                               window.location.href = href;
                             }
                           }}
-                          className="social-link group relative w-8 h-8 rounded-full bg-white dark:bg-gray-800 shadow-lg shadow-gray-200/50 dark:shadow-gray-900/50 hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 transition-all duration-300 hover:scale-110 hover:-translate-y-1 flex items-center justify-center border border-gray-100 dark:border-gray-700 hover:border-primary/30 dark:hover:border-primary/50 cursor-pointer z-10"
+                          className="group cursor-pointer"
                           aria-label={label}
                         >
-                          <Icon className="social-link-icon w-3 h-3 text-gray-600 dark:text-gray-400 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors duration-300" />
-                          <div className="social-link-overlay absolute inset-0 rounded-full bg-gradient-to-br from-primary/10 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                          <Icon className="w-5 h-5 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] transition-colors duration-300 hover:scale-110" />
                         </a>
                       ))}
-                    </div>
-                  </FadeInSection>
-
-                  {/* Name and Title */}
-                  <FadeInSection delay="0.2s">
-                    <div className="text-center">
-                      <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
-                        Ahmed Ayman Alhofy
-                      </h4>
-                      <p className="text-gray-600 dark:text-gray-400 font-medium">
-                        Data Scientist & AI Engineer
-                      </p>
                     </div>
                   </FadeInSection>
                 </div>
