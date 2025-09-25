@@ -54,7 +54,7 @@ export default function AboutPage() {
           <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-2 relative z-10">
             <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-10 items-start">
               {/* Profile Section */}
-              <FadeInSection delay="0.2s">
+              <FadeInSection delay="0.1s">
                 <div className="flex flex-col items-center space-y-6 lg:items-start">
                   {/* Profile Photo */}
                   <div className="relative group">
@@ -72,7 +72,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Social Links */}
-                  <FadeInSection delay="0.6s">
+                  <FadeInSection delay="0.3s">
                     <div className="flex space-x-2">
                       {SOCIAL_LINKS.map(({ href, icon: Icon, label }) => (
                         <a
@@ -99,7 +99,7 @@ export default function AboutPage() {
                   </FadeInSection>
 
                   {/* Name and Title */}
-                  <FadeInSection delay="0.4s">
+                  <FadeInSection delay="0.2s">
                     <div className="text-center">
                       <h4 className="text-lg font-semibold text-gray-900 dark:text-white mb-1">
                         Ahmed Ayman Alhofy
@@ -113,10 +113,10 @@ export default function AboutPage() {
               </FadeInSection>
 
               {/* Content Section */}
-              <FadeInSection delay="0.3s">
+              <FadeInSection delay="0.15s">
                 <div className="space-y-4 px-4 sm:px-0 text-center lg:text-left">
                   <div className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed text-base">
-                    <FadeInSection delay="0.5s">
+                    <FadeInSection delay="0.25s">
                       <p>
                         I am a data and machine learning scientist with
                         experience in predictive modeling, natural language
@@ -127,7 +127,7 @@ export default function AboutPage() {
                       </p>
                     </FadeInSection>
 
-                    <FadeInSection delay="0.7s">
+                    <FadeInSection delay="0.35s">
                       <p>
                         My work spans across machine learning, NLP, and
                         conversational AI, including RAG-based chatbots,
@@ -139,7 +139,7 @@ export default function AboutPage() {
                       </p>
                     </FadeInSection>
 
-                    <FadeInSection delay="0.9s">
+                    <FadeInSection delay="0.45s">
                       <p>
                         I believe in continuous learning, collaboration, and
                         using data to create real-world impact. Whether
@@ -151,7 +151,7 @@ export default function AboutPage() {
                   </div>
 
                   {/* Signature */}
-                  <FadeInSection delay="1.1s">
+                  <FadeInSection delay="0.55s">
                     <div className="pt-4 border-t border-gray-200 dark:border-gray-700 flex justify-center lg:justify-start">
                       <Image
                         src="/images/signature.png"
