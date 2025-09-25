@@ -23,8 +23,6 @@ const SOCIAL_LINKS = [
   },
 ];
 
-const strongClass = "text-gray-900 dark:text-white font-semibold";
-
 export default function AboutPage() {
   const router = useRouter();
 
@@ -120,71 +118,34 @@ export default function AboutPage() {
                   <div className="space-y-3 text-gray-700 dark:text-gray-300 leading-relaxed text-base">
                     <FadeInSection delay="0.5s">
                       <p>
-                        I am a{" "}
-                        <strong className={strongClass}>
-                          data and machine learning scientist
-                        </strong>{" "}
-                        with experience in{" "}
-                        <strong className={strongClass}>
-                          predictive modeling
-                        </strong>
-                        ,{" "}
-                        <strong className={strongClass}>
-                          natural language processing
-                        </strong>
-                        , and{" "}
-                        <strong className={strongClass}>
-                          full-stack development
-                        </strong>
-                        . Skilled in Python, SQL, and modern ML frameworks, I
-                        enjoy building data-driven applications that turn
-                        complex problems into intuitive solutions.
+                        I am a data and machine learning scientist with
+                        experience in predictive modeling, natural language
+                        processing, and full-stack development. Skilled in
+                        Python, SQL, and modern ML frameworks, I enjoy building
+                        data-driven applications that turn complex problems into
+                        intuitive solutions.
                       </p>
                     </FadeInSection>
 
                     <FadeInSection delay="0.7s">
                       <p>
-                        My work spans across{" "}
-                        <strong className={strongClass}>
-                          machine learning
-                        </strong>
-                        , <strong className={strongClass}>NLP</strong>, and{" "}
-                        <strong className={strongClass}>
-                          conversational AI
-                        </strong>
-                        , including{" "}
-                        <strong className={strongClass}>
-                          RAG-based chatbots
-                        </strong>
-                        ,{" "}
-                        <strong className={strongClass}>
-                          recommender systems
-                        </strong>
-                        , and{" "}
-                        <strong className={strongClass}>
-                          predictive analytics
-                        </strong>
-                        . I also bring hands-on experience in web technologies
-                        and data visualization, with projects ranging from
-                        automated scrapers to customer segmentation and semantic
-                        search applications.
+                        My work spans across machine learning, NLP, and
+                        conversational AI, including RAG-based chatbots,
+                        recommender systems, and predictive analytics. I also
+                        bring hands-on experience in web technologies and data
+                        visualization, with projects ranging from automated
+                        scrapers to customer segmentation and semantic search
+                        applications.
                       </p>
                     </FadeInSection>
 
                     <FadeInSection delay="0.9s">
                       <p>
-                        I believe in{" "}
-                        <strong className={strongClass}>
-                          continuous learning
-                        </strong>
-                        , <strong className={strongClass}>collaboration</strong>
-                        , and using data to create{" "}
-                        <strong className={strongClass}>
-                          real-world impact
-                        </strong>
-                        . Whether developing scalable ML models or building
-                        user-facing applications, I aim to bridge the gap
-                        between data science and practical technology solutions.
+                        I believe in continuous learning, collaboration, and
+                        using data to create real-world impact. Whether
+                        developing scalable ML models or building user-facing
+                        applications, I aim to bridge the gap between data
+                        science and practical technology solutions.
                       </p>
                     </FadeInSection>
                   </div>
