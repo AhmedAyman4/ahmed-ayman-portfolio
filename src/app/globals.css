@@ -5,6 +5,47 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Custom scrollbar styles for KBar */
+.kbar-scrollbar {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(156, 163, 175, 0.3) transparent;
+}
+
+.kbar-scrollbar::-webkit-scrollbar {
+  width: 4px;
+}
+
+.kbar-scrollbar::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.kbar-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(156, 163, 175, 0.3);
+  border-radius: 2px;
+  transition: all 0.2s ease;
+}
+
+.kbar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(156, 163, 175, 0.5);
+}
+
+.kbar-scrollbar::-webkit-scrollbar-corner {
+  background: transparent;
+}
+
+/* Dark mode scrollbar */
+.dark .kbar-scrollbar::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.dark .kbar-scrollbar::-webkit-scrollbar-thumb:hover {
+  background: rgba(255, 255, 255, 0.25);
+}
+
+.dark .kbar-scrollbar {
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+}
+
 @layer base {
   :root {
     --background: 0 0% 100%;

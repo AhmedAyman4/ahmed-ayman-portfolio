@@ -7,6 +7,7 @@ import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HeroSection } from "@/components/HeroSection";
+import { KBarHint } from "@/components/kbar-toggle";
 import {
   SectionSeparator,
   AnimatedSeparator,
@@ -126,6 +127,7 @@ export default function Home() {
           </section>
         </main>
         <Footer />
+        <KBarHint />
       </div>
     </>
   );

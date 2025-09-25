@@ -4,6 +4,7 @@ import { useRef, useState } from "react";
 import { Patrick_Hand } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
+import { KBarToggle } from "@/components/kbar-toggle";
 import {
   Tooltip,
   TooltipContent,
@@ -159,6 +160,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             </div>
 
             <div className="navbar-actions">
+              <KBarToggle />
               <ResumeButton />
               <div className="navbar-theme-toggle">
                 <ModeToggle />
