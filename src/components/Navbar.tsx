@@ -4,7 +4,12 @@ import { useRef, useState } from "react";
 import { Patrick_Hand } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
+import {
+  Tooltip,
+  TooltipContent,
+  TooltipProvider,
+  TooltipTrigger,
+} from "@/components/ui/tooltip";
 import "@/styles/components/Navbar.css";
 import { Home, FolderOpen, Briefcase, Code, Mail, User } from "lucide-react";
 
@@ -79,11 +84,7 @@ const NavLink = ({
           </span>
         </a>
       </TooltipTrigger>
-      <TooltipContent 
-        side="bottom" 
-        className="sm:hidden"
-        sideOffset={5}
-      >
+      <TooltipContent side="bottom" className="sm:hidden" sideOffset={5}>
         <p className="text-xs font-medium">{link.label}</p>
       </TooltipContent>
     </Tooltip>
