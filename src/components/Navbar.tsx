@@ -5,46 +5,9 @@ import { Patrick_Hand } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
 import "@/styles/components/Navbar.css";
-import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuItem,
-  DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu";
-import {
-  ChevronDown,
-  Home,
-  FolderOpen,
-  Briefcase,
-  Code,
-  Mail,
-  User,
-} from "lucide-react";
-import { FaGithub, FaLinkedin, FaInstagram } from "react-icons/fa";
-import { MdEmail } from "react-icons/md";
-import { AiFillSafetyCertificate } from "react-icons/ai";
+import { Home, FolderOpen, Briefcase, Code, Mail, User } from "lucide-react";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
-
-const SOCIAL_LINKS = [
-  { href: "https://github.com/AhmedAyman4", icon: FaGithub, label: "GitHub" },
-  {
-    href: "https://www.linkedin.com/in/ahmed-alhofy/",
-    icon: FaLinkedin,
-    label: "LinkedIn",
-  },
-  { href: "mailto:ahmedalhofy42@gmail.com", icon: MdEmail, label: "Email" },
-  {
-    href: "https://www.instagram.com/ahmedhofi_/",
-    icon: FaInstagram,
-    label: "Instagram",
-  },
-  {
-    href: "https://www.credly.com/users/ahmedayman",
-    icon: AiFillSafetyCertificate,
-    label: "Credly",
-  },
-];
 
 const NAV_ICONS = {
   home: Home,
@@ -115,71 +78,6 @@ const NavLink = ({
   );
 };
 
-const SocialIcon = ({
-  href,
-  Icon,
-  label,
-  onClick,
-}: {
-  href: string;
-  Icon: any;
-  label: string;
-  onClick?: () => void;
-}) => (
-  <a
-    href={href}
-    target="_blank"
-    rel="noopener noreferrer"
-    onClick={onClick}
-    className="social-icon"
-    aria-label={label}
-  >
-    <Icon />
-  </a>
-);
-
-const SocialDropdown = () => (
-  <DropdownMenu>
-    <DropdownMenuTrigger asChild>
-      <Button variant="ghost" className="social-dropdown-trigger group">
-        <span className="nav-link-text-desktop">
-          <span className="hidden sm:inline">Social</span>
-          <ChevronDown className="chevron-down" />
-        </span>
-      </Button>
-    </DropdownMenuTrigger>
-    <DropdownMenuContent align="center" className="social-dropdown-content">
-      <div className="social-dropdown-header">Connect with me</div>
-      {SOCIAL_LINKS.map((social) => (
-        <DropdownMenuItem key={social.href} asChild>
-          <a
-            href={social.href}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="social-dropdown-item"
-          >
-            <social.icon className="social-dropdown-icon" />
-            <span className="social-dropdown-label">{social.label}</span>
-            <svg
-              className="social-dropdown-arrow"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"
-              />
-            </svg>
-          </a>
-        </DropdownMenuItem>
-      ))}
-    </DropdownMenuContent>
-  </DropdownMenu>
-);
-
 const ResumeButton = ({
   isMobile = false,
   onClick,
@@ -243,7 +141,6 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
               {links.map((link) => (
                 <NavLink key={link.href} link={link} navbarRef={navbarRef} />
               ))}
-              <SocialDropdown />
             </div>
           </div>
 

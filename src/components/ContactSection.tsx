@@ -2,6 +2,8 @@
 
 // Icon imports
 import { Mail, Github, Linkedin } from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
+import { AiFillSafetyCertificate } from "react-icons/ai";
 
 // Component imports
 import { SectionHeader } from "@/components/SectionHeader";
@@ -29,6 +31,16 @@ export function ContactSection() {
       icon: Github,
       label: "GitHub",
     },
+    {
+      href: "https://www.instagram.com/ahmedhofi_/",
+      icon: FaInstagram,
+      label: "Instagram",
+    },
+    {
+      href: "https://www.credly.com/users/ahmedayman",
+      icon: AiFillSafetyCertificate,
+      label: "Credly",
+    },
   ];
 
   // Render
@@ -55,17 +67,17 @@ export function ContactSection() {
 
       {/* Social Links */}
       <FadeInSection delay="0.6s">
-        <div className="flex justify-center items-center space-x-4">
+        <div className="contact-icons">
           {contactLinks.map(({ href, icon: Icon, label }) => (
             <a
               key={label}
               href={href}
               target="_blank"
               rel="noopener noreferrer"
-              className="hover:text-accent"
+              className="contact-icon-link"
               aria-label={label}
             >
-              <Icon className="h-6 w-6" />
+              <Icon className="contact-icon" />
             </a>
           ))}
         </div>
