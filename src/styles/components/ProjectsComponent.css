@@ -6,7 +6,8 @@
 }
 
 .carousel-item {
-  @apply relative rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-2xl transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20 hover:scale-[1.02];
+  @apply relative rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-2xl transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20;
+  height: 600px;
 }
 
 .carousel-border {
@@ -30,10 +31,12 @@
 
 .carousel-image-container {
   @apply relative overflow-hidden rounded-2xl;
+  height: 600px;
 }
 
 .carousel-image {
   @apply object-cover w-full;
+  height: 600px;
 }
 
 .carousel-overlay {

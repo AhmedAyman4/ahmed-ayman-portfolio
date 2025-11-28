@@ -11,7 +11,7 @@ export interface Project {
 
 export const spotlightProjects: Project[] = [
   {
-    title: "Semantic Book Recommender ",
+    title: "Semantic Book Recommender",
     description:
       "Developed a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
     tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
@@ -19,6 +19,24 @@ export const spotlightProjects: Project[] = [
     demoLink:
       "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
     repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
+  },
+  {
+    title: "Retail Analytics Copilot",
+    description:
+      "A Hybrid RAG + SQL Agent using LangGraph and DSPy. Deployed on Hugging Face Spaces, powered by Phi-3.5 (3.8B) and Gemini models. Supports batch processing and JSON input/output.",
+    tech: [
+      "Python",
+      "LangGraph",
+      "DSPy",
+      "SQLite",
+      "RAG",
+      "Streamlit",
+      "Docker",
+    ],
+    image: "/images/retailAnalyticsCopilot.png",
+    demoLink:
+      "https://huggingface.co/spaces/ahmed-ayman/retail-analytics-copilot",
+    repoLink: "https://github.com/AhmedAyman4/retail-analytics-copilot",
   },
   {
     title: "Campaign Conversion Predictor",
@@ -70,6 +88,24 @@ export const otherProjects: Project[] = [
     demoLink:
       "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
     repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
+  },
+  {
+    title: "Retail Analytics Copilot",
+    description:
+      "A Hybrid RAG + SQL Agent using LangGraph and DSPy. Deployed on Hugging Face Spaces, powered by Phi-3.5 (3.8B) and Gemini models. Supports batch processing and JSON input/output.",
+    tech: [
+      "Python",
+      "LangGraph",
+      "DSPy",
+      "SQLite",
+      "RAG",
+      "Streamlit",
+      "Docker",
+    ],
+    image: "/images/retailAnalyticsCopilot.png",
+    demoLink:
+      "https://huggingface.co/spaces/ahmed-ayman/retail-analytics-copilot",
+    repoLink: "https://github.com/AhmedAyman4/retail-analytics-copilot",
   },
   {
     title: "Campaign Conversion Predictor",
