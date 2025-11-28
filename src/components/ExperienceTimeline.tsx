@@ -59,6 +59,7 @@ export function ExperienceTimeline() {
         "Conducted data collection and preprocessing using Python libraries and web scraping tools to prepare structured datasets for analysis.",
         "Developed and optimized machine learning models for classification, clustering, and image recognition tasks, including model tuning and evaluation.",
         "Implemented conversational AI solutions by building RAG-based chatbots with document indexing, embeddings, and multi-turn query handling.",
+        "Built automation workflows using n8n to streamline data and AI processes.",
       ],
     },
   ];
