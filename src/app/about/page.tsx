@@ -159,9 +159,9 @@ export default function AboutPage() {
                           I am a data and machine learning scientist with
                           experience in predictive modeling, natural language
                           processing, and full-stack development. Skilled in
-                          Python, SQL, and modern ML frameworks, I enjoy building
-                          data-driven applications that turn complex problems into
-                          intuitive solutions.
+                          Python, SQL, and modern ML frameworks, I enjoy
+                          building data-driven applications that turn complex
+                          problems into intuitive solutions.
                         </p>
                       </FadeInSection>
 
