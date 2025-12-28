@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 import { Patrick_Hand } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
@@ -56,14 +56,18 @@ const NavLink = ({
   isMobile = false,
   navbarRef,
   onClick,
+  isActive = false,
 }: {
   link: { href: string; label: string };
   isMobile?: boolean;
   navbarRef: React.RefObject<HTMLDivElement>;
   onClick?: () => void;
+  isActive?: boolean;
 }) => {
   const Icon = NAV_ICONS[link.label.toLowerCase() as keyof typeof NAV_ICONS];
-  const baseClasses = "nav-link-desktop group";
+  const baseClasses = `nav-link-desktop group ${
+    isActive ? "nav-link-active" : ""
+  }`;
 
   const handleClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
     handleNavClick(e, link.href, navbarRef);
@@ -137,6 +141,56 @@ const ResumeButton = ({
 
 const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
   const navbarRef = useRef<HTMLDivElement>(null);
+  const [activeSection, setActiveSection] = useState<string>("");
+
+  useEffect(() => {
+    const handleScroll = () => {
+      const navbarHeight = navbarRef.current?.offsetHeight || 80;
+      const scrollPosition = window.scrollY + navbarHeight + 100;
+
+      // Check if we're at the top of the page
+      if (window.scrollY < 100) {
+        setActiveSection("home");
+        return;
+      }
+
+      // Find the current section
+      for (const link of links) {
+        if (link.href.startsWith("#") && link.href !== "#") {
+          const section = document.querySelector(link.href) as HTMLElement;
+          if (section) {
+            const sectionTop = section.offsetTop;
+            const sectionBottom = sectionTop + section.offsetHeight;
+
+            if (
+              scrollPosition >= sectionTop &&
+              scrollPosition < sectionBottom
+            ) {
+              const sectionId = link.href.replace("#", "");
+              setActiveSection(sectionId);
+              return;
+            }
+          }
+        }
+      }
+    };
+
+    // Initial check
+    handleScroll();
+
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, [links]);
+
+  const isLinkActive = (href: string, label: string): boolean => {
+    if (href === "#" || href === "#home") {
+      return activeSection === "home" || activeSection === "";
+    }
+    if (href.startsWith("#")) {
+      return activeSection === href.replace("#", "");
+    }
+    return false;
+  };
 
   return (
     <TooltipProvider>
@@ -154,7 +208,12 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             <div className="navbar-desktop-nav">
               <div className="navbar-nav-container">
                 {links.map((link) => (
-                  <NavLink key={link.href} link={link} navbarRef={navbarRef} />
+                  <NavLink
+                    key={link.href}
+                    link={link}
+                    navbarRef={navbarRef}
+                    isActive={isLinkActive(link.href, link.label)}
+                  />
                 ))}
               </div>
             </div>

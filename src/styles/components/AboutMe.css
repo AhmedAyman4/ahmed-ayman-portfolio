@@ -1,14 +1,104 @@
 /* AboutMe component styles */
 
-/* Social link hover effects */
-.social-link {
-  pointer-events: auto;
+/* Profile container animation */
+.profile-container {
+  animation: float 3s ease-in-out infinite;
 }
 
-.social-link-icon {
+/* Pulse overlay for about page profile */
+.about-pulse-overlay {
+  position: absolute;
+  inset: -6px;
+  border: 2px solid #4de9d2;
+  border-radius: 1rem;
+  opacity: 0;
+  transition: opacity 0.3s;
   pointer-events: none;
 }
 
-.social-link-overlay {
-  pointer-events: none;
+.profile-container:hover .about-pulse-overlay {
+  opacity: 0.4;
+  animation: pulse-glow 1.5s infinite;
+}
+
+/* Social icon link styles */
+.social-icon-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: rgba(77, 233, 210, 0.05);
+  border: 1px solid rgba(77, 233, 210, 0.2);
+  transition: all 0.3s ease;
+}
+
+.social-icon-link:hover {
+  background: rgba(77, 233, 210, 0.15);
+  border-color: #4de9d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(77, 233, 210, 0.2);
+}
+
+/* Contact button - matching HeroSection */
+.contact-button {
+  display: inline-flex;
+  align-items: center;
+  padding: 12px 24px;
+  border: 2px solid #4de9d2;
+  border-radius: 50px;
+  background: #b3f2eb;
+  color: black;
+  font-weight: 500;
+  transition: all 0.3s;
+}
+
+.contact-button:hover {
+  background: #4de9d2;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(77, 233, 210, 0.4);
+}
+
+.contact-button:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px #4de9d2;
+}
+
+.contact-button-icon {
+  margin-right: 10px;
+  width: 18px;
+  height: 18px;
+}
+
+/* Animations */
+@keyframes float {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-6px);
+  }
+}
+
+@keyframes pulse-glow {
+  0%, 100% {
+    opacity: 0.4;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.2;
+    transform: scale(1.02);
+  }
+}
+
+/* Dark mode adjustments */
+.dark .social-icon-link {
+  background: rgba(77, 233, 210, 0.08);
+  border-color: rgba(77, 233, 210, 0.3);
+}
+
+.dark .social-icon-link:hover {
+  background: rgba(77, 233, 210, 0.2);
+  border-color: #4de9d2;
 }

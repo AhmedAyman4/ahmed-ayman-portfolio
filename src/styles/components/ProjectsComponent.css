@@ -186,3 +186,61 @@
 .projects-grid-container {
   @apply grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 items-stretch;
 }
+
+/* Project Detail Modal */
+.project-modal-content {
+  @apply bg-white dark:bg-gray-900/70 border border-transparent dark:border-transparent rounded-2xl shadow-xl shadow-primary/10 dark:shadow-primary/20;
+}
+
+.project-modal-title {
+  @apply text-2xl font-bold text-gray-900 dark:text-white;
+}
+
+.project-modal-body {
+  @apply space-y-6 mt-4;
+}
+
+.project-modal-image-container {
+  @apply relative w-full rounded-xl overflow-hidden shadow-lg;
+  aspect-ratio: 16 / 9;
+}
+
+.project-modal-image {
+  @apply w-full h-full object-cover;
+}
+
+.project-modal-description {
+  @apply text-gray-400 text-sm leading-relaxed;
+}
+
+.project-modal-tech-section {
+  @apply space-y-3;
+}
+
+.project-modal-tech-title {
+  @apply text-sm font-semibold text-blue-600 dark:text-[#4de9d2] uppercase tracking-wider;
+}
+
+.project-modal-tech-list {
+  @apply flex flex-wrap gap-2;
+}
+
+.project-modal-tech-badge {
+  @apply text-xs text-gray-500 dark:text-gray-400 font-medium px-2 py-1 rounded-md bg-gray-100 dark:bg-gray-800/50 transition-colors duration-200;
+}
+
+.project-modal-links {
+  @apply flex flex-wrap gap-3 pt-2;
+}
+
+.project-modal-link {
+  @apply inline-flex items-center gap-2 px-5 py-2.5 text-sm font-medium rounded-xl transition-all duration-300 hover:-translate-y-0.5 hover:shadow-lg;
+}
+
+.project-modal-demo-link {
+  @apply bg-blue-600 dark:bg-[#4de9d2] text-white dark:text-gray-900 hover:shadow-blue-500/30 dark:hover:shadow-[#4de9d2]/30 hover:brightness-110;
+}
+
+.project-modal-repo-link {
+  @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 dark:hover:border-[#4de9d2]/50 hover:text-blue-600 dark:hover:text-[#4de9d2];
+}

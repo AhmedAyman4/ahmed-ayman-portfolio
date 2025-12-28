@@ -68,6 +68,15 @@
   @apply text-sm font-medium text-gray-700 dark:text-gray-300 group-hover:text-primary dark:group-hover:text-[#4de9d2] transition-colors flex items-center gap-1;
 }
 
+/* Active nav link styles */
+.nav-link-active {
+  @apply bg-primary/10 dark:bg-[#4de9d2]/15 shadow-sm;
+}
+
+.nav-link-active .nav-link-text-desktop {
+  @apply text-primary dark:text-[#4de9d2] font-semibold;
+}
+
 .nav-link-icon {
   @apply h-3.5 w-3.5;
 }
