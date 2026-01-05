@@ -151,7 +151,7 @@
 
 /* Resume button */
 .resume-button-desktop {
-  @apply hidden md:flex px-3 py-1.5 rounded-full transition-all bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:scale-105;
+  @apply flex px-3 py-1.5 rounded-full transition-all bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:scale-105;
 }
 
 .resume-button-text {

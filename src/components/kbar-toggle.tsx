@@ -25,7 +25,7 @@ export function KBarToggle() {
             variant="ghost"
             size="sm"
             onClick={handleToggle}
-            className="relative h-9 w-9 p-0 hover:bg-transparent"
+            className="relative h-9 w-9 p-0 hover:bg-transparent hidden md:flex"
           >
             <Command className="h-4 w-4" />
             <span className="sr-only">Open command palette</span>
@@ -46,7 +46,7 @@ export function KBarToggle() {
 
 export function KBarHint() {
   return (
-    <div className="fixed bottom-4 right-4 z-40 bg-background/80 backdrop-blur-sm border border-border rounded-lg px-3 py-2 shadow-lg">
+    <div className="fixed bottom-4 right-4 z-40 bg-background/80 backdrop-blur-sm border border-border rounded-lg px-3 py-2 shadow-lg hidden md:block">
       <div className="flex items-center gap-2 text-sm text-muted-foreground">
         <span>Press</span>
         <kbd className="px-1.5 py-0.5 text-xs font-mono bg-muted text-muted-foreground rounded border">
