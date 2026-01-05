@@ -96,21 +96,6 @@ export function ExperienceTimeline() {
     setAnimationKey((prev) => prev + 1);
   }, [selectedCompanyIndex]);
 
-  const getTypeLabel = (type: ExperienceType): string => {
-    const labels = {
-      fulltime: "Full-time",
-      parttime: "Part-time",
-      internship: "Internship",
-    };
-    return labels[type];
-  };
-
-  const cardClasses = "experience-card";
-
-  const selectedButtonClasses = "experience-button-selected";
-
-  const unselectedButtonClasses = "experience-button-unselected";
-
   const CompanySelector = ({
     isHorizontal = false,
   }: {
@@ -133,8 +118,8 @@ export function ExperienceTimeline() {
               : "w-full text-left p-2"
           } rounded-md transition-all duration-300 ${
             selectedCompanyIndex === index
-              ? selectedButtonClasses
-              : unselectedButtonClasses
+              ? "text-teal-600 dark:text-[#4de9d2] border-l-2 border-teal-500 dark:border-[#4de9d2] bg-teal-500/10 dark:bg-[#4de9d2]/5"
+              : "text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 border-l-2 border-transparent"
           }`}
         >
           {isHorizontal ? (
@@ -142,8 +127,8 @@ export function ExperienceTimeline() {
               <div
                 className={`text-xs font-bold mb-0.5 ${
                   selectedCompanyIndex === index
-                    ? "text-black dark:text-[#4de9d2]"
-                    : "text-black dark:text-[#4de9d2]"
+                    ? "text-teal-600 dark:text-[#4de9d2]"
+                    : "text-gray-500 dark:text-gray-400"
                 }`}
               >
                 {String(index).padStart(2, "0")}.
@@ -153,7 +138,7 @@ export function ExperienceTimeline() {
             <div className="flex items-center justify-between">
               <span className="font-medium text-sm">{exp.company}</span>
               {selectedCompanyIndex === index && (
-                <div className="w-1.5 h-1.5 bg-[#4de9d2] rounded-full animate-pulse"></div>
+                <div className="w-1.5 h-1.5 bg-teal-500 dark:bg-[#4de9d2] rounded-full animate-pulse"></div>
               )}
             </div>
           )}
@@ -166,7 +151,7 @@ export function ExperienceTimeline() {
     const selectedExp = sortedExperiences[selectedCompanyIndex];
 
     return (
-      <div className={`${cardClasses} p-4`}>
+      <div className="p-4">
         <div className="mb-3">
           <div className="flex items-center flex-wrap gap-2 mb-2">
             <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">
@@ -175,41 +160,33 @@ export function ExperienceTimeline() {
                 href={selectedExp.link}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="bg-gradient-to-r from-[#4de9d2] to-purple-500 bg-clip-text text-transparent hover:from-[#3dd1b5] hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
+                className="bg-gradient-to-r from-teal-500 to-purple-600 dark:from-[#4de9d2] dark:to-purple-500 bg-clip-text text-transparent hover:from-teal-600 hover:to-purple-700 dark:hover:from-[#3dd1b5] dark:hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
               >
                 {selectedExp.company}
               </a>
             </h3>
-            <span className="px-2 py-1 bg-gradient-to-r from-[#4de9d2]/20 to-purple-500/20 text-xs font-medium rounded-full border border-[#4de9d2]/30 text-gray-700 dark:text-gray-300">
-              {getTypeLabel(selectedExp.type)}
-            </span>
           </div>
         </div>
 
         <div className="mb-4 flex items-center space-x-2">
-          <div className="w-1 h-1 bg-[#4de9d2] rounded-full animate-pulse"></div>
+          <div className="w-1 h-1 bg-teal-500 dark:bg-[#4de9d2] rounded-full animate-pulse"></div>
           <span className="text-gray-600 dark:text-gray-400 font-medium text-sm">
             {selectedExp.period}
           </span>
         </div>
 
-        <div className="bg-white/50 dark:bg-white/5 rounded-lg p-3 border border-gray-200/30 dark:border-white/10">
-          <FadeInSection key={`header-${animationKey}`} delay="0.1s">
-            <h4 className="text-sm font-semibold mb-3 text-gray-900 dark:text-gray-100">
-              Key Responsibilities & Achievements
-            </h4>
-          </FadeInSection>
-          <ul className="space-y-2">
+        <div>
+          <ul className="space-y-3">
             {selectedExp.description.map((item, itemIndex) => (
               <FadeInSection
                 key={`item-${animationKey}-${itemIndex}`}
-                delay={`${0.2 + itemIndex * 0.1}s`}
+                delay={`${0.1 + itemIndex * 0.1}s`}
               >
-                <li className="flex items-start space-x-2 group/item">
-                  <div className="flex-shrink-0 mt-1">
-                    <div className="w-1 h-1 bg-gradient-to-r from-[#4de9d2] to-purple-500 rounded-full group-hover/item:scale-125 transition-transform duration-300"></div>
+                <li className="flex items-start space-x-3 group/item">
+                  <div className="flex-shrink-0 mt-2">
+                    <div className="w-1.5 h-1.5 bg-teal-500 dark:bg-[#4de9d2] rounded-full"></div>
                   </div>
-                  <span className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm group-hover/item:text-gray-900 dark:group-hover/item:text-gray-100 transition-colors duration-300">
+                  <span className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
                     {item}
                   </span>
                 </li>
@@ -222,13 +199,7 @@ export function ExperienceTimeline() {
   };
 
   return (
-    <div id="experience" className="relative overflow-hidden">
-      {/* Background decorative elements */}
-      <div className="experience-bg-decoration">
-        <div className="experience-decoration-orb-1"></div>
-        <div className="experience-decoration-orb-2"></div>
-      </div>
-
+    <div id="experience" className="relative">
       {/* Title */}
       <FadeInSection delay="0.1s">
         <SectionHeader
@@ -239,7 +210,7 @@ export function ExperienceTimeline() {
       </FadeInSection>
 
       {/* Layout */}
-      <div className="max-w-5xl mx-auto px-2 relative z-10">
+      <div className="max-w-5xl mx-auto px-2">
         <div className="max-w-4xl mx-auto">
           {isMobile ? (
             <div className="space-y-6">
