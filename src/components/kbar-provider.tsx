@@ -151,15 +151,6 @@ export function KBarProviderWrapper({ children }: KBarProviderWrapperProps) {
         icon: <Home className="w-4 h-4" />,
       },
       {
-        id: "about",
-        name: "About",
-        shortcut: ["g", "a"],
-        keywords: "about me bio",
-        section: "Navigation",
-        perform: () => handleNavigation("/about"),
-        icon: <User className="w-4 h-4" />,
-      },
-      {
         id: "projects",
         name: "Projects",
         shortcut: ["g", "p"],
