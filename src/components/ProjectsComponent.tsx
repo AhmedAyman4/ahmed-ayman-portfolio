@@ -8,16 +8,8 @@ import {
   FolderGit2,
   Github,
   FolderUp,
-  ExternalLink,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Dialog,
-  DialogContent,
-  DialogHeader,
-  DialogTitle,
-  DialogDescription,
-} from "@/components/ui/dialog";
 import FadeInSection from "@/components/FadeInSection";
 import { SectionHeader } from "@/components/SectionHeader";
 import { spotlightProjects, otherProjects, type Project } from "./projectsData";
@@ -131,30 +123,16 @@ const CarouselItem = ({
   </div>
 );
 
-const ProjectCard = ({
-  project,
-  onClick,
-}: {
-  project: Project;
-  onClick: () => void;
-}) => (
-  <div className="group project-card cursor-pointer" onClick={onClick}>
+const ProjectCard = ({ project }: { project: Project }) => (
+  <div className="group project-card">
     <div className="project-card-content">
       <div className="project-card-header">
         <FolderGit2 className="project-folder-icon" />
         <div className="project-card-links">
-          <ProjectLink
-            href={project.repoLink}
-            className="project-card-link"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <ProjectLink href={project.repoLink} className="project-card-link">
             <Github className="project-card-link-icon" />
           </ProjectLink>
-          <ProjectLink
-            href={project.demoLink}
-            className="project-card-link"
-            onClick={(e) => e.stopPropagation()}
-          >
+          <ProjectLink href={project.demoLink} className="project-card-link">
             <FolderUp className="project-card-link-icon" />
           </ProjectLink>
         </div>
@@ -172,89 +150,6 @@ const ProjectCard = ({
     </div>
   </div>
 );
-
-const ProjectDetailModal = ({
-  project,
-  isOpen,
-  onClose,
-}: {
-  project: Project | null;
-  isOpen: boolean;
-  onClose: () => void;
-}) => {
-  if (!project) return null;
-
-  return (
-    <Dialog open={isOpen} onOpenChange={onClose}>
-      <DialogContent className="project-modal-content max-w-3xl max-h-[90vh] overflow-y-auto">
-        <DialogHeader>
-          <DialogTitle className="project-modal-title">
-            {project.title}
-          </DialogTitle>
-          <DialogDescription className="sr-only">
-            Details about {project.title} project
-          </DialogDescription>
-        </DialogHeader>
-
-        <div className="project-modal-body">
-          {/* Project Image */}
-          <div className="project-modal-image-container">
-            <Image
-              src={project.image}
-              alt={project.title}
-              width={800}
-              height={450}
-              className="project-modal-image"
-            />
-          </div>
-
-          {/* Description */}
-          <div className="project-modal-description">
-            <p>{project.description}</p>
-          </div>
-
-          {/* Technologies */}
-          <div className="project-modal-tech-section">
-            <h4 className="project-modal-tech-title">Technologies Used</h4>
-            <div className="project-modal-tech-list">
-              {project.tech.map((tech) => (
-                <span key={tech} className="project-modal-tech-badge">
-                  {tech}
-                </span>
-              ))}
-            </div>
-          </div>
-
-          {/* Links */}
-          <div className="project-modal-links">
-            {project.demoLink && (
-              <a
-                href={project.demoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-modal-link project-modal-demo-link"
-              >
-                <ExternalLink className="h-4 w-4" />
-                <span>View Live Demo</span>
-              </a>
-            )}
-            {project.repoLink && (
-              <a
-                href={project.repoLink}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="project-modal-link project-modal-repo-link"
-              >
-                <Github className="h-4 w-4" />
-                <span>View Source Code</span>
-              </a>
-            )}
-          </div>
-        </div>
-      </DialogContent>
-    </Dialog>
-  );
-};
 
 const Carousel = ({ projects }: { projects: Project[] }) => {
   const [index, setIndex] = useState(0);
@@ -322,19 +217,6 @@ const ImagePreloader = ({ projects }: { projects: Project[] }) => (
 );
 
 export const ProjectsComponent = () => {
-  const [selectedProject, setSelectedProject] = useState<Project | null>(null);
-  const [isModalOpen, setIsModalOpen] = useState(false);
-
-  const openProjectModal = (project: Project) => {
-    setSelectedProject(project);
-    setIsModalOpen(true);
-  };
-
-  const closeProjectModal = () => {
-    setIsModalOpen(false);
-    setSelectedProject(null);
-  };
-
   return (
     <FadeInSection>
       <section id="projects" className="mb-16">
@@ -354,21 +236,12 @@ export const ProjectsComponent = () => {
                 className="h-full"
               >
                 <div className="h-full">
-                  <ProjectCard
-                    project={project}
-                    onClick={() => openProjectModal(project)}
-                  />
+                  <ProjectCard project={project} />
                 </div>
               </FadeInSection>
             ))}
           </div>
         </div>
-
-        <ProjectDetailModal
-          project={selectedProject}
-          isOpen={isModalOpen}
-          onClose={closeProjectModal}
-        />
       </section>
     </FadeInSection>
   );
