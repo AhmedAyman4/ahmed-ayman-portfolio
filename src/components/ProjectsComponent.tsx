@@ -38,6 +38,40 @@ const ProjectLink = ({
     </a>
   ) : null;
 
+const NavButton = ({
+  direction,
+  onClick,
+}: {
+  direction: "left" | "right";
+  onClick: () => void;
+}) => (
+  <Button
+    variant="ghost"
+    size="sm"
+    className={`carousel-nav-button carousel-nav-${direction}`}
+    onClick={onClick}
+  >
+    {direction === "left" ? (
+      <ChevronLeft className="h-4 w-4" />
+    ) : (
+      <ChevronRight className="h-4 w-4" />
+    )}
+  </Button>
+);
+
+const TechBadges = ({ tech }: { tech: string[] }) => (
+  <div className="carousel-tech-container">
+    {tech.slice(0, 3).map((t, i) => (
+      <div key={t} className={`carousel-tech-badge tech-badge-${i}`}>
+        {t}
+      </div>
+    ))}
+    {tech.length > 3 && (
+      <div className="carousel-tech-more">+{tech.length - 3}</div>
+    )}
+  </div>
+);
+
 const CarouselItem = ({
   project,
   onPrev,
@@ -52,22 +86,8 @@ const CarouselItem = ({
       <div className="carousel-border-inner" />
     </div>
 
-    <Button
-      variant="ghost"
-      size="sm"
-      className="carousel-nav-button carousel-nav-left"
-      onClick={onPrev}
-    >
-      <ChevronLeft className="h-4 w-4" />
-    </Button>
-    <Button
-      variant="ghost"
-      size="sm"
-      className="carousel-nav-button carousel-nav-right"
-      onClick={onNext}
-    >
-      <ChevronRight className="h-4 w-4" />
-    </Button>
+    <NavButton direction="left" onClick={onPrev} />
+    <NavButton direction="right" onClick={onNext} />
 
     <div className="carousel-image-container">
       <Image
@@ -87,19 +107,7 @@ const CarouselItem = ({
           <p className="carousel-description">{project.description}</p>
         </div>
 
-        <div className="carousel-tech-container">
-          {project.tech.slice(0, 3).map((tech, index) => (
-            <div
-              key={tech}
-              className={`carousel-tech-badge tech-badge-${index}`}
-            >
-              {tech}
-            </div>
-          ))}
-          {project.tech.length > 3 && (
-            <div className="carousel-tech-more">+{project.tech.length - 3}</div>
-          )}
-        </div>
+        <TechBadges tech={project.tech} />
 
         <div className="carousel-links">
           <ProjectLink
@@ -109,7 +117,6 @@ const CarouselItem = ({
             <span className="carousel-link-text">Live Demo</span>
             <div className="carousel-link-bg" />
           </ProjectLink>
-
           <ProjectLink
             href={project.repoLink}
             className="carousel-link carousel-repo-link"
