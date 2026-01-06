@@ -5,14 +5,21 @@ import FadeInSection from "@/components/FadeInSection";
 
 // Skills data array
 const skills = [
+  "SQL",
   "Python",
   "NumPy",
   "Pandas",
-  "SQL",
+  "Matplotlib",
+  "Seaborn",
   "Scikit-learn",
+  "LangChain",
+  "TensorFlow",
+  "PyTorch",
+  "Docker",
+  "Git",
+  "GitHub",
   "Tableau",
   "Power BI",
-  "React",
   "Next.js",
   "HTML",
   "CSS",
