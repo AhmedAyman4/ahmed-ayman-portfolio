@@ -56,10 +56,9 @@ export function ExperienceTimeline() {
       type: "internship",
       link: "https://konecta.com/",
       description: [
-        "Conducted data collection and preprocessing using Python libraries and web scraping tools to prepare structured datasets for analysis.",
-        "Developed and optimized machine learning models for classification, clustering, and image recognition tasks, including model tuning and evaluation.",
-        "Implemented conversational AI solutions by building RAG-based chatbots with document indexing, embeddings, and multi-turn query handling.",
-        "Built automation workflows using n8n to streamline data and AI processes.",
+        "Collected, cleaned, and structured data using Python and web scraping tools to support reliable analysis and modeling.",
+        "Built and optimized machine learning models (classification, clustering, image recognition) and implemented RAG-based chatbots with embeddings, document indexing, and multi-turn conversations.",
+        "Automated data and AI workflows using n8n, improving efficiency and reducing manual processing.",
       ],
     },
   ];
