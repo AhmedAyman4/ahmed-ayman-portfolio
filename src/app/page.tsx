@@ -67,7 +67,7 @@ export default function Home() {
             { href: "#", label: "Home" },
             { href: "#experience", label: "Experience" },
             { href: "#projects", label: "Projects" },
-            // { href: "#skills", label: "Skills" },
+            { href: "#skills", label: "Skills" },
             { href: "#contact", label: "Contact" },
           ]}
         />
@@ -105,20 +105,20 @@ export default function Home() {
           </div>
           {/* Separator between Projects and Skills */}
           {/* <AnimatedSeparator /> */} {/* Skills Section */}
-          {/* <section
+          <section
             id="skills"
-            className="py-16 md:py-24 fade-in-section"
+            className="py-8 md:py-12 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
           >
             <SkillsSection />
-          </section> */}
+          </section>
           {/* Separator between Skills and Contact */}
           {/* <SectionSeparator variant="dots" /> */} {/* Contact Section */}
           <section
             id="contact"
-            className="py-16 md:py-24 fade-in-section"
+            className="py-8 md:py-12 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
