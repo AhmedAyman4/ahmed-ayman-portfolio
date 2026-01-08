@@ -160,18 +160,41 @@ const ProjectCard = ({ project }: { project: Project }) => (
 
 const Carousel = ({ projects }: { projects: Project[] }) => {
   const [index, setIndex] = useState(0);
+  const [prevIndex, setPrevIndex] = useState(0);
+  const [isAnimating, setIsAnimating] = useState(false);
+  const [direction, setDirection] = useState<"left" | "right">("right");
   const [isVisible, setIsVisible] = useState(false);
   const ref = useRef<HTMLDivElement | null>(null);
 
-  const next = useCallback(
-    () => setIndex((prev) => (prev + 1) % projects.length),
-    [projects.length]
+  const navigate = useCallback(
+    (newIndex: number, dir: "left" | "right") => {
+      if (isAnimating || newIndex === index) return;
+      setDirection(dir);
+      setPrevIndex(index);
+      setIsAnimating(true);
+      setIndex(newIndex);
+      setTimeout(() => setIsAnimating(false), 600);
+    },
+    [index, isAnimating]
   );
-  const prev = useCallback(
-    () => setIndex((prev) => (prev - 1 + projects.length) % projects.length),
-    [projects.length]
+
+  const next = useCallback(() => {
+    const newIndex = (index + 1) % projects.length;
+    navigate(newIndex, "right");
+  }, [index, projects.length, navigate]);
+
+  const prev = useCallback(() => {
+    const newIndex = (index - 1 + projects.length) % projects.length;
+    navigate(newIndex, "left");
+  }, [index, projects.length, navigate]);
+
+  const goTo = useCallback(
+    (newIndex: number) => {
+      const dir = newIndex > index ? "right" : "left";
+      navigate(newIndex, dir);
+    },
+    [index, navigate]
   );
-  const goTo = useCallback((newIndex: number) => setIndex(newIndex), []);
 
   useEffect(() => {
     const observer = new IntersectionObserver(
@@ -190,8 +213,35 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
 
   return (
     <div ref={ref} className="carousel-container">
-      <div className="transition-opacity duration-500 ease-out">
-        <CarouselItem project={projects[index]} onPrev={prev} onNext={next} />
+      <div className="carousel-wrapper">
+        {/* Previous slide (exiting) */}
+        {isAnimating && (
+          <div
+            className={`carousel-slide carousel-slide-exit ${
+              direction === "right" ? "slide-exit-left" : "slide-exit-right"
+            }`}
+          >
+            <CarouselItem
+              project={projects[prevIndex]}
+              onPrev={prev}
+              onNext={next}
+            />
+          </div>
+        )}
+        {/* Current slide (entering) */}
+        <div
+          className={`carousel-slide ${
+            isAnimating
+              ? `carousel-slide-enter ${
+                  direction === "right"
+                    ? "slide-enter-right"
+                    : "slide-enter-left"
+                }`
+              : ""
+          }`}
+        >
+          <CarouselItem project={projects[index]} onPrev={prev} onNext={next} />
+        </div>
       </div>
       <div className="carousel-indicators">
         {projects.map((_, i) => (
