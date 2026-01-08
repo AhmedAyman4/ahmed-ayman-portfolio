@@ -144,14 +144,6 @@ export const otherProjects: Project[] = [
     repoLink: "https://github.com/AhmedAyman4/customer-conversion-predictor",
   },
   {
-    title: "HR Analytics in Tableau",
-    description:
-      "Analyzed HR data of 1,470 employees in Tableau to visualize workforce trends and identify key attrition drivers, including a 16% attrition rate and demographic insights.",
-    tech: ["Tableau", "Data Visualization", "HR Analytics"],
-    image: "/images/HrAnalyticsImage.png",
-    repoLink: "https://github.com/AhmedAyman4/HR-Analytics-in-Tableau",
-  },
-  {
     title: "Portfolio-Website",
     description:
       "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
@@ -159,15 +151,6 @@ export const otherProjects: Project[] = [
     image: "/images/portfolioWebsiteWhite.png",
     demoLink: "https://ahmedayman4.github.io/Personal-website/",
     repoLink: "https://github.com/AhmedAyman4/Personal-website",
-  },
-  {
-    title: "Movie Library",
-    description:
-      "A React-based movie library application that enables users to search for movies, view trending titles, and explore detailed information.",
-    tech: ["React", "Vite", "TailwindCSS", "Appwrite", "TMDb API"],
-    image: "/images/movieLibrary.png",
-    demoLink: "https://movie-library-blush.vercel.app/",
-    repoLink: "https://github.com/AhmedAyman4/movie-library",
   },
   {
     title: "Movie Review Sentiment Analysis ",
