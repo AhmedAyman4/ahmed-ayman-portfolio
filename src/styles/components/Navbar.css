@@ -12,7 +12,7 @@
 /* Mobile: center the navbar */
 @media (max-width: 768px) {
   .navbar-wrapper {
-    @apply flex justify-center px-2;
+    @apply px-3;
   }
 }
 
@@ -20,10 +20,10 @@
   @apply bg-background/70 backdrop-blur-xl border border-gray-200/30 dark:border-gray-700/40 rounded-full px-4 py-2 shadow-md flex items-center justify-between;
 }
 
-/* Mobile navbar layout - compact and centered */
+/* Mobile navbar layout - full width */
 @media (max-width: 768px) {
   .navbar-content {
-    @apply px-3 py-2 gap-3 justify-center w-auto;
+    @apply px-4 py-2 gap-3 justify-between w-full;
   }
 }
 
@@ -38,7 +38,7 @@
 
 /* Desktop navigation */
 .navbar-desktop-nav {
-  @apply flex items-center;
+  @apply items-center;
 }
 
 .navbar-nav-container {
@@ -145,13 +145,6 @@
 /* Resume button */
 .resume-button-desktop {
   @apply flex px-3 py-1.5 rounded-full transition-all bg-gradient-to-r from-[#4de9d2] to-[#3dd1b5] hover:from-[#4de9d2]/90 hover:to-[#3dd1b5]/90 text-black font-medium shadow-md hover:shadow-lg hover:-translate-y-0.5 hover:scale-105;
-}
-
-/* Mobile resume button - icon only */
-@media (max-width: 768px) {
-  .resume-button-desktop {
-    @apply px-2.5 py-2;
-  }
 }
 
 .resume-button-text {

@@ -103,37 +103,30 @@ const ResumeButton = ({
   onClick?: () => void;
 }) => {
   return (
-    <Tooltip>
-      <TooltipTrigger asChild>
-        <a
-          href="/Ahmed_Ayman_Alhofy.pdf"
-          target="_blank"
-          rel="noopener noreferrer"
-          onClick={onClick}
-          className="resume-button-desktop group"
+    <a
+      href="/Ahmed_Ayman_Alhofy.pdf"
+      target="_blank"
+      rel="noopener noreferrer"
+      onClick={onClick}
+      className="resume-button-desktop group"
+    >
+      <span className="resume-button-text-desktop">
+        Resume
+        <svg
+          className="resume-icon w-0 group-hover:w-3 h-3 transition-all overflow-hidden"
+          fill="none"
+          stroke="currentColor"
+          viewBox="0 0 24 24"
         >
-          <span className="resume-button-text-desktop">
-            <span className="hidden md:inline">Resume</span>
-            <svg
-              className="resume-icon w-4 h-4 md:w-0 md:group-hover:w-3 transition-all overflow-hidden"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-              />
-            </svg>
-          </span>
-        </a>
-      </TooltipTrigger>
-      <TooltipContent side="bottom" className="md:hidden" sideOffset={5}>
-        <p className="text-xs font-medium">Resume</p>
-      </TooltipContent>
-    </Tooltip>
+          <path
+            strokeLinecap="round"
+            strokeLinejoin="round"
+            strokeWidth={2}
+            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+          />
+        </svg>
+      </span>
+    </a>
   );
 };
 
@@ -198,12 +191,12 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             <a
               href="#"
               onClick={(e) => handleNavClick(e, "#", navbarRef)}
-              className={`navbar-brand group ${patrickHand.className} hidden md:block`}
+              className={`navbar-brand group ${patrickHand.className}`}
             >
               <span className="navbar-brand-text">Ahmed Ayman</span>
             </a>
 
-            <div className="navbar-desktop-nav">
+            <div className="navbar-desktop-nav hidden md:flex">
               <div className="navbar-nav-container">
                 {links.map((link) => (
                   <NavLink
