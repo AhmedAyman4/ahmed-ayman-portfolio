@@ -73,9 +73,9 @@ export default function Home() {
         />
         <main className="container mx-auto flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
           {" "}
-          {/* Hero Section */}{" "}
+          {/* Hero Section */}
           <div
-            className="min-h-[85vh] flex items-center justify-center py-8"
+            className="min-h-[75vh] flex items-center justify-center py-4"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
@@ -85,40 +85,37 @@ export default function Home() {
           {/* Experience Timeline */}
           <section
             id="experience"
-            className="min-h-[85vh] flex flex-col justify-center py-8 fade-in-section"
+            className="flex flex-col justify-center py-4 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
           >
             <ExperienceTimeline />
           </section>
-          {/* Animated Separator between Experience and Projects */}
-          {/* <AnimatedSeparator /> */} {/* Projects Component */}
+          {/* Projects Component */}
           <div
             id="projects"
-            className="min-h-[85vh] flex flex-col justify-center py-8"
+            className="flex flex-col justify-center py-4"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
           >
             <ProjectsComponent />
           </div>
-          {/* Separator between Projects and Skills */}
-          {/* <AnimatedSeparator /> */} {/* Skills Section */}
+          {/* Skills Section */}
           <section
             id="skills"
-            className="py-8 md:py-12 fade-in-section"
+            className="py-4 md:py-6 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
           >
             <SkillsSection />
           </section>
-          {/* Separator between Skills and Contact */}
-          {/* <SectionSeparator variant="dots" /> */} {/* Contact Section */}
+          {/* Contact Section */}
           <section
             id="contact"
-            className="py-8 md:py-12 fade-in-section"
+            className="py-4 md:py-6 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
