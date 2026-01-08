@@ -30,11 +30,7 @@ const skills = [
 export function SkillsSection() {
   return (
     <div id="skills">
-      <SectionHeader
-        label="Technical Expertise"
-        title="Skills"
-        subtitle="Technologies and tools I use to bring ideas to life"
-      />
+      <SectionHeader label="Technical Expertise" title="Skills" />
       <FadeInSection>
         <div className="flex flex-wrap justify-center gap-4">
           {skills.map((skill, index) => (

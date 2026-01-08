@@ -326,11 +326,7 @@ const ImagePreloader = ({ projects }: { projects: Project[] }) => (
 export const ProjectsComponent = () => (
   <FadeInSection>
     <section id="projects" className="mb-16">
-      <SectionHeader
-        label="Portfolio"
-        title="Featured Projects"
-        subtitle="A showcase of my recent work in data science, machine learning, and web development"
-      />
+      <SectionHeader label="Portfolio" title="Featured Projects" />
       <ImagePreloader projects={spotlightProjects} />
       <Carousel projects={spotlightProjects} />
       <ProjectsGrid projects={otherProjects} />

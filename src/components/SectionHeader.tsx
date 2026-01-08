@@ -5,14 +5,12 @@ import React from "react";
 interface SectionHeaderProps {
   label: string;
   title: string;
-  subtitle?: string;
   className?: string;
 }
 
 export const SectionHeader: React.FC<SectionHeaderProps> = ({
   label,
   title,
-  subtitle,
   className = "",
 }) => {
   return (
@@ -23,16 +21,9 @@ export const SectionHeader: React.FC<SectionHeaderProps> = ({
       </div>
 
       {/* Main Title - H1 or H2, large & bold */}
-      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-3">
+      <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white">
         {title}
       </h2>
-
-      {/* Subtitle - paragraph, normal weight */}
-      {subtitle && (
-        <p className="text-gray-600 dark:text-gray-300 text-lg max-w-2xl mx-auto leading-relaxed">
-          {subtitle}
-        </p>
-      )}
     </div>
   );
 };

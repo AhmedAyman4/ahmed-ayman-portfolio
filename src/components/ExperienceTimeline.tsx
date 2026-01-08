@@ -201,11 +201,7 @@ export function ExperienceTimeline() {
     <div id="experience" className="relative">
       {/* Title */}
       <FadeInSection delay="0.1s">
-        <SectionHeader
-          label="Professional Journey"
-          title="Experience"
-          subtitle="My professional experience and roles in data science and analytics"
-        />
+        <SectionHeader label="Professional Journey" title="Experience" />
       </FadeInSection>
 
       {/* Layout */}
