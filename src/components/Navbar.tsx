@@ -11,7 +11,21 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import "@/styles/components/Navbar.css";
-import { Home, FolderOpen, Briefcase, Code, Mail, User } from "lucide-react";
+import {
+  Home,
+  FolderOpen,
+  Briefcase,
+  Code,
+  Mail,
+  User,
+  Menu,
+  X,
+  FileText,
+  Github,
+  Linkedin,
+} from "lucide-react";
+import { FaInstagram } from "react-icons/fa";
+import { AiFillSafetyCertificate } from "react-icons/ai";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
@@ -133,6 +147,35 @@ const ResumeButton = ({
 const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
   const navbarRef = useRef<HTMLDivElement>(null);
   const [activeSection, setActiveSection] = useState<string>("");
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
+
+  // Close mobile menu when clicking outside
+  useEffect(() => {
+    const handleClickOutside = (event: MouseEvent) => {
+      if (
+        isMobileMenuOpen &&
+        navbarRef.current &&
+        !navbarRef.current.contains(event.target as Node)
+      ) {
+        setIsMobileMenuOpen(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, [isMobileMenuOpen]);
+
+  // Prevent body scroll when mobile menu is open
+  useEffect(() => {
+    if (isMobileMenuOpen) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "";
+    }
+    return () => {
+      document.body.style.overflow = "";
+    };
+  }, [isMobileMenuOpen]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -210,10 +253,149 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             </div>
 
             <div className="navbar-actions">
-              <ResumeButton />
+              <div className="hidden md:block">
+                <ResumeButton />
+              </div>
               <div className="navbar-theme-toggle">
                 <ModeToggle />
               </div>
+              {/* Hamburger Menu Button - Mobile Only */}
+              <button
+                className="hamburger-button md:hidden"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                aria-label="Toggle mobile menu"
+              >
+                {isMobileMenuOpen ? (
+                  <X className="h-5 w-5" />
+                ) : (
+                  <Menu className="h-5 w-5" />
+                )}
+              </button>
+            </div>
+          </div>
+        </div>
+
+        {/* Mobile Menu Overlay */}
+        <div
+          className={`mobile-menu-overlay ${isMobileMenuOpen ? "open" : ""}`}
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+
+        {/* Mobile Menu */}
+        <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
+          <div className="mobile-menu-content">
+            {/* Mobile Menu Header */}
+            <div className="mobile-menu-header">
+              <span className={`mobile-menu-brand ${patrickHand.className}`}>
+                Ahmed Ayman
+              </span>
+              <button
+                className="mobile-menu-close"
+                onClick={() => setIsMobileMenuOpen(false)}
+                aria-label="Close menu"
+              >
+                <X className="h-4 w-4" />
+              </button>
+            </div>
+            <nav className="mobile-nav-links">
+              {links.map((link) => {
+                const Icon =
+                  NAV_ICONS[link.label.toLowerCase() as keyof typeof NAV_ICONS];
+                return (
+                  <a
+                    key={link.href}
+                    href={link.href}
+                    onClick={(e) => {
+                      handleNavClick(e, link.href, navbarRef);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`mobile-nav-link ${
+                      isLinkActive(link.href, link.label) ? "active" : ""
+                    }`}
+                  >
+                    {Icon && <Icon className="mobile-nav-icon" />}
+                    <span>{link.label}</span>
+                  </a>
+                );
+              })}
+            </nav>
+            <div className="mobile-menu-divider" />
+            <a
+              href="/Ahmed_Ayman_Alhofy.pdf"
+              target="_blank"
+              rel="noopener noreferrer"
+              onClick={() => setIsMobileMenuOpen(false)}
+              className="mobile-resume-button"
+            >
+              <FileText className="mobile-nav-icon" />
+              <span>Resume</span>
+              <svg
+                className="resume-download-icon"
+                fill="none"
+                stroke="currentColor"
+                viewBox="0 0 24 24"
+              >
+                <path
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  strokeWidth={2}
+                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+                />
+              </svg>
+            </a>
+            <div className="mobile-menu-divider" />
+            {/* Social Links */}
+            <div className="mobile-social-links">
+              <a
+                href="mailto:ahmedalhofy42@gmail.com"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mobile-social-link"
+                aria-label="Email"
+              >
+                <Mail className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.linkedin.com/in/ahmed-alhofy/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mobile-social-link"
+                aria-label="LinkedIn"
+              >
+                <Linkedin className="h-4 w-4" />
+              </a>
+              <a
+                href="https://github.com/AhmedAyman4"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mobile-social-link"
+                aria-label="GitHub"
+              >
+                <Github className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.instagram.com/ahmedhofi_/"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mobile-social-link"
+                aria-label="Instagram"
+              >
+                <FaInstagram className="h-4 w-4" />
+              </a>
+              <a
+                href="https://www.credly.com/users/ahmedayman"
+                target="_blank"
+                rel="noopener noreferrer"
+                onClick={() => setIsMobileMenuOpen(false)}
+                className="mobile-social-link"
+                aria-label="Credly"
+              >
+                <AiFillSafetyCertificate className="h-4 w-4" />
+              </a>
             </div>
           </div>
         </div>
