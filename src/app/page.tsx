@@ -7,7 +7,6 @@ import { ExperienceTimeline } from "@/components/ExperienceTimeline";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HeroSection } from "@/components/HeroSection";
-import { KBarHint } from "@/components/kbar-toggle";
 import {
   SectionSeparator,
   AnimatedSeparator,
@@ -68,14 +67,15 @@ export default function Home() {
             { href: "#", label: "Home" },
             { href: "#experience", label: "Experience" },
             { href: "#projects", label: "Projects" },
-            { href: "#skills", label: "Skills" },
+            // { href: "#skills", label: "Skills" },
             { href: "#contact", label: "Contact" },
           ]}
         />
-        <main className="container mx-auto py-6 flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
+        <main className="container mx-auto flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
           {" "}
           {/* Hero Section */}{" "}
           <div
+            className="min-h-[85vh] flex items-center justify-center py-8"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
@@ -85,7 +85,7 @@ export default function Home() {
           {/* Experience Timeline */}
           <section
             id="experience"
-            className="mb-8 fade-in-section"
+            className="min-h-[85vh] flex flex-col justify-center py-8 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
@@ -96,6 +96,7 @@ export default function Home() {
           {/* <AnimatedSeparator /> */} {/* Projects Component */}
           <div
             id="projects"
+            className="min-h-[85vh] flex flex-col justify-center py-8"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
@@ -104,20 +105,20 @@ export default function Home() {
           </div>
           {/* Separator between Projects and Skills */}
           {/* <AnimatedSeparator /> */} {/* Skills Section */}
-          <section
+          {/* <section
             id="skills"
-            className="mb-8 fade-in-section"
+            className="py-16 md:py-24 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
           >
             <SkillsSection />
-          </section>
+          </section> */}
           {/* Separator between Skills and Contact */}
           {/* <SectionSeparator variant="dots" /> */} {/* Contact Section */}
           <section
             id="contact"
-            className="mb-8 fade-in-section"
+            className="py-16 md:py-24 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);
             }}
@@ -126,7 +127,6 @@ export default function Home() {
           </section>
         </main>
         <Footer />
-        <KBarHint />
       </div>
     </>
   );

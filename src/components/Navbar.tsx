@@ -4,7 +4,6 @@ import { useRef, useState, useEffect } from "react";
 import { Patrick_Hand } from "next/font/google";
 import { Button } from "@/components/ui/button";
 import { ModeToggle } from "@/components/mode-toggle";
-import { KBarToggle } from "@/components/kbar-toggle";
 import {
   Tooltip,
   TooltipContent,
@@ -84,12 +83,12 @@ const NavLink = ({
           className={baseClasses}
         >
           <span className="nav-link-text-desktop">
-            <span className="hidden sm:inline">{link.label}</span>
-            {Icon && <Icon className="nav-link-icon sm:hidden" />}
+            <span className="hidden md:inline">{link.label}</span>
+            {Icon && <Icon className="nav-link-icon md:hidden" />}
           </span>
         </a>
       </TooltipTrigger>
-      <TooltipContent side="bottom" className="sm:hidden" sideOffset={5}>
+      <TooltipContent side="bottom" className="md:hidden" sideOffset={5}>
         <p className="text-xs font-medium">{link.label}</p>
       </TooltipContent>
     </Tooltip>
@@ -103,39 +102,38 @@ const ResumeButton = ({
   isMobile?: boolean;
   onClick?: () => void;
 }) => {
-  const buttonClass = isMobile
-    ? "resume-button-mobile"
-    : "resume-button-desktop group";
-  const textClass = isMobile
-    ? "resume-button-text"
-    : "resume-button-text-desktop";
-  const iconClass = isMobile ? "resume-icon-mobile" : "resume-icon-desktop";
-
   return (
-    <a
-      href="/Ahmed_Ayman_Alhofy.pdf"
-      target="_blank"
-      rel="noopener noreferrer"
-      onClick={onClick}
-      className={buttonClass}
-    >
-      <span className={textClass}>
-        Resume
-        <svg
-          className={iconClass}
-          fill="none"
-          stroke="currentColor"
-          viewBox="0 0 24 24"
+    <Tooltip>
+      <TooltipTrigger asChild>
+        <a
+          href="/Ahmed_Ayman_Alhofy.pdf"
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={onClick}
+          className="resume-button-desktop group"
         >
-          <path
-            strokeLinecap="round"
-            strokeLinejoin="round"
-            strokeWidth={2}
-            d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-          />
-        </svg>
-      </span>
-    </a>
+          <span className="resume-button-text-desktop">
+            <span className="hidden md:inline">Resume</span>
+            <svg
+              className="resume-icon w-4 h-4 md:w-0 md:group-hover:w-3 transition-all overflow-hidden"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
+              />
+            </svg>
+          </span>
+        </a>
+      </TooltipTrigger>
+      <TooltipContent side="bottom" className="md:hidden" sideOffset={5}>
+        <p className="text-xs font-medium">Resume</p>
+      </TooltipContent>
+    </Tooltip>
   );
 };
 
@@ -200,7 +198,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             <a
               href="#"
               onClick={(e) => handleNavClick(e, "#", navbarRef)}
-              className={`navbar-brand group ${patrickHand.className} hidden sm:block`}
+              className={`navbar-brand group ${patrickHand.className} hidden md:block`}
             >
               <span className="navbar-brand-text">Ahmed Ayman</span>
             </a>
@@ -219,7 +217,6 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             </div>
 
             <div className="navbar-actions">
-              <KBarToggle />
               <ResumeButton />
               <div className="navbar-theme-toggle">
                 <ModeToggle />

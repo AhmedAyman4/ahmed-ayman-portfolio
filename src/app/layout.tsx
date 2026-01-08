@@ -3,7 +3,6 @@ import { Patrick_Hand, Dancing_Script } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import ClientBackgroundWrapper from "@/components/ClientBackgroundWrapper";
-import { KBarProviderWrapper } from "@/components/kbar-provider";
 
 const patrickHand = Patrick_Hand({
   weight: "400",
@@ -34,10 +33,8 @@ export default function RootLayout({
       >
         {" "}
         <ThemeProvider>
-          <KBarProviderWrapper>
-            <ClientBackgroundWrapper />
-            {children}
-          </KBarProviderWrapper>
+          <ClientBackgroundWrapper />
+          {children}
         </ThemeProvider>
       </body>
     </html>

@@ -41,10 +41,10 @@ export function HeroSection({ profileImage, introComplete = false }) {
 
   // Render
   return (
-    <section id="hero" className="text-center mb-12 relative">
+    <section id="hero" className="text-center relative w-full">
       <FadeInSection className="relative z-10">
         {/* Profile Image Section */}
-        <div className="profile-container relative mx-auto mb-4 w-[150px] h-[150px] group">
+        <div className="profile-container relative mx-auto mb-4 w-[120px] h-[120px] sm:w-[120px] sm:h-[120px] md:w-[150px] md:h-[150px] group">
           {/* Static gradient border - exact fit around image */}
           <div className="absolute inset-0 rounded-full bg-gradient-to-r from-[#4de9d2] via-blue-500 to-purple-600 p-[3px]">
             <div className="w-full h-full rounded-full bg-white dark:bg-gray-900 flex items-center justify-center">
@@ -54,7 +54,7 @@ export function HeroSection({ profileImage, introComplete = false }) {
                 alt="Profile"
                 width={144}
                 height={144}
-                className="profile-image rounded-full shadow-lg"
+                className="profile-image rounded-full shadow-lg w-[114px] h-[114px] sm:w-[114px] sm:h-[114px] md:w-[144px] md:h-[144px]"
               />
             </div>
           </div>
@@ -65,7 +65,7 @@ export function HeroSection({ profileImage, introComplete = false }) {
 
         {/* Title Section */}
         <h1
-          className={`flex items-center justify-center text-6xl font-light ${patrickHand.className}`}
+          className={`flex items-center justify-center text-4xl sm:text-4xl md:text-5xl lg:text-6xl font-light ${patrickHand.className}`}
         >
           <span className="dark:text-white text-black">Hi,</span>
           {startTyping && (
@@ -87,12 +87,12 @@ export function HeroSection({ profileImage, introComplete = false }) {
         </h1>
 
         {/* Subtitle */}
-        <p className="mt-2 text-4xl font-light dark:text-gray-300 text-black">
+        <p className="mt-2 text-2xl sm:text-2xl md:text-3xl lg:text-4xl font-light dark:text-gray-300 text-black">
           I create stuff sometimes.
         </p>
 
         {/* Description */}
-        <p className="mt-2 dark:text-gray-400 text-black max-w-lg mx-auto">
+        <p className="mt-2 text-base sm:text-base dark:text-gray-400 text-black max-w-lg mx-auto px-4 sm:px-0">
           I'm an aspiring Data & ML Scientist, currently studying IS at the
           Faculty of Computers & AI, USC. Passionate about using data to solve
           everyday challenges and applying AI to create practical, impactful
@@ -109,7 +109,7 @@ export function HeroSection({ profileImage, introComplete = false }) {
         {/* Contact Button */}
         <a
           href="mailto:ahmedalhofy42@gmail.com"
-          className="contact-button mt-6"
+          className="contact-button mt-4 sm:mt-6 text-sm sm:text-base"
         >
           <MdEmail className="contact-button-icon" />
           Say hi!
