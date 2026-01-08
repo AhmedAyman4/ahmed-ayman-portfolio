@@ -29,7 +29,7 @@ const skills = [
 
 export function SkillsSection() {
   return (
-    <div id="skills">
+    <div id="skills" className="max-w-5xl mx-auto px-4">
       <SectionHeader label="Technical Expertise" title="Skills" />
       <FadeInSection>
         <div className="flex flex-wrap justify-center gap-4">
