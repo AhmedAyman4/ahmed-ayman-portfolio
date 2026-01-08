@@ -253,6 +253,57 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             </div>
 
             <div className="navbar-actions">
+              {/* Social Links - Desktop Only */}
+              <div className="navbar-social-links hidden md:flex">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="mailto:ahmedalhofy42@gmail.com"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="navbar-social-link"
+                      aria-label="Email"
+                    >
+                      <Mail className="h-4 w-4" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" sideOffset={5}>
+                    <p className="text-xs font-medium">Email</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://www.linkedin.com/in/ahmed-alhofy/"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="navbar-social-link"
+                      aria-label="LinkedIn"
+                    >
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" sideOffset={5}>
+                    <p className="text-xs font-medium">LinkedIn</p>
+                  </TooltipContent>
+                </Tooltip>
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a
+                      href="https://github.com/AhmedAyman4"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="navbar-social-link"
+                      aria-label="GitHub"
+                    >
+                      <Github className="h-4 w-4" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom" sideOffset={5}>
+                    <p className="text-xs font-medium">GitHub</p>
+                  </TooltipContent>
+                </Tooltip>
+              </div>
               <div className="hidden md:block">
                 <ResumeButton />
               </div>
@@ -375,26 +426,6 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                 aria-label="GitHub"
               >
                 <Github className="h-4 w-4" />
-              </a>
-              <a
-                href="https://www.instagram.com/ahmedhofi_/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mobile-social-link"
-                aria-label="Instagram"
-              >
-                <FaInstagram className="h-4 w-4" />
-              </a>
-              <a
-                href="https://www.credly.com/users/ahmedayman"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mobile-social-link"
-                aria-label="Credly"
-              >
-                <AiFillSafetyCertificate className="h-4 w-4" />
               </a>
             </div>
           </div>
