@@ -17,8 +17,8 @@ export const spotlightProjects: Project[] = [
     tech: [
       "RAG",
       "LangChain",
-      "Flask",
-      "Google Gemini 2.5 Flash",
+      "FastAPI",
+      "LLMs",
       "HuggingFace multilingual-e5-base",
       "ChromaDB",
       "Next.js",
@@ -32,11 +32,18 @@ export const spotlightProjects: Project[] = [
     title: "Semantic Book Recommender",
     description:
       "Developed a web-based Semantic Book Recommender utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
-    tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
-    image: "/images/semanticBookRecommender.png",
-    demoLink:
-      "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
-    repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
+    tech: [
+      "Python",
+      "langchain-chroma",
+      "langchain",
+      "Pandas",
+      "fastapi",
+      "Docker",
+      "Next.js",
+    ],
+    image: "/images/semantic-book-recommender-webapp.png",
+    demoLink: "https://semantic-book-search.vercel.app/",
+    repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
   },
   {
     title: "Retail Analytics Copilot",
@@ -94,8 +101,8 @@ export const otherProjects: Project[] = [
     tech: [
       "RAG",
       "LangChain",
-      "Flask",
-      "Gemini",
+      "FastAPI",
+      "LLMs",
       "HuggingFace",
       "ChromaDB",
       "Next.js",
@@ -109,11 +116,18 @@ export const otherProjects: Project[] = [
     title: "Semantic Book Recommender ",
     description:
       "Developed a web-based application utilizing LLMs, encompassing data cleaning, vector database creation for semantic search, zero-shot text classification (fiction/non-fiction), sentiment analysis for tone-based sorting, and a Gradio interface for user interaction.",
-    tech: ["Python", "langchain-chroma", "langchain", "Pandas"],
-    image: "/images/semanticBookRecommender.png",
-    demoLink:
-      "https://huggingface.co/spaces/ahmed-ayman/Semantic-Book-Recommender-with-LLMs",
-    repoLink: "https://github.com/AhmedAyman4/llm-semantic-book-recommender",
+    tech: [
+      "Python",
+      "langchain-chroma",
+      "langchain",
+      "Pandas",
+      "fastapi",
+      "Docker",
+      "Next.js",
+    ],
+    image: "/images/semantic-book-recommender-webapp.png",
+    demoLink: "https://semantic-book-search.vercel.app/",
+    repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
   },
   {
     title: "Retail Analytics Copilot",
