@@ -167,24 +167,24 @@ export const otherProjects: Project[] = [
     demoLink: "https://semantic-book-search.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
   },
-  {
-    title: "Retail Analytics Copilot",
-    description:
-      "A Hybrid RAG + SQL Agent using LangGraph and DSPy. Deployed on Hugging Face Spaces, powered by Phi-3.5 (3.8B) and Gemini models. Supports batch processing and JSON input/output.",
-    tech: [
-      "Python",
-      "LangGraph",
-      "DSPy",
-      "SQLite",
-      "RAG",
-      "Streamlit",
-      "Docker",
-    ],
-    image: "/images/retailAnalyticsCopilot.png",
-    demoLink:
-      "https://huggingface.co/spaces/ahmed-ayman/retail-analytics-copilot",
-    repoLink: "https://github.com/AhmedAyman4/retail-analytics-copilot",
-  },
+  // {
+  //   title: "Retail Analytics Copilot",
+  //   description:
+  //     "A Hybrid RAG + SQL Agent using LangGraph and DSPy. Deployed on Hugging Face Spaces, powered by Phi-3.5 (3.8B) and Gemini models. Supports batch processing and JSON input/output.",
+  //   tech: [
+  //     "Python",
+  //     "LangGraph",
+  //     "DSPy",
+  //     "SQLite",
+  //     "RAG",
+  //     "Streamlit",
+  //     "Docker",
+  //   ],
+  //   image: "/images/retailAnalyticsCopilot.png",
+  //   demoLink:
+  //     "https://huggingface.co/spaces/ahmed-ayman/retail-analytics-copilot",
+  //   repoLink: "https://github.com/AhmedAyman4/retail-analytics-copilot",
+  // },
   {
     title: "Campaign Conversion Predictor",
     description:
