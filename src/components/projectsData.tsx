@@ -11,6 +11,25 @@ export interface Project {
 
 export const spotlightProjects: Project[] = [
   {
+    title: "Nawy Property Recommender",
+    description:
+      "An AI-powered system mimicking a property consultant role. Features semantic search for 9,000+ listings, a RAG-based chatbot for area insights, and AI-powered property comparisons. Dynamically extracts and updates user preferences during chat sessions, stored in MongoDB for personalized recommendations. Includes an XGBoost model for price prediction.",
+    tech: [
+      "Next.js",
+      "FastAPI",
+      "LangChain",
+      "ChromaDB",
+      "MongoDB",
+      "XGBoost",
+      "RAG",
+      "Docker",
+      "Playwright",
+    ],
+    image: "/images/nawy-property-recommender.png",
+    demoLink: "https://nawyai.vercel.app/",
+    repoLink: "https://github.com/AhmedAyman4/nawy",
+  },
+  {
     title: "FCAI USC Regulations Chatbot",
     description:
       "Built a bilingual (English/Arabic) RAG chatbot to query the Faculty of Computer & Artificial Intelligence (USC) internal regulations. Uses Google Gemini with ChromaDB for semantic retrieval and provides accurate, context-aware answers via a web interface.",
@@ -94,6 +113,25 @@ export const spotlightProjects: Project[] = [
 ];
 
 export const otherProjects: Project[] = [
+  {
+    title: "Nawy Property Recommender",
+    description:
+      "An AI-powered system mimicking a property consultant role. Features semantic search for 9,000+ listings, a RAG-based chatbot for area insights, and AI-powered property comparisons. Dynamically extracts and updates user preferences during chat sessions, stored in MongoDB for personalized recommendations. Includes an XGBoost model for price prediction.",
+    tech: [
+      "Next.js",
+      "FastAPI",
+      "LangChain",
+      "ChromaDB",
+      "MongoDB",
+      "XGBoost",
+      "RAG",
+      "Docker",
+      "Playwright",
+    ],
+    image: "/images/nawy-property-recommender.png",
+    demoLink: "https://nawyai.vercel.app/",
+    repoLink: "https://github.com/AhmedAyman4/nawy",
+  },
   {
     title: "FCAI USC Regulations Chatbot",
     description:
