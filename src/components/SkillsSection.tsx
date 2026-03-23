@@ -3,35 +3,20 @@ import { Badge } from "@/components/ui/badge";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
 
-// Skills data array
 const skills = [
-  "SQL",
-  "Python",
-  "NumPy",
-  "Pandas",
-  "Matplotlib",
-  "Seaborn",
-  "Scikit-learn",
-  "LangChain",
-  "TensorFlow",
-  "PyTorch",
-  "Docker",
-  "Git",
-  "GitHub",
-  "Tableau",
-  "Power BI",
-  "Next.js",
-  "HTML",
-  "CSS",
-  "JavaScript",
-  "TypeScript",
+  "SQL", "Python", "NumPy", "Pandas", "Matplotlib", "Seaborn", 
+  "Scikit-learn", "LangChain", "TensorFlow", "PyTorch", "Docker", 
+  "Git", "GitHub", "Tableau", "Power BI", "Next.js", "HTML", 
+  "CSS", "JavaScript", "TypeScript",
 ];
 
 export function SkillsSection() {
   return (
     <div id="skills" className="max-w-5xl mx-auto px-4">
-      <SectionHeader label="Technical Expertise" title="Skills" />
-      <FadeInSection>
+      <FadeInSection delay="0.1s">
+        <SectionHeader label="Technical Expertise" title="Skills" />
+      </FadeInSection>
+      
         <div className="flex flex-wrap justify-center gap-4">
           {skills.map((skill, index) => (
             <FadeInSection key={skill} delay={`${index * 0.1}s`}>
@@ -41,7 +26,8 @@ export function SkillsSection() {
             </FadeInSection>
           ))}
         </div>
-      </FadeInSection>
     </div>
   );
 }
+
+

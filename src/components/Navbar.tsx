@@ -10,6 +10,12 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetTitle,
+} from "@/components/ui/sheet";
 import "@/styles/components/Navbar.css";
 import {
   Home,
@@ -149,34 +155,6 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
   const [activeSection, setActiveSection] = useState<string>("");
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState<boolean>(false);
 
-  // Close mobile menu when clicking outside
-  useEffect(() => {
-    const handleClickOutside = (event: MouseEvent) => {
-      if (
-        isMobileMenuOpen &&
-        navbarRef.current &&
-        !navbarRef.current.contains(event.target as Node)
-      ) {
-        setIsMobileMenuOpen(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => document.removeEventListener("mousedown", handleClickOutside);
-  }, [isMobileMenuOpen]);
-
-  // Prevent body scroll when mobile menu is open
-  useEffect(() => {
-    if (isMobileMenuOpen) {
-      document.body.style.overflow = "hidden";
-    } else {
-      document.body.style.overflow = "";
-    }
-    return () => {
-      document.body.style.overflow = "";
-    };
-  }, [isMobileMenuOpen]);
-
   useEffect(() => {
     const handleScroll = () => {
       const navbarHeight = navbarRef.current?.offsetHeight || 80;
@@ -253,129 +231,102 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
             </div>
 
             <div className="navbar-actions">
+              {/* Desktop Social Links */}
+              <div className="hidden lg:flex items-center gap-1 mr-1">
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] transition-all hover:scale-110" aria-label="GitHub">
+                      <Github className="h-4 w-4" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom"><p className="text-xs">GitHub</p></TooltipContent>
+                </Tooltip>
+
+                <Tooltip>
+                  <TooltipTrigger asChild>
+                    <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] transition-all hover:scale-110" aria-label="LinkedIn">
+                      <Linkedin className="h-4 w-4" />
+                    </a>
+                  </TooltipTrigger>
+                  <TooltipContent side="bottom"><p className="text-xs">LinkedIn</p></TooltipContent>
+                </Tooltip>
+              </div>
+
               <div className="hidden md:block">
                 <ResumeButton />
               </div>
               <div className="navbar-theme-toggle">
                 <ModeToggle />
               </div>
-              {/* Hamburger Menu Button - Mobile Only */}
-              <button
-                className="hamburger-button md:hidden"
-                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                aria-label="Toggle mobile menu"
-              >
-                {isMobileMenuOpen ? (
-                  <X className="h-5 w-5" />
-                ) : (
-                  <Menu className="h-5 w-5" />
-                )}
-              </button>
-            </div>
-          </div>
-        </div>
+              {/* Mobile Menu via Blurry Sheet */}
+              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <SheetTrigger asChild>
+                  <button className="hamburger-button md:hidden" aria-label="Toggle mobile menu">
+                    <Menu className="h-5 w-5" />
+                  </button>
+                </SheetTrigger>
+                <SheetContent 
+                  side="right" 
+                  className="w-[72vw] max-w-[280px] p-6 border-l border-white/20 dark:border-white/10 bg-white/40 dark:bg-black/40 backdrop-blur-3xl shadow-2xl flex flex-col pt-10 gap-4"
+                >
+                  <SheetTitle className="sr-only">Mobile Navigation</SheetTitle>
+                  
 
-        {/* Mobile Menu Overlay */}
-        <div
-          className={`mobile-menu-overlay ${isMobileMenuOpen ? "open" : ""}`}
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
 
-        {/* Mobile Menu */}
-        <div className={`mobile-menu ${isMobileMenuOpen ? "open" : ""}`}>
-          <div className="mobile-menu-content">
-            {/* Mobile Menu Header */}
-            <div className="mobile-menu-header">
-              <span className={`mobile-menu-brand ${patrickHand.className}`}>
-                Ahmed Ayman
-              </span>
-              <button
-                className="mobile-menu-close"
-                onClick={() => setIsMobileMenuOpen(false)}
-                aria-label="Close menu"
-              >
-                <X className="h-4 w-4" />
-              </button>
-            </div>
-            <nav className="mobile-nav-links">
-              {links.map((link) => {
-                const Icon =
-                  NAV_ICONS[link.label.toLowerCase() as keyof typeof NAV_ICONS];
-                return (
-                  <a
-                    key={link.href}
-                    href={link.href}
-                    onClick={(e) => {
-                      handleNavClick(e, link.href, navbarRef);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`mobile-nav-link ${
-                      isLinkActive(link.href, link.label) ? "active" : ""
-                    }`}
+                  {/* Standard Links List */}
+                  <div className="flex flex-col gap-2">
+                    {links.map((link) => {
+                      const Icon = NAV_ICONS[link.label.toLowerCase() as keyof typeof NAV_ICONS];
+                      const active = isLinkActive(link.href, link.label);
+                      return (
+                        <a
+                          key={link.href}
+                          href={link.href}
+                          onClick={(e) => { handleNavClick(e, link.href, navbarRef); setIsMobileMenuOpen(false); }}
+                          className={`flex items-center gap-4 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer outline-none w-full ${
+                             active 
+                             ? 'bg-white/80 dark:bg-white/10 text-primary dark:text-[#4de9d2] shadow-sm' 
+                             : 'text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-white/5'
+                          }`}
+                        >
+                          {Icon && <Icon className="h-4 w-4 opacity-80" />}
+                          <span>{link.label}</span>
+                        </a>
+                      );
+                    })}
+                  </div>
+
+                  <div className="h-px w-full bg-gray-200/50 dark:bg-gray-800/50 my-2" />
+                  
+                  {/* Standardized Resume Button */}
+                  <a 
+                    href="/Ahmed_Ayman_Alhofy.pdf" 
+                    target="_blank" 
+                    rel="noopener noreferrer" 
+                    onClick={() => setIsMobileMenuOpen(false)} 
+                    className="flex justify-center items-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-primary dark:bg-[#4de9d2] text-white dark:text-black shadow-md hover:opacity-90 transition-all cursor-pointer outline-none"
                   >
-                    {Icon && <Icon className="mobile-nav-icon" />}
-                    <span>{link.label}</span>
+                    <FileText className="h-4 w-4" />
+                    <span>Download Resume</span>
+                    <svg className="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
                   </a>
-                );
-              })}
-            </nav>
-            <div className="mobile-menu-divider" />
-            <a
-              href="/Ahmed_Ayman_Alhofy.pdf"
-              target="_blank"
-              rel="noopener noreferrer"
-              onClick={() => setIsMobileMenuOpen(false)}
-              className="mobile-resume-button"
-            >
-              <FileText className="mobile-nav-icon" />
-              <span>Resume</span>
-              <svg
-                className="resume-download-icon"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z"
-                />
-              </svg>
-            </a>
-            <div className="mobile-menu-divider" />
-            {/* Social Links */}
-            <div className="mobile-social-links">
-              <a
-                href="mailto:ahmedalhofy42@gmail.com"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mobile-social-link"
-                aria-label="Email"
-              >
-                <Mail className="h-4 w-4" />
-              </a>
-              <a
-                href="https://www.linkedin.com/in/ahmed-alhofy/"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mobile-social-link"
-                aria-label="LinkedIn"
-              >
-                <Linkedin className="h-4 w-4" />
-              </a>
-              <a
-                href="https://github.com/AhmedAyman4"
-                target="_blank"
-                rel="noopener noreferrer"
-                onClick={() => setIsMobileMenuOpen(false)}
-                className="mobile-social-link"
-                aria-label="GitHub"
-              >
-                <Github className="h-4 w-4" />
-              </a>
+                  
+                  {/* Social Links Standardized */}
+                  <div className="flex justify-center gap-4 mt-auto pb-2">
+                     <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="Email">
+                        <Mail className="h-4 w-4" />
+                      </a>
+                      <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="LinkedIn">
+                        <Linkedin className="h-4 w-4" />
+                      </a>
+                      <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
+                        <Github className="h-4 w-4" />
+                      </a>
+                  </div>
+                </SheetContent>
+              </Sheet>
             </div>
           </div>
         </div>
