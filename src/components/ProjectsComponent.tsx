@@ -3,8 +3,6 @@
 import { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
 import {
-  ChevronLeft,
-  ChevronRight,
   FolderGit2,
   Github,
   FolderUp,
@@ -12,7 +10,24 @@ import {
 import { Button } from "@/components/ui/button";
 import FadeInSection from "@/components/FadeInSection";
 import { SectionHeader } from "@/components/SectionHeader";
+import {
+  Card,
+  CardContent,
+  CardDescription,
+  CardFooter,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
 import { spotlightProjects, otherProjects, type Project } from "./projectsData";
+import {
+  Carousel,
+  CarouselContent,
+  CarouselItem,
+  CarouselNext,
+  CarouselPrevious,
+  type CarouselApi,
+} from "@/components/ui/carousel";
+import Autoplay from "embla-carousel-autoplay";
 import "@/styles/components/ProjectsComponent.css";
 
 // ============================================================================
@@ -41,32 +56,6 @@ const ProjectLink = ({ href, children, className }: ProjectLinkProps) =>
 // Carousel Components
 // ============================================================================
 
-const ANIMATION_DURATION = 600;
-const AUTO_PLAY_INTERVAL = 20000;
-
-type Direction = "left" | "right";
-
-const NavButton = ({
-  direction,
-  onClick,
-}: {
-  direction: Direction;
-  onClick: () => void;
-}) => (
-  <Button
-    variant="ghost"
-    size="sm"
-    className={`carousel-nav-button carousel-nav-${direction}`}
-    onClick={onClick}
-  >
-    {direction === "left" ? (
-      <ChevronLeft className="h-4 w-4" />
-    ) : (
-      <ChevronRight className="h-4 w-4" />
-    )}
-  </Button>
-);
-
 const TechBadges = ({ tech }: { tech: string[] }) => (
   <div className="carousel-tech-container">
     {tech.slice(0, 3).map((t, i) => (
@@ -80,20 +69,15 @@ const TechBadges = ({ tech }: { tech: string[] }) => (
   </div>
 );
 
-interface CarouselItemProps {
+interface ProjectCarouselItemProps {
   project: Project;
-  onPrev: () => void;
-  onNext: () => void;
 }
 
-const CarouselItem = ({ project, onPrev, onNext }: CarouselItemProps) => (
+const ProjectCarouselItem = ({ project }: ProjectCarouselItemProps) => (
   <div className="group carousel-item">
     <div className="carousel-border">
       <div className="carousel-border-inner" />
     </div>
-
-    <NavButton direction="left" onClick={onPrev} />
-    <NavButton direction="right" onClick={onNext} />
 
     <div className="carousel-image-container">
       <Image
@@ -133,112 +117,60 @@ const CarouselItem = ({ project, onPrev, onNext }: CarouselItemProps) => (
   </div>
 );
 
-// Custom hook for carousel logic
-function useCarousel(length: number) {
-  const [index, setIndex] = useState(0);
-  const [prevIndex, setPrevIndex] = useState(0);
-  const [isAnimating, setIsAnimating] = useState(false);
-  const [direction, setDirection] = useState<Direction>("right");
-
-  const navigate = useCallback(
-    (newIndex: number, dir: Direction) => {
-      if (isAnimating || newIndex === index) return;
-      setDirection(dir);
-      setPrevIndex(index);
-      setIsAnimating(true);
-      setIndex(newIndex);
-      setTimeout(() => setIsAnimating(false), ANIMATION_DURATION);
-    },
-    [index, isAnimating]
-  );
-
-  const next = useCallback(() => {
-    navigate((index + 1) % length, "right");
-  }, [index, length, navigate]);
-
-  const prev = useCallback(() => {
-    navigate((index - 1 + length) % length, "left");
-  }, [index, length, navigate]);
-
-  const goTo = useCallback(
-    (newIndex: number) => {
-      navigate(newIndex, newIndex > index ? "right" : "left");
-    },
-    [index, navigate]
-  );
-
-  return { index, prevIndex, isAnimating, direction, next, prev, goTo };
-}
-
-// Custom hook for intersection observer visibility
-function useVisibility(threshold = 0.3) {
-  const ref = useRef<HTMLDivElement>(null);
-  const [isVisible, setIsVisible] = useState(false);
+const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
+  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const [api, setApi] = useState<CarouselApi>();
+  const [current, setCurrent] = useState(0);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      ([entry]) => setIsVisible(entry.isIntersecting),
-      { threshold, rootMargin: "0px 0px -100px 0px" }
-    );
-    const element = ref.current;
-    if (element) observer.observe(element);
-    return () => observer.disconnect();
-  }, [threshold]);
+    if (!api) return;
 
-  return { ref, isVisible };
-}
+    setCurrent(api.selectedScrollSnap());
 
-const Carousel = ({ projects }: { projects: Project[] }) => {
-  const { ref, isVisible } = useVisibility();
-  const { index, prevIndex, isAnimating, direction, next, prev, goTo } =
-    useCarousel(projects.length);
-
-  // Auto-play when visible
-  useEffect(() => {
-    if (!isVisible) return;
-    const interval = setInterval(next, AUTO_PLAY_INTERVAL);
-    return () => clearInterval(interval);
-  }, [next, isVisible]);
-
-  const getSlideClass = (type: "exit" | "enter") => {
-    if (type === "exit") {
-      return `carousel-slide carousel-slide-exit ${
-        direction === "right" ? "slide-exit-left" : "slide-exit-right"
-      }`;
-    }
-    return `carousel-slide ${
-      isAnimating
-        ? `carousel-slide-enter ${
-            direction === "right" ? "slide-enter-right" : "slide-enter-left"
-          }`
-        : ""
-    }`;
-  };
+    api.on("select", () => {
+      setCurrent(api.selectedScrollSnap());
+    });
+  }, [api]);
 
   return (
-    <div ref={ref} className="carousel-container">
-      <div className="carousel-wrapper">
-        {isAnimating && (
-          <div className={getSlideClass("exit")}>
-            <CarouselItem
-              project={projects[prevIndex]}
-              onPrev={prev}
-              onNext={next}
-            />
-          </div>
-        )}
-        <div className={getSlideClass("enter")}>
-          <CarouselItem project={projects[index]} onPrev={prev} onNext={next} />
+    <div className="carousel-container overflow-visible flex flex-col">
+      <Carousel
+        setApi={setApi}
+        plugins={[plugin.current]}
+        className="w-full max-w-5xl mx-auto relative group"
+        onMouseEnter={plugin.current.stop}
+        onMouseLeave={plugin.current.reset}
+        opts={{
+          loop: true,
+          align: "center",
+        }}
+      >
+        <CarouselContent>
+          {projects.map((project, index) => (
+            <CarouselItem key={index}>
+              <ProjectCarouselItem project={project} />
+            </CarouselItem>
+          ))}
+        </CarouselContent>
+        {/* Navigation buttons: placed inside the carousel box */}
+        <div className="hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+          <CarouselPrevious className="absolute left-6 xl:left-8 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border-none text-gray-800 dark:text-white h-10 w-10 transition-transform hover:scale-110" />
+          <CarouselNext className="absolute right-6 xl:right-8 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border-none text-gray-800 dark:text-white h-10 w-10 transition-transform hover:scale-110" />
         </div>
-      </div>
-      <div className="carousel-indicators">
-        {projects.map((_, i) => (
+      </Carousel>
+
+      {/* Dashed line tracking indicators */}
+      <div className="flex justify-center gap-3 mt-8">
+        {projects.map((_, index) => (
           <button
-            key={i}
-            className={`carousel-indicator ${
-              i === index ? "active" : "inactive"
+            key={index}
+            onClick={() => api?.scrollTo(index)}
+            className={`h-1.5 rounded-full transition-all duration-300 ${
+              index === current
+                ? "w-8 bg-primary"
+                : "w-4 bg-gray-300 dark:bg-gray-700 hover:bg-primary/50"
             }`}
-            onClick={() => goTo(i)}
+            aria-label={`Go to slide ${index + 1}`}
           />
         ))}
       </div>
@@ -251,31 +183,40 @@ const Carousel = ({ projects }: { projects: Project[] }) => {
 // ============================================================================
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <div className="group project-card">
-    <div className="project-card-content">
-      <div className="project-card-header">
-        <FolderGit2 className="project-folder-icon" />
-        <div className="project-card-links">
-          <ProjectLink href={project.repoLink} className="project-card-link">
-            <Github className="project-card-link-icon" />
+  <Card className="group relative h-full flex flex-col bg-white dark:bg-gray-900/70 overflow-hidden border-transparent rounded-3xl hover:border-primary/20 dark:hover:border-primary/30 hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 transition-all duration-300 hover:scale-[1.02]">
+    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.03] dark:group-hover:bg-white/[0.1] transition-colors duration-300 pointer-events-none z-10" />
+    <CardHeader className="relative pb-4 z-20">
+      <div className="flex items-start justify-between mb-2">
+        <FolderGit2 className="h-5 w-5 text-blue-600 dark:text-[#4de9d2] group-hover:brightness-[1.1] group-hover:text-primary dark:group-hover:text-[#4de9d2] group-hover:scale-[1.1] transition-all duration-200" />
+        <div className="flex space-x-3">
+          <ProjectLink href={project.repoLink} className="hover:brightness-[1.1] hover:scale-[1.1] hover:text-primary dark:hover:text-primary transition-all duration-200">
+            <Github className="h-5 w-5 text-gray-700 dark:text-gray-300" />
           </ProjectLink>
-          <ProjectLink href={project.demoLink} className="project-card-link">
-            <FolderUp className="project-card-link-icon" />
+          <ProjectLink href={project.demoLink} className="hover:brightness-[1.1] hover:scale-[1.1] hover:text-primary dark:hover:text-primary transition-all duration-200">
+            <FolderUp className="h-5 w-5 text-gray-700 dark:text-gray-300" />
           </ProjectLink>
         </div>
       </div>
-      <h3 className="project-card-title">{project.title}</h3>
-      <p className="project-card-description">{project.description}</p>
-      <div className="project-card-tech">
+      <CardTitle className="text-xl font-bold text-gray-900 dark:text-white">
+        {project.title}
+      </CardTitle>
+    </CardHeader>
+    <CardContent className="relative flex-1 pb-4 z-20">
+      <CardDescription className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+        {project.description}
+      </CardDescription>
+    </CardContent>
+    <CardFooter className="relative z-20">
+      <div className="flex flex-wrap gap-2">
         {project.tech.map((tech, i) => (
-          <span key={tech} className="project-card-tech-item">
+          <span key={tech} className="text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
             {tech}
             {i < project.tech.length - 1 && <span className="ml-2">•</span>}
           </span>
         ))}
       </div>
-    </div>
-  </div>
+    </CardFooter>
+  </Card>
 );
 
 // ============================================================================
@@ -328,7 +269,7 @@ export const ProjectsComponent = () => (
     <section id="projects" className="mb-16">
       <SectionHeader label="Portfolio" title="Featured Projects" />
       <ImagePreloader projects={spotlightProjects} />
-      <Carousel projects={spotlightProjects} />
+      <ProjectsCarousel projects={spotlightProjects} />
       <ProjectsGrid projects={otherProjects} />
     </section>
   </FadeInSection>
