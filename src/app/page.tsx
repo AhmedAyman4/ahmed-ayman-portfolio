@@ -68,7 +68,7 @@ export default function Home() {
             { href: "#", label: "Home" },
             { href: "#experience", label: "Experience" },
             { href: "#projects", label: "Projects" },
-            { href: "#courses", label: "Courses" },
+            { href: "#certifications", label: "Certifications" },
             { href: "#skills", label: "Skills" },
             { href: "#contact", label: "Contact" },
           ]}
@@ -104,9 +104,9 @@ export default function Home() {
           >
             <ProjectsComponent />
           </div>
-          {/* Courses and Certifications */}
+          {/* Certifications Section */}
           <section
-            id="courses"
+            id="certifications"
             className="flex flex-col justify-center py-4 fade-in-section"
             ref={(el) => {
               if (el) sectionsRef.current.push(el);

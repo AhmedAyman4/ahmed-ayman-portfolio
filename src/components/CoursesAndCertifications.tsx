@@ -40,6 +40,16 @@ const CERTIFICATIONS = [
     image: "/images/CoursesAndCertifications/Data Scientist Associate.jpg",
     link: "https://www.datacamp.com/certificate/DSA0019876659394",
   },
+  {
+    id: "item-4",
+    title: "Google Data Analytics Professional Certificate",
+    issuer: "Coursera",
+    date: "2024",
+    description:
+      "Comprehensive program covering the entire data analytics process, including data cleaning, analysis, and visualization using tools like SQL, R, and Tableau to drive data-informed decision-making.",
+    image: "/images/CoursesAndCertifications/Google Data Analytics_page-0001.jpg",
+    link: "https://www.credly.com/badges/ba202583-d839-4158-9fde-cfff5c8c283b/linked_in_profile",
+  },
 ];
 
 export function CoursesAndCertifications() {
