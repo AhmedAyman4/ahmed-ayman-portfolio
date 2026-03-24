@@ -11,11 +11,11 @@ import {
   TooltipTrigger,
 } from "@/components/ui/tooltip";
 import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-  SheetTitle,
-} from "@/components/ui/sheet";
+  Dialog,
+  DialogContent,
+  DialogTrigger,
+  DialogTitle,
+} from "@/components/ui/dialog";
 import "@/styles/components/Navbar.css";
 import {
   Home,
@@ -68,6 +68,37 @@ const handleNavClick = (
       });
     }
   }
+};
+
+const handleMobileNavClick = (
+  e: React.MouseEvent<HTMLAnchorElement>,
+  href: string,
+  navbarRef: React.RefObject<HTMLDivElement>,
+  closeMenu: () => void
+) => {
+  if (href.startsWith("/")) {
+    closeMenu();
+    return;
+  }
+  
+  e.preventDefault();
+  closeMenu();
+  
+  // Wait for the Dialog's closing animation and scroll-lock removal
+  setTimeout(() => {
+    if (href === "#") {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    } else {
+      const target = document.querySelector(href) as HTMLElement;
+      if (target) {
+        const navbarHeight = navbarRef.current?.offsetHeight || 80;
+        window.scrollTo({
+          top: target.offsetTop - navbarHeight - 20,
+          behavior: "smooth",
+        });
+      }
+    }
+  }, 400);
 };
 
 const NavLink = ({
@@ -258,18 +289,17 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
               <div className="navbar-theme-toggle">
                 <ModeToggle />
               </div>
-              {/* Mobile Menu via Blurry Sheet */}
-              <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                <SheetTrigger asChild>
+              {/* Mobile Menu via Blurry Dialog */}
+              <Dialog open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+                <DialogTrigger asChild>
                   <button className="hamburger-button md:hidden" aria-label="Toggle mobile menu">
                     <Menu className="h-5 w-5" />
                   </button>
-                </SheetTrigger>
-                <SheetContent 
-                  side="right" 
-                  className="w-[72vw] max-w-[280px] p-6 border-l border-white/20 dark:border-white/10 bg-white/40 dark:bg-black/40 backdrop-blur-3xl shadow-2xl flex flex-col pt-10 gap-4"
+                </DialogTrigger>
+                <DialogContent 
+                  className="w-[calc(100%-2rem)] max-w-md p-6 pt-12 border border-white/20 dark:border-white/10 bg-white dark:bg-black/40 backdrop-blur-none dark:backdrop-blur-3xl shadow-2xl flex flex-col gap-4 rounded-3xl"
                 >
-                  <SheetTitle className="sr-only">Mobile Navigation</SheetTitle>
+                  <DialogTitle className="sr-only">Mobile Navigation</DialogTitle>
                   
 
 
@@ -282,7 +312,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                         <a
                           key={link.href}
                           href={link.href}
-                          onClick={(e) => { handleNavClick(e, link.href, navbarRef); setIsMobileMenuOpen(false); }}
+                          onClick={(e) => handleMobileNavClick(e, link.href, navbarRef, () => setIsMobileMenuOpen(false))}
                           className={`flex items-center gap-4 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer outline-none w-full ${
                              active 
                              ? 'bg-white/80 dark:bg-white/10 text-primary dark:text-[#4de9d2] shadow-sm' 
@@ -303,7 +333,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                     href="/Ahmed_Ayman_Alhofy.pdf" 
                     target="_blank" 
                     rel="noopener noreferrer" 
-                    onClick={() => setIsMobileMenuOpen(false)} 
+                    onClick={() => setIsMobileMenuOpen(false)}
                     className="flex justify-center items-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-primary dark:bg-[#4de9d2] text-white dark:text-black shadow-md hover:opacity-90 transition-all cursor-pointer outline-none"
                   >
                     <FileText className="h-4 w-4" />
@@ -325,8 +355,8 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                         <Github className="h-4 w-4" />
                       </a>
                   </div>
-                </SheetContent>
-              </Sheet>
+                </DialogContent>
+              </Dialog>
             </div>
           </div>
         </div>
