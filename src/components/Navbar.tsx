@@ -39,6 +39,7 @@ const NAV_ICONS = {
   home: Home,
   about: User,
   projects: FolderOpen,
+  courses: AiFillSafetyCertificate,
   experience: Briefcase,
   skills: Code,
   contact: Mail,

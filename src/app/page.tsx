@@ -4,6 +4,7 @@ import { useEffect, useState, useRef } from "react";
 import Navbar from "@/components/Navbar";
 import { ProjectsComponent } from "@/components/ProjectsComponent";
 import { ExperienceTimeline } from "@/components/ExperienceTimeline";
+import { CoursesAndCertifications } from "@/components/CoursesAndCertifications";
 import { SkillsSection } from "@/components/SkillsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HeroSection } from "@/components/HeroSection";
@@ -67,6 +68,7 @@ export default function Home() {
             { href: "#", label: "Home" },
             { href: "#experience", label: "Experience" },
             { href: "#projects", label: "Projects" },
+            { href: "#courses", label: "Courses" },
             { href: "#skills", label: "Skills" },
             { href: "#contact", label: "Contact" },
           ]}
@@ -102,6 +104,16 @@ export default function Home() {
           >
             <ProjectsComponent />
           </div>
+          {/* Courses and Certifications */}
+          <section
+            id="courses"
+            className="flex flex-col justify-center py-4 fade-in-section"
+            ref={(el) => {
+              if (el) sectionsRef.current.push(el);
+            }}
+          >
+            <CoursesAndCertifications />
+          </section>
           {/* Skills Section */}
           <section
             id="skills"
