@@ -10,12 +10,7 @@ import {
   TooltipProvider,
   TooltipTrigger,
 } from "@/components/ui/tooltip";
-import {
-  Dialog,
-  DialogContent,
-  DialogTrigger,
-  DialogTitle,
-} from "@/components/ui/dialog";
+import { AnimatePresence, motion } from "framer-motion";
 import "@/styles/components/Navbar.css";
 import {
   Home,
@@ -239,7 +234,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
   return (
     <TooltipProvider>
       <div ref={navbarRef} className="navbar-container">
-        <div className="navbar-wrapper">
+        <div className="navbar-wrapper relative z-50">
           <div className="navbar-content">
             <a
               href="#"
@@ -290,76 +285,80 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
               <div className="navbar-theme-toggle">
                 <ModeToggle />
               </div>
-              {/* Mobile Menu via Blurry Dialog */}
-              <Dialog open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
-                <DialogTrigger asChild>
-                  <button className="hamburger-button md:hidden" aria-label="Toggle mobile menu">
-                    <Menu className="h-5 w-5" />
-                  </button>
-                </DialogTrigger>
-                <DialogContent 
-                  className="w-[calc(100%-2rem)] max-w-md p-6 pt-12 border border-white/20 dark:border-white/10 bg-white dark:bg-black/40 backdrop-blur-none dark:backdrop-blur-3xl shadow-2xl flex flex-col gap-4 rounded-3xl"
-                >
-                  <DialogTitle className="sr-only">Mobile Navigation</DialogTitle>
-                  
+              {/* Mobile Menu Toggle Button */}
+              <button 
+                className="hamburger-button md:hidden ml-1" 
+                aria-label="Toggle mobile menu"
+                onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+              >
+                {isMobileMenuOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+              </button>
+            </div>
+          </div>
 
+          {/* Floating Dropdown Card for Mobile */}
+          <AnimatePresence>
+            {isMobileMenuOpen && (
+              <motion.div
+                initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                animate={{ opacity: 1, y: 0, scale: 1 }}
+                exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                transition={{ duration: 0.2, ease: "easeOut" }}
+                className="absolute top-[calc(100%+0.5rem)] left-3 right-3 p-4 bg-background/95 dark:bg-black/90 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-[2rem] shadow-2xl flex flex-col gap-2 md:hidden origin-top z-50"
+              >
+                {/* Standard Links List */}
+                <div className="flex flex-col gap-1">
+                  {links.map((link) => {
+                    const Icon = NAV_ICONS[link.label.toLowerCase() as keyof typeof NAV_ICONS];
+                    const active = isLinkActive(link.href, link.label);
+                    return (
+                      <a
+                        key={link.href}
+                        href={link.href}
+                        onClick={(e) => handleMobileNavClick(e, link.href, navbarRef, () => setIsMobileMenuOpen(false))}
+                        className={`flex items-center gap-4 px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer w-full ${
+                           active 
+                           ? 'bg-primary/10 dark:bg-[#4de9d2]/10 text-primary dark:text-[#4de9d2]' 
+                           : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-white/5'
+                        }`}
+                      >
+                        {Icon && <Icon className="h-5 w-5 opacity-80" />}
+                        <span>{link.label}</span>
+                      </a>
+                    );
+                  })}
+                </div>
 
-                  {/* Standard Links List */}
-                  <div className="flex flex-col gap-2">
-                    {links.map((link) => {
-                      const Icon = NAV_ICONS[link.label.toLowerCase() as keyof typeof NAV_ICONS];
-                      const active = isLinkActive(link.href, link.label);
-                      return (
-                        <a
-                          key={link.href}
-                          href={link.href}
-                          onClick={(e) => handleMobileNavClick(e, link.href, navbarRef, () => setIsMobileMenuOpen(false))}
-                          className={`flex items-center gap-4 px-4 py-2.5 rounded-xl text-sm font-semibold transition-all cursor-pointer outline-none w-full ${
-                             active 
-                             ? 'bg-white/80 dark:bg-white/10 text-primary dark:text-[#4de9d2] shadow-sm' 
-                             : 'text-gray-700 dark:text-gray-300 hover:bg-white/50 dark:hover:bg-white/5'
-                          }`}
-                        >
-                          {Icon && <Icon className="h-4 w-4 opacity-80" />}
-                          <span>{link.label}</span>
-                        </a>
-                      );
-                    })}
-                  </div>
-
-                  <div className="h-px w-full bg-gray-200/50 dark:bg-gray-800/50 my-2" />
-                  
-                  {/* Standardized Resume Button */}
+                <div className="h-px w-full bg-gray-200/50 dark:bg-gray-800/50 my-2" />
+                
+                {/* Footer Actions: Resume + Socials Mapping */}
+                <div className="flex flex-wrap justify-center items-center gap-3 mt-2 pb-1">
                   <a 
                     href="/Ahmed_Ayman_Alhofy.pdf" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex justify-center items-center gap-2 w-full py-3 rounded-xl text-sm font-bold bg-primary dark:bg-[#4de9d2] text-white dark:text-black shadow-md hover:opacity-90 transition-all cursor-pointer outline-none"
+                    className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-primary/80 dark:from-[#4de9d2] dark:to-[#3dd1b5] text-white dark:text-black shadow-md hover:scale-105 transition-all cursor-pointer"
                   >
                     <FileText className="h-4 w-4" />
-                    <span>Download Resume</span>
-                    <svg className="h-4 w-4 ml-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
-                    </svg>
+                    <span>Resume</span>
                   </a>
-                  
-                  {/* Social Links Standardized */}
-                  <div className="flex justify-center gap-4 mt-auto pb-2">
-                     <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="Email">
-                        <Mail className="h-4 w-4" />
-                      </a>
-                      <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="LinkedIn">
-                        <Linkedin className="h-4 w-4" />
-                      </a>
-                      <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-white/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
-                        <Github className="h-4 w-4" />
-                      </a>
+
+                  <div className="flex gap-3">
+                    <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-3 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="Email">
+                      <Mail className="h-5 w-5" />
+                    </a>
+                    <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-3 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="LinkedIn">
+                      <Linkedin className="h-5 w-5" />
+                    </a>
+                    <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-3 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
+                      <Github className="h-5 w-5" />
+                    </a>
                   </div>
-                </DialogContent>
-              </Dialog>
-            </div>
-          </div>
+                </div>
+              </motion.div>
+            )}
+          </AnimatePresence>
         </div>
       </div>
     </TooltipProvider>
