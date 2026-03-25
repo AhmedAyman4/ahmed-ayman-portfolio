@@ -18,7 +18,7 @@ import {
   CardHeader,
   CardTitle,
 } from "@/components/ui/card";
-import { spotlightProjects, otherProjects, type Project } from "./projectsData";
+import { spotlightProjects, otherProjects, type Project } from "@/lib/projectsData";
 import {
   Carousel,
   CarouselContent,

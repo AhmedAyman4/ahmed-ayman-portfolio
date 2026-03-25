@@ -101,15 +101,6 @@ export const spotlightProjects: Project[] = [
     demoLink: "https://ahmedayman4.github.io/Personal-website/",
     repoLink: "https://github.com/AhmedAyman4/Personal-website",
   },
-  // {
-  //   title: "Movie Library",
-  //   description:
-  //     "A React-based movie library application that enables users to search for movies, view trending titles, and explore detailed information.",
-  //   tech: ["React", "Vite", "TailwindCSS", "Appwrite", "TMDb API"],
-  //   image: "/images/movieLibrary.png",
-  //   demoLink: "https://movie-library-blush.vercel.app/",
-  //   repoLink: "https://github.com/AhmedAyman4/movie-library",
-  // },
 ];
 
 export const otherProjects: Project[] = [
@@ -167,24 +158,6 @@ export const otherProjects: Project[] = [
     demoLink: "https://semantic-book-search.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
   },
-  // {
-  //   title: "Retail Analytics Copilot",
-  //   description:
-  //     "A Hybrid RAG + SQL Agent using LangGraph and DSPy. Deployed on Hugging Face Spaces, powered by Phi-3.5 (3.8B) and Gemini models. Supports batch processing and JSON input/output.",
-  //   tech: [
-  //     "Python",
-  //     "LangGraph",
-  //     "DSPy",
-  //     "SQLite",
-  //     "RAG",
-  //     "Streamlit",
-  //     "Docker",
-  //   ],
-  //   image: "/images/retailAnalyticsCopilot.png",
-  //   demoLink:
-  //     "https://huggingface.co/spaces/ahmed-ayman/retail-analytics-copilot",
-  //   repoLink: "https://github.com/AhmedAyman4/retail-analytics-copilot",
-  // },
   {
     title: "Campaign Conversion Predictor",
     description:
@@ -215,26 +188,3 @@ export const otherProjects: Project[] = [
       "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",
   },
 ];
-
-/*
-Example of how to add a project without demo or repo links:
-
-{
-  title: "Private Research Project",
-  description: "A confidential research project that cannot be shared publicly at this time.",
-  tech: ["Python", "TensorFlow", "Research"],
-  image: "/images/placeholder.png",
-  // Notice: no demoLink or repoLink properties
-  // The buttons will be automatically hidden in both CarouselItem and ProjectCard
-}
-
-You can also set them to empty strings or undefined:
-{
-  title: "Work in Progress",
-  description: "This project is still under development.",
-  tech: ["React", "TypeScript"],
-  image: "/images/wip.png",
-  demoLink: "", // Empty string - button will be hidden
-  repoLink: undefined, // Undefined - button will be hidden
-}
-*/

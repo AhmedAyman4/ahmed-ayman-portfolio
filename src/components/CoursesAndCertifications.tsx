@@ -5,54 +5,15 @@ import {
   AccordionTrigger,
 } from "@/components/ui/accordion";
 import Image from "next/image";
-import { ExternalLink, Image as ImageIcon } from "lucide-react";
+import Link from "next/link";
+import { ExternalLink, ArrowRight } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
-
-const CERTIFICATIONS = [
-  {
-    id: "item-1",
-    title: "SAP Certified Associate - SAP Generative AI Developer",
-    issuer: "SAP",
-    date: "2025",
-    description:
-      "Official certification validating expertise in developing and integrating generative AI solutions within the SAP ecosystem. (Proctored Exam C_AIG_2412 - Passed on September 25th, 2025)",
-    image: "/images/CoursesAndCertifications/Ahmed Alhofy SAP Certified Associate - SAP Generative AI Developer.jpg",
-    link: "https://www.credly.com/badges/f689025c-3b2e-4163-afa4-cd6abd275ee6/linked_in_profile",
-  },
-  {
-    id: "item-2",
-    title: "AWS Certified AI Practitioner",
-    issuer: "Amazon Web Services Training and Certification",
-    date: "2025",
-    description:
-      "Earners of this badge understand AI, ML, and generative AI concepts, methods, and strategies in general and on AWS. They can determine the correct types of AI/ML technologies to apply to specific use cases and know how to use AI, ML, and generative AI technologies responsibly.",
-    image: "/images/CoursesAndCertifications/AWS Certified AI Practitioner certificate_page-0001.jpg",
-    link: "https://www.credly.com/badges/755dc8fb-e046-4945-b12e-d56e873e8659/linked_in_profile",
-  },
-  {
-    id: "item-3",
-    title: "Data Scientist Associate",
-    issuer: "DataCamp",
-    date: "2024",
-    description:
-      "Professional certification validating foundational data science skills, including statistical analysis, data manipulation with Python/SQL, and exploratory data analysis. (ID: DSA0019876659394)",
-    image: "/images/CoursesAndCertifications/Data Scientist Associate.jpg",
-    link: "https://www.datacamp.com/certificate/DSA0019876659394",
-  },
-  {
-    id: "item-4",
-    title: "Google Data Analytics Professional Certificate",
-    issuer: "Coursera",
-    date: "2024",
-    description:
-      "Comprehensive program covering the entire data analytics process, including data cleaning, analysis, and visualization using tools like SQL, R, and Tableau to drive data-informed decision-making.",
-    image: "/images/CoursesAndCertifications/Google Data Analytics_page-0001.jpg",
-    link: "https://www.credly.com/badges/ba202583-d839-4158-9fde-cfff5c8c283b/linked_in_profile",
-  },
-];
+import { CERTIFICATIONS } from "@/lib/certificationsData";
 
 export function CoursesAndCertifications() {
+  const displayedCertifications = CERTIFICATIONS.slice(0, 3);
+
   return (
     <div className="w-full relative px-2">
       <FadeInSection delay="0.1s">
@@ -64,7 +25,7 @@ export function CoursesAndCertifications() {
 
       <div className="max-w-4xl mx-auto mt-2 mb-20">
         <Accordion type="single" collapsible className="w-full space-y-2">
-          {CERTIFICATIONS.map((cert, index) => (
+          {displayedCertifications.map((cert, index) => (
             <FadeInSection key={cert.id} delay={`${0.2 + index * 0.1}s`}>
               <AccordionItem
                 value={cert.id}
@@ -121,6 +82,20 @@ export function CoursesAndCertifications() {
             </FadeInSection>
           ))}
         </Accordion>
+
+        {CERTIFICATIONS.length > 3 && (
+          <FadeInSection delay="0.5s">
+            <div className="mt-8 flex justify-center">
+              <Link
+                href="/certificates"
+                className="group inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-200 dark:hover:bg-white/10 hover:border-teal-500/30 dark:hover:border-[#4de9d2]/30 transition-all duration-300"
+              >
+                View All Certificates
+                <ArrowRight className="h-4 w-4 group-hover:translate-x-1 transition-transform" />
+              </Link>
+            </div>
+          </FadeInSection>
+        )}
       </div>
     </div>
   );
