@@ -304,7 +304,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute top-[calc(100%+0.5rem)] left-3 right-3 p-3 bg-background/95 dark:bg-black/90 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-[1.75rem] shadow-2xl flex flex-col gap-1.5 md:hidden origin-top z-50"
+                className="absolute top-[calc(100%+0.5rem)] left-3 right-3 p-3 bg-background/70 dark:bg-background/70 backdrop-blur-xl border border-gray-200/30 dark:border-gray-700/40 rounded-[1.75rem] shadow-2xl flex flex-col gap-1.5 md:hidden origin-top z-50"
               >
                 {/* Standard Links List */}
                 <div className="flex flex-col gap-1">
@@ -322,7 +322,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-white/5'
                         }`}
                       >
-                        {Icon && <Icon className="h-4.5 w-4.5 opacity-80" />}
+                        {Icon && <Icon className="h-4 w-4 opacity-80" />}
                         <span>{link.label}</span>
                       </a>
                     );
@@ -340,19 +340,19 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                     onClick={() => setIsMobileMenuOpen(false)}
                     className="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-primary to-primary/80 dark:from-[#4de9d2] dark:to-[#3dd1b5] text-white dark:text-black shadow-md hover:scale-105 transition-all cursor-pointer"
                   >
-                    <FileText className="h-3.5 w-3.5" />
+                    <FileText className="h-3 w-3" />
                     <span>Resume</span>
                   </a>
 
                   <div className="flex gap-2.5">
                     <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="Email">
-                      <Mail className="h-4.5 w-4.5" />
+                      <Mail className="h-4 w-4" />
                     </a>
                     <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="LinkedIn">
-                      <Linkedin className="h-4.5 w-4.5" />
+                      <Linkedin className="h-4 w-4" />
                     </a>
                     <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
-                      <Github className="h-4.5 w-4.5" />
+                      <Github className="h-4 w-4" />
                     </a>
                   </div>
                 </div>
