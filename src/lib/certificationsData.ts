@@ -12,7 +12,7 @@ export const CERTIFICATIONS = [
   {
     id: "item-2",
     title: "AWS Certified AI Practitioner",
-    issuer: "Amazon Web Services Training and Certification",
+    issuer: "AWS",
     date: "2025",
     description:
       "Earners of this badge understand AI, ML, and generative AI concepts, methods, and strategies in general and on AWS. They can determine the correct types of AI/ML technologies to apply to specific use cases and know how to use AI, ML, and generative AI technologies responsibly.",
@@ -21,6 +21,26 @@ export const CERTIFICATIONS = [
   },
   {
     id: "item-3",
+    title: "IBM SkillsBuild Data Analytics Certificate",
+    issuer: "IBM",
+    date: "2025",
+    description:
+      "This certification validates advanced technical skills in data analytics: data analysis, data manipulation, statistics, and data visualization. It confirms proficiency in the data analysis process and storytelling for workplace and career management.",
+    image: "/images/CoursesAndCertifications/IBM SkillsBuild Data Analytics Certificate.jpg",
+    link: "https://www.credly.com/badges/047fca36-195d-4782-9f0e-8d82b1d00c97/linked_in_profile",
+  },
+  {
+    id: "item-4",
+    title: "Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate",
+    issuer: "Oracle",
+    date: "2025",
+    description:
+      "The Oracle Cloud Infrastructure (OCI) AI Foundations certification introduces fundamental concepts of artificial intelligence (AI) and machine learning (ML), focusing on practical applications within OCI. Ideal for beginners, it provides an accessible entry point to AI and ML without requiring prior extensive technical experience.",
+    image: "/images/CoursesAndCertifications/Oracle Cloud Infrastructure 2025 Certified AI Foundations Associate.jpg",
+    link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=5A50EC88B896ABCC9B1BFAD1B2574F3119FFA0F88048DA8C8DA1F59137AE63BA",
+  },
+  {
+    id: "item-5",
     title: "Data Scientist Associate",
     issuer: "DataCamp",
     date: "2024",
@@ -30,7 +50,7 @@ export const CERTIFICATIONS = [
     link: "https://www.datacamp.com/certificate/DSA0019876659394",
   },
   {
-    id: "item-4",
+    id: "item-6",
     title: "Google Data Analytics Professional Certificate",
     issuer: "Coursera",
     date: "2024",

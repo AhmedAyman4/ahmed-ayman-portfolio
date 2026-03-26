@@ -55,7 +55,7 @@ export function CoursesAndCertifications() {
                       {cert.description}
                     </p>
                     {cert.image && (
-                      <div className="relative w-full max-w-lg overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 shadow-sm mt-1">
+                      <div className="relative w-full max-w-md overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 shadow-sm mt-1">
                         <Image 
                           src={cert.image} 
                           alt={cert.title} 
