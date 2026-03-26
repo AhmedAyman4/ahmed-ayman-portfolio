@@ -24,9 +24,9 @@ import {
   FileText,
   Github,
   Linkedin,
+  Award,
 } from "lucide-react";
 import { FaInstagram } from "react-icons/fa";
-import { AiFillSafetyCertificate } from "react-icons/ai";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
 
@@ -34,7 +34,7 @@ const NAV_ICONS = {
   home: Home,
   about: User,
   projects: FolderOpen,
-  certifications: AiFillSafetyCertificate,
+  certifications: Award,
   experience: Briefcase,
   skills: Code,
   contact: Mail,
@@ -304,7 +304,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                 animate={{ opacity: 1, y: 0, scale: 1 }}
                 exit={{ opacity: 0, y: -10, scale: 0.95 }}
                 transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute top-[calc(100%+0.5rem)] left-3 right-3 p-4 bg-background/95 dark:bg-black/90 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-[2rem] shadow-2xl flex flex-col gap-2 md:hidden origin-top z-50"
+                className="absolute top-[calc(100%+0.5rem)] left-3 right-3 p-3 bg-background/95 dark:bg-black/90 backdrop-blur-xl border border-gray-200/50 dark:border-white/10 rounded-[1.75rem] shadow-2xl flex flex-col gap-1.5 md:hidden origin-top z-50"
               >
                 {/* Standard Links List */}
                 <div className="flex flex-col gap-1">
@@ -316,43 +316,43 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                         key={link.href}
                         href={link.href}
                         onClick={(e) => handleMobileNavClick(e, link.href, navbarRef, () => setIsMobileMenuOpen(false))}
-                        className={`flex items-center gap-4 px-4 py-3 rounded-2xl text-sm font-semibold transition-all cursor-pointer w-full ${
+                        className={`flex items-center gap-3 px-3.5 py-2 rounded-2xl text-sm font-semibold transition-all cursor-pointer w-full ${
                            active 
                            ? 'bg-primary/10 dark:bg-[#4de9d2]/10 text-primary dark:text-[#4de9d2]' 
                            : 'text-gray-700 dark:text-gray-300 hover:bg-gray-100/50 dark:hover:bg-white/5'
                         }`}
                       >
-                        {Icon && <Icon className="h-5 w-5 opacity-80" />}
+                        {Icon && <Icon className="h-4.5 w-4.5 opacity-80" />}
                         <span>{link.label}</span>
                       </a>
                     );
                   })}
                 </div>
 
-                <div className="h-px w-full bg-gray-200/50 dark:bg-gray-800/50 my-2" />
+                <div className="h-px w-full bg-gray-200/50 dark:bg-gray-800/50 my-1.5" />
                 
                 {/* Footer Actions: Resume + Socials Mapping */}
-                <div className="flex flex-wrap justify-center items-center gap-3 mt-2 pb-1">
+                <div className="flex flex-wrap justify-center items-center gap-2.5 mt-1.5 pb-0.5">
                   <a 
                     href="/Ahmed_Ayman_Alhofy.pdf" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     onClick={() => setIsMobileMenuOpen(false)}
-                    className="flex items-center gap-2 px-6 py-2.5 rounded-full text-sm font-bold bg-gradient-to-r from-primary to-primary/80 dark:from-[#4de9d2] dark:to-[#3dd1b5] text-white dark:text-black shadow-md hover:scale-105 transition-all cursor-pointer"
+                    className="flex items-center gap-2 px-5 py-2 rounded-full text-xs font-bold bg-gradient-to-r from-primary to-primary/80 dark:from-[#4de9d2] dark:to-[#3dd1b5] text-white dark:text-black shadow-md hover:scale-105 transition-all cursor-pointer"
                   >
-                    <FileText className="h-4 w-4" />
+                    <FileText className="h-3.5 w-3.5" />
                     <span>Resume</span>
                   </a>
 
-                  <div className="flex gap-3">
-                    <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-3 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="Email">
-                      <Mail className="h-5 w-5" />
+                  <div className="flex gap-2.5">
+                    <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="Email">
+                      <Mail className="h-4.5 w-4.5" />
                     </a>
-                    <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-3 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="LinkedIn">
-                      <Linkedin className="h-5 w-5" />
+                    <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="LinkedIn">
+                      <Linkedin className="h-4.5 w-4.5" />
                     </a>
-                    <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-3 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
-                      <Github className="h-5 w-5" />
+                    <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
+                      <Github className="h-4.5 w-4.5" />
                     </a>
                   </div>
                 </div>
