@@ -40,7 +40,7 @@ export default function CertificatesPage() {
               />
               <Link
                 href="/"
-                className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-medium hover:bg-gray-200 dark:hover:bg-white/10 transition-all duration-300 w-fit"
+                className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-normal hover:bg-gray-200 dark:hover:bg-white/10 transition-all duration-300 w-fit"
               >
                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
                 Back to Home
@@ -48,22 +48,22 @@ export default function CertificatesPage() {
             </div>
           </FadeInSection>
 
-          <div className="max-w-4xl mx-auto mt-2 mb-20">
-            <Accordion type="single" collapsible className="w-full space-y-3">
+          <div className="max-w-3xl mx-auto mt-2 mb-20">
+            <Accordion type="single" collapsible className="w-full space-y-2">
               {CERTIFICATIONS.map((cert, index) => (
                 <FadeInSection key={cert.id} delay={`${0.2 + (index % 10) * 0.05}s`}>
                   <AccordionItem
                     value={cert.id}
                     className="group border border-gray-200 dark:border-white/10 rounded-xl px-4 bg-white dark:bg-black/20 backdrop-blur-none dark:backdrop-blur-md shadow-sm data-[state=open]:shadow-md transition-all duration-300 hover:border-teal-500/30 dark:hover:border-[#4de9d2]/30"
                   >
-                    <AccordionTrigger className="hover:no-underline py-3 group-data-[state=open]:pb-2 transition-all duration-300">
+                    <AccordionTrigger className="hover:no-underline py-2.5 group-data-[state=open]:pb-2 transition-all duration-300">
                       <div className="flex flex-col text-left">
                         <div>
-                          <h3 className="font-semibold text-base md:text-lg text-gray-900 dark:text-gray-100 group-hover:text-teal-600 dark:group-hover:text-[#4de9d2] transition-colors duration-300">
+                          <h3 className="font-medium text-base md:text-lg text-gray-900 dark:text-gray-100 group-hover:text-teal-600 dark:group-hover:text-[#4de9d2] transition-colors duration-300">
                             {cert.title}
                           </h3>
                           <div className="flex items-center gap-2 mt-1">
-                            <span className="text-xs md:text-sm font-medium text-gray-600 dark:text-gray-400">
+                            <span className="text-xs md:text-sm font-normal text-gray-600 dark:text-gray-400">
                               {cert.issuer}
                             </span>
                             <div className="w-1 h-1 bg-teal-500 dark:bg-[#4de9d2] rounded-full opacity-60"></div>
@@ -95,7 +95,7 @@ export default function CertificatesPage() {
                             href={cert.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-semibold text-teal-600 dark:text-[#4de9d2] hover:text-teal-700 dark:hover:text-[#3dd1b5] transition-colors w-fit pb-2"
+                            className="inline-flex items-center gap-2 text-sm font-medium text-teal-600 dark:text-[#4de9d2] hover:text-teal-700 dark:hover:text-[#3dd1b5] transition-colors w-fit pb-2"
                           >
                             View Official Credential
                             <ExternalLink className="h-4 w-4" />
