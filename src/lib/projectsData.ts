@@ -13,7 +13,7 @@ export const spotlightProjects: Project[] = [
   {
     title: "Nawy Property Recommender",
     description:
-      "An AI-powered system mimicking a property consultant role. Features semantic search for 9,000+ listings, a RAG-based chatbot for area insights, and AI-powered property comparisons. Dynamically extracts and updates user preferences during chat sessions, stored in MongoDB for personalized recommendations. Includes an XGBoost model for price prediction.",
+      "AI-powered property consultant featuring semantic search for 9,000+ listings, RAG-based chatbot for area insights, property comparisons, and XGBoost price prediction. Personalized via dynamic preference tracking stored in MongoDB.",
     tech: [
       "Next.js",
       "FastAPI",
@@ -64,6 +64,7 @@ export const spotlightProjects: Project[] = [
     demoLink: "https://semantic-book-search.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
   },
+/*
   {
     title: "Retail Analytics Copilot",
     description:
@@ -82,6 +83,7 @@ export const spotlightProjects: Project[] = [
       "https://huggingface.co/spaces/ahmed-ayman/retail-analytics-copilot",
     repoLink: "https://github.com/AhmedAyman4/retail-analytics-copilot",
   },
+*/
   {
     title: "Campaign Conversion Predictor",
     description:
@@ -107,7 +109,7 @@ export const otherProjects: Project[] = [
   {
     title: "Nawy Property Recommender",
     description:
-      "An AI-powered system mimicking a property consultant role. Features semantic search for 9,000+ listings, a RAG-based chatbot for area insights, and AI-powered property comparisons. Dynamically extracts and updates user preferences during chat sessions, stored in MongoDB for personalized recommendations. Includes an XGBoost model for price prediction.",
+      "AI-powered property consultant featuring semantic search for 9,000+ listings, RAG-based chatbot for area insights, property comparisons, and XGBoost price prediction. Personalized via dynamic preference tracking stored in MongoDB.",
     tech: [
       "Next.js",
       "FastAPI",
