@@ -115,7 +115,7 @@ export const TypingEffect: React.FC<TypingEffectProps> = ({
       {renderedText}
       <span
         className={`text-[#4de9d2] ml-0.5 ${
-          isTyping ? "animate-pulse" : "animate-pulse opacity-75"
+          isTyping ? "cursor-pulse" : "cursor-pulse opacity-75"
         }`}
       >
         |
