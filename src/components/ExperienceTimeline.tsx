@@ -46,7 +46,7 @@ const experiences: Experience[] = [
   {
     id: "item-3",
     company: "Konecta",
-    role: "AI/ML Engineer",
+    role: "AI Engineer",
     period: "Jul 2025 - Present",
     type: "internship",
     link: "https://konecta.com/",
