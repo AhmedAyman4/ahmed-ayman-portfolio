@@ -68,10 +68,10 @@ export function HeroSection({ profileImage, introComplete = false }: HeroSection
         </p>
 
         <p className="mt-2 text-sm sm:text-base dark:text-gray-400 text-black max-w-lg mx-auto px-4 sm:px-0">
-          I'm an aspiring Data & ML Scientist, currently studying IS at the
-          Faculty of Computers & AI, USC. Passionate about using data to solve
-          everyday challenges and applying AI to create practical, impactful
-          solutions.
+          AI Engineer and Data Scientist with a background in Information Systems, 
+          focused on RAG, NLP, and data automation. 
+          Experienced in building end-to-end agents and predictive models that solve real-world problems. 
+          Passionate about bridging the gap between raw data and functional AI products.
         </p>
 
         <div className="mt-0 flex justify-center">
