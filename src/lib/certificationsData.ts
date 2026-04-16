@@ -1,5 +1,15 @@
 export const CERTIFICATIONS = [
   {
+    id: "item-0",
+    title: "AI Engineer for Data Scientists Associate",
+    issuer: "DataCamp",
+    date: "2026",
+    description:
+      "Professional certification validating AI engineering expertise for data scientists. Includes proficiency in machine learning engineering, model deployment, and production-ready AI workflows. Passed AIEDSA101, AIEDSA102, and Practical Exam AIEDSA501P. (Obtained: April 16, 2026 - Expires: April 15, 2028)",
+    image: "/images/CoursesAndCertifications/Ahmed Ayman Alhofy's AI Engineer for Data Scientists Associate certificate.jpg",
+    link: "",
+  },
+  {
     id: "item-1",
     title: "SAP Certified Associate - SAP Generative AI Developer",
     issuer: "SAP",
