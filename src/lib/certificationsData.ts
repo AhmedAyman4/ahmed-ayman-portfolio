@@ -7,7 +7,7 @@ export const CERTIFICATIONS = [
     description:
       "Professional certification validating AI engineering expertise for data scientists. Includes proficiency in machine learning engineering, model deployment, and production-ready AI workflows. Passed AIEDSA101, AIEDSA102, and Practical Exam AIEDSA501P. (Obtained: April 16, 2026 - Expires: April 15, 2028)",
     image: "/images/CoursesAndCertifications/Ahmed Ayman Alhofy's AI Engineer for Data Scientists Associate certificate.jpg",
-    link: "",
+    link: "https://www.datacamp.com/certificate/AEDS0013645796856",
   },
   {
     id: "item-1",
