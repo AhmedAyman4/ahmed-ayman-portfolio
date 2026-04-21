@@ -47,7 +47,7 @@ const experiences: Experience[] = [
     id: "item-3",
     company: "Konecta",
     role: "AI Engineer",
-    period: "Jul 2025 - Present",
+    period: "Jul 2025 - Jan 2026",
     type: "internship",
     link: "https://konecta.com/",
     description: [
@@ -98,7 +98,7 @@ export function ExperienceTimeline() {
                       }`}
                     >
                       {isMobile ? (
-                        <span className="font-bold text-sm whitespace-nowrap">{exp.company}</span>
+                        <span className="font-bold text-xs whitespace-nowrap">{exp.company}</span>
                       ) : (
                         <div className="flex items-center justify-between w-full">
                           <span className="font-medium text-sm">{exp.company}</span>
@@ -114,7 +114,7 @@ export function ExperienceTimeline() {
                 {sortedExperiences.map((exp) => (
                   <TabsContent key={exp.id} value={exp.id} className="mt-0 outline-none p-4">
                     <div className="mb-3 flex items-center flex-wrap gap-2">
-                      <h3 className="text-lg font-bold text-gray-900 dark:text-gray-100">
+                      <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
                         {exp.role} @{" "}
                         <a
                           href={exp.link}
