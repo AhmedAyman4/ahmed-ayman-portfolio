@@ -2,7 +2,7 @@
 
 /* Carousel */
 .carousel-container {
-  @apply relative mb-16 hidden md:block;
+  @apply relative mb-8 hidden md:block;
 }
 
 .carousel-wrapper {
@@ -94,7 +94,7 @@
 }
 
 .carousel-nav-button {
-  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 text-gray-800 dark:text-white opacity-0 group-hover:opacity-100 transition-opacity duration-300 h-8 w-8 p-0 rounded-full hover:bg-white/90 dark:hover:bg-black/90;
+  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 text-gray-800 dark:text-white transition-all duration-300 h-8 w-8 p-0 rounded-full hover:bg-white/90 dark:hover:bg-black/90;
 }
 
 .carousel-nav-left {
@@ -123,7 +123,7 @@
 }
 
 .carousel-title {
-  @apply text-xl font-bold mb-2 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent group-hover:from-primary group-hover:via-purple-300 group-hover:to-blue-300 group-hover:scale-[1.05] transition-all duration-500 transform;
+  @apply text-xl font-bold mb-2 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent group-hover:scale-[1.05] transition-all duration-500 transform;
 }
 
 .carousel-description-wrapper {
@@ -139,15 +139,15 @@
 }
 
 .carousel-tech-container {
-  @apply flex mt-3 space-x-1.5 flex-wrap justify-center;
+  @apply flex mt-1 space-x-1.5 flex-wrap justify-center;
 }
 
 .carousel-tech-badge {
-  @apply relative px-2.5 py-1 text-xs font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30 hover:bg-primary/30 hover:border-primary/50 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-300 mb-1.5;
+  @apply relative px-2 py-0.5 text-[10px] font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30 hover:bg-primary/30 hover:border-primary/50 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-300 mb-1.5;
 }
 
 .carousel-tech-more {
-  @apply relative px-2.5 py-1 text-xs font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 mb-1.5;
+  @apply relative px-2 py-0.5 text-[10px] font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 mb-1.5;
 }
 
 .carousel-links {

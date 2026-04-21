@@ -153,7 +153,7 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
           ))}
         </CarouselContent>
         {/* Navigation buttons: placed inside the carousel box */}
-        <div className="hidden md:block opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+        <div className="hidden md:block transition-all duration-300">
           <CarouselPrevious className="absolute left-6 xl:left-8 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border-none text-gray-800 dark:text-white h-10 w-10 transition-transform hover:scale-110" />
           <CarouselNext className="absolute right-6 xl:right-8 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border-none text-gray-800 dark:text-white h-10 w-10 transition-transform hover:scale-110" />
         </div>
