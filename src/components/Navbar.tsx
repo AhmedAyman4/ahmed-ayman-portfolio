@@ -299,13 +299,25 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
           {/* Floating Dropdown Card for Mobile */}
           <AnimatePresence>
             {isMobileMenuOpen && (
-              <motion.div
-                initial={{ opacity: 0, y: -10, scale: 0.95 }}
-                animate={{ opacity: 1, y: 0, scale: 1 }}
-                exit={{ opacity: 0, y: -10, scale: 0.95 }}
-                transition={{ duration: 0.2, ease: "easeOut" }}
-                className="absolute top-[calc(100%+0.5rem)] left-3 right-3 p-3 bg-background/70 dark:bg-background/70 backdrop-blur-xl border border-gray-200/30 dark:border-gray-700/40 rounded-[1.75rem] shadow-2xl flex flex-col gap-1.5 md:hidden origin-top z-50"
-              >
+              <>
+                {/* Backdrop Overlay - closes menu when clicking outside */}
+                <motion.div
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.2 }}
+                  className="fixed inset-0 bg-black/20 dark:bg-black/40 backdrop-blur-[2px] md:hidden"
+                  style={{ zIndex: -1 }}
+                  onClick={() => setIsMobileMenuOpen(false)}
+                />
+                
+                <motion.div
+                  initial={{ opacity: 0, y: -10, scale: 0.95 }}
+                  animate={{ opacity: 1, y: 0, scale: 1 }}
+                  exit={{ opacity: 0, y: -10, scale: 0.95 }}
+                  transition={{ duration: 0.2, ease: "easeOut" }}
+                  className="absolute top-[calc(100%+0.5rem)] left-3 right-3 p-3 bg-background/70 dark:bg-background/70 backdrop-blur-xl border border-gray-200/30 dark:border-gray-700/40 rounded-[1.75rem] shadow-2xl flex flex-col gap-1.5 md:hidden origin-top z-50"
+                >
                 {/* Standard Links List */}
                 <div className="flex flex-col gap-1">
                   {links.map((link) => {
@@ -356,7 +368,8 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                     </a>
                   </div>
                 </div>
-              </motion.div>
+                </motion.div>
+              </>
             )}
           </AnimatePresence>
         </div>
