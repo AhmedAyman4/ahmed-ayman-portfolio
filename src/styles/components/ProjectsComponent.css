@@ -255,7 +255,7 @@
 
 /* Layout */
 .projects-grid {
-  @apply max-w-6xl mx-auto px-4;
+  @apply max-w-5xl mx-auto;
 }
 
 .projects-grid-container {

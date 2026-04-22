@@ -183,8 +183,8 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
 // ============================================================================
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <Card className="group relative h-full flex flex-col bg-white dark:bg-gray-900/70 overflow-hidden border-transparent rounded-3xl hover:border-primary/20 dark:hover:border-primary/30 hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 transition-all duration-300 hover:scale-[1.02]">
-    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.03] dark:group-hover:bg-white/[0.1] transition-colors duration-300 pointer-events-none z-10" />
+  <Card className="group relative h-full flex flex-col bg-white dark:bg-gray-900/70 overflow-hidden border-transparent rounded-3xl hover:border-primary/10 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.01]">
+    <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.02] dark:group-hover:bg-white/[0.04] transition-colors duration-300 pointer-events-none z-10" />
     <CardHeader className="relative pb-4 z-20">
       <div className="flex items-start justify-between mb-2">
         <FolderGit2 className="h-5 w-5 text-blue-600 dark:text-[#4de9d2] group-hover:brightness-[1.1] group-hover:text-primary dark:group-hover:text-[#4de9d2] group-hover:scale-[1.1] transition-all duration-200" />
