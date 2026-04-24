@@ -58,7 +58,7 @@ export default function Home() {
 
       {/* Main Website Content */}
       <div
-        className={`flex flex-col min-h-screen transition-all duration-1000 ${
+        className={`layout-container transition-all duration-1000 ${
           showIntro ? "opacity-0" : "opacity-100"
         }`}
       >
@@ -73,7 +73,7 @@ export default function Home() {
             { href: "#contact", label: "Contact" },
           ]}
         />
-        <main className="container mx-auto flex-grow px-4 md:px-8 lg:px-24 xl:px-28">
+        <main className="main-content">
           {" "}
           {/* Hero Section */}
           <div

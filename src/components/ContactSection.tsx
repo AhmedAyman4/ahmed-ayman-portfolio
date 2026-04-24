@@ -45,13 +45,13 @@ export function ContactSection() {
 
   // Render
   return (
-    <div id="contact" className="text-center">
+    <div id="contact" className="contact-section">
       {/* Section Heading */}
       <SectionHeader label="Get In Touch" title="Contact" className="mb-4" />
 
       {/* Description */}
       <FadeInSection delay="0.2s">
-        <p className="dark:text-gray-300 text-gray-600 mb-4">
+        <p className="contact-description">
           I'm eager to join a data-driven team where I can apply my passion for
           AI, machine learning, and problem-solving to create meaningful impact.
           <br /> Got a project in mind or looking to collaborate? Let's connect!
@@ -60,7 +60,7 @@ export function ContactSection() {
 
       {/* Email Display */}
       <FadeInSection delay="0.4s">
-        <p className="dark:text-white text-black mb-4">
+        <p className="contact-email">
           ahmedalhofy42@gmail.com
         </p>
       </FadeInSection>

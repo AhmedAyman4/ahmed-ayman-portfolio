@@ -1,0 +1,13 @@
+/* SkillsSection component styles */
+
+.skills-container {
+  @apply max-w-4xl mx-auto;
+}
+
+.skills-badge-container {
+  @apply flex flex-wrap justify-center gap-4;
+}
+
+.skills-badge {
+  @apply dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)];
+}

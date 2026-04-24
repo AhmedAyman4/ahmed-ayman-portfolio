@@ -1,4 +1,25 @@
+/* Hero Section Container */
+.hero-section {
+  @apply text-center relative w-full;
+}
+
 /* Typography */
+.hero-title {
+  @apply flex items-center justify-center text-5xl lg:text-6xl font-light;
+}
+
+.hero-greeting {
+  @apply dark:text-white text-black;
+}
+
+.hero-subtitle {
+  @apply mt-2 text-3xl lg:text-4xl font-light dark:text-gray-300 text-black;
+}
+
+.hero-description {
+  @apply mt-2 text-sm sm:text-base dark:text-gray-400 text-black max-w-lg mx-auto sm:px-0;
+}
+
 .typing-word-ahmed {
   margin-left: 0.1em;
   color: var(--ahmed-text-color);
@@ -7,6 +28,7 @@
   margin-left: 0.1em;
   color: var(--color-black-color-if-white);
 }
+
 
 /* Profile */
 .profile-container {

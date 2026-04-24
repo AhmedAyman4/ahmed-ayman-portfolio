@@ -17,7 +17,7 @@ import Footer from "@/components/Footer";
 
 export default function CertificatesPage() {
   return (
-    <div className="flex flex-col min-h-screen">
+    <div className="layout-container">
       <Navbar
         links={[
           { href: "/", label: "Home" },
@@ -29,8 +29,8 @@ export default function CertificatesPage() {
         ]}
       />
       
-      <main className="container mx-auto flex-grow px-4 md:px-8 lg:px-24 xl:px-28 py-20 mt-10">
-        <div className="w-full relative px-2">
+      <main className="main-content py-20 mt-10">
+        <div className="w-full relative">
           <FadeInSection delay="0.1s">
             <div className="flex flex-col items-center justify-center gap-4 mb-12">
               <SectionHeader

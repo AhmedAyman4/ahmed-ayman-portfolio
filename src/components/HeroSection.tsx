@@ -29,7 +29,7 @@ export function HeroSection({ profileImage, introComplete = false }: HeroSection
   }, [introComplete]);
 
   return (
-    <section id="hero" className="text-center relative w-full">
+    <section id="hero" className="hero-section">
       <FadeInSection className="relative z-10">
         <div className="profile-container relative mx-auto mb-4 w-[140px] h-[140px] md:w-[150px] md:h-[150px] group">
           <Avatar className="absolute inset-0 w-full h-full p-[3px] bg-gradient-to-r from-[#4de9d2] via-blue-500 to-purple-600">
@@ -49,8 +49,8 @@ export function HeroSection({ profileImage, introComplete = false }: HeroSection
           <div className="profile-pulse-overlay" />
         </div>
 
-        <h1 className={`flex items-center justify-center text-5xl lg:text-6xl font-light ${patrickHand.className}`}>
-          <span className="dark:text-white text-black">Hi,</span>
+        <h1 className={`hero-title ${patrickHand.className}`}>
+          <span className="hero-greeting">Hi,</span>
           {startTyping && (
             <TypingEffect
               words={[
@@ -63,11 +63,11 @@ export function HeroSection({ profileImage, introComplete = false }: HeroSection
           )}
         </h1>
 
-        <p className="mt-2 text-3xl lg:text-4xl font-light dark:text-gray-300 text-black">
+        <p className="hero-subtitle">
           I create stuff sometimes.
         </p>
 
-        <p className="mt-2 text-sm sm:text-base dark:text-gray-400 text-black max-w-lg mx-auto px-4 sm:px-0">
+        <p className="hero-description">
           AI Engineer and Data Scientist (IS background) specializing in RAG, NLP, and automation, 
           building end-to-end agents and predictive models. 
           Passionate about bridging the gap between raw data and functional AI products.
