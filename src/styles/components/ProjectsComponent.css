@@ -210,7 +210,7 @@
 
 /* Project Cards */
 .project-card {
-  @apply relative overflow-hidden h-full rounded-3xl bg-white dark:bg-gray-900/70 p-6 shadow-lg border border-transparent hover:scale-[1.02] hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 hover:bg-gray-50 dark:hover:bg-gray-800/80 hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300;
+  @apply relative overflow-hidden h-full rounded-2xl md:rounded-3xl bg-white dark:bg-gray-900/70 shadow-lg border border-transparent hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 hover:bg-gray-50 dark:hover:bg-gray-800/80 hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300 mx-auto max-w-[340px] md:max-w-none;
 }
 
 .project-card-image-container {
@@ -218,7 +218,7 @@
 }
 
 .project-card-image {
-  @apply w-full h-full object-cover object-top transition-transform duration-500 group-hover:scale-110;
+  @apply w-full h-full object-cover object-top transition-transform duration-500;
 }
 
 .project-card-image-overlay {
