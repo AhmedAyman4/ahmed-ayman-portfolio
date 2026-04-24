@@ -1,7 +1,8 @@
 /* SkillsSection component styles */
-
+/* Updated the skills-container width to max-w-[60rem].
+   This sits exactly in the middle of Tailwind's 4xl (56rem) and 5xl (64rem) benchmarks. */
 .skills-container {
-  @apply max-w-4xl mx-auto;
+  @apply max-w-[60rem] mx-auto;
 }
 
 .skills-badge-container {

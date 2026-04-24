@@ -184,6 +184,18 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
 
 const ProjectCard = ({ project }: { project: Project }) => (
   <Card className="group relative h-full flex flex-col bg-white dark:bg-gray-900/70 overflow-hidden border-transparent rounded-3xl hover:border-primary/10 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.01]">
+    {/* Project Image - Visible only on mobile */}
+    <div className="project-card-image-container md:hidden">
+      <Image
+        src={project.image}
+        alt={project.title}
+        width={400}
+        height={250}
+        className="project-card-image"
+      />
+      <div className="project-card-image-overlay" />
+    </div>
+
     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.02] dark:group-hover:bg-white/[0.04] transition-colors duration-300 pointer-events-none z-10" />
     <CardHeader className="relative pb-4 z-20">
       <div className="flex items-start justify-between mb-2">

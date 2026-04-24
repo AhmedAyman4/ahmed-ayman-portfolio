@@ -33,8 +33,8 @@ export function CoursesAndCertifications() {
                 className="group certifications-accordion-item"
               >
                 <AccordionTrigger className="certifications-accordion-trigger">
-                  <div className="flex flex-col text-left">
-                    <div>
+                  <div className="flex flex-col text-left w-full overflow-hidden">
+                    <div className="w-full">
                       <h3 className="certifications-accordion-title">
                         {cert.title}
                       </h3>

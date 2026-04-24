@@ -14,6 +14,7 @@ import FadeInSection from "@/components/FadeInSection";
 import { CERTIFICATIONS } from "@/lib/certificationsData";
 import Navbar from "@/components/Navbar";
 import Footer from "@/components/Footer";
+import "@/styles/components/CoursesAndCertifications.css";
 
 export default function CertificatesPage() {
   return (
@@ -48,45 +49,45 @@ export default function CertificatesPage() {
             </div>
           </FadeInSection>
 
-          <div className="max-w-3xl mx-auto mt-2 mb-20">
-            <Accordion type="single" collapsible className="w-full space-y-2">
+          <div className="certifications-wrapper !mt-2 !mb-20">
+            <Accordion type="single" collapsible className="certifications-accordion">
               {CERTIFICATIONS.map((cert, index) => (
                 <FadeInSection key={cert.id} delay={`${0.2 + (index % 10) * 0.05}s`}>
                   <AccordionItem
                     value={cert.id}
-                    className="group border border-gray-200 dark:border-white/10 rounded-xl px-4 bg-white dark:bg-black/20 backdrop-blur-none dark:backdrop-blur-md shadow-sm data-[state=open]:shadow-md transition-all duration-300 hover:border-teal-500/30 dark:hover:border-[#4de9d2]/30"
+                    className="group certifications-accordion-item"
                   >
-                    <AccordionTrigger className="hover:no-underline py-2.5 group-data-[state=open]:pb-2 transition-all duration-300">
-                      <div className="flex flex-col text-left">
-                        <div>
-                          <h3 className="font-medium text-base md:text-lg text-gray-900 dark:text-gray-100 group-hover:text-teal-600 dark:group-hover:text-[#4de9d2] transition-colors duration-300">
+                    <AccordionTrigger className="certifications-accordion-trigger">
+                      <div className="flex flex-col text-left w-full overflow-hidden">
+                        <div className="w-full">
+                          <h3 className="certifications-accordion-title">
                             {cert.title}
                           </h3>
-                          <div className="flex items-center gap-2 mt-1">
-                            <span className="text-xs md:text-sm font-normal text-gray-600 dark:text-gray-400">
+                          <div className="certifications-issuer-container">
+                            <span className="certifications-issuer-text">
                               {cert.issuer}
                             </span>
-                            <div className="w-1 h-1 bg-teal-500 dark:bg-[#4de9d2] rounded-full opacity-60"></div>
-                            <span className="text-xs md:text-sm text-gray-500 dark:text-gray-500">
+                            <div className="certifications-issuer-dot"></div>
+                            <span className="certifications-date-text">
                               {cert.date}
                             </span>
                           </div>
                         </div>
                       </div>
                     </AccordionTrigger>
-                    <AccordionContent className="pb-4 pt-1">
-                      <div className="flex flex-col gap-5">
-                        <p className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm md:text-base">
+                    <AccordionContent className="pb-3 pt-0">
+                      <div className="certifications-accordion-content">
+                        <p className="certifications-description">
                           {cert.description}
                         </p>
                         {cert.image && (
-                          <div className="relative w-full max-w-md overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 shadow-sm mt-1">
+                          <div className="certifications-image-container">
                             <Image 
                               src={cert.image} 
                               alt={cert.title} 
-                              width={1600} 
-                              height={1000} 
-                              className="w-full h-auto object-contain hover:scale-[1.01] transition-transform duration-500"
+                              width={1200} 
+                              height={800} 
+                              className="certifications-image"
                             />
                           </div>
                         )}
@@ -95,10 +96,10 @@ export default function CertificatesPage() {
                             href={cert.link}
                             target="_blank"
                             rel="noopener noreferrer"
-                            className="inline-flex items-center gap-2 text-sm font-medium text-teal-600 dark:text-[#4de9d2] hover:text-teal-700 dark:hover:text-[#3dd1b5] transition-colors w-fit pb-2"
+                            className="certifications-credential-link"
                           >
-                            View Official Credential
-                            <ExternalLink className="h-4 w-4" />
+                            View Credential
+                            <ExternalLink className="h-3.5 w-3.5" />
                           </a>
                         )}
                       </div>
