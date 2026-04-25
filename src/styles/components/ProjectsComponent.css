@@ -7,7 +7,7 @@
 
 .carousel-wrapper {
   @apply relative overflow-hidden;
-  height: 600px;
+  aspect-ratio: 16 / 9;
   max-width: 64rem;
   margin: 0 auto;
 }
@@ -82,7 +82,8 @@
 
 .carousel-item {
   @apply relative rounded-2xl overflow-hidden max-w-5xl mx-auto shadow-2xl transition-all duration-500 hover:shadow-2xl hover:shadow-primary/20;
-  height: 600px;
+  aspect-ratio: 16 / 9;
+  height: auto;
 }
 
 .carousel-border {
@@ -106,12 +107,12 @@
 
 .carousel-image-container {
   @apply relative overflow-hidden rounded-2xl;
-  height: 600px;
+  aspect-ratio: 16 / 9;
+  height: auto;
 }
 
 .carousel-image {
-  @apply object-cover object-top w-full;
-  height: 600px;
+  @apply object-cover object-top w-full h-full;
 }
 
 .carousel-overlay {
