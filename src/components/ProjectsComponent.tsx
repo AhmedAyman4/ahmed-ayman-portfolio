@@ -160,15 +160,13 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
       </Carousel>
 
       {/* Dashed line tracking indicators */}
-      <div className="flex justify-center gap-3 mt-8">
+      <div className="carousel-indicators">
         {projects.map((_, index) => (
           <button
             key={index}
             onClick={() => api?.scrollTo(index)}
-            className={`h-1.5 rounded-full transition-all duration-300 ${
-              index === current
-                ? "w-8 bg-primary"
-                : "w-4 bg-gray-300 dark:bg-gray-700 hover:bg-primary/50"
+            className={`carousel-indicator ${
+              index === current ? "active" : "inactive"
             }`}
             aria-label={`Go to slide ${index + 1}`}
           />

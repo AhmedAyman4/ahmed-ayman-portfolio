@@ -184,18 +184,19 @@
 }
 
 .carousel-indicators {
-  @apply flex justify-center items-center mt-4;
+  @apply flex justify-center gap-3 mt-8;
 }
 
 .carousel-indicator {
-  @apply h-1 w-6 rounded-sm mx-1 transition-colors duration-300;
+  @apply h-1.5 rounded-full transition-all duration-300;
 }
 
 .carousel-indicator.active {
-  @apply bg-primary;
+  @apply w-8 bg-primary dark:bg-[#4de9d2];
 }
+
 .carousel-indicator.inactive {
-  @apply bg-gray-400 dark:bg-gray-600;
+  @apply w-4 bg-gray-300 dark:bg-gray-700 hover:bg-primary/50 dark:hover:bg-[#4de9d2]/50;
 }
 
 /* Animation delays */
