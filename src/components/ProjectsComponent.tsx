@@ -197,7 +197,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
     </div>
 
     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.02] dark:group-hover:bg-white/[0.04] transition-colors duration-300 pointer-events-none z-10" />
-    <CardHeader className="relative pb-4 z-20">
+    <CardHeader className="relative pb-2 z-20">
       <div className="flex items-start justify-between mb-2">
         <FolderGit2 className="h-5 w-5 text-blue-600 dark:text-[#4de9d2] group-hover:brightness-[1.1] group-hover:text-primary dark:group-hover:text-[#4de9d2] group-hover:scale-[1.1] transition-all duration-200" />
         <div className="flex space-x-3">
@@ -209,7 +209,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
           </ProjectLink>
         </div>
       </div>
-      <CardTitle className="text-xl font-bold text-gray-900 dark:text-white">
+      <CardTitle className="project-card-title">
         {project.title}
       </CardTitle>
     </CardHeader>

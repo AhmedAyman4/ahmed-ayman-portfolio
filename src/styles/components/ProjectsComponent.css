@@ -124,7 +124,7 @@
 }
 
 .carousel-title {
-  @apply text-xl font-bold mb-1 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent group-hover:scale-[1.05] transition-all duration-500 transform;
+  @apply text-lg font-bold mb-1 bg-gradient-to-r from-white via-gray-100 to-white bg-clip-text text-transparent group-hover:scale-[1.05] transition-all duration-500 transform;
 }
 
 .carousel-description-wrapper {
@@ -136,7 +136,7 @@
 }
 
 .carousel-description {
-  @apply relative text-xs leading-relaxed hidden md:block max-w-xl mx-auto text-gray-200 group-hover:text-white transition-colors duration-300 px-3 py-1.5;
+  @apply relative text-[11px] leading-relaxed hidden md:block max-w-xl mx-auto text-gray-200 group-hover:text-white transition-colors duration-300 px-3 py-1.5;
 }
 
 .carousel-tech-container {
@@ -144,11 +144,11 @@
 }
 
 .carousel-tech-badge {
-  @apply relative px-2 py-0.5 text-[10px] font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30 hover:bg-primary/30 hover:border-primary/50 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-300 mb-1.5;
+  @apply relative px-2 py-0.5 text-[9px] font-medium bg-white/20 backdrop-blur-sm text-white rounded-full border border-white/30 hover:bg-primary/30 hover:border-primary/50 hover:shadow-md hover:shadow-primary/20 hover:-translate-y-0.5 transition-all duration-300 mb-1.5;
 }
 
 .carousel-tech-more {
-  @apply relative px-2 py-0.5 text-[10px] font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 mb-1.5;
+  @apply relative px-2 py-0.5 text-[9px] font-medium bg-white/10 backdrop-blur-sm text-white/80 rounded-full border border-white/20 hover:bg-white/20 hover:border-white/40 transition-all duration-300 mb-1.5;
 }
 
 .carousel-links {
@@ -156,7 +156,7 @@
 }
 
 .carousel-link {
-  @apply relative px-4 py-2 text-xs font-medium backdrop-blur-sm text-white rounded-lg border hover:shadow-lg hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-300;
+  @apply relative px-4 py-2 text-[11px] font-medium backdrop-blur-sm text-white rounded-lg border hover:shadow-lg hover:-translate-y-0.5 hover:scale-[1.05] transition-all duration-300;
 }
 
 .carousel-demo-link {
@@ -251,7 +251,7 @@
 }
 
 .project-card-title {
-  @apply text-xl font-bold text-gray-900 dark:text-white mb-3;
+  @apply text-lg md:text-xl font-bold text-gray-900 dark:text-white;
 }
 
 .project-card-description {
