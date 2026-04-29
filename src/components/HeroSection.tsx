@@ -68,7 +68,7 @@ export function HeroSection({ profileImage, introComplete = false }: HeroSection
         </p>
 
         <p className="hero-description">
-          AI Engineer and Data Scientist (IS background) specializing in RAG, NLP, and automation, 
+          Data Science & AI Engineer (IS background) specializing in RAG, NLP, and automation, 
           building end-to-end agents and predictive models. 
           Passionate about bridging the gap between raw data and functional AI products.
         </p>

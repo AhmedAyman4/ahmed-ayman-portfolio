@@ -13,7 +13,7 @@ export const spotlightProjects: Project[] = [
   {
     title: "Nawy Property Recommender",
     description:
-      "AI-powered property consultant featuring semantic search for 9,000+ listings, RAG-based chatbot for area insights, property comparisons, and XGBoost price prediction. Personalized via dynamic preference tracking stored in MongoDB.",
+      "AI-powered property consultant featuring semantic search and chat for nearly 9,000 properties and 600+ blogs across 1,700+ compounds and 40+ locations. RAG-based chatbot for area insights, property comparisons, and XGBoost price prediction. Personalized via dynamic preference tracking stored in MongoDB.",
     tech: [
       "Next.js",
       "FastAPI",
@@ -109,7 +109,7 @@ export const otherProjects: Project[] = [
   {
     title: "Nawy Property Recommender",
     description:
-      "AI-powered property consultant featuring semantic search for 9,000+ listings, RAG-based chatbot for area insights, property comparisons, and XGBoost price prediction. Personalized via dynamic preference tracking stored in MongoDB.",
+      "AI-powered property consultant featuring semantic search and chat for nearly 9,000 properties and 600+ blogs across 1,700+ compounds and 40+ locations. RAG-based chatbot for area insights, property comparisons, and XGBoost price prediction. Personalized via dynamic preference tracking stored in MongoDB.",
     tech: [
       "Next.js",
       "FastAPI",
