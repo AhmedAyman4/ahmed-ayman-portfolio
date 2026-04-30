@@ -77,9 +77,7 @@ export default function CertificatesPage() {
                     </AccordionTrigger>
                     <AccordionContent className="pb-3 pt-0">
                       <div className="certifications-accordion-content">
-                        <p className="certifications-description">
-                          {cert.description}
-                        </p>
+
                         {cert.image && (
                           <div className="certifications-image-container">
                             <Image 

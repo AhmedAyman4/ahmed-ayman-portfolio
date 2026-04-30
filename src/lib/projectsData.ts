@@ -42,8 +42,9 @@ export const spotlightProjects: Project[] = [
       "ChromaDB",
       "Next.js",
       "Docker",
+      "Playwright",
     ],
-    image: "/images/projects/RegulationsChatbot.png",
+    image: "/images/projects/regulations-chatbot.png",
     demoLink: "https://fcai-usc-regulations-chatbot.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/fcai-regulations-rag-api",
   },
@@ -78,7 +79,7 @@ export const spotlightProjects: Project[] = [
       "Streamlit",
       "Docker",
     ],
-    image: "/images/projects/retailAnalyticsCopilot.png",
+    image: "/images/projects/retail-analytics-copilot.png",
     demoLink:
       "https://huggingface.co/spaces/ahmed-ayman/retail-analytics-copilot",
     repoLink: "https://github.com/AhmedAyman4/retail-analytics-copilot",
@@ -89,7 +90,7 @@ export const spotlightProjects: Project[] = [
     description:
       "Built a machine learning model to predict customer conversion in digital marketing campaigns using demographic and engagement data. Deployed a Gradio web app for real-time predictions with a Random Forest model.",
     tech: ["Python", "Scikit-learn", "Gradio", "EDA", "Machine Learning"],
-    image: "/images/projects/DigitalMarketingConversionImage.png",
+    image: "/images/projects/digital-marketing-conversion-image.png",
     demoLink:
       "https://huggingface.co/spaces/ahmed-ayman/Predict-Conversion-in-Digital-Marketing",
     repoLink: "https://github.com/AhmedAyman4/customer-conversion-predictor",
@@ -99,7 +100,7 @@ export const spotlightProjects: Project[] = [
     description:
       "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
     tech: ["Javascript", "HTML", "CSS"],
-    image: "/images/projects/portfolioWebsiteWhite.png",
+    image: "/images/projects/portfolio-website-white.png",
     demoLink: "https://ahmedayman4.github.io/Personal-website/",
     repoLink: "https://github.com/AhmedAyman4/Personal-website",
   },
@@ -139,7 +140,7 @@ export const otherProjects: Project[] = [
       "Next.js",
       "Docker",
     ],
-    image: "/images/projects/RegulationsChatbot.png",
+    image: "/images/projects/regulations-chatbot.png",
     demoLink: "https://fcai-usc-regulations-chatbot.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/fcai-regulations-rag-api",
   },
@@ -165,7 +166,7 @@ export const otherProjects: Project[] = [
     description:
       "Built a machine learning model to predict customer conversion in digital marketing campaigns using demographic and engagement data. Deployed a Gradio web app for real-time predictions with a Random Forest model.",
     tech: ["Python", "Scikit-learn", "Gradio", "EDA", "Machine Learning"],
-    image: "/images/projects/DigitalMarketingConversionImage.png",
+    image: "/images/projects/digital-marketing-conversion-image.png",
     demoLink:
       "https://huggingface.co/spaces/ahmed-ayman/Predict-Conversion-in-Digital-Marketing",
     repoLink: "https://github.com/AhmedAyman4/customer-conversion-predictor",
@@ -175,7 +176,7 @@ export const otherProjects: Project[] = [
     description:
       "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
     tech: ["Javascript", "HTML", "CSS"],
-    image: "/images/projects/portfolioWebsiteWhite.png",
+    image: "/images/projects/portfolio-website-white.png",
     demoLink: "https://ahmedayman4.github.io/Personal-website/",
     repoLink: "https://github.com/AhmedAyman4/Personal-website",
   },
@@ -184,7 +185,7 @@ export const otherProjects: Project[] = [
     description:
       "A movie sentiment analysis application using three models to predict review sentiment through an interactive Gradio web interface.",
     tech: ["scikit-learn", "transformers", "tensorflow", "gradio"],
-    image: "/images/projects/movieReviewSentimentAnalysis.png",
+    image: "/images/projects/movie-review-sentiment-analysis.png",
     demoLink: "https://huggingface.co/spaces/ahmed-ayman/Sentiment-Analysis",
     repoLink:
       "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",

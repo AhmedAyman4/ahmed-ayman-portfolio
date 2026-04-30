@@ -44,12 +44,10 @@
   @apply flex flex-col gap-4;
 }
 
-.certifications-description {
-  @apply text-gray-700 dark:text-gray-300 leading-relaxed text-[0.825rem];
-}
+
 
 .certifications-image-container {
-  @apply relative w-full max-w-md overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 shadow-sm mt-1;
+  @apply relative w-full max-w-sm overflow-hidden rounded-xl border border-gray-200 dark:border-white/10 shadow-sm mt-1;
 }
 
 .certifications-image {
