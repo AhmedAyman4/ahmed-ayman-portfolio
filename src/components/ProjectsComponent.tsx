@@ -197,7 +197,12 @@ const ProjectCard = ({ project }: { project: Project }) => (
     <div className="absolute inset-0 bg-primary/0 group-hover:bg-primary/[0.02] dark:group-hover:bg-white/[0.04] transition-colors duration-300 pointer-events-none z-10" />
     <CardHeader className="relative pb-2 z-20">
       <div className="flex items-start justify-between mb-2">
-        <FolderGit2 className="h-5 w-5 text-blue-600 dark:text-[#4de9d2] group-hover:brightness-[1.1] group-hover:text-primary dark:group-hover:text-[#4de9d2] group-hover:scale-[1.1] transition-all duration-200" />
+        <div className="flex items-center gap-3">
+          <FolderGit2 className="h-5 w-5 text-blue-600 dark:text-[#4de9d2] group-hover:brightness-[1.1] group-hover:text-primary dark:group-hover:text-[#4de9d2] group-hover:scale-[1.1] transition-all duration-200" />
+          <CardTitle className="project-card-title md:hidden mb-0">
+            {project.title}
+          </CardTitle>
+        </div>
         <div className="flex space-x-3">
           <ProjectLink href={project.repoLink} className="hover:brightness-[1.1] hover:scale-[1.1] hover:text-primary dark:hover:text-primary transition-all duration-200">
             <Github className="h-5 w-5 text-gray-700 dark:text-gray-300" />
@@ -207,7 +212,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
           </ProjectLink>
         </div>
       </div>
-      <CardTitle className="project-card-title">
+      <CardTitle className="project-card-title hidden md:block">
         {project.title}
       </CardTitle>
     </CardHeader>

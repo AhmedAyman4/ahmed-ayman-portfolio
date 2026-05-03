@@ -2,13 +2,77 @@
 /* Updated the skills-container width to max-w-[60rem].
    This sits exactly in the middle of Tailwind's 4xl (56rem) and 5xl (64rem) benchmarks. */
 .skills-container {
-  @apply max-w-[60rem] mx-auto;
+  @apply max-w-[60rem] mx-auto overflow-hidden;
 }
 
-.skills-badge-container {
-  @apply flex flex-wrap justify-center gap-4;
+.skills-marquee-group {
+  @apply flex flex-col gap-3;
+}
+
+.skills-marquee-wrapper {
+  @apply relative w-full overflow-hidden py-1;
+  /* Adds a smooth fade effect on the left and right edges */
+  mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent,
+    black 10%,
+    black 90%,
+    transparent
+  );
+}
+
+.skills-marquee-content {
+  @apply flex gap-3 w-max items-center;
+}
+
+.scroll-left {
+  animation: scroll-left 40s linear infinite;
+}
+
+.scroll-right {
+  animation: scroll-right 45s linear infinite;
+}
+
+.skills-marquee-content:hover {
+  animation-play-state: paused;
 }
 
 .skills-badge {
-  @apply dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)];
+  @apply dark:bg-[hsl(215,50%,50%)] dark:hover:bg-[hsl(215,50%,45%)] 
+         px-3 py-1 text-[10px] font-medium whitespace-nowrap transition-all duration-300
+         flex items-center gap-1.5;
+  cursor: default;
+}
+
+.skill-icon {
+  @apply w-3 h-3 opacity-90;
+}
+
+.skills-badge:hover {
+  @apply scale-110;
+}
+
+@keyframes scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-33.333%);
+  }
+}
+
+@keyframes scroll-right {
+  0% {
+    transform: translateX(-33.333%);
+  }
+  100% {
+    transform: translateX(0);
+  }
 }
