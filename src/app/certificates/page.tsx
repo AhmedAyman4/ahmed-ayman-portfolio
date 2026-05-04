@@ -41,7 +41,7 @@ export default function CertificatesPage() {
               />
               <Link
                 href="/"
-                className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-white/5 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-normal hover:bg-gray-200 dark:hover:bg-white/10 transition-all duration-300 w-fit"
+                className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-900/70 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-normal hover:bg-gray-200 dark:hover:bg-gray-800 transition-all duration-300 w-fit"
               >
                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
                 Back to Home

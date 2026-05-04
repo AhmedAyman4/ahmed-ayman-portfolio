@@ -8,7 +8,7 @@
 /* Contact description text */
 .contact-description {
   color: rgb(75, 85, 99);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .dark .contact-description {
@@ -18,7 +18,7 @@
 /* Email display */
 .contact-email {
   color: rgb(0, 0, 0);
-  margin-bottom: 1rem;
+  margin-bottom: 0.5rem;
 }
 
 .dark .contact-email {
@@ -88,7 +88,7 @@
 }
 
 .clock-label {
-  font-size: 0.6rem;
+  font-size: 0.5rem;
   text-transform: uppercase;
   letter-spacing: 0.1em;
   color: rgb(107, 114, 128);
@@ -100,7 +100,7 @@
 
 .clock-time {
   font-family: 'JetBrains Mono', 'Courier New', monospace;
-  font-size: 0.9rem;
+  font-size: 0.6rem;
   font-weight: 600;
   color: rgb(0, 0, 0);
 }
@@ -121,6 +121,6 @@
   }
 
   .clock-time {
-    font-size: 0.8rem;
+    font-size: 0.7rem;
   }
 }
