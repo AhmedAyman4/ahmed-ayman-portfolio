@@ -244,7 +244,6 @@ const ProjectsGrid = ({ projects }: { projects: Project[] }) => (
       {projects.map((project, i) => (
         <FadeInSection
           key={project.title}
-          delay={`${(i + 1) * 100}ms`}
           className="h-full"
         >
           <div className="h-full">

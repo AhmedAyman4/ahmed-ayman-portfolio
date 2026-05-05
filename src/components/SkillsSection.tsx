@@ -49,13 +49,13 @@ export function SkillsSection() {
 
   return (
     <div id="skills" className="skills-container">
-      <FadeInSection delay="0.1s">
+      <FadeInSection>
         <SectionHeader label="Technical Expertise" title="Skills" />
       </FadeInSection>
       
       <div className="skills-marquee-group mt-12">
         {/* First Row: Moving Left */}
-        <FadeInSection delay="0.3s">
+        <FadeInSection>
           <div className="skills-marquee-wrapper">
             <div className="skills-marquee-content scroll-left">
               {duplicatedRow1.map((skill, index) => (
@@ -69,7 +69,7 @@ export function SkillsSection() {
         </FadeInSection>
 
         {/* Second Row: Moving Right */}
-        <FadeInSection delay="0.5s">
+        <FadeInSection>
           <div className="skills-marquee-wrapper">
             <div className="skills-marquee-content scroll-right">
               {duplicatedRow2.map((skill, index) => (

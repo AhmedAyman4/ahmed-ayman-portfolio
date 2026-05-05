@@ -17,7 +17,7 @@ export function CoursesAndCertifications() {
 
   return (
     <div className="certifications-container">
-      <FadeInSection delay="0.1s">
+      <FadeInSection>
         <SectionHeader
           label="Continuous Learning"
           title="Courses & Certifications"
@@ -27,7 +27,7 @@ export function CoursesAndCertifications() {
       <div className="certifications-wrapper">
         <Accordion type="single" collapsible className="certifications-accordion">
           {displayedCertifications.map((cert, index) => (
-            <FadeInSection key={cert.id} delay={`${0.2 + index * 0.1}s`}>
+            <FadeInSection key={cert.id}>
               <AccordionItem
                 value={cert.id}
                 className="group certifications-accordion-item"
@@ -83,7 +83,7 @@ export function CoursesAndCertifications() {
         </Accordion>
 
         {CERTIFICATIONS.length > 3 && (
-          <FadeInSection delay="0.5s">
+          <FadeInSection>
             <div className="certifications-view-all-container">
               <Link
                 href="/certificates"

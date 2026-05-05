@@ -70,7 +70,7 @@ export function ContactSection() {
       <SectionHeader label="Get In Touch" title="Contact" className="mb-4" />
 
       {/* Description */}
-      <FadeInSection delay="0.2s">
+      <FadeInSection>
         <p className="contact-description">
           I'm eager to join a data-driven team where I can apply my passion for
           AI, machine learning, and problem-solving to create meaningful impact.
@@ -79,14 +79,14 @@ export function ContactSection() {
       </FadeInSection>
 
       {/* Email Display */}
-      <FadeInSection delay="0.4s">
+      <FadeInSection>
         <p className="contact-email">
           ahmedalhofy42@gmail.com
         </p>
       </FadeInSection>
 
       {/* Real-time Clock */}
-      <FadeInSection delay="0.5s">
+      <FadeInSection>
         <div className="contact-clock-container">
           <span className="clock-label">Local Time:</span>
           <span className="clock-time">{currentTime}</span>
@@ -94,7 +94,7 @@ export function ContactSection() {
       </FadeInSection>
 
       {/* Social Links */}
-      <FadeInSection delay="0.6s">
+      <FadeInSection>
         <div className="contact-icons">
           {contactLinks.map(({ href, icon: Icon, label }) => (
             <a

@@ -32,7 +32,7 @@ export default function CertificatesPage() {
       
       <main className="main-content py-20 mt-10">
         <div className="w-full relative">
-          <FadeInSection delay="0.1s">
+          <FadeInSection>
             <div className="flex flex-col items-center justify-center gap-4 mb-12">
               <SectionHeader
                 label="Achievements & Credentials"
@@ -52,7 +52,7 @@ export default function CertificatesPage() {
           <div className="certifications-wrapper !mt-2 !mb-20">
             <Accordion type="single" collapsible className="certifications-accordion">
               {CERTIFICATIONS.map((cert, index) => (
-                <FadeInSection key={cert.id} delay={`${0.2 + (index % 10) * 0.05}s`}>
+                <FadeInSection key={cert.id}>
                   <AccordionItem
                     value={cert.id}
                     className="group certifications-accordion-item"

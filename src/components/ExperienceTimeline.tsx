@@ -76,7 +76,7 @@ export function ExperienceTimeline() {
 
   return (
     <div id="experience" className="relative">
-      <FadeInSection delay="0.1s">
+      <FadeInSection>
         <SectionHeader label="Professional Journey" title="Experience" />
       </FadeInSection>
 
@@ -85,7 +85,7 @@ export function ExperienceTimeline() {
           <div className="experience-card p-6 rounded-xl">
             <Tabs defaultValue={sortedExperiences[0].id} orientation={isMobile ? "horizontal" : "vertical"} className="flex flex-col lg:flex-row gap-6 w-full">
               
-              <FadeInSection delay="0.2s" className="lg:w-48 shrink-0">
+              <FadeInSection className="lg:w-48 shrink-0">
                 <TabsList className={`bg-transparent p-0 w-full h-auto justify-start ${isMobile ? "flex space-x-3 overflow-x-auto scrollbar-hide pb-2" : "flex-col space-y-1"}`}>
                   {sortedExperiences.map((exp, index) => (
                     <TabsTrigger
@@ -110,7 +110,7 @@ export function ExperienceTimeline() {
                 </TabsList>
               </FadeInSection>
 
-              <FadeInSection delay="0.3s" className="flex-1">
+              <FadeInSection className="flex-1">
                 {sortedExperiences.map((exp) => (
                   <TabsContent key={exp.id} value={exp.id} className="mt-0 outline-none p-4">
                     <div className="mb-3 flex items-center flex-wrap gap-2">
@@ -138,7 +138,6 @@ export function ExperienceTimeline() {
                     {exp.description.map((item, itemIndex) => (
                       <FadeInSection
                         key={`item-${exp.id}-${itemIndex}`}
-                        delay={`${0.1 + itemIndex * 0.1}s`}
                       >
                         <li className="flex items-start space-x-3 group/item">
                           <div className="flex-shrink-0 mt-2">
