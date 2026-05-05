@@ -118,7 +118,8 @@ const ProjectCarouselItem = ({ project }: ProjectCarouselItemProps) => (
 );
 
 const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
-  const plugin = useRef(Autoplay({ delay: 5000, stopOnInteraction: true }));
+  const plugin = useRef(Autoplay({ delay: 15000, stopOnInteraction: true, playOnInit: false }));
+  const containerRef = useRef<HTMLDivElement>(null);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
 
@@ -132,8 +133,27 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
     });
   }, [api]);
 
+  useEffect(() => {
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          plugin.current.play();
+        } else {
+          plugin.current.stop();
+        }
+      },
+      { threshold: 0.1 }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
+    return () => observer.disconnect();
+  }, []);
+
   return (
-    <div className="carousel-container overflow-visible flex flex-col">
+    <div ref={containerRef} className="carousel-container overflow-visible flex flex-col">
       <Carousel
         setApi={setApi}
         plugins={[plugin.current]}
