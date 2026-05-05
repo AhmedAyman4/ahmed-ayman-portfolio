@@ -151,7 +151,7 @@ const ResumeButton = ({
 }) => {
   return (
     <a
-      href="/Ahmed_Ayman_Alhofy.pdf"
+      href="https://drive.google.com/file/d/1ZWC4KqKVEvdn7XBobjOcrdGlxj7mH0lN/view?usp=drive_link"
       target="_blank"
       rel="noopener noreferrer"
       onClick={onClick}
@@ -346,7 +346,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                 {/* Footer Actions: Resume + Socials Mapping */}
                 <div className="flex flex-wrap justify-center items-center gap-2.5 mt-1.5 pb-0.5">
                   <a 
-                    href="/Ahmed_Ayman_Alhofy.pdf" 
+                    href="https://drive.google.com/file/d/1ZWC4KqKVEvdn7XBobjOcrdGlxj7mH0lN/view?usp=drive_link" 
                     target="_blank" 
                     rel="noopener noreferrer" 
                     onClick={() => setIsMobileMenuOpen(false)}
