@@ -179,7 +179,7 @@ export const otherProjects: Project[] = [
     repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
   },
   {
-    title: "Colon Cancer Histopathology Classification",
+    title: "Colon Cancer Classifier",
     description:
       "Binary classification of colon histopathology images into Colon Adenocarcinoma vs Benign Tissue using transfer learning on the LC25000 dataset. Featuring 10,000 high-resolution images, the model uses EfficientNetB3 with a custom classification head, achieving 99.4% accuracy.",
     tech: [
