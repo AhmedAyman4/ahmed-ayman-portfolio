@@ -333,3 +333,15 @@
 .project-modal-repo-link {
   @apply bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-white border border-gray-200 dark:border-gray-700 hover:border-blue-500/50 dark:hover:border-[#4de9d2]/50 hover:text-blue-600 dark:hover:text-[#4de9d2];
 }
+
+.projects-view-all-container {
+  @apply mt-10 flex justify-center;
+}
+
+.projects-view-all-link {
+  @apply inline-flex items-center gap-2 px-8 py-3 rounded-full bg-white dark:bg-gray-900/70 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 font-medium hover:bg-gray-50 dark:hover:bg-gray-800 hover:border-blue-500/30 dark:hover:border-primary/30 transition-all duration-300 shadow-sm hover:shadow-md;
+}
+
+.projects-view-all-icon {
+  @apply h-4 w-4 group-hover:translate-x-1 transition-transform;
+}

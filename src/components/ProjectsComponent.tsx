@@ -2,10 +2,12 @@
 
 import { useEffect, useState, useRef, useCallback } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import {
   FolderGit2,
   Github,
   FolderUp,
+  ArrowRight,
 } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import FadeInSection from "@/components/FadeInSection";
@@ -304,7 +306,20 @@ export const ProjectsComponent = () => (
       <SectionHeader label="Portfolio" title="Featured Projects" />
       <ImagePreloader projects={spotlightProjects} />
       <ProjectsCarousel projects={spotlightProjects} />
-      <ProjectsGrid projects={otherProjects} />
+      <ProjectsGrid projects={otherProjects.slice(0, 3)} />
+      {otherProjects.length > 3 && (
+        <FadeInSection>
+          <div className="projects-view-all-container">
+            <Link
+              href="/projects"
+              className="group projects-view-all-link"
+            >
+              View All Projects
+              <ArrowRight className="projects-view-all-icon" />
+            </Link>
+          </div>
+        </FadeInSection>
+      )}
     </section>
   </FadeInSection>
 );

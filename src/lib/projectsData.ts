@@ -30,6 +30,23 @@ export const spotlightProjects: Project[] = [
     repoLink: "https://github.com/AhmedAyman4/nawy",
   },
   {
+    title: "Colon Cancer Histopathology Classification",
+    description:
+      "Binary classification of colon histopathology images into Adenocarcinoma vs Benign tissue using Transfer Learning on the LC25000 dataset. Achieved 99.4% validation accuracy with an optimized EfficientNetB3 model.",
+    tech: [
+      "Python",
+      "TensorFlow",
+      "Keras",
+      "EfficientNetB3",
+      "Deep Learning",
+      "FastAPI",
+      "Docker",
+    ],
+    image: "/images/projects/colon-cancer-classifier.png",
+    demoLink: "https://huggingface.co/spaces/ahmed-ayman/colon-cancer-classifier",
+    repoLink: "https://github.com/AhmedAyman4/colon-cancer-classifier",
+  },
+  {
     title: "FCAI USC Regulations Chatbot",
     description:
       "Built a bilingual (English/Arabic) RAG chatbot to query the Faculty of Computer & Artificial Intelligence (USC) internal regulations. Uses Google Gemini with ChromaDB for semantic retrieval and provides accurate, context-aware answers via a web interface.",
@@ -162,6 +179,23 @@ export const otherProjects: Project[] = [
     repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
   },
   {
+    title: "Colon Cancer Histopathology Classification",
+    description:
+      "Binary classification of colon histopathology images into Colon Adenocarcinoma vs Benign Tissue using transfer learning on the LC25000 dataset. Featuring 10,000 high-resolution images, the model uses EfficientNetB3 with a custom classification head, achieving 99.4% accuracy.",
+    tech: [
+      "Python",
+      "TensorFlow",
+      "Keras",
+      "EfficientNetB3",
+      "Deep Learning",
+      "FastAPI",
+      "Docker",
+    ],
+    image: "/images/projects/colon-cancer-classifier.png",
+    demoLink: "https://huggingface.co/spaces/ahmed-ayman/colon-cancer-classifier",
+    repoLink: "https://github.com/AhmedAyman4/colon-cancer-classifier",
+  },
+  {
     title: "Campaign Conversion Predictor",
     description:
       "Built a machine learning model to predict customer conversion in digital marketing campaigns using demographic and engagement data. Deployed a Gradio web app for real-time predictions with a Random Forest model.",
@@ -172,16 +206,7 @@ export const otherProjects: Project[] = [
     repoLink: "https://github.com/AhmedAyman4/customer-conversion-predictor",
   },
   {
-    title: "Portfolio-Website",
-    description:
-      "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
-    tech: ["Javascript", "HTML", "CSS"],
-    image: "/images/projects/portfolio-website-white.png",
-    demoLink: "https://ahmedayman4.github.io/Personal-website/",
-    repoLink: "https://github.com/AhmedAyman4/Personal-website",
-  },
-  {
-    title: "Movie Review Sentiment Analysis ",
+    title: "Movie Review Sentiment Analysis",
     description:
       "A movie sentiment analysis application using three models to predict review sentiment through an interactive Gradio web interface.",
     tech: ["scikit-learn", "transformers", "tensorflow", "gradio"],
@@ -189,5 +214,14 @@ export const otherProjects: Project[] = [
     demoLink: "https://huggingface.co/spaces/ahmed-ayman/Sentiment-Analysis",
     repoLink:
       "https://github.com/AhmedAyman4/Movie-Review-Sentiment-Analysis-App",
+  },
+  {
+    title: "Portfolio-Website",
+    description:
+      "This modern, responsive portfolio website showcases Ahmed Ayman's skills and projects as a Data Scientist and ML Engineer, featuring dark/light mode, smooth animations, and an interactive user experience built with HTML, CSS, and JavaScript.",
+    tech: ["Javascript", "HTML", "CSS"],
+    image: "/images/projects/portfolio-website-white.png",
+    demoLink: "https://ahmedayman4.github.io/Personal-website/",
+    repoLink: "https://github.com/AhmedAyman4/Personal-website",
   },
 ];
