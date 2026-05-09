@@ -82,27 +82,23 @@ export function ExperienceTimeline() {
 
       <div className="max-w-5xl mx-auto px-2">
         <div className="max-w-4xl mx-auto">
-          <div className="experience-card p-6 rounded-xl">
-            <Tabs defaultValue={sortedExperiences[0].id} orientation={isMobile ? "horizontal" : "vertical"} className="flex flex-col lg:flex-row gap-6 w-full">
+          <div className="experience-card">
+            <Tabs defaultValue={sortedExperiences[0].id} orientation={isMobile ? "horizontal" : "vertical"} className="experience-tabs-container">
               
-              <FadeInSection className="lg:w-48 shrink-0">
-                <TabsList className={`bg-transparent p-0 w-full h-auto justify-start ${isMobile ? "flex space-x-3 overflow-x-auto scrollbar-hide pb-2" : "flex-col space-y-1"}`}>
+              <FadeInSection className="experience-tabs-list-wrapper">
+                <TabsList className={`experience-tabs-list ${isMobile ? "horizontal scrollbar-hide" : "vertical"}`}>
                   {sortedExperiences.map((exp, index) => (
                     <TabsTrigger
                       key={exp.id}
                       value={exp.id}
-                      className={`group rounded-md transition-all duration-300 data-[state=active]:bg-teal-500/10 data-[state=active]:text-teal-600 dark:data-[state=active]:bg-[#4de9d2]/5 dark:data-[state=active]:text-[#4de9d2] text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-gray-200 border-transparent data-[state=active]:shadow-none ${
-                        isMobile 
-                          ? "flex-shrink-0 px-5 py-3 min-w-fit border-b-2 data-[state=active]:border-teal-500 dark:data-[state=active]:border-[#4de9d2] rounded-b-none" 
-                          : "w-full text-left p-2 justify-between border-l-2 data-[state=active]:border-teal-500 dark:data-[state=active]:border-[#4de9d2]"
-                      }`}
+                      className={`experience-tabs-trigger ${isMobile ? "horizontal" : "vertical"}`}
                     >
                       {isMobile ? (
                         <span className="font-bold text-xs whitespace-nowrap">{exp.company}</span>
                       ) : (
                         <div className="flex items-center justify-between w-full">
                           <span className="font-medium text-sm">{exp.company}</span>
-                          <div className="w-1.5 h-1.5 bg-teal-500 dark:bg-[#4de9d2] rounded-full animate-pulse opacity-0 group-data-[state=active]:opacity-100 transition-opacity"></div>
+                          <div className="experience-active-indicator"></div>
                         </div>
                       )}
                     </TabsTrigger>
@@ -112,24 +108,24 @@ export function ExperienceTimeline() {
 
               <FadeInSection className="flex-1">
                 {sortedExperiences.map((exp) => (
-                  <TabsContent key={exp.id} value={exp.id} className="mt-0 outline-none p-4">
+                  <TabsContent key={exp.id} value={exp.id} className="experience-tabs-content">
                     <div className="mb-3 flex items-center flex-wrap gap-2">
-                      <h3 className="text-base sm:text-lg font-bold text-gray-900 dark:text-gray-100">
+                      <h3 className="experience-role-title">
                         {exp.role} @{" "}
-                        <a
-                          href={exp.link}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="bg-gradient-to-r from-teal-500 to-purple-600 dark:from-[#4de9d2] dark:to-purple-500 bg-clip-text text-transparent hover:from-teal-600 hover:to-purple-700 dark:hover:from-[#3dd1b5] dark:hover:to-[#8b5cf6] transition-all duration-300 cursor-pointer"
-                        >
-                          {exp.company}
-                        </a>
+                          <a
+                            href={exp.link}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="experience-company-link"
+                          >
+                            {exp.company}
+                          </a>
                       </h3>
                   </div>
 
-                  <div className="mb-4 flex items-center space-x-2">
-                    <div className="w-1 h-1 bg-teal-500 dark:bg-[#4de9d2] rounded-full animate-pulse"></div>
-                    <span className="text-gray-600 dark:text-gray-400 font-medium text-sm">
+                    <div className="mb-4 flex items-center space-x-2">
+                      <div className="experience-period-dot"></div>
+                    <span className="experience-period-text">
                       {exp.period}
                     </span>
                   </div>
@@ -139,11 +135,9 @@ export function ExperienceTimeline() {
                       <FadeInSection
                         key={`item-${exp.id}-${itemIndex}`}
                       >
-                        <li className="flex items-start space-x-3 group/item">
-                          <div className="flex-shrink-0 mt-2">
-                            <div className="w-1.5 h-1.5 bg-teal-500 dark:bg-[#4de9d2] rounded-full"></div>
-                          </div>
-                          <span className="text-gray-700 dark:text-gray-300 leading-relaxed text-sm">
+                        <li className="experience-description-item">
+                          <div className="experience-description-dot"></div>
+                          <span className="experience-description-text">
                             {item}
                           </span>
                         </li>

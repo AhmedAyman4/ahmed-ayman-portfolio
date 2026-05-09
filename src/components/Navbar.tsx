@@ -357,13 +357,13 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                   </a>
 
                   <div className="flex gap-2.5">
-                    <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="Email">
+                    <a href="mailto:ahmedalhofy42@gmail.com" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="Email">
                       <Mail className="h-4 w-4" />
                     </a>
-                    <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="LinkedIn">
+                    <a href="https://www.linkedin.com/in/ahmed-alhofy/" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="LinkedIn">
                       <Linkedin className="h-4 w-4" />
                     </a>
-                    <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
+                    <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="flex items-center justify-center w-9 h-9 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
                       <GitHubIcon sx={{ fontSize: '1.1rem' }} />
                     </a>
                   </div>
