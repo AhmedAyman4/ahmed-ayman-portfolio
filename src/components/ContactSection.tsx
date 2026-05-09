@@ -1,7 +1,8 @@
 "use client";
 
 // Icon imports
-import { Mail, Github, Linkedin } from "lucide-react";
+import { Mail, Linkedin } from "lucide-react";
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { FaInstagram } from "react-icons/fa";
 import { AiFillSafetyCertificate } from "react-icons/ai";
 
@@ -48,7 +49,7 @@ export function ContactSection() {
     },
     {
       href: "https://github.com/AhmedAyman4",
-      icon: Github,
+      icon: GitHubIcon,
       label: "GitHub",
     },
     {
@@ -105,7 +106,10 @@ export function ContactSection() {
               className="contact-icon-link"
               aria-label={label}
             >
-              <Icon className="contact-icon" />
+              <Icon 
+                className="contact-icon" 
+                {...(label === "GitHub" ? { sx: { fontSize: '1.25rem', transform: 'translateY(-1px)' } } : {})} 
+              />
             </a>
           ))}
         </div>

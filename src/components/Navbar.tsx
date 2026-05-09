@@ -22,10 +22,10 @@ import {
   Menu,
   X,
   FileText,
-  Github,
   Linkedin,
   Award,
 } from "lucide-react";
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { FaInstagram } from "react-icons/fa";
 
 const patrickHand = Patrick_Hand({ weight: "400", subsets: ["latin"] });
@@ -263,7 +263,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                 <Tooltip>
                   <TooltipTrigger asChild>
                     <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" className="p-2 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] transition-all hover:scale-110" aria-label="GitHub">
-                      <Github className="h-4 w-4" />
+                      <GitHubIcon sx={{ fontSize: '1.1rem' }} />
                     </a>
                   </TooltipTrigger>
                   <TooltipContent side="bottom"><p className="text-xs">GitHub</p></TooltipContent>
@@ -364,7 +364,7 @@ const Navbar = ({ links }: { links: { href: string; label: string }[] }) => {
                       <Linkedin className="h-4 w-4" />
                     </a>
                     <a href="https://github.com/AhmedAyman4" target="_blank" rel="noopener noreferrer" onClick={() => setIsMobileMenuOpen(false)} className="p-2.5 rounded-full bg-gray-100/50 dark:bg-gray-800/50 text-gray-600 dark:text-gray-400 hover:text-primary dark:hover:text-[#4de9d2] hover:bg-white dark:hover:bg-gray-800 transition-all shadow-sm" aria-label="GitHub">
-                      <Github className="h-4 w-4" />
+                      <GitHubIcon sx={{ fontSize: '1.1rem' }} />
                     </a>
                   </div>
                 </div>

@@ -5,10 +5,10 @@ import Image from "next/image";
 import Link from "next/link";
 import {
   FolderGit2,
-  Github,
   FolderUp,
   ArrowRight,
 } from "lucide-react";
+import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button } from "@/components/ui/button";
 import FadeInSection from "@/components/FadeInSection";
 import { SectionHeader } from "@/components/SectionHeader";
@@ -225,9 +225,9 @@ const ProjectCard = ({ project }: { project: Project }) => (
             {project.title}
           </CardTitle>
         </div>
-        <div className="flex space-x-3">
+        <div className="flex items-center space-x-3">
           <ProjectLink href={project.repoLink} className="hover:brightness-[1.1] hover:scale-[1.1] hover:text-primary dark:hover:text-primary transition-all duration-200">
-            <Github className="h-5 w-5 text-gray-700 dark:text-gray-300" />
+            <GitHubIcon sx={{ fontSize: '1.25rem' }} className="-translate-y-[1px] text-gray-700 dark:text-gray-300" />
           </ProjectLink>
           <ProjectLink href={project.demoLink} className="hover:brightness-[1.1] hover:scale-[1.1] hover:text-primary dark:hover:text-primary transition-all duration-200">
             <FolderUp className="h-5 w-5 text-gray-700 dark:text-gray-300" />
