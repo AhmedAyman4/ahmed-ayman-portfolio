@@ -11,7 +11,7 @@ export interface Project {
 
 export const spotlightProjects: Project[] = [
   {
-    title: "Nawy Property Recommender",
+    title: "AI Real Estate Chat Consultant",
     description:
       "AI-powered property consultant featuring semantic search, RAG-based chat for insights, and XGBoost price prediction. Personalized via dynamic user preference tracking.",
     tech: [
@@ -125,7 +125,7 @@ export const spotlightProjects: Project[] = [
 
 export const otherProjects: Project[] = [
   {
-    title: "Nawy Property Recommender",
+    title: "AI Real Estate Chat Consultant",
     description:
       "AI-powered property consultant featuring semantic search and chat for nearly 9,000 properties and 600+ blogs across 1,700+ compounds and 40+ locations. RAG-based chatbot for area insights, property comparisons, and XGBoost price prediction. Personalized via dynamic preference tracking stored in MongoDB.",
     tech: [
