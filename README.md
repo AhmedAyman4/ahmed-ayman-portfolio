@@ -1,8 +1,16 @@
-# Ahmed Ayman — Portfolio
+<div align="center">
+
+<img src="src/app/favicon.ico" width="48" height="48" alt="Logo" />
+
+# Ahmed Ayman's Portfolio
 
 A modern, responsive portfolio built with Next.js and Tailwind CSS.
 
 [Live site](https://ahmedayman.vercel.app/) • [Repository](https://github.com/AhmedAyman4/ahmed-ayman-portfolio) • [LinkedIn](https://www.linkedin.com/in/ahmed-alhofy/) • [Email](mailto:ahmedalhofy42@gmail.com)
+
+![Ahmed Ayman — Portfolio](public/images/projects/ahmed-ayman-portfolio.png)
+
+</div>
 
 ## Tech stack
 
