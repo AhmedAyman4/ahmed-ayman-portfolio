@@ -14,42 +14,50 @@ A modern, responsive portfolio built with Next.js and Tailwind CSS.
 
 ## Tech stack
 
-- Next.js 15, React 18, TypeScript
-- Tailwind CSS, Radix UI
-- Framer Motion, GSAP
+<p align="left">
+  <img src="https://img.shields.io/badge/Next.js-000000?style=flat&logo=nextdotjs&logoColor=white" alt="Next.js" />
+  <img src="https://img.shields.io/badge/React-20232A?style=flat&logo=react&logoColor=61DAFB" alt="React" />
+  <img src="https://img.shields.io/badge/TypeScript-3178C6?style=flat&logo=typescript&logoColor=white" alt="TypeScript" />
+  <img src="https://img.shields.io/badge/Tailwind_CSS-06B6D4?style=flat&logo=tailwindcss&logoColor=white" alt="Tailwind CSS" />
+  <img src="https://img.shields.io/badge/Radix_UI-161618?style=flat&logo=radixui&logoColor=white" alt="Radix UI" />
+  <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer&logoColor=white" alt="Framer Motion" />
+  <img src="https://img.shields.io/badge/GSAP-88CE02?style=flat&logo=greensock&logoColor=white" alt="GSAP" />
+  <img src="https://img.shields.io/badge/shadcn/ui-000000?style=flat&logo=shadcnui&logoColor=white" alt="shadcn/ui" />
+</p>
 
 ## Project structure
 
 ```
 .
 ├─ src/
-│  ├─ app/
-│  │  ├─ layout.tsx
-│  │  ├─ page.tsx
-│  │  ├─ globals.css
-│  │  └─ favicon.ico
-│  ├─ components/
-│  │  ├─ Navbar.tsx
-│  │  ├─ HeroSection.jsx
-│  │  ├─ ProjectsComponent.tsx
-│  │  ├─ SkillsSection.tsx
-│  │  ├─ ContactSection.tsx
-│  │  ├─ Footer.tsx
-│  │  ├─ ui/...
-│  │  └─ other components...
-│  ├─ assets/
-│  ├─ hooks/
-│  └─ lib/
-├─ public/
-│  ├─ images/
-│  └─ Ahmed_Ayman_Alhofy.pdf
-├─ components.json
-├─ package.json
-├─ next.config.ts
-├─ tailwind.config.ts
-├─ postcss.config.mjs
-├─ tsconfig.json
-└─ next-env.d.ts
+│  ├─ app/                  # Next.js App Router routes & pages
+│  │  ├─ certificates/      # Certificates page
+│  │  ├─ contact/           # Contact page
+│  │  ├─ projects/          # Projects page
+│  │  ├─ favicon.ico        # Site favicon
+│  │  ├─ globals.css        # Global CSS styles
+│  │  ├─ layout.tsx         # Main layout definition
+│  │  └─ page.tsx           # Hero page entry point
+│  ├─ components/           # React UI components
+│  │  ├─ ui/                # Shared base UI elements (buttons, inputs, etc.)
+│  │  ├─ HeroSection.tsx    # Hero section component
+│  │  ├─ Navbar.tsx         # Navigation bar
+│  │  ├─ ProjectsComponent.tsx # Project grid and tags
+│  │  ├─ SkillsSection.tsx  # Dynamic skills visualizer
+│  │  └─ ...                # Other page section components
+│  ├─ assets/               # Fonts, icons, and static local assets
+│  ├─ hooks/                # Custom React hooks (theme, scrolling)
+│  ├─ lib/                  # Utility functions and helper classes
+│  └─ styles/               # Component-specific styles and animations
+├─ public/                  # Static assets served directly
+│  ├─ images/               # Project screenshots and assets
+│  ├─ videos/               # Demo videos and background effects
+│  └─ Ahmed_Ayman_Alhofy.pdf # Resume PDF
+├─ components.json          # Shadcn UI configuration
+├─ package.json             # NPM dependencies & scripts
+├─ next.config.ts           # Next.js configuration
+├─ tailwind.config.ts       # Tailwind CSS design system configuration
+└─ tsconfig.json            # TypeScript configuration
 ```
 
 ## Run locally
