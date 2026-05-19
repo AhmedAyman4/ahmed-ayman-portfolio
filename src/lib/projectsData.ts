@@ -196,6 +196,24 @@ export const otherProjects: Project[] = [
     repoLink: "https://github.com/AhmedAyman4/colon-cancer-classifier",
   },
   {
+    title: "Ahmed Ayman's Portfolio",
+    description:
+      "A modern, responsive portfolio built with Next.js and Tailwind CSS, featuring smooth animations, an interactive showcase of projects and certificates, and a contact system.",
+    tech: [
+      "Next.js",
+      "React",
+      "TypeScript",
+      "Tailwind CSS",
+      "Radix UI",
+      "Framer Motion",
+      "GSAP",
+      "shadcn/ui",
+    ],
+    image: "/images/projects/ahmed-ayman-portfolio.png",
+    demoLink: "https://ahmedalhofy.netlify.app/",
+    repoLink: "https://github.com/AhmedAyman4/ahmed-ayman-portfolio",
+  },
+  {
     title: "Campaign Conversion Predictor",
     description:
       "Built a machine learning model to predict customer conversion in digital marketing campaigns using demographic and engagement data. Deployed a Gradio web app for real-time predictions with a Random Forest model.",
