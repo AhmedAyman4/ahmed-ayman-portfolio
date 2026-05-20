@@ -2,7 +2,11 @@
 
 /* Carousel */
 .carousel-container {
-  @apply relative mb-8 hidden md:block;
+  @apply relative mb-8 hidden md:block overflow-visible flex flex-col;
+}
+
+.carousel-main {
+  @apply w-full max-w-5xl mx-auto relative;
 }
 
 .carousel-wrapper {
@@ -95,14 +99,14 @@
 }
 
 .carousel-nav-button {
-  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 text-gray-800 dark:text-white transition-all duration-300 h-8 w-8 p-0 rounded-full hover:bg-white/90 dark:hover:bg-black/90;
+  @apply absolute top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border-none text-gray-800 dark:text-white h-10 w-10 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto transition-all duration-300 hover:scale-110;
 }
 
 .carousel-nav-left {
-  @apply left-3;
+  @apply left-2 group-hover:left-6 xl:left-4 xl:group-hover:left-8;
 }
 .carousel-nav-right {
-  @apply right-3;
+  @apply right-2 group-hover:right-6 xl:right-4 xl:group-hover:right-8;
 }
 
 .carousel-image-container {
@@ -212,7 +216,7 @@
 
 /* Project Cards */
 .project-card {
-  @apply relative overflow-hidden h-full rounded-2xl md:rounded-3xl bg-white dark:bg-gray-900/70 shadow-lg border border-transparent hover:shadow-xl hover:shadow-primary/20 dark:hover:shadow-primary/30 hover:bg-gray-50 dark:hover:bg-gray-800/80 hover:border-primary/20 dark:hover:border-primary/30 transition-all duration-300 mx-auto max-w-[340px] md:max-w-none;
+  @apply relative h-full flex flex-col bg-white dark:bg-gray-900/70 overflow-hidden border-transparent rounded-3xl hover:border-primary/10 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.01];
 }
 
 .project-card-image-container {
@@ -256,7 +260,7 @@
 }
 
 .project-card-description {
-  @apply text-gray-400 text-sm leading-relaxed mb-4 flex-1 group-hover:text-gray-600 dark:group-hover:text-gray-300 transition-colors duration-200;
+  @apply text-gray-500 dark:text-gray-400 text-sm leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors;
 }
 
 .project-card-tech {
@@ -264,7 +268,7 @@
 }
 
 .project-card-tech-item {
-  @apply text-xs text-gray-500 font-medium group-hover:text-gray-700 dark:group-hover:text-gray-400 transition-colors duration-200;
+  @apply text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors;
 }
 
 /* Layout */

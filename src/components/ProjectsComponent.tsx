@@ -155,11 +155,11 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
   }, []);
 
   return (
-    <div ref={containerRef} className="carousel-container overflow-visible flex flex-col">
+    <div ref={containerRef} className="carousel-container">
       <Carousel
         setApi={setApi}
         plugins={[plugin.current]}
-        className="w-full max-w-5xl mx-auto relative group"
+        className="carousel-main group"
         onMouseEnter={plugin.current.stop}
         onMouseLeave={plugin.current.reset}
         opts={{
@@ -175,9 +175,9 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
           ))}
         </CarouselContent>
         {/* Navigation buttons: placed inside the carousel box */}
-        <div className="hidden md:block transition-all duration-300">
-          <CarouselPrevious className="absolute left-6 xl:left-8 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border-none text-gray-800 dark:text-white h-10 w-10 transition-transform hover:scale-110" />
-          <CarouselNext className="absolute right-6 xl:right-8 top-1/2 -translate-y-1/2 z-10 bg-white/80 dark:bg-black/80 hover:bg-white/90 dark:hover:bg-black/90 border-none text-gray-800 dark:text-white h-10 w-10 transition-transform hover:scale-110" />
+        <div className="hidden md:block">
+          <CarouselPrevious className="carousel-nav-button carousel-nav-left" />
+          <CarouselNext className="carousel-nav-button carousel-nav-right" />
         </div>
       </Carousel>
 
@@ -203,7 +203,7 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
 // ============================================================================
 
 const ProjectCard = ({ project }: { project: Project }) => (
-  <Card className="group relative h-full flex flex-col bg-white dark:bg-gray-900/70 overflow-hidden border-transparent rounded-3xl hover:border-primary/10 dark:hover:border-primary/20 hover:shadow-lg hover:shadow-primary/10 dark:hover:shadow-primary/20 transition-all duration-300 hover:scale-[1.01]">
+  <Card className="project-card group">
     {/* Project Image - Visible only on mobile */}
     <div className="project-card-image-container md:hidden">
       <Image
@@ -226,10 +226,10 @@ const ProjectCard = ({ project }: { project: Project }) => (
           </CardTitle>
         </div>
         <div className="flex items-center space-x-3">
-          <ProjectLink href={project.repoLink} className="hover:brightness-[1.1] hover:scale-[1.1] hover:text-primary dark:hover:text-primary transition-all duration-200">
+          <ProjectLink href={project.repoLink} className="project-card-link">
             <GitHubIcon sx={{ fontSize: '1.25rem' }} className="-translate-y-[1px] text-gray-700 dark:text-gray-300" />
           </ProjectLink>
-          <ProjectLink href={project.demoLink} className="hover:brightness-[1.1] hover:scale-[1.1] hover:text-primary dark:hover:text-primary transition-all duration-200">
+          <ProjectLink href={project.demoLink} className="project-card-link">
             <FolderUp className="h-5 w-5 text-gray-700 dark:text-gray-300" />
           </ProjectLink>
         </div>
@@ -239,14 +239,14 @@ const ProjectCard = ({ project }: { project: Project }) => (
       </CardTitle>
     </CardHeader>
     <CardContent className="relative flex-1 pb-4 z-20">
-      <CardDescription className="text-gray-500 dark:text-gray-400 text-sm leading-relaxed group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+      <CardDescription className="project-card-description">
         {project.description}
       </CardDescription>
     </CardContent>
     <CardFooter className="relative z-20">
       <div className="flex flex-wrap gap-2">
         {project.tech.map((tech, i) => (
-          <span key={tech} className="text-xs text-gray-500 dark:text-gray-400 font-medium group-hover:text-gray-700 dark:group-hover:text-gray-300 transition-colors">
+          <span key={tech} className="project-card-tech-item">
             {tech}
             {i < project.tech.length - 1 && <span className="ml-2">•</span>}
           </span>
