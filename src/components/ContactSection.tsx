@@ -13,28 +13,10 @@ import FadeInSection from "@/components/FadeInSection";
 // Styles
 import "@/styles/components/ContactSection.css";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
 
 // Component definition
 export function ContactSection() {
-  const [currentTime, setCurrentTime] = useState<string>("");
-
-  useEffect(() => {
-    const updateClock = () => {
-      const now = new Date();
-      setCurrentTime(now.toLocaleTimeString("en-US", {
-        hour: "numeric",
-        minute: "2-digit",
-        second: "2-digit",
-        hour12: true,
-      }));
-    };
-
-    updateClock();
-    const interval = setInterval(updateClock, 1000);
-    return () => clearInterval(interval);
-  }, []);
-
   // Contact links data
   const contactLinks = [
     {
@@ -84,14 +66,6 @@ export function ContactSection() {
         <p className="contact-email">
           ahmedalhofy42@gmail.com
         </p>
-      </FadeInSection>
-
-      {/* Real-time Clock */}
-      <FadeInSection>
-        <div className="contact-clock-container">
-          <span className="clock-label">Local Time:</span>
-          <span className="clock-time">{currentTime}</span>
-        </div>
       </FadeInSection>
 
       {/* Social Links */}
