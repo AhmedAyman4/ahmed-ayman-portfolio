@@ -6,6 +6,7 @@ export const CERTIFICATIONS = [
     date: "2026",
     image: "/images/CoursesAndCertifications/ahmed-ayman-alhofys-ai-engineer-for-data-scientists-associate-certificate.jpg",
     link: "https://www.datacamp.com/certificate/AEDS0013645796856",
+    logo: "/images/courses_and_certifications_logos/datacampinc_logo.jpeg",
   },
   {
     id: "item-1",
@@ -14,6 +15,7 @@ export const CERTIFICATIONS = [
     date: "2025",
     image: "/images/CoursesAndCertifications/ahmed-alhofy-sap-certified-associate-sap-generative-ai-developer.jpg",
     link: "https://www.credly.com/badges/f689025c-3b2e-4163-afa4-cd6abd275ee6/linked_in_profile",
+    logo: "/images/courses_and_certifications_logos/sap_logo.jpeg",
   },
   {
     id: "item-2",
@@ -22,6 +24,7 @@ export const CERTIFICATIONS = [
     date: "2025",
     image: "/images/CoursesAndCertifications/aws-certified-ai-practitioner-certificate-page-0001.jpg",
     link: "https://www.credly.com/badges/755dc8fb-e046-4945-b12e-d56e873e8659/linked_in_profile",
+    logo: "/images/courses_and_certifications_logos/amazon_web_services_logo.jpeg",
   },
   {
     id: "item-3",
@@ -30,6 +33,7 @@ export const CERTIFICATIONS = [
     date: "2025",
     image: "/images/CoursesAndCertifications/ibm-skillsbuild-data-analytics-certificate.jpg",
     link: "https://www.credly.com/badges/047fca36-195d-4782-9f0e-8d82b1d00c97/linked_in_profile",
+    logo: "/images/courses_and_certifications_logos/ibm_logo.jpeg",
   },
   {
     id: "item-4",
@@ -38,6 +42,7 @@ export const CERTIFICATIONS = [
     date: "2025",
     image: "/images/CoursesAndCertifications/oracle-cloud-infrastructure-2025-certified-ai-foundations-associate.jpg",
     link: "https://catalog-education.oracle.com/ords/certview/sharebadge?id=5A50EC88B896ABCC9B1BFAD1B2574F3119FFA0F88048DA8C8DA1F59137AE63BA",
+    logo: "/images/courses_and_certifications_logos/oracle_logo.jpeg",
   },
   {
     id: "item-5",
@@ -46,6 +51,7 @@ export const CERTIFICATIONS = [
     date: "2024",
     image: "/images/CoursesAndCertifications/data-scientist-associate.jpg",
     link: "https://www.datacamp.com/certificate/DSA0019876659394",
+    logo: "/images/courses_and_certifications_logos/datacampinc_logo.jpeg",
   },
   {
     id: "item-6",
@@ -54,6 +60,7 @@ export const CERTIFICATIONS = [
     date: "2024",
     image: "/images/CoursesAndCertifications/google-data-analytics-page-0001.jpg",
     link: "https://www.credly.com/badges/ba202583-d839-4158-9fde-cfff5c8c283b/linked_in_profile",
+    logo: "/images/courses_and_certifications_logos/coursera_logo.jpeg",
   },
   {
     id: "item-7",
@@ -62,6 +69,7 @@ export const CERTIFICATIONS = [
     date: "2024",
     image: "/images/CoursesAndCertifications/aws-academy-graduate-aws-academy-machine-learning-for-natural-language-processing-page-0001.jpg",
     link: "https://www.credly.com/badges/6004bae9-fb5e-47f7-affa-80ca5c439df4/public_url",
+    logo: "/images/courses_and_certifications_logos/amazon_web_services_logo.jpeg",
   },
   {
     id: "item-8",
@@ -70,6 +78,7 @@ export const CERTIFICATIONS = [
     date: "2024",
     image: "/images/CoursesAndCertifications/aws-academy-graduate-aws-academy-machine-learning-foundations-page-0001.jpg",
     link: "https://www.credly.com/badges/bebffd29-e0af-4509-bde5-4961b6d08f7b/public_url",
+    logo: "/images/courses_and_certifications_logos/amazon_web_services_logo.jpeg",
   },
   {
     id: "item-9",
@@ -78,6 +87,7 @@ export const CERTIFICATIONS = [
     date: "2024",
     image: "/images/CoursesAndCertifications/aws-academy-graduate-aws-academy-cloud-foundations-page-0001.jpg",
     link: "https://www.credly.com/badges/1ef999ae-802b-4cba-829d-ebb3cbb75d77/public_url",
+    logo: "/images/courses_and_certifications_logos/amazon_web_services_logo.jpeg",
   },
   {
     id: "item-10",
@@ -86,6 +96,7 @@ export const CERTIFICATIONS = [
     date: "2024",
     image: "/images/CoursesAndCertifications/aws-academy-graduate-aws-academy-data-engineering-page-0001.jpg",
     link: "https://www.credly.com/badges/421fe942-73ea-4a56-9c9b-e9fa86f2daae/public_url",
+    logo: "/images/courses_and_certifications_logos/amazon_web_services_logo.jpeg",
   },
   {
     id: "item-11",
@@ -94,5 +105,6 @@ export const CERTIFICATIONS = [
     date: "2024",
     image: "/images/CoursesAndCertifications/mckinsey-forward-program-badge.jpeg",
     link: "https://www.credly.com/badges/a026e605-86ed-4f00-af62-99c535b0a150/public_url",
+    logo: "/images/courses_and_certifications_logos/mckinsey_logo.jpeg",
   },
 ];

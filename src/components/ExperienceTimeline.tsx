@@ -1,6 +1,7 @@
 // components/ExperienceTimeline.tsx
 "use client";
 
+import Image from "next/image";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -17,6 +18,7 @@ interface Experience {
   type: ExperienceType;
   link: string;
   description: string[];
+  logo: string;
 }
 
 const experiences: Experience[] = [
@@ -27,6 +29,7 @@ const experiences: Experience[] = [
     period: "Oct 2024 - May 2025",
     type: "internship",
     link: "https://depi.gov.eg/content/home",
+    logo: "/images/company_logos/digital_egypt_pioneers_initiative_depi_logo.jpeg",
     description: [
       "Analyze data using Python, SQL, and analytics tools to identify trends, opportunities, and business insights.",
       "Build and deploy ML models with Python, Scikit-learn, and MLflow, leveraging AI and prompt engineering for integration.",
@@ -39,6 +42,7 @@ const experiences: Experience[] = [
     period: "Jul 2024 - Jul 2024",
     type: "internship",
     link: "https://www.cibeg.com/",
+    logo: "/images/company_logos/cib_egypt_logo.jpeg",
     description: [
       "Gained data and financial literacy expertise, entrepreneurship, and teamwork to enhance problem-solving, decision-making, and business success.",
     ],
@@ -50,6 +54,7 @@ const experiences: Experience[] = [
     period: "Jul 2025 - Jan 2026",
     type: "internship",
     link: "https://konecta.com/",
+    logo: "/images/company_logos/konecta_group_logo.jpeg",
     description: [
       "Collected, cleaned, and structured data using Python and web scraping tools to support reliable analysis and modeling.",
       "Built and optimized machine learning models (classification, clustering, image recognition) and implemented RAG-based chatbots with embeddings, document indexing, and multi-turn conversations.",
@@ -87,17 +92,39 @@ export function ExperienceTimeline() {
               
               <FadeInSection className="experience-tabs-list-wrapper">
                 <TabsList className={`experience-tabs-list ${isMobile ? "horizontal scrollbar-hide" : "vertical"}`}>
-                  {sortedExperiences.map((exp, index) => (
+                  {sortedExperiences.map((exp) => (
                     <TabsTrigger
                       key={exp.id}
                       value={exp.id}
                       className={`experience-tabs-trigger ${isMobile ? "horizontal" : "vertical"}`}
                     >
                       {isMobile ? (
-                        <span className="font-bold text-xs whitespace-nowrap">{exp.company}</span>
+                        <div className="flex items-center gap-2">
+                          <div className="experience-logo-wrapper-sm">
+                            <Image
+                              src={exp.logo}
+                              alt={`${exp.company} logo`}
+                              width={20}
+                              height={20}
+                              className="experience-logo-sm"
+                            />
+                          </div>
+                          <span className="font-bold text-xs whitespace-nowrap">{exp.company}</span>
+                        </div>
                       ) : (
-                        <div className="flex items-center justify-between w-full">
-                          <span className="font-medium text-sm">{exp.company}</span>
+                        <div className="flex items-center justify-between w-full gap-3">
+                          <div className="flex items-center gap-3">
+                            <div className="experience-logo-wrapper-sm">
+                              <Image
+                                src={exp.logo}
+                                alt={`${exp.company} logo`}
+                                width={24}
+                                height={24}
+                                className="experience-logo-sm"
+                              />
+                            </div>
+                            <span className="font-medium text-sm">{exp.company}</span>
+                          </div>
                           <div className="experience-active-indicator"></div>
                         </div>
                       )}
@@ -112,23 +139,23 @@ export function ExperienceTimeline() {
                     <div className="mb-3 flex items-center flex-wrap gap-2">
                       <h3 className="experience-role-title">
                         {exp.role} @{" "}
-                          <a
-                            href={exp.link}
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="experience-company-link"
-                          >
-                            {exp.company}
-                          </a>
+                        <a
+                          href={exp.link}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="experience-company-link"
+                        >
+                          {exp.company}
+                        </a>
                       </h3>
-                  </div>
+                    </div>
 
                     <div className="mb-4 flex items-center space-x-2">
                       <div className="experience-period-dot"></div>
-                    <span className="experience-period-text">
-                      {exp.period}
-                    </span>
-                  </div>
+                      <span className="experience-period-text">
+                        {exp.period}
+                      </span>
+                    </div>
 
                   <ul className="space-y-3">
                     {exp.description.map((item, itemIndex) => (

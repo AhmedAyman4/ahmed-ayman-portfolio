@@ -6,7 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import Image from "next/image";
 import Link from "next/link";
-import { ExternalLink, ArrowRight } from "lucide-react";
+import { ExternalLink, ArrowRight, Award } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
 import { CERTIFICATIONS } from "@/lib/certificationsData";
@@ -33,8 +33,23 @@ export function CoursesAndCertifications() {
                 className="group certifications-accordion-item"
               >
                 <AccordionTrigger className="certifications-accordion-trigger">
-                  <div className="flex flex-col text-left w-full overflow-hidden">
-                    <div className="w-full">
+                  <div className="flex items-center gap-3 text-left w-full overflow-hidden">
+                    <div className="certifications-logo-container">
+                      {cert.logo ? (
+                        <Image
+                          src={cert.logo}
+                          alt={`${cert.issuer} logo`}
+                          width={32}
+                          height={32}
+                          className="certifications-logo"
+                        />
+                      ) : (
+                        <div className="certifications-logo-placeholder">
+                          <Award className="h-4 w-4 text-teal-600 dark:text-[#4de9d2]" />
+                        </div>
+                      )}
+                    </div>
+                    <div className="flex-1 min-w-0">
                       <h3 className="certifications-accordion-title">
                         {cert.title}
                       </h3>

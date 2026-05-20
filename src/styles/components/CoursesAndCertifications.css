@@ -69,3 +69,16 @@
 .certifications-view-all-icon {
   @apply h-4 w-4 group-hover:translate-x-1 transition-transform;
 }
+
+/* Issuer Logos */
+.certifications-logo-container {
+  @apply w-8 h-8 flex-shrink-0 flex items-center justify-center;
+}
+
+.certifications-logo {
+  @apply w-full h-full object-contain;
+}
+
+.certifications-logo-placeholder {
+  @apply w-8 h-8 rounded-full bg-teal-500/10 dark:bg-[#4de9d2]/10 flex items-center justify-center border border-teal-500/20 dark:border-[#4de9d2]/20;
+}
