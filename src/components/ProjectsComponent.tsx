@@ -241,6 +241,53 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
   }, [api]);
 
   useEffect(() => {
+    if (!api) return;
+
+    const rootNode = api.rootNode();
+    if (!rootNode) return;
+
+    let isScrolling = false;
+    let scrollTimeout: NodeJS.Timeout;
+
+    const onWheel = (e: WheelEvent) => {
+      const { deltaX, deltaY, shiftKey } = e;
+      
+      const isHorizontal = Math.abs(deltaX) > Math.abs(deltaY);
+      const isShiftScroll = shiftKey && Math.abs(deltaY) > 0;
+
+      if (isHorizontal || isShiftScroll) {
+        // Prevent default browser horizontal page swipe behaviors (like swipe to go back)
+        e.preventDefault();
+
+        if (isScrolling) return;
+
+        const delta = isHorizontal ? deltaX : deltaY;
+        // Increased threshold to prevent accidental triggers and make the scroll feel more deliberate
+        if (Math.abs(delta) > 15) {
+          isScrolling = true;
+          if (delta > 0) {
+            api.scrollNext();
+          } else {
+            api.scrollPrev();
+          }
+
+          clearTimeout(scrollTimeout);
+          scrollTimeout = setTimeout(() => {
+            isScrolling = false;
+          }, 600); // Increased lock time to slow down rapid successive swiping
+        }
+      }
+    };
+
+    rootNode.addEventListener("wheel", onWheel, { passive: false });
+
+    return () => {
+      rootNode.removeEventListener("wheel", onWheel);
+      clearTimeout(scrollTimeout);
+    };
+  }, [api]);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -270,6 +317,7 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
         opts={{
           loop: true,
           align: "center",
+          duration: 35, // Slower transition animation for a smoother feel (default: 25)
         }}
       >
         <CarouselContent className="ml-0 gap-5">
