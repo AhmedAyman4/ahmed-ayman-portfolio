@@ -117,7 +117,8 @@ export function CoursesAndCertifications() {
               <Button
                 onClick={handleToggle}
                 variant="outline"
-                className="group certifications-view-all-link px-5 py-2 text-xs"
+                size="sm"
+                className="group certifications-view-all-link px-5 h-9 text-xs font-semibold"
               >
                 {isAllShown ? (
                   <>

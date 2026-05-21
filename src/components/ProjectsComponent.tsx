@@ -73,13 +73,20 @@ const TechBadges = ({ tech }: { tech: string[] }) => (
 
 interface ProjectCarouselItemProps {
   project: Project;
+  isActive: boolean;
+  priority?: boolean;
 }
 
-const ProjectCarouselItem = ({ project }: ProjectCarouselItemProps) => (
+const ProjectCarouselItem = ({ project, isActive, priority }: ProjectCarouselItemProps) => (
   <div className="group carousel-item">
     <div className="carousel-border">
       <div className="carousel-border-inner" />
     </div>
+
+    {/* Click blocker/scroll trigger overlay for inactive slides */}
+    {!isActive && (
+      <div className="absolute inset-0 bg-black/5 dark:bg-transparent z-30 cursor-pointer rounded-2xl" />
+    )}
 
     <div className="carousel-image-container">
       <Image
@@ -88,6 +95,8 @@ const ProjectCarouselItem = ({ project }: ProjectCarouselItemProps) => (
         width={1200}
         height={800}
         className="carousel-image"
+        priority={priority}
+        sizes="(max-width: 768px) 90vw, (max-width: 1200px) 75vw, 1024px"
       />
       <div className="carousel-overlay" />
 
@@ -136,6 +145,102 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
   }, [api]);
 
   useEffect(() => {
+    if (!api) return;
+
+    const onScroll = () => {
+      const slides = api.slideNodes();
+      const viewport = api.rootNode();
+      if (!viewport) return;
+
+      const viewportRect = viewport.getBoundingClientRect();
+      const viewportCenter = viewportRect.left + viewportRect.width / 2;
+
+      // Determine responsive maxShift
+      const width = window.innerWidth;
+      let maxShift = 40;
+      if (width < 768) {
+        maxShift = 10;
+      } else if (width < 1024) {
+        maxShift = 20;
+      }
+
+      // Step 1: Read all layout properties in a single batch (prevents layout thrashing)
+      const updates = slides.map((slide) => {
+        const anchor = slide.querySelector(".carousel-anchor") as HTMLElement;
+        const inner = slide.querySelector(".carousel-item-inner-wrapper") as HTMLElement;
+        if (!anchor || !inner) return null;
+
+        const anchorRect = anchor.getBoundingClientRect();
+        return {
+          slide,
+          inner,
+          anchorRect,
+        };
+      });
+
+      // Step 2: Write all style updates in a single batch (prevents layout thrashing)
+      updates.forEach((update) => {
+        if (!update) return;
+        const { slide, inner, anchorRect } = update;
+        
+        const anchorCenter = anchorRect.left + anchorRect.width / 2;
+        const slideWidth = anchorRect.width;
+
+        if (!slideWidth) return;
+
+        const distance = anchorCenter - viewportCenter;
+        const normalizedDistance = distance / slideWidth;
+        const absDist = Math.abs(normalizedDistance);
+
+        // 1. Scale: Continuous from 1.0 (active center) to 0.88 (adjacent/next)
+        const scale = 1.0 - Math.min(1.0, absDist) * (1.0 - 0.88);
+
+        // 2. Shift/Translation: Bring adjacent slides closer to center symmetrically
+        const direction = Math.sign(normalizedDistance);
+        const shift = -direction * Math.min(1.0, absDist) * maxShift;
+
+        // 3. Opacity: 1.0 at active center, 0.35 at next/prev, fade to 0.0 further away
+        let opacity = 1.0;
+        if (absDist <= 1.0) {
+          opacity = 1.0 - absDist * (1.0 - 0.35);
+        } else {
+          const t = Math.min(1.0, (absDist - 1.0) / 0.5);
+          opacity = 0.35 * (1.0 - t);
+        }
+
+        // 4. z-Index: Ensure active slide stays on top
+        let zIndex = 1;
+        if (absDist < 0.5) {
+          zIndex = 10;
+        } else if (absDist < 1.5) {
+          zIndex = 5;
+        } else {
+          zIndex = 0;
+        }
+
+        // Apply styles directly (transition: none is used in CSS for drag responsiveness)
+        inner.style.transform = `translateX(${shift}px) scale(${scale})`;
+        inner.style.opacity = opacity.toString();
+        slide.style.zIndex = zIndex.toString();
+      });
+    };
+
+    // Run once on load/render
+    onScroll();
+
+    // Listen to Embla movements
+    api.on("scroll", onScroll);
+    api.on("reInit", onScroll);
+    window.addEventListener("resize", onScroll);
+
+    return () => {
+      api.off("scroll", onScroll);
+      api.off("reInit", onScroll);
+      window.removeEventListener("resize", onScroll);
+    };
+  }, [api]);
+
+  useEffect(() => {
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
@@ -167,12 +272,39 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
           align: "center",
         }}
       >
-        <CarouselContent>
-          {projects.map((project, index) => (
-            <CarouselItem key={index}>
-              <ProjectCarouselItem project={project} />
-            </CarouselItem>
-          ))}
+        <CarouselContent className="ml-0 gap-5">
+          {projects.map((project, index) => {
+            const len = projects.length;
+            const diff = (index - current + len) % len;
+            const isActive = index === current;
+            const isNext = diff === 1;
+            const isPrev = diff === len - 1;
+
+            let slideClass = "carousel-slide-inactive";
+            if (isActive) slideClass = "carousel-slide-active";
+            else if (isNext) slideClass = "carousel-slide-next";
+            else if (isPrev) slideClass = "carousel-slide-prev";
+
+            return (
+              <CarouselItem
+                key={index}
+                className={`basis-[85%] md:basis-[75%] lg:basis-[73%] select-none pl-0 relative ${slideClass}`}
+                onClick={() => {
+                  if (!isActive && api) {
+                    api.scrollTo(index);
+                  }
+                }}
+              >
+                {/* Invisible layout anchor to measure position without being affected by transforms */}
+                <div className="carousel-anchor absolute inset-0 pointer-events-none" />
+
+                {/* Inner wrapper for continuous scroll-based scale/transform animations */}
+                <div className="carousel-item-inner-wrapper w-full h-full">
+                  <ProjectCarouselItem project={project} isActive={isActive} priority={index === 0} />
+                </div>
+              </CarouselItem>
+            );
+          })}
         </CarouselContent>
         {/* Navigation buttons: placed inside the carousel box */}
         <div className="hidden md:block">
@@ -212,6 +344,7 @@ const ProjectCard = ({ project }: { project: Project }) => (
         width={400}
         height={250}
         className="project-card-image"
+        sizes="(max-width: 768px) 90vw, 400px"
       />
       <div className="project-card-image-overlay" />
     </div>
@@ -278,25 +411,6 @@ const ProjectsGrid = ({ projects }: { projects: Project[] }) => (
 );
 
 // ============================================================================
-// Image Preloader
-// ============================================================================
-
-const ImagePreloader = ({ projects }: { projects: Project[] }) => (
-  <div className="hidden">
-    {projects.map((project) => (
-      <Image
-        key={project.title}
-        src={project.image}
-        alt={project.title}
-        width={1200}
-        height={800}
-        priority
-      />
-    ))}
-  </div>
-);
-
-// ============================================================================
 // Main Component
 // ============================================================================
 
@@ -304,7 +418,6 @@ export const ProjectsComponent = () => (
   <FadeInSection>
     <section id="projects" className="mb-16">
       <SectionHeader label="Portfolio" title="Featured Projects" />
-      <ImagePreloader projects={spotlightProjects} />
       <ProjectsCarousel projects={spotlightProjects} />
       <ProjectsGrid projects={otherProjects.slice(0, 3)} />
       {otherProjects.length > 3 && (
