@@ -1,4 +1,3 @@
-import { useState } from "react";
 import {
   Accordion,
   AccordionContent,
@@ -10,23 +9,11 @@ import Link from "next/link";
 import { ExternalLink, ArrowRight, Award } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
-import { Button } from "@/components/ui/button";
 import { CERTIFICATIONS } from "@/lib/certificationsData";
 import "@/styles/components/CoursesAndCertifications.css";
 
 export function CoursesAndCertifications() {
-  const [visibleCount, setVisibleCount] = useState(3);
-  const displayedCertifications = CERTIFICATIONS.slice(0, visibleCount);
-
-  const isAllShown = visibleCount >= CERTIFICATIONS.length;
-
-  const handleToggle = () => {
-    if (isAllShown) {
-      setVisibleCount(3);
-    } else {
-      setVisibleCount((prev) => Math.min(prev + 3, CERTIFICATIONS.length));
-    }
-  };
+  const displayedCertifications = CERTIFICATIONS.slice(0, 5);
 
   return (
     <div className="certifications-container">
@@ -83,11 +70,11 @@ export function CoursesAndCertifications() {
 
                     {cert.image && (
                       <div className="certifications-image-container">
-                        <Image 
-                          src={cert.image} 
-                          alt={cert.title} 
-                          width={1200} 
-                          height={800} 
+                        <Image
+                          src={cert.image}
+                          alt={cert.title}
+                          width={1200}
+                          height={800}
                           className="certifications-image"
                         />
                       </div>
@@ -110,32 +97,10 @@ export function CoursesAndCertifications() {
           ))}
         </Accordion>
 
-        {CERTIFICATIONS.length > 3 && (
+        {CERTIFICATIONS.length > 5 && (
           <FadeInSection>
-            {/* Show More / Show Less Button */}
-            <div className="flex justify-center mt-8">
-              <Button
-                onClick={handleToggle}
-                variant="outline"
-                size="sm"
-                className="group certifications-view-all-link px-5 h-9 text-xs font-semibold"
-              >
-                {isAllShown ? (
-                  <>
-                    Show Less
-                    <ArrowRight className="certifications-view-all-icon h-3.5 w-3.5 -rotate-90 group-hover:-translate-y-0.5 group-hover:translate-x-0 transition-transform duration-300" />
-                  </>
-                ) : (
-                  <>
-                    Show More
-                    <ArrowRight className="certifications-view-all-icon h-3.5 w-3.5 rotate-90 group-hover:translate-y-0.5 group-hover:translate-x-0 transition-transform duration-300" />
-                  </>
-                )}
-              </Button>
-            </div>
-
             {/* View All link container */}
-            <div className="flex justify-center mt-4">
+            <div className="flex justify-center mt-8">
               <Link
                 href="/certificates"
                 className="group certifications-view-all-link"
