@@ -26,7 +26,7 @@ export const spotlightProjects: Project[] = [
       "Playwright",
     ],
     image: "/images/projects/nawy-property-recommender.png",
-    demoLink: "https://nawy.netlify.app/",
+    demoLink: "https://nawyai.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/nawy",
   },
   {
@@ -140,7 +140,7 @@ export const otherProjects: Project[] = [
       "Playwright",
     ],
     image: "/images/projects/nawy-property-recommender.png",
-    demoLink: "https://nawy.netlify.app/",
+    demoLink: "https://nawyai.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/nawy",
   },
   {
