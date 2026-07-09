@@ -27,12 +27,12 @@ export const educations: Education[] = [
     id: "edu-1",
     institution: "University of Sadat City",
     degree: "Bachelor's in Computer Science and AI",
-    period: "Sep 2022 - Jun 2026",
+    period: "Sep 2022 - Jul 2026",
     link: "https://usc.edu.eg/",
     logo: "/images/company_logos/usc-logo.jpeg",
     description: [
       "Faculty of Computers & Artificial Intelligence.",
-      "CGPA: 3.42/4.0 (Excellent).",
+      "CGPA: 3.43/4.0 (Excellent).",
     ],
     courses: [
       "Artificial Intelligence",
