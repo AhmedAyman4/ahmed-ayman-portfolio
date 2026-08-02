@@ -3,22 +3,245 @@
 /* Main contact container */
 .contact-section {
   text-align: center;
+  max-width: 60rem; /* max-w-5xl */
+  margin-left: auto;
+  margin-right: auto;
+  padding-left: 1rem;
+  padding-right: 1rem;
 }
 
 /* Contact description text */
 .contact-description {
   color: rgb(75, 85, 99);
-  margin-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+  font-size: 0.95rem;
+  line-height: 1.6;
 }
 
 .dark .contact-description {
   color: rgb(209, 213, 219);
 }
 
+/* Contact Action Buttons Container */
+.contact-actions-bar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+  margin-bottom: 1.25rem;
+}
+
+/* Main Combined CTA Button */
+.contact-main-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1.25rem;
+  border-radius: 9999px; /* rounded-full */
+  font-size: 0.84rem;
+  font-weight: 600;
+  color: #ffffff;
+  background: #000000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #000000;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+/* Compact Booking Call Button */
+.booking-call-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+  padding: 0.45rem 1rem;
+  border-radius: 9999px; /* rounded-full */
+  font-size: 0.8125rem; /* text-[13px] */
+  font-weight: 600;
+  color: #ffffff;
+  background: #000000;
+  box-shadow: 0 3px 10px rgba(0, 0, 0, 0.2);
+  border: 1px solid #000000;
+  cursor: pointer;
+  text-decoration: none;
+  transition: all 0.3s ease;
+}
+
+.contact-main-cta-btn:hover,
+.booking-call-btn:hover {
+  transform: translateY(-2px);
+  background: #27272a;
+  border-color: #27272a;
+  box-shadow: 0 6px 16px rgba(0, 0, 0, 0.3);
+  opacity: 0.95;
+}
+
+.dark .contact-main-cta-btn,
+.dark .booking-call-btn {
+  background: #ffffff;
+  color: #000000;
+  border: 1px solid #ffffff;
+  box-shadow: 0 3px 10px rgba(255, 255, 255, 0.15);
+}
+
+.dark .contact-main-cta-btn:hover,
+.dark .booking-call-btn:hover {
+  background: #e4e4e7;
+  border-color: #e4e4e7;
+  box-shadow: 0 6px 16px rgba(255, 255, 255, 0.25);
+}
+
+/* Contact Form styles inside page */
+.contact-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.contact-form-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1rem;
+}
+
+@media (min-width: 640px) {
+  .contact-form-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+
+.contact-field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.375rem;
+  text-align: left;
+}
+
+.contact-label {
+  font-size: 0.8125rem;
+  font-weight: 600;
+  color: #000000;
+}
+
+.dark .contact-label {
+  color: #ffffff;
+}
+
+.contact-input {
+  width: 100%;
+  padding: 0.65rem 0.875rem;
+  font-size: 0.875rem;
+  border-radius: 0.5rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  background-color: #ffffff;
+  color: #000000;
+  outline: none;
+  transition: all 0.2s ease;
+}
+
+.dark .contact-input {
+  border-color: #27272a;
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.contact-input:focus {
+  border-color: #000000;
+  box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.15);
+}
+
+.dark .contact-input:focus {
+  border-color: #ffffff;
+  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.25);
+}
+
+.contact-textarea {
+  resize: vertical;
+  min-height: 5.5rem;
+}
+
+.contact-submit-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  padding: 0.65rem 1.25rem;
+  border-radius: 0.5rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: #ffffff;
+  background-color: #000000;
+  border: 1px solid #000000;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  width: 100%;
+  margin-top: 0.25rem;
+}
+
+.contact-submit-btn:hover:not(:disabled) {
+  background-color: #18181b;
+  border-color: #27272a;
+  transform: translateY(-1px);
+}
+
+.dark .contact-submit-btn {
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid #27272a;
+}
+
+.dark .contact-submit-btn:hover:not(:disabled) {
+  background-color: #18181b;
+  border-color: #3f3f46;
+}
+
+.contact-submit-btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+.contact-alert {
+  display: flex;
+  align-items: center;
+  gap: 0.625rem;
+  padding: 0.75rem 1rem;
+  border-radius: 0.5rem;
+  font-size: 0.84rem;
+  font-weight: 500;
+}
+
+.contact-alert.success {
+  background-color: rgba(16, 185, 129, 0.1);
+  color: #059669;
+  border: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.dark .contact-alert.success {
+  background-color: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.contact-alert.error {
+  background-color: rgba(239, 68, 68, 0.1);
+  color: #dc2626;
+  border: 1px solid rgba(239, 68, 68, 0.2);
+}
+
+.dark .contact-alert.error {
+  background-color: rgba(239, 68, 68, 0.15);
+  color: #f87171;
+  border-color: rgba(239, 68, 68, 0.3);
+}
+
 /* Email display */
 .contact-email {
   color: rgb(0, 0, 0);
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
+  font-weight: 500;
 }
 
 .dark .contact-email {
@@ -40,7 +263,7 @@
 }
 
 .contact-icon-link:hover {
-  color: #4de9d2;
+  color: #000000;
 }
 
 .dark .contact-icon-link {
@@ -48,7 +271,7 @@
 }
 
 .dark .contact-icon-link:hover {
-  color: #4de9d2;
+  color: #ffffff;
 }
 
 /* Contact icon */
@@ -111,6 +334,32 @@
 
 /* Responsive adjustments */
 @media (max-width: 640px) {
+  .contact-actions-bar {
+    width: 100%;
+  }
+
+  .contact-main-cta-btn {
+    width: 100%;
+  }
+
+  .booking-call-btn {
+    width: 100%;
+    justify-content: center;
+    padding: 0.6rem 1rem;
+    font-size: 0.85rem;
+  }
+
+  .contact-input,
+  .contact-textarea {
+    font-size: 16px; /* Prevents auto-zoom on iOS Safari */
+    padding: 0.7rem 0.875rem;
+  }
+
+  .contact-submit-btn {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
   .contact-icons {
     gap: 0.75rem;
   }

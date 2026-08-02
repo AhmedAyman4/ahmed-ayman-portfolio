@@ -26,7 +26,7 @@ export const educations: Education[] = [
   {
     id: "edu-1",
     institution: "University of Sadat City",
-    degree: "Bachelor's in Computer Science and AI",
+    degree: "B.Sc. in Computer Science & AI",
     period: "Sep 2022 - Jul 2026",
     link: "https://usc.edu.eg/",
     logo: "/images/company_logos/usc-logo.jpeg",

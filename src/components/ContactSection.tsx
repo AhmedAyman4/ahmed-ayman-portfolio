@@ -1,7 +1,9 @@
 "use client";
 
+import React from "react";
+import Link from "next/link";
 // Icon imports
-import { Mail, Linkedin } from "lucide-react";
+import { Mail, Linkedin, CalendarDays } from "lucide-react";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { FaInstagram } from "react-icons/fa";
 import { AiFillSafetyCertificate } from "react-icons/ai";
@@ -12,8 +14,6 @@ import FadeInSection from "@/components/FadeInSection";
 
 // Styles
 import "@/styles/components/ContactSection.css";
-
-import React from "react";
 
 // Component definition
 export function ContactSection() {
@@ -52,12 +52,22 @@ export function ContactSection() {
       {/* Section Heading */}
       <SectionHeader label="Get In Touch" title="Contact" className="mb-4" />
 
+      {/* Primary Combined CTA Button linking to dedicated /contact page */}
+      <FadeInSection>
+        <div className="contact-actions-bar">
+          <Link href="/contact" className="contact-main-cta-btn">
+            <CalendarDays className="w-4 h-4" />
+            <span>Book a Call or Send Message</span>
+          </Link>
+        </div>
+      </FadeInSection>
+
       {/* Description */}
       <FadeInSection>
         <p className="contact-description">
-          I'm eager to join a data-driven team where I can apply my passion for
-          AI, machine learning, and problem-solving to create meaningful impact.
-          <br /> Got a project in mind or looking to collaborate? Let's connect!
+          I'm eager to join a data-driven team where I can apply my passion for AI, machine learning, and problem-solving to create meaningful impact.
+          <br />
+          Got a project in mind or looking to collaborate? Let's connect!
         </p>
       </FadeInSection>
 

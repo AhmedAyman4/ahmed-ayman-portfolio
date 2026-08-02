@@ -23,7 +23,13 @@ A modern, responsive portfolio built with Next.js and Tailwind CSS.
   <img src="https://img.shields.io/badge/Framer_Motion-0055FF?style=flat&logo=framer&logoColor=white" alt="Framer Motion" />
   <img src="https://img.shields.io/badge/GSAP-88CE02?style=flat&logo=greensock&logoColor=white" alt="GSAP" />
   <img src="https://img.shields.io/badge/shadcn/ui-000000?style=flat&logo=shadcnui&logoColor=white" alt="shadcn/ui" />
+  <img src="https://img.shields.io/badge/Resend-000000?style=flat&logo=resend&logoColor=white" alt="Resend" />
+  <img src="https://img.shields.io/badge/Cal.com-000000?style=flat&logo=cal.com&logoColor=white" alt="Cal.com" />
 </p>
+
+### Services & Integrations
+- **Email Service**: [Resend](https://resend.com/) — Used for contact form email delivery.
+- **Calendar & Scheduling**: [Cal.com](https://cal.com/) — Used for meeting booking and scheduling integration.
 
 ## Project structure
 

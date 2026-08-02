@@ -240,22 +240,20 @@ export function ExperienceTimeline() {
                               </li>
                             </FadeInSection>
                           ))}
-                        </ul>
-
-                        {edu.courses && (
-                          <div className="mt-6">
-                            <h4 className="experience-courses-title">
-                              Relevant Courses
-                            </h4>
-                            <div className="experience-courses-list">
-                              {edu.courses.map((course) => (
-                                <span key={course} className="experience-course-badge">
-                                  {course}
+                          {edu.courses && edu.courses.length > 0 && (
+                            <FadeInSection key={`item-${edu.id}-courses`}>
+                              <li className="experience-description-item">
+                                <div className="experience-description-dot"></div>
+                                <span className="experience-description-text">
+                                  <span className="font-semibold text-gray-900 dark:text-gray-100">
+                                    Relevant Courses:
+                                  </span>{" "}
+                                  {edu.courses.join(", ")}
                                 </span>
-                              ))}
-                            </div>
-                          </div>
-                        )}
+                              </li>
+                            </FadeInSection>
+                          )}
+                        </ul>
                       </TabsContent>
                     ))}
                   </FadeInSection>
