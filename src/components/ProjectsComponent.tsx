@@ -102,26 +102,23 @@ const ProjectCarouselItem = ({ project, isActive, priority }: ProjectCarouselIte
 
       <div className="carousel-content">
         <h3 className="carousel-title">{project.title}</h3>
-        <div className="carousel-description-wrapper">
-          <div className="carousel-description-bg" />
-          <p className="carousel-description">{project.description}</p>
-        </div>
-        <TechBadges tech={project.tech} />
-        <div className="carousel-links">
-          <ProjectLink
-            href={project.demoLink}
-            className="carousel-link carousel-demo-link"
-          >
-            <span className="carousel-link-text">Live Demo</span>
-            <div className="carousel-link-bg" />
-          </ProjectLink>
-          <ProjectLink
-            href={project.repoLink}
-            className="carousel-link carousel-repo-link"
-          >
-            <span className="carousel-link-text">Code Repo</span>
-            <div className="carousel-link-bg" />
-          </ProjectLink>
+        <p className="carousel-description">{project.description}</p>
+        <div className="carousel-footer">
+          <TechBadges tech={project.tech} />
+          <div className="carousel-links">
+            <ProjectLink
+              href={project.demoLink}
+              className="carousel-link carousel-demo-link"
+            >
+              Live Demo
+            </ProjectLink>
+            <ProjectLink
+              href={project.repoLink}
+              className="carousel-link carousel-repo-link"
+            >
+              Code Repo
+            </ProjectLink>
+          </div>
         </div>
       </div>
     </div>
@@ -155,13 +152,13 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
       const viewportRect = viewport.getBoundingClientRect();
       const viewportCenter = viewportRect.left + viewportRect.width / 2;
 
-      // Determine responsive maxShift
+      // Determine responsive maxShift to keep cards close together
       const width = window.innerWidth;
-      let maxShift = 40;
+      let maxShift = 70;
       if (width < 768) {
-        maxShift = 10;
+        maxShift = 25;
       } else if (width < 1024) {
-        maxShift = 20;
+        maxShift = 45;
       }
 
       // Step 1: Read all layout properties in a single batch (prevents layout thrashing)
@@ -225,18 +222,28 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
       });
     };
 
+    let rafId: number | null = null;
+    const handleScroll = () => {
+      if (rafId !== null) return;
+      rafId = requestAnimationFrame(() => {
+        onScroll();
+        rafId = null;
+      });
+    };
+
     // Run once on load/render
     onScroll();
 
     // Listen to Embla movements
-    api.on("scroll", onScroll);
+    api.on("scroll", handleScroll);
     api.on("reInit", onScroll);
-    window.addEventListener("resize", onScroll);
+    window.addEventListener("resize", handleScroll);
 
     return () => {
-      api.off("scroll", onScroll);
+      if (rafId !== null) cancelAnimationFrame(rafId);
+      api.off("scroll", handleScroll);
       api.off("reInit", onScroll);
-      window.removeEventListener("resize", onScroll);
+      window.removeEventListener("resize", handleScroll);
     };
   }, [api]);
 
@@ -256,14 +263,13 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
       const isShiftScroll = shiftKey && Math.abs(deltaY) > 0;
 
       if (isHorizontal || isShiftScroll) {
-        // Prevent default browser horizontal page swipe behaviors (like swipe to go back)
+        // Prevent default browser horizontal page swipe behaviors
         e.preventDefault();
 
         if (isScrolling) return;
 
         const delta = isHorizontal ? deltaX : deltaY;
-        // Increased threshold to prevent accidental triggers and make the scroll feel more deliberate
-        if (Math.abs(delta) > 15) {
+        if (Math.abs(delta) > 10) {
           isScrolling = true;
           if (delta > 0) {
             api.scrollNext();
@@ -274,7 +280,7 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
           clearTimeout(scrollTimeout);
           scrollTimeout = setTimeout(() => {
             isScrolling = false;
-          }, 600); // Increased lock time to slow down rapid successive swiping
+          }, 250);
         }
       }
     };
@@ -317,10 +323,10 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
         opts={{
           loop: true,
           align: "center",
-          duration: 35, // Slower transition animation for a smoother feel (default: 25)
+          duration: 20, // Fast, responsive snap duration
         }}
       >
-        <CarouselContent className="ml-0 gap-5">
+        <CarouselContent className="ml-0 gap-2">
           {projects.map((project, index) => {
             const len = projects.length;
             const diff = (index - current + len) % len;
