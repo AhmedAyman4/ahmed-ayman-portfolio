@@ -33,8 +33,8 @@ export default function ContactPage() {
         ]}
       />
 
-      <main className="main-content pt-2 md:pt-4 pb-12 mt-1 md:mt-2">
-        <div className="w-full relative max-w-3xl mx-auto px-3 sm:px-4">
+      <main className="main-content pt-2 md:pt-4 pb-12 mt-1 md:mt-2 !px-1.5 sm:!px-4">
+        <div className="w-full relative max-w-3xl mx-auto px-1 sm:px-4">
           {/* Header */}
           <FadeInSection>
             <div className="flex flex-col items-center justify-center gap-2 text-center mb-8 sm:mb-10">
@@ -67,7 +67,7 @@ export default function ContactPage() {
 
           {/* Unified Contact Card */}
           <FadeInSection>
-            <div className="bg-white dark:bg-black border border-black/10 dark:border-zinc-800 rounded-2xl sm:rounded-3xl p-4 sm:p-6 md:p-8 shadow-2xl w-full">
+            <div className="bg-white dark:bg-black border border-black/10 dark:border-zinc-800 rounded-2xl sm:rounded-3xl p-3.5 sm:p-6 md:p-8 shadow-2xl w-full">
               {/* Header with Email Title + Schedule a Call Button */}
               <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-3 sm:gap-4 mb-5 pb-5 border-b border-black/10 dark:border-zinc-800">
                 <div className="flex items-center gap-2.5">
