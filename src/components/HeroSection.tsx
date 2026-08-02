@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useState, useEffect } from "react";
 import { Patrick_Hand } from "next/font/google";
 import Image, { StaticImageData } from "next/image";
@@ -80,10 +81,10 @@ export function HeroSection({ profileImage, introComplete = false }: HeroSection
         </div>
 
         <div className="mt-4 sm:mt-6">
-          <a href="mailto:ahmedalhofy42@gmail.com" className="contact-button">
+          <Link href="/contact" className="contact-button">
             <MdEmail className="contact-button-icon" />
             Say hi!
-          </a>
+          </Link>
         </div>
       </FadeInSection>
     </section>
