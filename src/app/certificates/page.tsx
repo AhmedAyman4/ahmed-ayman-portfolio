@@ -30,10 +30,19 @@ export default function CertificatesPage() {
         ]}
       />
       
-      <main className="main-content py-20 mt-10">
+      <main className="main-content pt-2 md:pt-4 pb-12 mt-1 md:mt-2">
         <div className="w-full relative">
           <FadeInSection>
-            <div className="flex flex-col items-center justify-center gap-4 mb-12">
+            <div className="flex flex-col items-center justify-center gap-3 mb-6 sm:mb-8">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-xl">
+                <Image
+                  src="/images/avatars/1.avif"
+                  alt="Ahmed Ayman"
+                  fill
+                  className="object-cover"
+                  priority
+                />
+              </div>
               <SectionHeader
                 label="Achievements & Credentials"
                 title="All Certificates"

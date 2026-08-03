@@ -1,6 +1,7 @@
 "use client";
 
 import dynamic from "next/dynamic";
+import TabTitleSwitcher from "@/components/TabTitleSwitcher";
 
 // Import BackgroundEffects with no SSR to prevent hydration issues
 const BackgroundEffects = dynamic(
@@ -11,5 +12,10 @@ const BackgroundEffects = dynamic(
 );
 
 export default function ClientBackgroundWrapper() {
-  return <BackgroundEffects />;
+  return (
+    <>
+      <TabTitleSwitcher />
+      <BackgroundEffects />
+    </>
+  );
 }
