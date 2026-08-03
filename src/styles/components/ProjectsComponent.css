@@ -145,23 +145,51 @@
 }
 
 .carousel-footer {
-  @apply flex flex-wrap items-center justify-between w-full gap-2.5 mt-auto;
+  @apply flex items-center justify-between w-full gap-3 mt-auto flex-nowrap;
 }
 
-.carousel-tech-container {
-  @apply flex items-center gap-1.5 flex-wrap;
+.carousel-tech-marquee-wrapper {
+  @apply relative max-w-[45%] sm:max-w-[50%] md:max-w-[48%] min-w-0 overflow-hidden py-1;
+  mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+  -webkit-mask-image: linear-gradient(
+    to right,
+    transparent 0%,
+    black 8%,
+    black 92%,
+    transparent 100%
+  );
+}
+
+.carousel-tech-marquee-content {
+  @apply flex gap-2 w-max items-center;
+  animation: carousel-scroll-left 18s linear infinite;
+}
+
+.carousel-tech-marquee-content:hover {
+  animation-play-state: paused;
 }
 
 .carousel-tech-badge {
-  @apply px-2.5 py-1 text-[10px] md:text-xs font-medium bg-white/10 backdrop-blur-md text-white/90 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300;
+  @apply px-2.5 py-1 text-[10px] md:text-xs font-medium bg-white/10 backdrop-blur-md text-white/90 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300 whitespace-nowrap flex-shrink-0;
 }
 
-.carousel-tech-more {
-  @apply px-2 py-1 text-[10px] md:text-xs font-medium bg-white/10 backdrop-blur-md text-white/80 rounded-full border border-white/20 hover:bg-white/20 transition-all duration-300;
+@keyframes carousel-scroll-left {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-25%);
+  }
 }
 
 .carousel-links {
-  @apply flex items-center gap-2 md:gap-2.5 ml-auto;
+  @apply flex items-center gap-2 md:gap-2.5 ml-auto flex-shrink-0 z-10;
 }
 
 .carousel-link {

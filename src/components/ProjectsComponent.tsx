@@ -58,18 +58,21 @@ const ProjectLink = ({ href, children, className }: ProjectLinkProps) =>
 // Carousel Components
 // ============================================================================
 
-const TechBadges = ({ tech }: { tech: string[] }) => (
-  <div className="carousel-tech-container">
-    {tech.slice(0, 3).map((t, i) => (
-      <div key={t} className={`carousel-tech-badge tech-badge-${i}`}>
-        {t}
+const TechBadges = ({ tech }: { tech: string[] }) => {
+  const duplicatedTech = [...tech, ...tech, ...tech, ...tech];
+
+  return (
+    <div className="carousel-tech-marquee-wrapper">
+      <div className="carousel-tech-marquee-content">
+        {duplicatedTech.map((t, i) => (
+          <div key={`${t}-${i}`} className="carousel-tech-badge">
+            {t}
+          </div>
+        ))}
       </div>
-    ))}
-    {tech.length > 3 && (
-      <div className="carousel-tech-more">+{tech.length - 3}</div>
-    )}
-  </div>
-);
+    </div>
+  );
+};
 
 interface ProjectCarouselItemProps {
   project: Project;

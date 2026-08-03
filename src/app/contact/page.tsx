@@ -37,8 +37,8 @@ export default function ContactPage() {
         <div className="w-full relative max-w-3xl mx-auto px-1 sm:px-4">
           {/* Header */}
           <FadeInSection>
-            <div className="flex flex-col items-center justify-center gap-2 text-center mb-8 sm:mb-10">
-              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-xl mb-1">
+            <div className="flex flex-col items-center justify-center gap-1 text-center mb-6 sm:mb-8">
+              <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-xl">
                 <Image
                   src="/images/avatars/1.avif"
                   alt="Ahmed Ayman"
@@ -50,14 +50,14 @@ export default function ContactPage() {
               <SectionHeader
                 label="Let's Connect"
                 title="Let's have a chat!"
-                className="!mb-0"
+                className="!mb-0 [&>div:first-child]:!mb-1.5"
               />
-              <p className="mt-1 text-xs sm:text-sm text-gray-500 dark:text-gray-400 max-w-md">
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 max-w-md">
                 Enter your details below and I'll get back to you as soon as possible.
               </p>
               <Link
                 href="/"
-                className="group inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 mt-2 rounded-full bg-black text-white border border-black dark:bg-black dark:text-white dark:border-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-900 text-xs sm:text-sm font-medium transition-all duration-300 w-fit shadow-md"
+                className="group inline-flex items-center gap-2 px-3.5 py-1.5 sm:px-4 sm:py-2 mt-1.5 rounded-full bg-black text-white border border-black dark:bg-black dark:text-white dark:border-zinc-800 hover:bg-zinc-800 dark:hover:bg-zinc-900 text-xs sm:text-sm font-medium transition-all duration-300 w-fit shadow-md"
               >
                 <ArrowLeft className="h-3.5 w-3.5 sm:h-4 sm:w-4 group-hover:-translate-x-1 transition-transform" />
                 Back to Home
