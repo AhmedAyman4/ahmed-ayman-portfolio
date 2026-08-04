@@ -66,9 +66,11 @@ export function ContactForm({ onSuccess }: ContactFormProps) {
   return (
     <form onSubmit={handleSubmit} className="contact-form">
       {status === "success" && (
-        <div className="contact-alert success">
-          <CheckCircle2 className="w-5 h-5 flex-shrink-0" />
-          <span>Thank you! Your message has been sent successfully.</span>
+        <div className="contact-alert success whitespace-nowrap overflow-hidden">
+          <CheckCircle2 className="w-4 h-4 sm:w-5 sm:h-5 flex-shrink-0" />
+          <span className="whitespace-nowrap text-[10.5px] min-[360px]:text-[11.5px] sm:text-xs md:text-sm tracking-tight">
+            Thank you! Your message has been sent successfully.
+          </span>
         </div>
       )}
 

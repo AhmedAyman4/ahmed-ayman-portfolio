@@ -33,7 +33,7 @@ export default function CertificatesPage() {
       <main className="main-content pt-2 md:pt-4 pb-12 mt-1 md:mt-2">
         <div className="w-full relative">
           <FadeInSection>
-            <div className="flex flex-col items-center justify-center gap-3 mb-6 sm:mb-8">
+            <div className="flex flex-col items-center justify-center gap-1 text-center mb-6 sm:mb-8">
               <div className="relative w-20 h-20 sm:w-24 sm:h-24 rounded-full overflow-hidden shadow-xl">
                 <Image
                   src="/images/avatars/1.avif"
@@ -50,7 +50,7 @@ export default function CertificatesPage() {
               />
               <Link
                 href="/"
-                className="group inline-flex items-center gap-2 px-4 py-2 rounded-full bg-gray-100 dark:bg-gray-900/70 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-normal hover:bg-gray-200 dark:hover:bg-gray-800 transition-all duration-300 w-fit"
+                className="group inline-flex items-center gap-2 px-4 py-2 -mt-2.5 rounded-full bg-gray-100 dark:bg-gray-900/70 border border-gray-200 dark:border-white/10 text-gray-700 dark:text-gray-300 text-sm font-normal hover:bg-gray-200 dark:hover:bg-gray-800 transition-all duration-300 w-fit"
               >
                 <ArrowLeft className="h-4 w-4 group-hover:-translate-x-1 transition-transform" />
                 Back to Home
