@@ -7,6 +7,8 @@ import {
   FolderGit2,
   FolderUp,
   ArrowRight,
+  Volume2,
+  VolumeX,
 } from "lucide-react";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button } from "@/components/ui/button";
@@ -78,9 +80,17 @@ interface ProjectCarouselItemProps {
   project: Project;
   isActive: boolean;
   priority?: boolean;
+  isPlayingAudio?: boolean;
+  onToggleAudio?: () => void;
 }
 
-const ProjectCarouselItem = ({ project, isActive, priority }: ProjectCarouselItemProps) => (
+const ProjectCarouselItem = ({
+  project,
+  isActive,
+  priority,
+  isPlayingAudio,
+  onToggleAudio,
+}: ProjectCarouselItemProps) => (
   <div className="group carousel-item">
     <div className="carousel-border">
       <div className="carousel-border-inner" />
@@ -109,6 +119,32 @@ const ProjectCarouselItem = ({ project, isActive, priority }: ProjectCarouselIte
         <div className="carousel-footer">
           <TechBadges tech={project.tech} />
           <div className="carousel-links">
+            {project.audioUrl && (
+              <button
+                type="button"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onToggleAudio?.();
+                }}
+                className="carousel-link carousel-audio-link"
+                title={
+                  isPlayingAudio
+                    ? "Pause Audio Overview"
+                    : "Listen to Audio Overview"
+                }
+                aria-label={
+                  isPlayingAudio
+                    ? "Pause Audio Overview"
+                    : "Listen to Audio Overview"
+                }
+              >
+                {isPlayingAudio ? (
+                  <VolumeX className="w-4 h-4 text-emerald-400" />
+                ) : (
+                  <Volume2 className="w-4 h-4 text-emerald-400 group-hover:text-emerald-300" />
+                )}
+              </button>
+            )}
             <ProjectLink
               href={project.demoLink}
               className="carousel-link carousel-demo-link"
@@ -128,11 +164,69 @@ const ProjectCarouselItem = ({ project, isActive, priority }: ProjectCarouselIte
   </div>
 );
 
+const BACKGROUND_MUSIC_PATH = "/audios/Olexandr Ignatov - Echoes.mp3";
+
 const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
   const plugin = useRef(Autoplay({ delay: 15000, stopOnInteraction: true, playOnInit: false }));
   const containerRef = useRef<HTMLDivElement>(null);
   const [api, setApi] = useState<CarouselApi>();
   const [current, setCurrent] = useState(0);
+
+  const [playingAudioUrl, setPlayingAudioUrl] = useState<string | null>(null);
+  const audioRef = useRef<HTMLAudioElement | null>(null);
+  const bgMusicRef = useRef<HTMLAudioElement | null>(null);
+
+  const stopAllAudio = useCallback(() => {
+    if (audioRef.current) {
+      audioRef.current.pause();
+      audioRef.current = null;
+    }
+    if (bgMusicRef.current) {
+      bgMusicRef.current.pause();
+      bgMusicRef.current.currentTime = 0;
+      bgMusicRef.current = null;
+    }
+    setPlayingAudioUrl(null);
+  }, []);
+
+  const toggleAudio = useCallback(
+    (url: string) => {
+      if (playingAudioUrl === url) {
+        stopAllAudio();
+      } else {
+        stopAllAudio();
+
+        // 1. Voice overview audio track
+        const newVoiceAudio = new Audio(url);
+        newVoiceAudio.volume = 0.6;
+        audioRef.current = newVoiceAudio;
+
+        // 2. Background music audio track (played softly in the background)
+        const newBgMusic = new Audio(BACKGROUND_MUSIC_PATH);
+        newBgMusic.volume = 0.18;
+        newBgMusic.loop = true;
+        bgMusicRef.current = newBgMusic;
+
+        setPlayingAudioUrl(url);
+
+        Promise.all([newVoiceAudio.play(), newBgMusic.play()]).catch((err) => {
+          console.error("Audio playback error:", err);
+          stopAllAudio();
+        });
+
+        newVoiceAudio.onended = () => {
+          stopAllAudio();
+        };
+      }
+    },
+    [playingAudioUrl, stopAllAudio]
+  );
+
+  useEffect(() => {
+    return () => {
+      stopAllAudio();
+    };
+  }, [stopAllAudio]);
 
   useEffect(() => {
     if (!api) return;
@@ -141,8 +235,9 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
 
     api.on("select", () => {
       setCurrent(api.selectedScrollSnap());
+      stopAllAudio();
     });
-  }, [api]);
+  }, [api, stopAllAudio]);
 
   useEffect(() => {
     if (!api) return;
@@ -357,7 +452,17 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
 
                 {/* Inner wrapper for continuous scroll-based scale/transform animations */}
                 <div className="carousel-item-inner-wrapper w-full h-full">
-                  <ProjectCarouselItem project={project} isActive={isActive} priority={index === 0} />
+                  <ProjectCarouselItem
+                    project={project}
+                    isActive={isActive}
+                    priority={index === 0}
+                    isPlayingAudio={
+                      !!project.audioUrl && playingAudioUrl === project.audioUrl
+                    }
+                    onToggleAudio={() =>
+                      project.audioUrl && toggleAudio(project.audioUrl)
+                    }
+                  />
                 </div>
               </CarouselItem>
             );

@@ -7,6 +7,7 @@ export interface Project {
   image: string;
   demoLink?: string;
   repoLink?: string;
+  audioUrl?: string;
 }
 
 export const spotlightProjects: Project[] = [
@@ -28,6 +29,7 @@ export const spotlightProjects: Project[] = [
     image: "/images/projects/nawy-property-recommender.png",
     demoLink: "https://nawyai.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/nawy",
+    audioUrl: "/audios/nawy-realstate-elevenlabs-clara-relaxing,-calm-and-soothing.mp3",
   },
   {
     title: "Colon Cancer Histopathology Classification",
