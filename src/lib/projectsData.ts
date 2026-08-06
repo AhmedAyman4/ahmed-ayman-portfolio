@@ -47,6 +47,8 @@ export const spotlightProjects: Project[] = [
     image: "/images/projects/colon-cancer-classifier.png",
     demoLink: "https://huggingface.co/spaces/ahmed-ayman/colon-cancer-classifier",
     repoLink: "https://github.com/AhmedAyman4/colon-cancer-classifier",
+    audioUrl:
+      "/audios/Colon Cancer Histopathology Classification ElevenLabs Relaxing, Calm and Soothing.mp3",
   },
   {
     title: "FCAI USC Regulations Chatbot",
@@ -83,6 +85,8 @@ export const spotlightProjects: Project[] = [
     image: "/images/projects/semantic-book-recommender-webapp.png",
     demoLink: "https://semantic-book-search.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
+    audioUrl:
+      "/audios/Semantic Book Recommender ElevenLabs Clara - Relaxing, Calm and Soothing.mp3",
   },
 /*
   {
@@ -179,6 +183,8 @@ export const otherProjects: Project[] = [
     image: "/images/projects/semantic-book-recommender-webapp.png",
     demoLink: "https://semantic-book-search.vercel.app/",
     repoLink: "https://github.com/AhmedAyman4/semantic-book-recommender",
+    audioUrl:
+      "/audios/Semantic Book Recommender ElevenLabs Clara - Relaxing, Calm and Soothing.mp3",
   },
   {
     title: "Colon Cancer Classifier",
@@ -196,6 +202,8 @@ export const otherProjects: Project[] = [
     image: "/images/projects/colon-cancer-classifier.png",
     demoLink: "https://huggingface.co/spaces/ahmed-ayman/colon-cancer-classifier",
     repoLink: "https://github.com/AhmedAyman4/colon-cancer-classifier",
+    audioUrl:
+      "/audios/Colon Cancer Histopathology Classification ElevenLabs Relaxing, Calm and Soothing.mp3",
   },
   {
     title: "Ahmed Ayman's Portfolio",

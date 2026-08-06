@@ -7,8 +7,8 @@ import {
   FolderGit2,
   FolderUp,
   ArrowRight,
-  Volume2,
-  VolumeX,
+  Play,
+  Pause,
 } from "lucide-react";
 import GitHubIcon from '@mui/icons-material/GitHub';
 import { Button } from "@/components/ui/button";
@@ -139,10 +139,11 @@ const ProjectCarouselItem = ({
                 }
               >
                 {isPlayingAudio ? (
-                  <VolumeX className="w-4 h-4 text-emerald-400" />
+                  <Pause className="w-4 h-4 text-black fill-black" />
                 ) : (
-                  <Volume2 className="w-4 h-4 text-emerald-400 group-hover:text-emerald-300" />
+                  <Play className="w-4 h-4 text-black fill-black" />
                 )}
+                <span>Sound</span>
               </button>
             )}
             <ProjectLink
