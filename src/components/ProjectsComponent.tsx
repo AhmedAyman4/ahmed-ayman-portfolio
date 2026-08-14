@@ -126,7 +126,9 @@ const ProjectCarouselItem = ({
                   e.stopPropagation();
                   onToggleAudio?.();
                 }}
-                className="carousel-link carousel-audio-link"
+                className={`carousel-link carousel-audio-link ${
+                  isPlayingAudio ? "carousel-audio-playing" : ""
+                }`}
                 title={
                   isPlayingAudio
                     ? "Pause Audio Overview"
@@ -139,11 +141,10 @@ const ProjectCarouselItem = ({
                 }
               >
                 {isPlayingAudio ? (
-                  <Pause className="w-4 h-4 text-black fill-black" />
+                  <Pause className="w-3.5 h-3.5 md:w-4 md:h-4 text-white fill-white" />
                 ) : (
-                  <Play className="w-4 h-4 text-black fill-black" />
+                  <Play className="w-3.5 h-3.5 md:w-4 md:h-4 text-white fill-white ml-0.5" />
                 )}
-                <span>Sound</span>
               </button>
             )}
             <ProjectLink
@@ -199,12 +200,12 @@ const ProjectsCarousel = ({ projects }: { projects: Project[] }) => {
 
         // 1. Voice overview audio track
         const newVoiceAudio = new Audio(url);
-        newVoiceAudio.volume = 0.6;
+        newVoiceAudio.volume = 0.2;
         audioRef.current = newVoiceAudio;
 
         // 2. Background music audio track (played softly in the background)
         const newBgMusic = new Audio(BACKGROUND_MUSIC_PATH);
-        newBgMusic.volume = 0.18;
+        newBgMusic.volume = 0.04;
         newBgMusic.loop = true;
         bgMusicRef.current = newBgMusic;
 

@@ -205,7 +205,11 @@
 }
 
 .carousel-audio-link {
-  @apply bg-white/80 hover:bg-white/95 border border-white/40 text-black backdrop-blur-md hover:scale-[1.05] shadow-sm flex items-center justify-center gap-1.5 cursor-pointer transition-all duration-300 font-medium;
+  @apply bg-white/10 hover:bg-white/20 border border-white/25 text-white backdrop-blur-md hover:scale-[1.02] shadow-sm p-1.5 md:p-2 aspect-square cursor-pointer;
+}
+
+.carousel-audio-link.carousel-audio-playing {
+  @apply bg-white/25 border-white/50 text-white shadow-md shadow-white/10;
 }
 
 .carousel-indicators {

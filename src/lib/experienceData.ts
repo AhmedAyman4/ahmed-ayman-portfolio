@@ -32,7 +32,7 @@ export const educations: Education[] = [
     logo: "/images/company_logos/usc-logo.jpeg",
     description: [
       "Faculty of Computers & Artificial Intelligence.",
-      "CGPA: 3.43/4.0 (Excellent).",
+      "CGPA: 3.43/4.0 (Excellent with Honors).",
     ],
     courses: [
       "Artificial Intelligence",
