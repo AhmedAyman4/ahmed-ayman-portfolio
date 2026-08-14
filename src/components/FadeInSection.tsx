@@ -1,61 +1,61 @@
 "use client";
 
-import React, { useState, useRef, useEffect, ReactNode } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import "@/styles/components/FadeInSection.css";
 
-interface FadeInSectionProps {
-  children: ReactNode;
+interface FadeInSectionProps extends React.HTMLAttributes<HTMLDivElement> {
+  children: React.ReactNode;
   delay?: string;
-  className?: string;
+  threshold?: number;
+  once?: boolean;
 }
 
-const FadeInSection: React.FC<FadeInSectionProps> = ({
+export default function FadeInSection({
   children,
   delay = "0s",
+  threshold = 0.1,
+  once = true,
   className = "",
-}) => {
-  const [isVisible, setVisible] = useState<boolean>(false);
-  const domRef = useRef<HTMLDivElement>(null);
+  style,
+  ...props
+}: FadeInSectionProps) {
+  const [isVisible, setVisible] = useState(false);
+  const ref = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        entries.forEach((entry) => {
-          if (entry.isIntersecting) {
-            setVisible(true);
-            observer.unobserve(entry.target);
-          }
-        });
-      },
-      {
-        threshold: 0.1,
-        rootMargin: "0px 0px -50px 0px",
-      }
-    );
+    const el = ref.current;
+    if (!el) return;
 
-    const currentElement = domRef.current;
-    if (currentElement) {
-      observer.observe(currentElement);
+    if (typeof IntersectionObserver === "undefined") {
+      setVisible(true);
+      return;
     }
 
-    return () => {
-      if (currentElement) {
-        observer.unobserve(currentElement);
-      }
-    };
-  }, []);
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          setVisible(true);
+          if (once) observer.unobserve(el);
+        } else if (!once) {
+          setVisible(false);
+        }
+      },
+      { threshold, rootMargin: "0px 0px -50px 0px" }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [threshold, once]);
 
   return (
     <div
-      className={`fade-in-section ${
-        isVisible ? "is-visible" : ""
-      } ${className}`}
-      style={{ "--delay": delay } as React.CSSProperties}
-      ref={domRef}
+      ref={ref}
+      className={`fade-in-section ${isVisible ? "is-visible" : ""} ${className}`.trim()}
+      style={{ ...style, "--delay": delay } as React.CSSProperties}
+      {...props}
     >
       {children}
     </div>
   );
-};
+}
 
-export default FadeInSection;
