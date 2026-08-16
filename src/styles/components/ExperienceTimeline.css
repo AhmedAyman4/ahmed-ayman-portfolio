@@ -366,25 +366,7 @@
   color: #d1d5db; /* text-gray-300 */
 }
 
-/* Selected company indicator (dot) */
-.experience-active-indicator {
-  width: 0.375rem;
-  height: 0.375rem;
-  background-color: #14b8a6;
-  border-radius: 50%;
-  animation: pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-  opacity: 0;
-  transition: opacity 0.3s ease;
-  flex-shrink: 0;
-}
 
-.dark .experience-active-indicator {
-  background-color: #4de9d2;
-}
-
-[data-state="active"] .experience-active-indicator {
-  opacity: 1;
-}
 
 /* Scrollbar hide utility */
 .scrollbar-hide {
@@ -496,5 +478,37 @@
   background-color: rgba(77, 233, 210, 0.15);
   border-color: rgba(77, 233, 210, 0.25);
 }
+
+/* Employment Type Badge */
+.experience-type-badge {
+  display: inline-flex;
+  align-items: center;
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 600;
+  padding: 0.125rem 0.55rem;
+  border-radius: 9999px;
+  background-color: rgba(20, 184, 166, 0.1);
+  color: #0d9488;
+  border: 1px solid rgba(20, 184, 166, 0.25);
+  transition: all 0.2s ease;
+  line-height: 1.25;
+}
+
+.experience-type-badge:hover {
+  background-color: rgba(20, 184, 166, 0.18);
+  border-color: rgba(20, 184, 166, 0.4);
+}
+
+.dark .experience-type-badge {
+  background-color: rgba(77, 233, 210, 0.08);
+  color: #4de9d2;
+  border-color: rgba(77, 233, 210, 0.25);
+}
+
+.dark .experience-type-badge:hover {
+  background-color: rgba(77, 233, 210, 0.15);
+  border-color: rgba(77, 233, 210, 0.4);
+}
+
 
 

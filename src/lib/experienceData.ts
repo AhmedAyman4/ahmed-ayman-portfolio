@@ -87,4 +87,19 @@ export const experiences: Experience[] = [
       "Automated data and AI workflows using n8n, improving efficiency and reducing manual processing.",
     ],
   },
+  {
+    id: "item-4",
+    company: "Arcsen",
+    role: "Salesforce Developer",
+    period: "Jul 2026 - Aug 2026",
+    type: "internship",
+    link: "https://arcsen.com/",
+    logo: "/images/company_logos/Arcsen_logo.jpeg",
+    description: [
+      "Selected for the Arcsen Academy training program and won the Best Team award.",
+      "Built hands-on expertise in Salesforce through data modeling, security, Flows, Apex, and Lightning Web Components (LWC).",
+      "Graduation Project: Engineered an end-to-end Salesforce travel operations platform integrating REST APIs, real-time LWCs, automated payments, custom data models, and role-based security to streamline bookings and prevent conflicts, while building a profitability reporting dashboard to track revenue and margins and improve decision visibility.",
+    ],
+  },
 ];
+

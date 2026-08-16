@@ -28,6 +28,12 @@ const sortedEducations = [...educations].sort((a, b) =>
   parseStartDate(b.period).getTime() - parseStartDate(a.period).getTime()
 );
 
+const experienceTypeLabels: Record<string, string> = {
+  fulltime: "Full-time",
+  parttime: "Part-time",
+  internship: "Internship",
+};
+
 export function ExperienceTimeline() {
   const isMobile = useIsMobile();
 
@@ -77,20 +83,17 @@ export function ExperienceTimeline() {
                               <span className="font-bold text-xs whitespace-nowrap">{exp.company}</span>
                             </div>
                           ) : (
-                            <div className="flex items-center justify-between w-full gap-3">
-                              <div className="flex items-center gap-3">
-                                <div className="experience-logo-wrapper-sm">
-                                  <Image
-                                    src={exp.logo}
-                                    alt={`${exp.company} logo`}
-                                    width={24}
-                                    height={24}
-                                    className="experience-logo-sm"
-                                  />
-                                </div>
-                                <span className="font-medium text-sm">{exp.company}</span>
+                            <div className="flex items-center gap-3 w-full">
+                              <div className="experience-logo-wrapper-sm">
+                                <Image
+                                  src={exp.logo}
+                                  alt={`${exp.company} logo`}
+                                  width={24}
+                                  height={24}
+                                  className="experience-logo-sm"
+                                />
                               </div>
-                              <div className="experience-active-indicator"></div>
+                              <span className="font-medium text-sm">{exp.company}</span>
                             </div>
                           )}
                         </TabsTrigger>
@@ -113,6 +116,11 @@ export function ExperienceTimeline() {
                               {exp.company}
                             </a>
                           </h3>
+                          {exp.type && (
+                            <span className="experience-type-badge">
+                              {experienceTypeLabels[exp.type] || exp.type}
+                            </span>
+                          )}
                         </div>
 
                         <div className="mb-4 flex items-center space-x-2">
@@ -130,7 +138,7 @@ export function ExperienceTimeline() {
                               <li className="experience-description-item">
                                 <div className="experience-description-dot"></div>
                                 <span className="experience-description-text">
-                                  {item}
+                                   {item}
                                 </span>
                               </li>
                             </FadeInSection>
@@ -172,24 +180,21 @@ export function ExperienceTimeline() {
                               <span className="font-bold text-xs whitespace-nowrap">{edu.institution}</span>
                             </div>
                           ) : (
-                            <div className="flex items-center justify-between w-full gap-3">
-                              <div className="flex items-center gap-3">
-                                <div className="experience-logo-wrapper-sm">
-                                  {edu.logo ? (
-                                    <Image
-                                      src={edu.logo}
-                                      alt={`${edu.institution} logo`}
-                                      width={24}
-                                      height={24}
-                                      className="experience-logo-sm"
-                                    />
-                                  ) : (
-                                    <GraduationCap className="h-5 w-5 text-teal-600 dark:text-[#4de9d2]" />
-                                  )}
-                                </div>
-                                <span className="font-medium text-sm">{edu.institution}</span>
+                            <div className="flex items-center gap-3 w-full">
+                              <div className="experience-logo-wrapper-sm">
+                                {edu.logo ? (
+                                  <Image
+                                    src={edu.logo}
+                                    alt={`${edu.institution} logo`}
+                                    width={24}
+                                    height={24}
+                                    className="experience-logo-sm"
+                                  />
+                                ) : (
+                                  <GraduationCap className="h-5 w-5 text-teal-600 dark:text-[#4de9d2]" />
+                                )}
                               </div>
-                              <div className="experience-active-indicator"></div>
+                              <span className="font-medium text-sm">{edu.institution}</span>
                             </div>
                           )}
                         </TabsTrigger>
