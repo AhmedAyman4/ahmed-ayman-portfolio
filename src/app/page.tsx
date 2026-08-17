@@ -8,6 +8,7 @@ import { CoursesAndCertifications } from "@/components/CoursesAndCertifications"
 import { SkillsSection } from "@/components/SkillsSection";
 import { ContactSection } from "@/components/ContactSection";
 import { HeroSection } from "@/components/HeroSection";
+import { AboutSection } from "@/components/AboutSection";
 import {
   SectionSeparator,
   AnimatedSeparator,
@@ -66,6 +67,7 @@ export default function Home() {
         <Navbar
           links={[
             { href: "#", label: "Home" },
+            { href: "#about", label: "About" },
             { href: "#experience", label: "Experience" },
             { href: "#projects", label: "Projects" },
             { href: "#certifications", label: "Certifications" },
@@ -84,6 +86,8 @@ export default function Home() {
           >
             <HeroSection profileImage={Me1} introComplete={introComplete} />
           </div>
+          {/* About Me Section */}
+          <AboutSection id="about" />
           {/* Experience Timeline */}
           <section
             id="experience"
