@@ -46,7 +46,7 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
         <div className="relative max-w-[780px] mx-auto px-4 sm:px-6">
           
           {/* 3D Tilted Sticky Note (Draggable & Pinnable anywhere on the website) */}
-          <div className="block absolute right-2 -top-14 sm:right-5 sm:-top-10 md:right-auto md:-left-24 lg:-left-32 md:top-24 lg:top-28 z-50 pointer-events-auto">
+          <div className="block absolute right-2 -top-14 sm:right-5 sm:-top-10 md:right-auto md:-left-24 lg:-left-32 md:top-24 lg:top-28 z-50 pointer-events-none">
             <motion.div
               drag
               dragMomentum={false}
@@ -56,7 +56,7 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
               whileHover={{ rotate: -2, scale: 1.05 }}
               whileDrag={{ rotate: 1, scale: 1.1, zIndex: 1000 }}
               style={{ touchAction: "none" }}
-              className="about-sticky-note px-2.5 py-2 sm:px-3 sm:py-2.5 w-24 sm:w-28 md:w-32 text-center shadow-lg active:cursor-grabbing z-50 select-none"
+              className="about-sticky-note pointer-events-auto px-2.5 py-2 sm:px-3 sm:py-2.5 w-24 sm:w-28 md:w-32 text-center shadow-lg active:cursor-grabbing z-50 select-none"
             >
               {/* 3D Green Pushpin */}
               <div className="about-pushpin pointer-events-none" aria-hidden="true">

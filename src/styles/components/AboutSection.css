@@ -6,6 +6,7 @@
 .about-section-container {
   position: relative;
   width: 100%;
+  z-index: 40;
 }
 
 /* 3D Sticky Note */
