@@ -46,23 +46,23 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
         <div className="relative max-w-[780px] mx-auto px-4 sm:px-6">
           
           {/* 3D Tilted Sticky Note (Draggable & Pinnable anywhere on the website) */}
-          <div className="block absolute right-3 -top-5 sm:right-6 sm:-top-6 md:right-auto md:-left-28 lg:-left-36 md:top-24 lg:top-28 z-30 pointer-events-auto">
+          <div className="block absolute right-3 top-0 sm:right-6 sm:top-1 md:right-auto md:-left-24 lg:-left-32 md:top-24 lg:top-28 z-30 pointer-events-auto">
             <motion.div
               drag
               dragMomentum={false}
               initial={{ rotate: -6 }}
               whileHover={{ rotate: -2, scale: 1.05 }}
               whileDrag={{ rotate: 1, scale: 1.1, zIndex: 999 }}
-              className="about-sticky-note px-3 py-2.5 sm:px-4 sm:py-3.5 w-28 sm:w-32 md:w-36 text-center shadow-lg active:cursor-grabbing"
+              className="about-sticky-note px-2.5 py-2 sm:px-3 sm:py-2.5 w-24 sm:w-28 md:w-32 text-center shadow-lg active:cursor-grabbing"
             >
               {/* 3D Green Pushpin */}
               <div className="about-pushpin" aria-hidden="true">
                 <div className="about-pushpin-head" />
               </div>
               
-              <p className={`${caveat.className} text-xl sm:text-2xl font-bold leading-tight pt-1 text-[#332d16]`}>
+              <p className={`${caveat.className} text-lg sm:text-xl font-bold leading-tight pt-0.5 sm:pt-1 text-[#332d16]`}>
                 Ahmed Ayman<br />
-                <span className="text-sm sm:text-base font-semibold opacity-85">Portfolio</span>
+                <span className="text-xs sm:text-sm font-semibold opacity-85">Portfolio</span>
               </p>
             </motion.div>
           </div>
@@ -79,13 +79,26 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
             
             {/* ROW 1: 2 Columns on mobile */}
             {/* Card 1: Sky Blue Minimal Pill Card (Col 1 on mobile, Col 1 on desktop) */}
-            <div className="bento-card card-sky-blue col-span-1 p-3.5 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[142px]">
-              <div className="flex items-center justify-between">
+            <div className="bento-card card-sky-blue col-span-1 p-3.5 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[142px] relative overflow-hidden">
+              <div className="flex items-center justify-between z-10 relative">
                 <div className="w-8 h-1 rounded-full bg-white/60 dark:bg-white/30" />
                 <span className="text-[10px] font-semibold opacity-70">01 // INTRO</span>
               </div>
-              <div className="flex justify-end">
-                <span className="inline-flex items-center px-3 py-1 rounded-full bg-[#fed766] text-[#261f0a] text-xs font-bold shadow-sm hover:scale-105 transition-transform cursor-default">
+
+              {/* Bottom-left Avatar Graphic */}
+              <div className="absolute -left-1 sm:-left-2 md:left-2 -bottom-2.5 sm:-bottom-3 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 pointer-events-none z-0">
+                <Image
+                  src="/images/avatars/5.avif"
+                  alt="Ahmed Ayman"
+                  fill
+                  sizes="(max-width: 640px) 100px, 140px"
+                  className="object-contain object-bottom"
+                />
+              </div>
+
+              {/* Bottom-right About Me Badge */}
+              <div className="flex justify-end mt-auto z-10 relative">
+                <span className="inline-flex items-center px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#fed766] text-[#261f0a] text-[11px] sm:text-xs font-bold shadow-sm hover:scale-105 transition-transform cursor-default whitespace-nowrap">
                   About me
                 </span>
               </div>
@@ -189,16 +202,16 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
 
             {/* ROW 5 on mobile: Full Width on mobile, Spans 2 Cols on desktop */}
             {/* Card 7: Dark Espresso Learning Card */}
-            <div className="bento-card card-espresso col-span-2 p-4 sm:p-5 flex flex-col justify-between min-h-[140px] sm:min-h-[152px]">
-              <div>
+            <div className="bento-card card-espresso col-span-2 p-4 sm:p-5 flex flex-col justify-between min-h-[140px] sm:min-h-[152px] relative overflow-hidden">
+              <div className="relative z-10 pr-20 sm:pr-28 md:pr-32">
                 <h3 className="text-base sm:text-lg font-bold text-white mb-1">
                   Constantly Learning
                 </h3>
-                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed max-w-lg">
+                <p className="text-gray-300 text-xs sm:text-sm leading-relaxed">
                   Driven by continuous growth and curiosity, always exploring emerging technologies, refining my engineering craft, and pushing the boundaries of what I can build.
                 </p>
               </div>
-              <div className="pt-2">
+              <div className="pt-2 relative z-10">
                 <a
                   href="#skills"
                   onClick={(e) => handleScrollTo(e, "#skills")}
@@ -207,6 +220,17 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
                   <span>View technical stack</span>
                   <ArrowUpRight className="w-3.5 h-3.5 bento-link-arrow" />
                 </a>
+              </div>
+
+              {/* Bottom Right Avatar */}
+              <div className="absolute right-1 sm:right-3 -bottom-1 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 pointer-events-none">
+                <Image
+                  src="/images/avatars/3.avif"
+                  alt="Constantly Learning Avatar"
+                  fill
+                  sizes="(max-width: 640px) 100px, 140px"
+                  className="object-contain object-bottom"
+                />
               </div>
             </div>
 

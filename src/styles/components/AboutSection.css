@@ -31,17 +31,17 @@
 /* Pushpin Element */
 .about-pushpin {
   position: absolute;
-  top: -8px;
-  left: 6px;
-  width: 20px;
-  height: 20px;
+  top: -7px;
+  left: 5px;
+  width: 17px;
+  height: 17px;
   z-index: 10;
   filter: drop-shadow(2px 3px 3px rgba(0, 0, 0, 0.25));
 }
 
 .about-pushpin-head {
-  width: 16px;
-  height: 16px;
+  width: 14px;
+  height: 14px;
   border-radius: 50%;
   background: radial-gradient(circle at 35% 35%, #34d399, #059669, #065f46);
   border: 1px solid rgba(255, 255, 255, 0.4);
@@ -85,11 +85,6 @@
 /* Card 3: Vintage Photo */
 .card-vintage-image {
   background-color: #1e293b;
-}
-
-.card-vintage-image:hover {
-  transform: none;
-  box-shadow: 0 3px 14px -2px rgba(0, 0, 0, 0.04);
 }
 
 .vintage-overlay {
