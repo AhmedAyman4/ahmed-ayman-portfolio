@@ -46,7 +46,7 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
         <div className="relative max-w-[780px] mx-auto px-4 sm:px-6">
           
           {/* 3D Tilted Sticky Note (Draggable & Pinnable anywhere on the website) */}
-          <div className="block absolute right-3 top-0 sm:right-6 sm:top-1 md:right-auto md:-left-24 lg:-left-32 md:top-24 lg:top-28 z-30 pointer-events-auto">
+          <div className="block absolute right-2 -top-14 sm:right-5 sm:-top-10 md:right-auto md:-left-24 lg:-left-32 md:top-24 lg:top-28 z-30 pointer-events-auto">
             <motion.div
               drag
               dragMomentum={false}
@@ -77,12 +77,12 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
           {/* Bento Grid: 2 Columns on Mobile, 3 Columns on Desktop */}
           <div className="grid grid-cols-2 md:grid-cols-3 gap-3.5 sm:gap-4">
             
-            {/* ROW 1: 2 Columns on mobile */}
-            {/* Card 1: Sky Blue Minimal Pill Card (Col 1 on mobile, Col 1 on desktop) */}
-            <div className="bento-card card-sky-blue col-span-1 p-3.5 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[142px] relative overflow-hidden">
+            {/* ROW 1: 2 Columns on mobile (Col 1 & 2 on desktop) */}
+            {/* Card 1: Sky Blue Minimal Pill Card */}
+            <div className="bento-card card-sky-blue col-span-1 md:col-span-1 md:order-1 p-3.5 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[142px] relative overflow-hidden">
               <div className="flex items-center justify-between z-10 relative">
-                <div className="w-8 h-1 rounded-full bg-white/60 dark:bg-white/30" />
-                <span className="inline-flex items-center px-2 py-[2px] sm:px-3 sm:py-1 rounded-full bg-[#fed766] text-[#261f0a] text-[10px] sm:text-xs font-bold shadow-sm hover:scale-105 transition-transform cursor-default whitespace-nowrap">
+                <div className="w-6 sm:w-8 h-1 rounded-full bg-white/60 dark:bg-white/30" />
+                <span className="inline-flex items-center px-1.5 py-[1.5px] sm:px-3 sm:py-1 rounded-full bg-[#fed766] text-[#261f0a] text-[9px] sm:text-xs font-bold shadow-sm hover:scale-105 transition-transform cursor-default whitespace-nowrap">
                   About me
                 </span>
               </div>
@@ -99,8 +99,8 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
               </div>
             </div>
 
-            {/* Card 2: Soft Lilac Current Role Card (Col 2 on mobile, Col 2 on desktop) */}
-            <div className="bento-card card-lilac col-span-1 p-3.5 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[142px]">
+            {/* Card 2: Soft Lilac Current Role Card */}
+            <div className="bento-card card-lilac col-span-1 md:col-span-1 md:order-2 p-3.5 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[142px]">
               <div>
                 <h3 className="text-sm sm:text-base font-bold leading-snug tracking-tight">
                   Data Science & AI Engineer
@@ -118,7 +118,7 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
 
             {/* ROW 2 on mobile: Wide Photo (Full width on mobile, Col 3 on desktop) */}
             {/* Card 3: Vintage Portrait Photo */}
-            <div className="bento-card card-vintage-image col-span-2 md:col-span-1 aspect-[16/10] sm:aspect-[16/9] md:aspect-square relative overflow-hidden">
+            <div className="bento-card card-vintage-image col-span-2 md:col-span-1 md:order-3 aspect-[16/10] sm:aspect-[16/9] md:aspect-square relative overflow-hidden">
               <Image
                 src="/images/instagram profile vintage image.jpg"
                 alt="Ahmed Ayman Vintage"
@@ -136,10 +136,11 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
               </div>
             </div>
 
-            {/* Card 4: Sage Green Handwritten Card (Full Width on mobile, Col 1 on desktop) */}
-            <div className="bento-card card-sage-green col-span-2 md:col-span-1 p-4 sm:p-5 flex flex-col justify-between min-h-[140px] sm:min-h-[152px]">
+            {/* ROW 3 on mobile: 2 Square Cards side-by-side (Col 1 on desktop Row 2) */}
+            {/* Card 4: Sage Green Handwritten Card */}
+            <div className="bento-card card-sage-green col-span-1 md:col-span-1 md:order-4 aspect-square md:aspect-auto p-3.5 sm:p-4 md:p-5 flex flex-col justify-between md:min-h-[152px]">
               <div>
-                <p className={`${patrickHand.className} text-xl sm:text-2xl font-medium leading-snug tracking-wide text-white`}>
+                <p className={`${patrickHand.className} text-lg sm:text-xl md:text-2xl font-medium leading-snug tracking-wide text-white`}>
                   Welcome to my corner on the internet :)
                 </p>
               </div>
@@ -147,7 +148,7 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
                 <a
                   href="#experience"
                   onClick={(e) => handleScrollTo(e, "#experience")}
-                  className="bento-link text-white/95 hover:text-white text-xs"
+                  className="bento-link text-white/95 hover:text-white text-[11px] sm:text-xs"
                 >
                   <span>My journey</span>
                   <ArrowUpRight className="w-3.5 h-3.5 bento-link-arrow" />
@@ -155,8 +156,34 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
               </div>
             </div>
 
-            {/* Card 5: Spotify Playlist Embed (Full Width horizontal on mobile, Spans 2 Cols on desktop) */}
-            <div className="col-span-2 md:col-span-2 h-[152px] rounded-[12px] overflow-hidden shadow-sm">
+            {/* Card 6: Warm Amber Tech Applications Card (Square Col 2 on mobile, Col 1 on desktop Row 3) */}
+            <div className="bento-card card-amber col-span-1 md:col-span-1 md:order-6 aspect-square md:aspect-auto p-3 sm:p-4 md:p-5 flex flex-col justify-between md:min-h-[152px]">
+              <div>
+                <div className="flex items-start justify-between gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
+                  <h3 className="text-xs sm:text-sm md:text-base font-bold leading-tight sm:leading-snug">
+                    Building intelligent AI & data systems
+                  </h3>
+                  <PenTool className="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-75 shrink-0 mt-0.5" strokeWidth={2.2} />
+                </div>
+                <p className="text-[9.5px] sm:text-[11px] md:text-xs opacity-85 leading-tight sm:leading-relaxed">
+                  Specializing in RAG pipelines, NLP, machine learning models, and full-stack integrations that turn raw data into functional solutions.
+                </p>
+              </div>
+              <div className="pt-1 sm:pt-2">
+                <a
+                  href="#projects"
+                  onClick={(e) => handleScrollTo(e, "#projects")}
+                  className="bento-link text-[#261f0a] dark:text-[#fefce8] text-[10.5px] sm:text-xs"
+                >
+                  <span>Explore projects</span>
+                  <ArrowUpRight className="w-3.5 h-3.5 bento-link-arrow" />
+                </a>
+              </div>
+            </div>
+
+            {/* ROW 4 on mobile: Spotify Embed (Full Width on mobile, Spans 2 Cols on desktop Row 2) */}
+            {/* Card 5: Spotify Playlist Embed */}
+            <div className="col-span-2 md:col-span-2 md:order-5 h-[152px] rounded-[12px] overflow-hidden shadow-sm">
               <iframe
                 data-testid="embed-iframe"
                 style={{ borderRadius: "12px" }}
@@ -170,34 +197,9 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
               />
             </div>
 
-            {/* ROW 4 on mobile: Full Width on mobile, Col 1 on desktop */}
-            {/* Card 6: Warm Amber Tech Applications Card */}
-            <div className="bento-card card-amber col-span-2 md:col-span-1 p-4 sm:p-5 flex flex-col justify-between min-h-[140px] sm:min-h-[152px] relative">
-              <PenTool className="w-3.5 h-3.5 absolute top-4 sm:top-5 right-4 sm:right-5 opacity-75 shrink-0" strokeWidth={2.2} />
-              
-              <div>
-                <h3 className="text-sm sm:text-base font-bold leading-snug pr-7 mb-1.5">
-                  Building intelligent AI & data systems
-                </h3>
-                <p className="text-[11px] sm:text-xs opacity-85 leading-relaxed">
-                  Specializing in RAG pipelines, NLP, machine learning models, and full-stack integrations that turn raw data into functional solutions.
-                </p>
-              </div>
-              <div className="pt-2">
-                <a
-                  href="#projects"
-                  onClick={(e) => handleScrollTo(e, "#projects")}
-                  className="bento-link text-[#261f0a] dark:text-[#fefce8] text-xs"
-                >
-                  <span>Explore projects</span>
-                  <ArrowUpRight className="w-3.5 h-3.5 bento-link-arrow" />
-                </a>
-              </div>
-            </div>
-
-            {/* ROW 5 on mobile: Full Width on mobile, Spans 2 Cols on desktop */}
+            {/* ROW 5 on mobile: Dark Espresso Learning Card (Full Width on mobile, Spans 2 Cols on desktop Row 3) */}
             {/* Card 7: Dark Espresso Learning Card */}
-            <div className="bento-card card-espresso col-span-2 p-4 sm:p-5 flex flex-col justify-between min-h-[140px] sm:min-h-[152px] relative overflow-hidden">
+            <div className="bento-card card-espresso col-span-2 md:col-span-2 md:order-7 p-4 sm:p-5 flex flex-col justify-between min-h-[140px] sm:min-h-[152px] relative overflow-hidden">
               <div className="relative z-10 pr-20 sm:pr-28 md:pr-32">
                 <h3 className="text-base sm:text-lg font-bold text-white mb-1">
                   Constantly Learning
