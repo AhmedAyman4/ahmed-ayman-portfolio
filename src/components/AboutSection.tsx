@@ -82,25 +82,20 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
             <div className="bento-card card-sky-blue col-span-1 p-3.5 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[142px] relative overflow-hidden">
               <div className="flex items-center justify-between z-10 relative">
                 <div className="w-8 h-1 rounded-full bg-white/60 dark:bg-white/30" />
-                <span className="text-[10px] font-semibold opacity-70">01 // INTRO</span>
+                <span className="inline-flex items-center px-2 py-[2px] sm:px-3 sm:py-1 rounded-full bg-[#fed766] text-[#261f0a] text-[10px] sm:text-xs font-bold shadow-sm hover:scale-105 transition-transform cursor-default whitespace-nowrap">
+                  About me
+                </span>
               </div>
 
-              {/* Bottom-left Avatar Graphic */}
-              <div className="absolute -left-1 sm:-left-2 md:left-2 -bottom-2.5 sm:-bottom-3 w-24 h-24 sm:w-28 sm:h-28 md:w-32 md:h-32 pointer-events-none z-0">
+              {/* Centered Avatar Graphic */}
+              <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 sm:-bottom-2.5 md:-bottom-4 w-28 h-28 sm:w-32 sm:h-32 md:w-44 md:h-44 lg:w-48 lg:h-48 pointer-events-none z-0">
                 <Image
                   src="/images/avatars/5.avif"
                   alt="Ahmed Ayman"
                   fill
-                  sizes="(max-width: 640px) 100px, 140px"
+                  sizes="(max-width: 640px) 120px, (max-width: 1024px) 180px, 200px"
                   className="object-contain object-bottom"
                 />
-              </div>
-
-              {/* Bottom-right About Me Badge */}
-              <div className="flex justify-end mt-auto z-10 relative">
-                <span className="inline-flex items-center px-2 py-0.5 sm:px-3 sm:py-1 rounded-full bg-[#fed766] text-[#261f0a] text-[11px] sm:text-xs font-bold shadow-sm hover:scale-105 transition-transform cursor-default whitespace-nowrap">
-                  About me
-                </span>
               </div>
             </div>
 
