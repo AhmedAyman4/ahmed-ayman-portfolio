@@ -46,21 +46,24 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
         <div className="relative max-w-[780px] mx-auto px-4 sm:px-6">
           
           {/* 3D Tilted Sticky Note (Draggable & Pinnable anywhere on the website) */}
-          <div className="block absolute right-2 -top-14 sm:right-5 sm:-top-10 md:right-auto md:-left-24 lg:-left-32 md:top-24 lg:top-28 z-30 pointer-events-auto">
+          <div className="block absolute right-2 -top-14 sm:right-5 sm:-top-10 md:right-auto md:-left-24 lg:-left-32 md:top-24 lg:top-28 z-50 pointer-events-auto">
             <motion.div
               drag
               dragMomentum={false}
+              dragElastic={0}
+              dragPropagation={false}
               initial={{ rotate: -6 }}
               whileHover={{ rotate: -2, scale: 1.05 }}
-              whileDrag={{ rotate: 1, scale: 1.1, zIndex: 999 }}
-              className="about-sticky-note px-2.5 py-2 sm:px-3 sm:py-2.5 w-24 sm:w-28 md:w-32 text-center shadow-lg active:cursor-grabbing"
+              whileDrag={{ rotate: 1, scale: 1.1, zIndex: 1000 }}
+              style={{ touchAction: "none" }}
+              className="about-sticky-note px-2.5 py-2 sm:px-3 sm:py-2.5 w-24 sm:w-28 md:w-32 text-center shadow-lg active:cursor-grabbing z-50 select-none"
             >
               {/* 3D Green Pushpin */}
-              <div className="about-pushpin" aria-hidden="true">
+              <div className="about-pushpin pointer-events-none" aria-hidden="true">
                 <div className="about-pushpin-head" />
               </div>
               
-              <p className={`${caveat.className} text-lg sm:text-xl font-bold leading-tight pt-0.5 sm:pt-1 text-[#332d16]`}>
+              <p className={`${caveat.className} text-lg sm:text-xl font-bold leading-tight pt-0.5 sm:pt-1 text-[#332d16] pointer-events-none select-none`}>
                 Ahmed Ayman<br />
                 <span className="text-xs sm:text-sm font-semibold opacity-85">Portfolio</span>
               </p>
