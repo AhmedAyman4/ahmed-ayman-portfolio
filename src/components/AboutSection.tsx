@@ -90,15 +90,20 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
                 </span>
               </div>
 
-              {/* Centered Avatar Graphic */}
-              <div className="absolute left-1/2 -translate-x-1/2 -bottom-2 sm:-bottom-2.5 md:-bottom-4 w-28 h-28 sm:w-32 sm:h-32 md:w-44 md:h-44 lg:w-48 lg:h-48 pointer-events-none z-0">
-                <Image
-                  src="/images/avatars/5.avif"
-                  alt="Ahmed Ayman"
-                  fill
-                  sizes="(max-width: 640px) 120px, (max-width: 1024px) 180px, 200px"
-                  className="object-contain object-bottom"
-                />
+              {/* Centered Avatar Graphic with Theme-matched Highlight */}
+              <div className="about-avatar-wrapper pointer-events-none z-0">
+                {/* Ambient dynamic radial glow */}
+                <div className="about-avatar-glow" aria-hidden="true" />
+                
+                <div className="relative w-full h-full">
+                  <Image
+                    src="/images/avatars/5.avif"
+                    alt="Ahmed Ayman"
+                    fill
+                    sizes="(max-width: 640px) 120px, (max-width: 1024px) 180px, 200px"
+                    className="about-avatar-img"
+                  />
+                </div>
               </div>
             </div>
 

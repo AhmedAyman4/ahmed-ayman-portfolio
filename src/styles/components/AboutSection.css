@@ -76,6 +76,104 @@
   color: #f8fafc;
 }
 
+/* About Avatar Highlight & Glow */
+.about-avatar-wrapper {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+  bottom: -0.5rem;
+  width: 7rem;
+  height: 7rem;
+  pointer-events: none;
+  z-index: 0;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+
+@media (min-width: 640px) {
+  .about-avatar-wrapper {
+    bottom: -0.625rem;
+    width: 8rem;
+    height: 8rem;
+  }
+}
+
+@media (min-width: 768px) {
+  .about-avatar-wrapper {
+    bottom: -1rem;
+    width: 11rem;
+    height: 11rem;
+  }
+}
+
+@media (min-width: 1024px) {
+  .about-avatar-wrapper {
+    width: 12rem;
+    height: 12rem;
+  }
+}
+
+/* Ambient Radial Glow behind Avatar */
+.about-avatar-glow {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -42%);
+  width: 90%;
+  height: 90%;
+  border-radius: 50%;
+  background: radial-gradient(
+    circle,
+    rgba(255, 255, 255, 0.85) 0%,
+    rgba(224, 242, 254, 0.6) 45%,
+    rgba(186, 230, 253, 0.25) 70%,
+    transparent 85%
+  );
+  filter: blur(14px);
+  pointer-events: none;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+  z-index: 0;
+}
+
+.dark .about-avatar-glow {
+  background: radial-gradient(
+    circle,
+    rgba(56, 189, 248, 0.5) 0%,
+    rgba(77, 233, 210, 0.35) 45%,
+    rgba(30, 64, 175, 0.2) 70%,
+    transparent 85%
+  );
+  filter: blur(16px);
+}
+
+.card-sky-blue:hover .about-avatar-glow {
+  transform: translate(-50%, -46%) scale(1.12);
+  opacity: 0.95;
+}
+
+.about-avatar-img {
+  position: relative;
+  z-index: 1;
+  object-fit: contain;
+  object-position: bottom center;
+  filter: drop-shadow(0 6px 14px rgba(30, 58, 138, 0.2));
+  transition: transform 0.3s cubic-bezier(0.34, 1.56, 0.64, 1), filter 0.3s ease;
+}
+
+.dark .about-avatar-img {
+  filter: drop-shadow(0 8px 18px rgba(0, 0, 0, 0.5)) drop-shadow(0 0 16px rgba(56, 189, 248, 0.35));
+}
+
+.card-sky-blue:hover .about-avatar-img {
+  transform: translateY(-4px) scale(1.03);
+  filter: drop-shadow(0 10px 22px rgba(30, 58, 138, 0.28));
+}
+
+.dark .card-sky-blue:hover .about-avatar-img {
+  filter: drop-shadow(0 12px 26px rgba(0, 0, 0, 0.65)) drop-shadow(0 0 22px rgba(56, 189, 248, 0.5));
+}
+
 /* Card 2: Lilac / Lavender */
 .card-lilac {
   background-color: #f3c4fb;

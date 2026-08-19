@@ -57,8 +57,21 @@ export function ExperienceTimeline() {
               </TabsList>
             </div>
 
-            <div className="experience-card">
-              <TabsContent value="work" className="experience-main-tabs-content">
+            <div className="experience-card-wrapper relative">
+              {/* Peeking Avatar Graphic on top of the Card */}
+              <div className="experience-card-avatar pointer-events-none select-none" aria-hidden="true">
+                <Image
+                  src="/images/avatars/4.avif"
+                  alt="Experience Avatar"
+                  width={120}
+                  height={120}
+                  className="experience-avatar-img"
+                  priority
+                />
+              </div>
+
+              <div className="experience-card">
+                <TabsContent value="work" className="experience-main-tabs-content">
                 <Tabs defaultValue={sortedExperiences[0].id} orientation={isMobile ? "horizontal" : "vertical"} className="experience-tabs-container">
                   
                   <FadeInSection className="experience-tabs-list-wrapper">
@@ -265,6 +278,7 @@ export function ExperienceTimeline() {
                   
                 </Tabs>
               </TabsContent>
+              </div>
             </div>
           </Tabs>
         </div>
