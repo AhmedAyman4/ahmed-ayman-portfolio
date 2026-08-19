@@ -2,7 +2,7 @@
 "use client";
 
 import Image from "next/image";
-import { GraduationCap } from "lucide-react";
+import { GraduationCap, ArrowUpRight } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -10,6 +10,23 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from "@/components/ui/tabs";
 import "@/styles/components/ExperienceTimeline.css";
 
 import { experiences, educations } from "@/lib/experienceData";
+
+const ResumeButton = () => (
+  <a
+    href="https://drive.google.com/file/d/1ZWC4KqKVEvdn7XBobjOcrdGlxj7mH0lN/view?usp=drive_link"
+    target="_blank"
+    rel="noopener noreferrer"
+    className="experience-resume-btn"
+    aria-label="View Resume"
+  >
+    <span>View Resume</span>
+    <span className="experience-resume-icon-circle">
+      <ArrowUpRight className="experience-resume-arrow" strokeWidth={2.5} />
+    </span>
+  </a>
+);
+
+
 
 const parseStartDate = (period: string): Date => {
   const startPart = period.split(" - ")[0].trim();
@@ -112,6 +129,9 @@ export function ExperienceTimeline() {
                         </TabsTrigger>
                       ))}
                     </TabsList>
+                    <div className="pt-2">
+                      <ResumeButton />
+                    </div>
                   </FadeInSection>
 
                   <FadeInSection className="flex-1">
@@ -213,6 +233,9 @@ export function ExperienceTimeline() {
                         </TabsTrigger>
                       ))}
                     </TabsList>
+                    <div className="pt-2">
+                      <ResumeButton />
+                    </div>
                   </FadeInSection>
 
                   <FadeInSection className="flex-1">

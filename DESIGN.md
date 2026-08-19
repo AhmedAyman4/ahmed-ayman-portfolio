@@ -179,3 +179,22 @@ Here are the functional specifications for component layout, interaction states,
 - Crowd mobile viewports; use drawers and responsive disclosure patterns instead.
 - Use color pairings that fail accessibility contrast checkers.
 - Inject raw styles or components without specifying their relationship to the central system tokens.
+
+## Inspirations & References
+
+### Core Inspirations
+- **Curated Directory**: [Pafolios](https://pafolios.com/)
+- **Overall Layout & Structure**: [Gazi Jarin](https://www.gazijarin.com/)
+- **About Section**: [Manish Tamang](https://manishtamang.com/)
+- **Avatars & Contact Section**: [Bahaa Mahmoud](https://bahaamahmoud.space/)
+
+### Liked Portfolios / Aesthetics
+- [Jay](https://www.itsjay.us/)
+- [Why Ramachandran](https://whyramachandran.design/)
+- [Chanhdai](https://chanhdai.com/)
+- [Robert Licau](https://www.robertlicau.com/)
+- [Gehad Salem](https://www.gehadsalem.tech/)
+- [Dakota Sumner](https://dakotasumner.com/)
+
+
+

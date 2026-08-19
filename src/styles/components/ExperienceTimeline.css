@@ -233,6 +233,10 @@
 
 .experience-tabs-list-wrapper {
   flex-shrink: 0;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 1rem;
 }
 
 @media (min-width: 1024px) {
@@ -591,6 +595,65 @@
   background-color: rgba(77, 233, 210, 0.15);
   border-color: rgba(77, 233, 210, 0.4);
 }
+
+/* Resume button in Experience Timeline (Black & White style - Compact, Static) */
+.experience-resume-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.35rem;
+  font-size: 0.6875rem; /* 11px */
+  font-weight: 600;
+  padding: 0.22rem 0.55rem;
+  border-radius: 9999px;
+  background-color: #000000;
+  color: #ffffff;
+  border: 1px solid rgba(0, 0, 0, 0.9);
+  transition: background-color 0.2s ease, border-color 0.2s ease;
+  width: fit-content;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.experience-resume-btn:hover {
+  background-color: #27272a;
+  border-color: #27272a;
+}
+
+.dark .experience-resume-btn {
+  background-color: #ffffff;
+  color: #000000;
+  border: 1px solid rgba(255, 255, 255, 0.9);
+}
+
+.dark .experience-resume-btn:hover {
+  background-color: #e4e4e7;
+  border-color: #e4e4e7;
+}
+
+.experience-resume-icon-circle {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 0.95rem;
+  height: 0.95rem;
+  border-radius: 50%;
+  background-color: #ffffff;
+  color: #000000;
+  flex-shrink: 0;
+}
+
+.dark .experience-resume-icon-circle {
+  background-color: #000000;
+  color: #ffffff;
+}
+
+.experience-resume-arrow {
+  width: 0.6rem;
+  height: 0.6rem;
+}
+
+
+
 
 
 
