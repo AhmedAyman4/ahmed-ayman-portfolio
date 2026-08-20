@@ -195,6 +195,8 @@ Here are the functional specifications for component layout, interaction states,
 - [Robert Licau](https://www.robertlicau.com/)
 - [Gehad Salem](https://www.gehadsalem.tech/)
 - [Dakota Sumner](https://dakotasumner.com/)
+- [Edu Calvo López](https://educalvolopez.com/en)
+
 
 
 
