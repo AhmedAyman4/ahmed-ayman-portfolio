@@ -1,14 +1,22 @@
 export type ExperienceType = "fulltime" | "parttime" | "internship";
 
+export interface ExperienceRole {
+  role: string;
+  period: string;
+  type?: ExperienceType;
+  description: string[];
+}
+
 export interface Experience {
   id: string;
   company: string;
-  role: string;
+  role?: string;
   period: string;
-  type: ExperienceType;
+  type?: ExperienceType;
   link: string;
-  description: string[];
+  description?: string[];
   logo: string;
+  roles?: ExperienceRole[];
 }
 
 export interface Education {
@@ -90,15 +98,28 @@ export const experiences: Experience[] = [
   {
     id: "item-4",
     company: "Arcsen",
-    role: "Salesforce Developer",
-    period: "Jul 2026 - Aug 2026",
-    type: "internship",
+    period: "Jul 2026 - Present",
     link: "https://arcsen.com/",
     logo: "/images/company_logos/Arcsen_logo.jpeg",
-    description: [
-      "Selected for the Arcsen Academy training program and won the Best Team award.",
-      "Built hands-on expertise in Salesforce through data modeling, security, Flows, Apex, and Lightning Web Components (LWC).",
-      "Graduation Project: Engineered an end-to-end Salesforce travel operations platform integrating REST APIs, real-time LWCs, automated payments, custom data models, and role-based security to streamline bookings and prevent conflicts, while building a profitability reporting dashboard to track revenue and margins and improve decision visibility.",
+    roles: [
+      {
+        role: "Associate Analyst",
+        period: "Aug 2026 - Present",
+        type: "parttime",
+        description: [
+          "Focus on business analysis, process optimization, and system integration.",
+        ],
+      },
+      {
+        role: "Salesforce Developer Intern",
+        period: "Jul 2026 - Aug 2026",
+        type: "internship",
+        description: [
+          "Selected for the Arcsen Academy training program and won the Best Team award.",
+          "Built hands-on expertise in Salesforce through data modeling, security, Flows, Apex, and Lightning Web Components (LWC).",
+          "Graduation Project: Engineered an end-to-end Salesforce travel operations platform integrating REST APIs, real-time LWCs, automated payments, custom data models, and role-based security to streamline bookings and prevent conflicts, while building a profitability reporting dashboard to track revenue and margins and improve decision visibility.",
+        ],
+      },
     ],
   },
 ];

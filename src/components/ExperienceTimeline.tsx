@@ -1,8 +1,9 @@
 // components/ExperienceTimeline.tsx
 "use client";
 
+import { useState } from "react";
 import Image from "next/image";
-import { GraduationCap, ArrowUpRight } from "lucide-react";
+import { GraduationCap, ArrowUpRight, ChevronDown } from "lucide-react";
 import { SectionHeader } from "@/components/SectionHeader";
 import FadeInSection from "@/components/FadeInSection";
 import { useIsMobile } from "@/hooks/use-mobile";
@@ -53,6 +54,24 @@ const experienceTypeLabels: Record<string, string> = {
 
 export function ExperienceTimeline() {
   const isMobile = useIsMobile();
+
+  // Track expanded state for multi-role promotions (latest role expanded by default)
+  const [expandedRoles, setExpandedRoles] = useState<Record<string, boolean>>(() => {
+    const initial: Record<string, boolean> = {};
+    experiences.forEach((exp) => {
+      if (exp.roles && exp.roles.length > 0) {
+        initial[`${exp.id}-0`] = true;
+      }
+    });
+    return initial;
+  });
+
+  const toggleRole = (roleKey: string) => {
+    setExpandedRoles((prev) => ({
+      ...prev,
+      [roleKey]: !prev[roleKey],
+    }));
+  };
 
   return (
     <div id="experience" className="relative">
@@ -137,46 +156,161 @@ export function ExperienceTimeline() {
                   <FadeInSection className="flex-1">
                     {sortedExperiences.map((exp) => (
                       <TabsContent key={exp.id} value={exp.id} className="experience-tabs-content">
-                        <div className="mb-3 flex items-center flex-wrap gap-2">
-                          <h3 className="experience-role-title">
-                            {exp.role} @{" "}
-                            <a
-                              href={exp.link}
-                              target="_blank"
-                              rel="noopener noreferrer"
-                              className="experience-company-link"
-                            >
-                              {exp.company}
-                            </a>
-                          </h3>
-                          {exp.type && (
-                            <span className="experience-type-badge">
-                              {experienceTypeLabels[exp.type] || exp.type}
-                            </span>
-                          )}
-                        </div>
+                        {exp.roles && exp.roles.length > 0 ? (
+                          <div className="experience-promotions-container">
+                            <div className="experience-promotions-header">
+                              <h3 className="experience-role-title">
+                                <a
+                                  href={exp.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="experience-company-link"
+                                >
+                                  {exp.company}
+                                </a>
+                              </h3>
+                              {exp.period && (
+                                <div className="flex items-center space-x-2">
+                                  <div className="experience-period-dot"></div>
+                                  <span className="experience-period-text">
+                                    {exp.period}
+                                  </span>
+                                </div>
+                              )}
+                            </div>
 
-                        <div className="mb-4 flex items-center space-x-2">
-                          <div className="experience-period-dot"></div>
-                          <span className="experience-period-text">
-                            {exp.period}
-                          </span>
-                        </div>
+                            <div className="experience-promotions-timeline">
+                              {exp.roles.map((roleItem, roleIndex) => {
+                                const roleKey = `${exp.id}-${roleIndex}`;
+                                const isExpanded = !!expandedRoles[roleKey];
+                                const hasDescription = roleItem.description && roleItem.description.length > 0;
 
-                        <ul className="space-y-3">
-                          {exp.description.map((item, itemIndex) => (
-                            <FadeInSection
-                              key={`item-${exp.id}-${itemIndex}`}
-                            >
-                              <li className="experience-description-item">
-                                <div className="experience-description-dot"></div>
-                                <span className="experience-description-text">
-                                   {item}
+                                return (
+                                  <div
+                                    key={`role-${exp.id}-${roleIndex}`}
+                                    className={`experience-promotion-item ${isExpanded ? "expanded" : "collapsed"}`}
+                                  >
+                                    <div className={`experience-promotion-node ${isExpanded ? "active" : ""}`} aria-hidden="true">
+                                      <div className="experience-promotion-node-inner" />
+                                    </div>
+
+                                    <div className="experience-promotion-content">
+                                      {hasDescription ? (
+                                        <button
+                                          type="button"
+                                          onClick={() => toggleRole(roleKey)}
+                                          className="experience-promotion-toggle-btn group w-full text-left"
+                                          aria-expanded={isExpanded}
+                                        >
+                                          <div className="flex items-center justify-between gap-1.5 sm:gap-2">
+                                            <div className="flex items-center gap-1.5 sm:gap-2 flex-nowrap min-w-0">
+                                              <h4 className="experience-subrole-title group-hover:text-teal-600 dark:group-hover:text-[#4de9d2] transition-colors whitespace-nowrap">
+                                                {roleItem.role}
+                                              </h4>
+                                              {roleItem.type && (
+                                                <span className="experience-type-badge shrink-0">
+                                                  {experienceTypeLabels[roleItem.type] || roleItem.type}
+                                                </span>
+                                              )}
+                                            </div>
+                                            <span className="experience-role-chevron-wrapper shrink-0">
+                                              <ChevronDown
+                                                className={`experience-role-chevron ${isExpanded ? "rotated" : ""}`}
+                                              />
+                                            </span>
+                                          </div>
+                                        </button>
+                                      ) : (
+                                        <div className="flex items-center gap-1.5 sm:gap-2 flex-nowrap min-w-0">
+                                          <h4 className="experience-subrole-title whitespace-nowrap">
+                                            {roleItem.role}
+                                          </h4>
+                                          {roleItem.type && (
+                                            <span className="experience-type-badge shrink-0">
+                                              {experienceTypeLabels[roleItem.type] || roleItem.type}
+                                            </span>
+                                          )}
+                                        </div>
+                                      )}
+
+                                      <div className="mb-2 mt-1 flex items-center space-x-2">
+                                        <span className="experience-period-text text-xs sm:text-sm">
+                                          {roleItem.period}
+                                        </span>
+                                      </div>
+
+                                      {hasDescription && (
+                                        <div className={`experience-promotion-collapsible ${isExpanded ? "expanded" : ""}`}>
+                                          <div className="experience-promotion-collapsible-inner pt-1">
+                                            <ul className="space-y-2.5">
+                                              {roleItem.description.map((item, itemIndex) => (
+                                                <FadeInSection
+                                                  key={`item-${exp.id}-${roleIndex}-${itemIndex}`}
+                                                >
+                                                  <li className="experience-description-item">
+                                                    <div className="experience-description-dot"></div>
+                                                    <span className="experience-description-text">
+                                                      {item}
+                                                    </span>
+                                                  </li>
+                                                </FadeInSection>
+                                              ))}
+                                            </ul>
+                                          </div>
+                                        </div>
+                                      )}
+                                    </div>
+                                  </div>
+                                );
+                              })}
+                            </div>
+                          </div>
+                        ) : (
+                          <>
+                            <div className="mb-3 flex items-center flex-wrap gap-2">
+                              <h3 className="experience-role-title">
+                                {exp.role} @{" "}
+                                <a
+                                  href={exp.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="experience-company-link"
+                                >
+                                  {exp.company}
+                                </a>
+                              </h3>
+                              {exp.type && (
+                                <span className="experience-type-badge">
+                                  {experienceTypeLabels[exp.type] || exp.type}
                                 </span>
-                              </li>
-                            </FadeInSection>
-                          ))}
-                        </ul>
+                              )}
+                            </div>
+
+                            <div className="mb-4 flex items-center space-x-2">
+                              <div className="experience-period-dot"></div>
+                              <span className="experience-period-text">
+                                {exp.period}
+                              </span>
+                            </div>
+
+                            {exp.description && (
+                              <ul className="space-y-3">
+                                {exp.description.map((item, itemIndex) => (
+                                  <FadeInSection
+                                    key={`item-${exp.id}-${itemIndex}`}
+                                  >
+                                    <li className="experience-description-item">
+                                      <div className="experience-description-dot"></div>
+                                      <span className="experience-description-text">
+                                         {item}
+                                      </span>
+                                    </li>
+                                  </FadeInSection>
+                                ))}
+                              </ul>
+                            )}
+                          </>
+                        )}
                       </TabsContent>
                     ))}
                   </FadeInSection>

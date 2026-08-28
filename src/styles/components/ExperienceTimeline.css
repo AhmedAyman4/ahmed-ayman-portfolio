@@ -53,7 +53,13 @@
     0 10px 20px -5px rgba(0, 0, 0, 0.1),
     0 0 0 1px rgba(255, 255, 255, 0.5) inset;
   transition: all 0.3s ease;
-  padding: 1.5rem; /* p-6 */
+  padding: 1rem; /* responsive padding for mobile */
+}
+
+@media (min-width: 640px) {
+  .experience-card {
+    padding: 1.5rem;
+  }
 }
 
 .experience-card:hover {
@@ -343,7 +349,13 @@
 .experience-tabs-content {
   margin-top: 0 !important;
   outline: none !important;
-  padding: 1rem !important; /* p-4 */
+  padding: 0.5rem 0.25rem !important;
+}
+
+@media (min-width: 640px) {
+  .experience-tabs-content {
+    padding: 1rem !important;
+  }
 }
 
 .experience-role-title {
@@ -446,7 +458,212 @@
   color: #d1d5db; /* text-gray-300 */
 }
 
+/* Multi-role / Promotions in Same Company */
+.experience-promotions-container {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
 
+.experience-promotions-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  margin-bottom: 1.25rem;
+}
+
+.experience-promotions-timeline {
+  position: relative;
+  padding-left: 1.5rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.experience-promotions-timeline::before {
+  content: "";
+  position: absolute;
+  left: 0.22rem;
+  top: 0.5rem;
+  bottom: 0.5rem;
+  width: 1.5px;
+  background: linear-gradient(
+    to bottom,
+    rgba(20, 184, 166, 0.6),
+    rgba(147, 51, 234, 0.4),
+    rgba(209, 213, 219, 0.4)
+  );
+  border-radius: 9999px;
+}
+
+.dark .experience-promotions-timeline::before {
+  background: linear-gradient(
+    to bottom,
+    rgba(77, 233, 210, 0.7),
+    rgba(168, 85, 247, 0.5),
+    rgba(75, 85, 99, 0.35)
+  );
+}
+
+.experience-promotion-item {
+  position: relative;
+  transition: margin-bottom 0.3s ease;
+}
+
+.experience-promotion-item.expanded {
+  margin-bottom: 1.5rem;
+}
+
+.experience-promotion-item.collapsed {
+  margin-bottom: 1rem;
+}
+
+.experience-promotion-item:last-child {
+  margin-bottom: 0 !important;
+}
+
+.experience-promotion-node {
+  position: absolute;
+  left: -1.5rem;
+  top: 0.35rem;
+  width: 0.55rem;
+  height: 0.55rem;
+  border-radius: 50%;
+  background-color: #ffffff;
+  border: 1.5px solid #14b8a6;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2;
+  transition: all 0.3s ease;
+}
+
+.experience-promotion-node-inner {
+  width: 0.2rem;
+  height: 0.2rem;
+  border-radius: 50%;
+  background-color: #14b8a6;
+  transition: all 0.3s ease;
+}
+
+.dark .experience-promotion-node {
+  background-color: #111827;
+  border-color: #4de9d2;
+}
+
+.dark .experience-promotion-node-inner {
+  background-color: #4de9d2;
+}
+
+.experience-promotion-node.active,
+.experience-promotion-item:first-child .experience-promotion-node {
+  box-shadow: 0 0 0 2px rgba(20, 184, 166, 0.2);
+}
+
+.dark .experience-promotion-node.active,
+.dark .experience-promotion-item:first-child .experience-promotion-node {
+  box-shadow: 0 0 0 2px rgba(77, 233, 210, 0.25);
+}
+
+.experience-promotion-content {
+  width: 100%;
+}
+
+.experience-promotion-toggle-btn {
+  background: transparent;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  width: 100%;
+  text-align: left;
+  outline: none;
+}
+
+.experience-role-chevron-wrapper {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  border-radius: 9999px;
+  background-color: rgba(0, 0, 0, 0.04);
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+}
+
+.dark .experience-role-chevron-wrapper {
+  background-color: rgba(255, 255, 255, 0.05);
+}
+
+.experience-promotion-toggle-btn:hover .experience-role-chevron-wrapper {
+  background-color: rgba(20, 184, 166, 0.12);
+}
+
+.dark .experience-promotion-toggle-btn:hover .experience-role-chevron-wrapper {
+  background-color: rgba(77, 233, 210, 0.15);
+}
+
+.experience-role-chevron {
+  width: 0.875rem;
+  height: 0.875rem;
+  color: #6b7280;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1), color 0.2s ease;
+}
+
+.dark .experience-role-chevron {
+  color: #9ca3af;
+}
+
+.experience-role-chevron.rotated {
+  transform: rotate(180deg);
+  color: #0d9488;
+}
+
+.dark .experience-role-chevron.rotated {
+  color: #4de9d2;
+}
+
+.experience-promotion-collapsible {
+  display: grid;
+  grid-template-rows: 0fr;
+  transition: grid-template-rows 0.35s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.25s ease;
+  opacity: 0;
+}
+
+.experience-promotion-collapsible.expanded {
+  grid-template-rows: 1fr;
+  opacity: 1;
+}
+
+.experience-promotion-collapsible-inner {
+  overflow: hidden;
+  min-height: 0;
+}
+
+.experience-subrole-title {
+  font-size: 0.8125rem;
+  font-weight: 700;
+  color: #111827;
+  transition: color 0.2s ease;
+  line-height: 1.25;
+}
+
+@media (min-width: 480px) {
+  .experience-subrole-title {
+    font-size: 0.9rem;
+  }
+}
+
+@media (min-width: 640px) {
+  .experience-subrole-title {
+    font-size: 1.05rem;
+  }
+}
+
+.dark .experience-subrole-title {
+  color: #f3f4f6;
+}
 
 /* Scrollbar hide utility */
 .scrollbar-hide {
@@ -578,6 +795,8 @@
   border: 1px solid rgba(20, 184, 166, 0.25);
   transition: all 0.2s ease;
   line-height: 1.25;
+  white-space: nowrap;
+  flex-shrink: 0;
 }
 
 .experience-type-badge:hover {
