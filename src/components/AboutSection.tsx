@@ -73,7 +73,6 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
         <FadeInSection>
           <SectionHeader
             title="About"
-            subtitle="Data Science & AI Engineer building end-to-end intelligent systems, RAG pipelines, and automated workflows."
             className="mb-8"
           />
         </FadeInSection>
@@ -115,8 +114,11 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
             <div className="bento-card card-lilac h-full p-3.5 sm:p-4 flex flex-col justify-between min-h-[135px] sm:min-h-[142px]">
               <div>
                 <h3 className="text-sm sm:text-base font-bold leading-snug tracking-tight">
-                  Data Science & AI Engineer
+                  Associate Analyst @ Arcsen
                 </h3>
+                <p className="text-xs font-semibold opacity-80 mt-0.5">
+                  (Salesforce Dev)
+                </p>
               </div>
               <div className="flex items-center justify-between pt-2 border-t border-black/10 dark:border-white/10">
                 <span className="text-[10px] font-bold tracking-widest uppercase opacity-75">
@@ -179,12 +181,12 @@ export function AboutSection({ id = "about", className = "" }: AboutSectionProps
               <div>
                 <div className="flex items-start justify-between gap-1.5 sm:gap-2 mb-1 sm:mb-1.5">
                   <h3 className="text-xs sm:text-sm md:text-base font-bold leading-tight sm:leading-snug">
-                    Building intelligent AI & data systems
+                    Building AI and Data Systems
                   </h3>
                   <PenTool className="w-2.5 h-2.5 sm:w-3 sm:h-3 opacity-75 shrink-0 mt-0.5" strokeWidth={2.2} />
                 </div>
                 <p className="text-[9.5px] sm:text-[11px] md:text-xs opacity-85 leading-tight sm:leading-relaxed">
-                  Specializing in RAG pipelines, NLP, machine learning models, and full-stack integrations that turn raw data into functional solutions.
+                  Specializing in Salesforce and MuleSoft integrations, RAG pipelines, NLP, and machine learning models that turn raw data into functional solutions.
                 </p>
               </div>
               <div className="pt-1 sm:pt-2">

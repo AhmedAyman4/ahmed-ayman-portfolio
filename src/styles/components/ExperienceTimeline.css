@@ -73,15 +73,14 @@
   border-color: rgba(75, 85, 99, 0.4);
   box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.3),
     0 10px 20px -5px rgba(0, 0, 0, 0.4),
-    0 0 0 1px rgba(255, 255, 255, 0.05) inset,
-    0 0 40px -10px rgba(77, 233, 210, 0.1);
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
 }
 
 .dark .experience-card:hover {
-  border-color: rgba(77, 233, 210, 0.3);
+  border-color: rgba(107, 114, 128, 0.5);
   box-shadow: 0 8px 12px -2px rgba(0, 0, 0, 0.4),
-    0 16px 32px -8px rgba(0, 0, 0, 0.5), 0 0 0 1px rgba(77, 233, 210, 0.1) inset,
-    0 0 60px -10px rgba(77, 233, 210, 0.15);
+    0 16px 32px -8px rgba(0, 0, 0, 0.5),
+    0 0 0 1px rgba(255, 255, 255, 0.08) inset;
 }
 
 /* Card Avatar (Emerging from behind the top left of the box) */
@@ -376,7 +375,7 @@
 
 /* Company link styles */
 .experience-company-link {
-  background: linear-gradient(to right, #14b8a6, #9333ea); /* teal-500 to purple-600 */
+  background: linear-gradient(135deg, #0d9488 0%, #0284c7 100%);
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
@@ -386,19 +385,19 @@
 }
 
 .dark .experience-company-link {
-  background: linear-gradient(to right, #4de9d2, #a855f7); /* #4de9d2 to purple-500 */
+  background: linear-gradient(135deg, #5eead4 0%, #38bdf8 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
 
 .experience-company-link:hover {
-  background: linear-gradient(to right, #0d9488, #7e22ce); /* teal-600 to purple-700 */
+  background: linear-gradient(135deg, #0f766e 0%, #0369a1 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
 
 .dark .experience-company-link:hover {
-  background: linear-gradient(to right, #3dd1b5, #8b5cf6);
+  background: linear-gradient(135deg, #ffffff 10%, #7dd3fc 100%);
   -webkit-background-clip: text;
   background-clip: text;
 }
@@ -487,12 +486,12 @@
   left: 0.22rem;
   top: 0.5rem;
   bottom: 0.5rem;
-  width: 1.5px;
+  width: 2px;
   background: linear-gradient(
     to bottom,
-    rgba(20, 184, 166, 0.6),
-    rgba(147, 51, 234, 0.4),
-    rgba(209, 213, 219, 0.4)
+    rgba(13, 148, 136, 0.7) 0%,
+    rgba(2, 132, 199, 0.4) 60%,
+    rgba(203, 213, 225, 0.25) 100%
   );
   border-radius: 9999px;
 }
@@ -500,9 +499,9 @@
 .dark .experience-promotions-timeline::before {
   background: linear-gradient(
     to bottom,
-    rgba(77, 233, 210, 0.7),
-    rgba(168, 85, 247, 0.5),
-    rgba(75, 85, 99, 0.35)
+    rgba(94, 234, 212, 0.8) 0%,
+    rgba(56, 189, 248, 0.45) 60%,
+    rgba(255, 255, 255, 0.08) 100%
   );
 }
 

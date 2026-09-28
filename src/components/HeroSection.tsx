@@ -69,9 +69,9 @@ export function HeroSection({ profileImage, introComplete = false }: HeroSection
         </p>
 
         <p className="hero-description">
-          Data Science & AI Engineer (IS background) specializing in RAG, NLP, and automation, 
-          building end-to-end agents and predictive models. 
-          Passionate about bridging the gap between raw data and functional AI products.
+          Motivated individual passionate about AI and Data Science. Currently working in 
+          the Salesforce CRM domain and MuleSoft integrations while expanding expertise in 
+          AI, automation, and data-driven solutions, continuously learning and staying up to date.
         </p>
 
         <div className="mt-0 flex justify-center">
